@@ -1,0 +1,57 @@
+Project Setup:
+
+1. Download Git Tool & Install
+	https://git-scm.com/downloads
+
+2. Open Git Bash then change dir path to  c:/xampp/htdocs
+
+3. Clone code from  github repository 
+	git clone https://github.com/Vijaialan/Stepnstones.git
+
+4. create dbconfig file then change the database connect details
+	Download Sqlpro for Macbook or workbench
+	
+	Now the application is ready to run in local host
+	
+5. Server Details
+
+	165.22.120.194 prod
+	157.245.37.236 sandbox
+	165.22.221.129 anklesaria website 
+	
+	connect server using SSH key 
+
+6. Check git version
+	git remote -v
+
+7. Set git repository to local directory
+	$ git remote set-url origin https://github.com/Vijaialan/Stepnstones.git
+
+8. Check for update in remote
+	$ git status
+9. Add files into repository 
+	$ git add index.php
+
+10. Push code into repository 
+	$ git push origin master
+	$ git push -f origin master  (forced update)
+	
+11. Config virtual host path
+	/etc/apache2/sites-available/
+	
+	vim 000-default.conf  default-ssl.conf
+	
+	sudo apachectl restart
+	
+	root@AimDriveSandbox:/var/www/aimdrive.com/public_html/Stepnstones# cp ../aimanddrive/dbconfig.php dbconfig.php
+	
+	Change database conneection string
+	
+12. Pull code from git repository to sandbox
+	
+	root@AimDriveSandbox:/var/www/aimdrive.com/public_html/Stepnstones# git pull origin master
+	
+	
+
+
+

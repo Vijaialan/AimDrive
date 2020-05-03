@@ -30911,8 +30911,6 @@ function setManagementReports() {
             "</td>" +
             "                                            </tr>";
     }
-
-
     $(document).ready(function() {
         $("#Text2").on("keyup", function() {
             var value = $(this)

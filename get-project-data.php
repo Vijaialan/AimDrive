@@ -717,7 +717,6 @@ while($actionRow= mysqli_fetch_assoc($actionResult)) {
     $onTime = false;
     $totalActions = 0;
   }
-  
   if(!isset($strategies[$actionRow['ssid']])) {
     $strategies[$actionRow['ssid']] = array(
       'project' => $actionRow['pjid'],

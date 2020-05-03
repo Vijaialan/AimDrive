@@ -28987,6 +28987,8 @@ function quarter_of_the_year(date) {
 /**
  * Progress Report of a particular project
  */
+
+
 function refreshProgressReport() {
     let loggedInUser = getFirstLast(Gusername);
     let loggedInUserName = loggedInUser[0].trim() + " " + loggedInUser[1].trim();
@@ -30113,18 +30115,18 @@ function setManagementReports() {
                 stratEnt[28][key].pj_name,
                 getCompanyName(getCompanyForProject(stratEnt[28][key].pjid)),
                 stratEnt[28][key].deadline,
-                generateProfileIconFromId(stratEnt[28][key].participant, "empname")
+                getPersonName(stratEnt[28][key].participant, "empname")
             ]);
         }
 
         //NEW
-        for (var key in stratEnt[28]) {
+        for (var key in stratEnt[30]) {
             manAllPendingStrategiesData.push([
-                stratEnt[28][key].description,
-                stratEnt[28][key].pj_name,
-                getCompanyName(getCompanyForProject(stratEnt[28][key].pjid)),
-                stratEnt[28][key].deadline,
-                generateProfileIconFromId(stratEnt[28][key].participant, "empname")
+                stratEnt[30][key].ssdesc,
+                stratEnt[30][key].projectName,
+                getCompanyName(getCompanyForProject(stratEnt[30][key].project)),
+                stratEnt[30][key].targetDate,
+                getPersonName(stratEnt[30][key].ssid, "empname")
             ]);
         }
         //END
@@ -30627,6 +30629,112 @@ function setManagementReports() {
         });
     });
 
+    //NEW CODE
+    var names1 = getFirstLast(Gusername);
+    body =
+        body +
+        "                        </table></div>" +
+        "                    </div>" +
+        "                </div>" +
+        "            </div>" +
+        "        </div>" +
+        "        <br />" +
+        '        <div class="row">' +
+        '            <div class="col-lg-6 col-md-6 col-sm-6">' +
+        '                <div class="sec_head">' +
+        '                    <h2 class="sec_title no_margin">Pending Strategies</h2>' +
+        "                </div>" +
+        "            </div>" +
+        '            <div class="col-lg-6 col-md-6 col-sm-6 text-right">' +
+        '                <div class="btn_group">' +
+        '                    <input type="submit" value="All Actions" useThis="" class="pendingStrategies left active">' +
+        '                    <input type="submit" value="My Actions" useThis="' + names1[0] + " " + names1[1] + '" class="pendingStrategies right">' +
+        "                </div>" +
+        "                &nbsp;&nbsp;&nbsp;" +
+        '                <input type="text" id="TextStrategies" class="search_input" supplierSelector>' +
+        "            </div>" +
+        "        </div>" +
+        '        <div class="row">' +
+        '            <div class="col-lg-12 col-md-12 col-sm-12">' +
+        '                <div class="main_block" style="margin-top: 0px;">' +
+        '                    <div class="projects_table_wrp1">' +
+        '                        <table class="table projects_thead">' +
+        "                            <thead>" +
+        "                                <tr>" +
+        '                                    <th width="25%" class="sortable">Pending Strategy Statements</th>' +
+        '                                    <th width="25%" class="sortable asc">Project </th>' +
+        '                                    <th width="10%" class="sortable">Client</th>' +
+        '                                    <th width="20%" class="sortable">Due by</th>' +
+        '                                    <th width="20%" class="sortable">Owners</th>' +
+        "                                </tr>" +
+        "                            </thead></table>";
+    body +=
+        '<div class="projects_scroll cus_scroll">' +
+        '<table class="table projects_table" id="Table1">';
+    for (var x = 0; x < manAllPendingStrategiesData.length; x++) {
+        var penStrat = manAllPendingStrategiesData[x];
+        body =
+            body +
+            "                                            <tr>" +
+            '                                                <td width="25%">' +
+            penStrat[0] +
+            "</td>" +
+            '                                                <td width="25%">' +
+            penStrat[1] +
+            "</td>" +
+            '                                                <td width="10%">' +
+            penStrat[2] +
+            "</td>" +
+            '                                                <td width="20%">' +
+            getPrintDate(penStrat[3]) +
+            "</td>" +
+            '                                                <td width="20%"> <span class="empname">' +
+            penStrat[4] +
+            "</span></td>" +
+            "                                            </tr>";
+    }
+
+    $(document).ready(function() {
+        $("#TextStrategies").on("keyup", function() {
+            var value = $(this)
+                .val()
+                .toLowerCase();
+            $("#Table1 tr").filter(function() {
+                $(this).toggle(
+                    $(this)
+                    .text()
+                    .toLowerCase()
+                    .indexOf(value) > -1
+                );
+            });
+        });
+
+        //NEW sns13
+        $(".pendingStrategies").on("click", function() {
+            //alert('test');
+            $(".pendingStrategies").removeClass("active");
+            $(this).addClass("active");
+            var value = $(this)
+                .attr("useThis")
+                .toLowerCase();
+
+            $("#Table1 tr").filter(function() {
+                $(this).toggle(
+                    $(this)
+                    .text()
+                    .toLowerCase()
+                    .indexOf(value) > -1
+                );
+            });
+        });
+        //END
+    });
+
+
+    //END
+
+
+
     body =
         body +
         "                        </table></div>" +
@@ -30643,8 +30751,8 @@ function setManagementReports() {
         "            </div>" +
         '            <div class="col-lg-6 col-md-6 col-sm-6 text-right">' +
         '                <div class="btn_group">' +
-        '                    <input type="submit" value="All Actions" class="left active">' +
-        '                    <input type="submit" value="My Actions" class="right">' +
+        '             <input type="submit"  value="All Actions" useThis = "" class="pendingAction left active">' +
+        '             <input type="submit"  value="My Actions"  useThis="' + names1[0] + " " + names1[1] + '" class="pendingAction right">' +
         "                </div>" +
         "                &nbsp;&nbsp;&nbsp;" +
         '                <input type="text" id="Text1" class="search_input" supplierSelector>' +
@@ -30666,7 +30774,7 @@ function setManagementReports() {
         "                            </thead></table>";
     body +=
         '<div class="projects_scroll cus_scroll">' +
-        '<table class="table projects_table" id="Table1">';
+        '<table class="table projects_table" id="Table2">';
     for (var x = 0; x < manAllPendingActionsData.length; x++) {
         var pentry = manAllPendingActionsData[x];
         body =
@@ -30695,7 +30803,7 @@ function setManagementReports() {
             var value = $(this)
                 .val()
                 .toLowerCase();
-            $("#Table1 tr").filter(function() {
+            $("#Table2 tr").filter(function() {
                 $(this).toggle(
                     $(this)
                     .text()
@@ -30704,77 +30812,18 @@ function setManagementReports() {
                 );
             });
         });
-    });
-    //NEW CODE
-    body =
-        body +
-        "                        </table></div>" +
-        "                    </div>" +
-        "                </div>" +
-        "            </div>" +
-        "        </div>" +
-        "        <br />" +
-        '        <div class="row">' +
-        '            <div class="col-lg-6 col-md-6 col-sm-6">' +
-        '                <div class="sec_head">' +
-        '                    <h2 class="sec_title no_margin">Pending Strategies</h2>' +
-        "                </div>" +
-        "            </div>" +
-        '            <div class="col-lg-6 col-md-6 col-sm-6 text-right">' +
-        '                <div class="btn_group">' +
-        '                    <input type="submit" value="All Actions" class="left active">' +
-        '                    <input type="submit" value="My Actions" class="right">' +
-        "                </div>" +
-        "                &nbsp;&nbsp;&nbsp;" +
-        '                <input type="text" id="Text1" class="search_input" supplierSelector>' +
-        "            </div>" +
-        "        </div>" +
-        '        <div class="row">' +
-        '            <div class="col-lg-12 col-md-12 col-sm-12">' +
-        '                <div class="main_block" style="margin-top: 0px;">' +
-        '                    <div class="projects_table_wrp1">' +
-        '                        <table class="table projects_thead">' +
-        "                            <thead>" +
-        "                                <tr>" +
-        '                                    <th width="25%" class="sortable">Pending Strategy Statements</th>' +
-        '                                    <th width="25%" class="sortable asc">Project </th>' +
-        '                                    <th width="10%" class="sortable">Client</th>' +
-        '                                    <th width="20%" class="sortable">Due by</th>' +
-        '                                    <th width="20%" class="sortable">Owners</th>' +
-        "                                </tr>" +
-        "                            </thead></table>";
-    body +=
-        '<div class="projects_scroll cus_scroll">' +
-        '<table class="table projects_table" id="Table1">';
-    for (var x = 0; x < manAllPendingStrategiesData.length; x++) {
-        var pentry1 = manAllPendingStrategiesData[x];
-        body =
-            body +
-            "                                            <tr>" +
-            '                                                <td width="25%">' +
-            pentry1[0] +
-            "</td>" +
-            '                                                <td width="25%">' +
-            pentry1[1] +
-            "</td>" +
-            '                                                <td width="10%">' +
-            pentry1[2] +
-            "</td>" +
-            '                                                <td width="20%">' +
-            getPrintDate(pentry[3]) +
-            "</td>" +
-            '                                                <td width="20%"> <span class="empname">' +
-            pentry1[4] +
-            "</span></td>" +
-            "                                            </tr>";
-    }
 
-    $(document).ready(function() {
-        $("#Text1").on("keyup", function() {
+
+        //NEW sns13
+        $(".pendingAction").on("click", function() {
+            //alert('test');
+            $(".pendingAction").removeClass("active");
+            $(this).addClass("active");
             var value = $(this)
-                .val()
+                .attr("useThis")
                 .toLowerCase();
-            $("#Table1 tr").filter(function() {
+
+            $("#Table2 tr").filter(function() {
                 $(this).toggle(
                     $(this)
                     .text()
@@ -30783,10 +30832,12 @@ function setManagementReports() {
                 );
             });
         });
+
+
+        //END
+
     });
 
-
-    //END
     body =
         body +
         "                        </table></div>" +
@@ -30828,7 +30879,7 @@ function setManagementReports() {
     body +=
         " </thead></table>" +
         '<div class="projects_scroll cus_scroll">' +
-        '<table class="table projects_table" id="Table2">';
+        '<table class="table projects_table" id="Table3">';
 
     for (var x = 0; x < manReverseUserData.length; x++) {
         var huhu = manReverseUserData[x];
@@ -30866,7 +30917,7 @@ function setManagementReports() {
             var value = $(this)
                 .val()
                 .toLowerCase();
-            $("#Table2 tr").filter(function() {
+            $("#Table3 tr").filter(function() {
                 $(this).toggle(
                     $(this)
                     .text()

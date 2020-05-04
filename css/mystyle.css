@@ -4370,9 +4370,6 @@ footer {
     color: #54b23b;
 }
 
-
-/*new*/
-
 .main_block .projects_scroll .empname {
     background: #eaeaea;
     margin: 0 5px;
@@ -4381,7 +4378,7 @@ footer {
     display: inline-block;
     font-size: 10px;
     font-weight: 700;
-    width: auto;
+    /*width: auto;*/
     height: auto;
     text-align: center;
     line-height: 24px;

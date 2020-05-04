@@ -4378,8 +4378,8 @@ footer {
     display: inline-block;
     font-size: 10px;
     font-weight: 700;
-    /*width: auto;*/
-    height: auto;
+    width: auto;
+    height: 24px;
     text-align: center;
     line-height: 24px;
     padding: 5px 10px;

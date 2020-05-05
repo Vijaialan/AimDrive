@@ -10854,7 +10854,7 @@ function getPersonName(p) {
         }
     }
 
-    return " NA ";
+    return "NA";
 }
 
 function clearDisplayArea(id) {
@@ -30044,9 +30044,7 @@ function setManagementReports() {
         var totalActionsLatePerProject = 0;
         var totalActionsOnTimePerProject = 0;
         var proj = manProjects[i];
-        //console.log(proj);
-
-        var proj_id = proj[0];
+        //
         var projname = proj[4];
         var currency = proj[2] === null ? "" : proj[2][1];
 
@@ -30182,7 +30180,7 @@ function setManagementReports() {
         manAllProjectsData.push([
             projname,
             status,
-            proj_id,
+            lastEdit,
             totalIdentifiedValuePerProject,
             stratEnt[31].realized,
             numSelectedPerProject,
@@ -30564,22 +30562,22 @@ function setManagementReports() {
 
     for (var x = 0; x < manAllProjectsData.length; x++) {
         let susu = manAllProjectsData[x];
+        //
 
         inProgressActions =
             susu[9].inProgress === undefined ? 0 : susu[9].inProgress;
 
         body =
             body +
-            "                                            <tr class='project_data'>" +
+            "                                            <tr>" +
             '                                                <td width="30%">' +
             susu[0] +
             "</td>" +
             '                                                <td width="10%">' +
-            susu[1] + "</td>" +
-            '<td width="10%"><span class="cur_step">' +
-            getProjectCurrentStatus(susu[2]) +
-            "</span>" +
-
+            susu[1] +
+            "</td>" +
+            '                                                <td width="10%">' +
+            getPrintDate(susu[2]) +
             "</td>" +
             '                                                <td width="10%">' +
             CurrencyFormat(susu[3], susu[7], 0, "", ",") +

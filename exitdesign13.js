@@ -10854,7 +10854,7 @@ function getPersonName(p) {
         }
     }
 
-    return " ? ";
+    return " NA ";
 }
 
 function clearDisplayArea(id) {
@@ -30044,7 +30044,9 @@ function setManagementReports() {
         var totalActionsLatePerProject = 0;
         var totalActionsOnTimePerProject = 0;
         var proj = manProjects[i];
-        //
+        //console.log(proj);
+
+        var proj_id = proj[0];
         var projname = proj[4];
         var currency = proj[2] === null ? "" : proj[2][1];
 
@@ -30180,7 +30182,7 @@ function setManagementReports() {
         manAllProjectsData.push([
             projname,
             status,
-            lastEdit,
+            proj_id,
             totalIdentifiedValuePerProject,
             stratEnt[31].realized,
             numSelectedPerProject,
@@ -30548,7 +30550,7 @@ function setManagementReports() {
         "                                <tr>" +
         '                                    <th width="30%" class="sortable">Project</th>' +
         '                                    <th width="10%" class="sortable asc">Status </th>' +
-        '                                    <th width="10%" class="sortable">Last updated</th>' +
+        '                                    <th width="10%" class="sortable">Current Step</th>' +
         '                                    <th width="10%" class="sortable">Value identified</th>' +
         '                                    <th width="10%" class="sortable">Value realized</th>' +
         '                                    <th width="10%" class="sortable">% Realized</th>' +
@@ -30562,22 +30564,22 @@ function setManagementReports() {
 
     for (var x = 0; x < manAllProjectsData.length; x++) {
         let susu = manAllProjectsData[x];
-        //
 
         inProgressActions =
             susu[9].inProgress === undefined ? 0 : susu[9].inProgress;
 
         body =
             body +
-            "                                            <tr>" +
+            "                                            <tr class='project_data'>" +
             '                                                <td width="30%">' +
             susu[0] +
             "</td>" +
             '                                                <td width="10%">' +
-            susu[1] +
-            "</td>" +
-            '                                                <td width="10%">' +
-            getPrintDate(susu[2]) +
+            susu[1] + "</td>" +
+            '<td width="10%"><span class="cur_step">' +
+            getProjectCurrentStatus(susu[2]) +
+            "</span>" +
+
             "</td>" +
             '                                                <td width="10%">' +
             CurrencyFormat(susu[3], susu[7], 0, "", ",") +
@@ -30647,8 +30649,8 @@ function setManagementReports() {
         "            </div>" +
         '            <div class="col-lg-6 col-md-6 col-sm-6 text-right">' +
         '                <div class="btn_group">' +
-        '                    <input type="submit" value="All Actions" useThis="" class="pendingStrategies left active">' +
-        '                    <input type="submit" value="My Actions" useThis="' + names1[0] + " " + names1[1] + '" class="pendingStrategies right">' +
+        '                    <input type="submit" value="All Strategies" useThis="" class="pendingStrategies left active">' +
+        '                    <input type="submit" value="My Strategies" useThis="' + names1[0] + " " + names1[1] + '" class="pendingStrategies right">' +
         "                </div>" +
         "                &nbsp;&nbsp;&nbsp;" +
         '                <input type="text" id="TextStrategies" class="search_input" supplierSelector>' +

@@ -73,7 +73,7 @@ session_start();
                      <div class="form_wrp">
                         <div class="input_wrp">
                            <input type="text" class="textbox" name="email" id="email" required id="" onkeyup="">
-                           <label class="input_label floating_label">Email</label>
+                           <label class="input_label floating_label">Email </label>
                         </div>
                         <div class="input_wrp">
                            <input type="password" name="password" id="password" class="textbox" required />

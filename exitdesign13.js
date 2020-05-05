@@ -30651,7 +30651,7 @@ function setManagementReports() {
         '                    <input type="submit" value="My Strategies" useThis="' + names1[0] + " " + names1[1] + '" class="pendingStrategies right">' +
         "                </div>" +
         "                &nbsp;&nbsp;&nbsp;" +
-        '                <input type="text" id="TextStrategies" class="search_input" supplierSelector>' +
+        '                <input type="text" id="TextStrategies" class="search_input" supplierSelector placeholder="Search">' +
         "            </div>" +
         "        </div>" +
         '        <div class="row">' +
@@ -30755,7 +30755,7 @@ function setManagementReports() {
         '             <input type="submit"  value="My Actions"  useThis="' + names1[0] + " " + names1[1] + '" class="pendingAction right">' +
         "                </div>" +
         "                &nbsp;&nbsp;&nbsp;" +
-        '                <input type="text" id="Text1" class="search_input" supplierSelector>' +
+        '                <input type="text" id="Text1" class="search_input" supplierSelector placeholder="Search">' +
         "            </div>" +
         "        </div>" +
         '        <div class="row">' +

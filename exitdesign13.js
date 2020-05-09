@@ -28197,10 +28197,12 @@ function refreshCOR() {
         "                    <tr>" +
         '                        <th width="55%">Strategy Statement</th>' +
         '                        <th width="15%">Priority</th>' +
-        '                        <th class="text-right" width="15%">Net Cost Improvement (' +
-        GdefaultCurrency +
-        ")</th>" +
-        '                        <th class="text-right" 	width="15%">Net Revenue Improvement (' +
+        // '                        <th class="text-right" width="15%">Net Cost Improvement (' +
+        // GdefaultCurrency +
+        // ")</th>" +
+        // '                        <th class="text-right" 	width="15%">Net Revenue Improvement (' +
+        // GdefaultCurrency +
+        '                        <th class="text-right" 	width="15%">Net Potential Value Identified (' +
         GdefaultCurrency +
         ")</th>" +
         "                    </tr>" +
@@ -28212,8 +28214,9 @@ function refreshCOR() {
         var entry = {
             statement: ssTable[i][0],
             priority: ssTable[i][1],
-            cost: CurrencyFormat(ssTable[i][2], "", 0, "", ","),
-            revenue: CurrencyFormat(ssTable[i][3], "", 0, "", ",")
+            //cost: CurrencyFormat(ssTable[i][2], "", 0, "", ","),
+            //revenue: CurrencyFormat(ssTable[i][3], "", 0, "", ",")
+            netpotential: CurrencyFormat(ssTable[i][2], "", 0, "", ",")
         };
         db_reducetable.push(entry);
     }
@@ -28253,8 +28256,9 @@ function refreshCOR() {
         "                    <tr>" +
         '                        <th width="55%">Strategy Statement</th>' +
         '                        <th width="15%">Priority</th>' +
-        '                        <th class="text-right" width="15%">Net Cost Improvement</th>' +
-        '                        <th class="text-right" width="15%">Net Revenue Improvement</th>' +
+        // '                        <th class="text-right" width="15%">Net Cost Improvement</th>' +
+        // '                        <th class="text-right" width="15%">Net Revenue Improvement</th>' +
+        '                           <th class="text-right" width="15%">Net Potential Value Identified</th>' +
         "                    </tr>" +
         "                </thead>" +
         "                " +
@@ -28290,12 +28294,14 @@ function refreshCOR() {
         if (dropped == "1") continue;
         if (selected.valueOf() != "SELECTED".valueOf()) continue;
 
+        var net = performance[0] + performance[1] - performance[2];
         var stratEntry = {
             strategy: sshandle,
             statement: ssname,
             priority: priority,
-            cost: CurrencyFormat(performance[0], GdefaultCurrency, 0, "", ","),
-            revenue: CurrencyFormat(performance[1], GdefaultCurrency, 0, "", ",")
+            //cost: CurrencyFormat(performance[0], GdefaultCurrency, 0, "", ","),
+            //revenue: CurrencyFormat(performance[1], GdefaultCurrency, 0, "", ",")
+            cost: CurrencyFormat(net, GdefaultCurrency, 0, "", ",")
         };
         var actionEntries = [];
 
@@ -28616,8 +28622,8 @@ function addimplementpagebreak(obj, startkey, db_strategy) {
     markup +=
         '<td class="text-right">' +
         db_strategy.cost +
-        '</td><td class="text-right">' +
-        db_strategy.revenue +
+        // '</td><td class="text-right">' +
+        // db_strategy.revenue +
         "</td>";
     $(implement_strategy_table)
         .find("tbody:last")
@@ -28701,9 +28707,9 @@ function addreducepagebreak(obj, startkey, db_reducetable) {
                 "</td><td>" +
                 item.priority +
                 "</td><td class='text-right'>" +
-                item.cost +
-                "</td><td class='text-right'>" +
-                item.revenue +
+                item.netpotential +
+                // "</td><td class='text-right'>" +
+                // item.revenue +
                 "</td></tr>";
             $(goal_table)
                 .find("tbody:last")
@@ -28738,9 +28744,9 @@ function addreducepagebreak(obj, startkey, db_reducetable) {
                     "</td><td>" +
                     item.priority +
                     "</td><td class='text-right'>" +
-                    item.cost +
-                    "</td><td class='text-right'>" +
-                    item.revenue +
+                    item.netpotential +
+                    // "</td><td class='text-right'>" +
+                    // item.revenue +
                     "</td></tr>";
                 $(goal_table)
                     .find("tbody:last")
@@ -30044,7 +30050,7 @@ function setManagementReports() {
         var totalActionsLatePerProject = 0;
         var totalActionsOnTimePerProject = 0;
         var proj = manProjects[i];
-        //
+        var proj_id = proj[0];
         var projname = proj[4];
         var currency = proj[2] === null ? "" : proj[2][1];
 
@@ -30087,7 +30093,6 @@ function setManagementReports() {
 
         for (var key in stratEnt[30]) {
             //
-
             if (stratEnt[30][key].completed === stratEnt[30][key].totalActions) {
                 strategiesImplemented++;
             } else if (stratEnt[30][key].outStanding > stratEnt[30][key].onTime) {
@@ -30107,6 +30112,8 @@ function setManagementReports() {
             if (stratEnt[30][key].onTime > 0) {
                 totalStrategiesOnTime += 1;
             }
+
+
         }
 
         for (var key in stratEnt[28]) {
@@ -30180,16 +30187,21 @@ function setManagementReports() {
         manAllProjectsData.push([
             projname,
             status,
-            lastEdit,
+            proj_id,
             totalIdentifiedValuePerProject,
             stratEnt[31].realized,
-            numSelectedPerProject,
+            //numSelectedPerProject,
+            totalStrategiesCompleted,
             totalActionsInProgressPerProject,
             currency,
             stratEnt[26],
-            stratEnt[32]
+            stratEnt[32],
+            strategiesImplemented,
+            stratEnt[30]
+
         ]);
         manValuesByProjectData.push(stratEnt[30]);
+
 
         var compflag = 2;
 
@@ -30552,20 +30564,29 @@ function setManagementReports() {
         '                                    <th width="10%" class="sortable">Value identified</th>' +
         '                                    <th width="10%" class="sortable">Value realized</th>' +
         '                                    <th width="10%" class="sortable">% Realized</th>' +
-        '                                    <th width="10%" class="sortable">Strategies implemented</th>' +
-        '                                    <th width="10%" class="sortable">Total Actions Pending</th>' +
+        '                   <th width="10%" class="sortable">Strategies Selected for Implementation</th>' +
+        '                                    <th width="10%" class="sortable">Action Items Completed</th>' +
         "                                </tr>" +
         "                            </thead></table>";
     body +=
         '<div class="projects_scroll cus_scroll">' +
         '<table class="table projects_table" id="projects_table">';
+    //console.log(manAllProjectsData);
 
     for (var x = 0; x < manAllProjectsData.length; x++) {
         let susu = manAllProjectsData[x];
-        //
 
-        inProgressActions =
-            susu[9].inProgress === undefined ? 0 : susu[9].inProgress;
+        var count = Object.keys(susu[11]).length;
+        var Strat = 'No Strategies';
+        if (count > 0) {
+            Strat = susu[5];
+        }
+
+        //inProgressActions = susu[9].inProgress === undefined ? 0 : susu[9].inProgress;
+        var ActionComp = 'No Action Items';
+        if (susu[9].totalActions > 0) {
+            ActionComp = numberFormat((susu[9].completed / susu[9].totalActions) * 100, 0);
+        }
 
         body =
             body +
@@ -30576,8 +30597,9 @@ function setManagementReports() {
             '                                                <td width="10%">' +
             susu[1] +
             "</td>" +
-            '                                                <td width="10%">' +
-            getPrintDate(susu[2]) +
+            '<td width="10%"><span class="cur_step">' +
+            getProjectCurrentStatus(susu[2]) +
+            "</span>" +
             "</td>" +
             '                                                <td width="10%">' +
             CurrencyFormat(susu[3], susu[7], 0, "", ",") +
@@ -30598,7 +30620,7 @@ function setManagementReports() {
             numberFormat(percent, 0) +
             "</td>" +
             '                                               <td width="10%">' +
-            susu[5] +
+            Strat +
             "</td>";
         valclass = "";
         if (susu[6] > 50) valclass = ' class=""';
@@ -30608,7 +30630,7 @@ function setManagementReports() {
             '                                                <td width="10%" ' +
             valclass +
             ">" +
-            inProgressActions +
+            ActionComp +
             "</td>" +
             "                                            </tr>";
     }

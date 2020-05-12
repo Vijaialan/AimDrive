@@ -659,7 +659,7 @@ while($row2= mysqli_fetch_assoc($result2)) {
   $ms[]=array($row2['pjmsid'],$row2['ms_label'],$row2['ms_date']);
 }
 //IFNULL((SELECT firstname FROM person WHERE pnid= ss.ss_owner),'Not Available')  ss_ownername
-$actionSql = "SELECT a.*, a.pjid apjid,p.pj_name, ss.ssid,ss.selected,ss.ss_handle, ss.ss_desc, ss.pjid, ss.ss_unimplement, ss.ss_dropped, ss.ss_complete, ss.ssid ss_ownername, ss.ss_enddate  FROM strategy_statement ss LEFT JOIN action a ON a.ssid = ss.ssid JOIN project p ON ss.pjid = p.pjid WHERE ss.selected=1 AND ss.pjid = $project";
+$actionSql = "SELECT a.*, a.pjid apjid,p.pj_name, ss.ssid,ss.selected,ss.ss_handle, ss.ss_desc, ss.pjid, ss.ss_unimplement, ss.ss_dropped, ss.ss_complete, ss.ss_owner , ss.ss_enddate  FROM strategy_statement ss LEFT JOIN action a ON a.ssid = ss.ssid JOIN project p ON ss.pjid = p.pjid WHERE ss.selected=1 AND ss.pjid = $project";
 $actionResult=obtain_query_result($actionSql);
 $allActions = [];
 // $allProjectActions = [];
@@ -729,7 +729,7 @@ while($actionRow= mysqli_fetch_assoc($actionResult)) {
       'ssid' => $actionRow['ssid'],
       'ssdesc' => $actionRow['ss_desc'],
       'sshandle' => $actionRow['ss_handle'],
-      'ssowner' => $actionRow['ss_ownername'],
+      'ssowner' => $actionRow['ss_owner'],
       'targetDate' => $actionRow['ss_enddate'],
       'dropped' => $dropped?1:0,
     );

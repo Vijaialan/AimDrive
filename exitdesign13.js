@@ -28102,11 +28102,13 @@ function refreshCOR() {
             selectedCostReduction = selectedCostReduction + performance[0];
             selectedRevenueImprovement =
                 selectedRevenueImprovement + performanceObj.riskVal;
+            let perfCalc = performance[0] + performance[1] - performance[2];
             ssTable.push([
                 "<strong>" + sshandle + "</strong><br>" + ssname,
                 priority,
                 performance[0],
-                performance[1]
+                performance[1],
+                perfCalc
             ]);
         }
     }
@@ -28210,13 +28212,14 @@ function refreshCOR() {
         "                " +
         '                <tbody><TR class="critical_bg"><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD></TR></TBODY></TABLE>';
 
+    //console.log(ssTable);
     for (var i = 0; i < ssTable.length; i++) {
         var entry = {
             statement: ssTable[i][0],
             priority: ssTable[i][1],
             //cost: CurrencyFormat(ssTable[i][2], "", 0, "", ","),
             //revenue: CurrencyFormat(ssTable[i][3], "", 0, "", ",")
-            netpotential: CurrencyFormat(ssTable[i][2], "", 0, "", ",")
+            netpotential: CurrencyFormat(ssTable[i][4], "", 0, "", ",")
         };
         db_reducetable.push(entry);
     }
@@ -30126,6 +30129,7 @@ function setManagementReports() {
             ]);
         }
 
+        //console.log(stratEnt[30]);
         //NEW
         for (var key in stratEnt[30]) {
             manAllPendingStrategiesData.push([
@@ -30133,9 +30137,11 @@ function setManagementReports() {
                 stratEnt[30][key].projectName,
                 getCompanyName(getCompanyForProject(stratEnt[30][key].project)),
                 stratEnt[30][key].targetDate,
-                getPersonName(stratEnt[30][key].ssid, "empname")
+                getPersonName(stratEnt[30][key].ssowner)
+
             ]);
         }
+
         //END
         if (stratEnt[Grbindex].length > 0) {
             for (var j = 0; j < stratEnt[Grbindex].length; j++) {
@@ -30585,7 +30591,7 @@ function setManagementReports() {
         //inProgressActions = susu[9].inProgress === undefined ? 0 : susu[9].inProgress;
         var ActionComp = 'No Action Items';
         if (susu[9].totalActions > 0) {
-            ActionComp = numberFormat((susu[9].completed / susu[9].totalActions) * 100, 0);
+            ActionComp = numberFormat((susu[9].completed / susu[9].totalActions) * 100, 0) + '%';
         }
 
         body =
@@ -30618,7 +30624,7 @@ function setManagementReports() {
             valclass +
             ">" +
             numberFormat(percent, 0) +
-            "</td>" +
+            " % </td>" +
             '                                               <td width="10%">' +
             Strat +
             "</td>";

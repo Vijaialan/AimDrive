@@ -30197,7 +30197,8 @@ function setManagementReports() {
             totalIdentifiedValuePerProject,
             stratEnt[31].realized,
             //numSelectedPerProject,
-            totalStrategiesCompleted,
+            //totalStrategiesCompleted,
+            strategiesImplemented,
             totalActionsInProgressPerProject,
             currency,
             stratEnt[26],
@@ -30585,7 +30586,7 @@ function setManagementReports() {
         var count = Object.keys(susu[11]).length;
         var Strat = 'No Strategies';
         if (count > 0) {
-            Strat = susu[5];
+            Strat = count;
         }
 
         //inProgressActions = susu[9].inProgress === undefined ? 0 : susu[9].inProgress;

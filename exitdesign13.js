@@ -28265,14 +28265,15 @@ function refreshCOR() {
         "                    </tr>" +
         "                </thead>" +
         "                " +
-        "                <tbody></tbody></table>" +
+        "                <tbody></tbody></table>";
+    body = body +
         '            <table class="table action_table implement_action_table">' +
         "            	<thead>" +
-        "                    <tr>" +
-        '                        <th width="55%">Action Item</th>' +
-        '                        <th width="25%">Performer</th>' +
-        '                        <th class="text-right" width="20%">Target Date</th>' +
-        "                    </tr>" +
+        // "                    <tr>" +
+        // '                        <th width="55%">Action Item</th>' +
+        // '                        <th width="25%">Performer</th>' +
+        // '                        <th class="text-right" width="20%">Target Date</th>' +
+        // "                    </tr>" +
         "                </thead>" +
         "                " +
         "                <tbody></tbody></table>";
@@ -28293,8 +28294,9 @@ function refreshCOR() {
         var sshandle = oentry[12];
         var unimplemented = oentry[31];
         var dropped = oentry[21];
+        var dreason = oentry[34];
         if (unimplemented == "1") continue;
-        if (dropped == "1") continue;
+        //if (dropped == "1") continue;
         if (selected.valueOf() != "SELECTED".valueOf()) continue;
 
         var net = performance[0] + performance[1] - performance[2];
@@ -28304,38 +28306,50 @@ function refreshCOR() {
             priority: priority,
             //cost: CurrencyFormat(performance[0], GdefaultCurrency, 0, "", ","),
             //revenue: CurrencyFormat(performance[1], GdefaultCurrency, 0, "", ",")
-            cost: CurrencyFormat(net, GdefaultCurrency, 0, "", ",")
+            cost: CurrencyFormat(net, GdefaultCurrency, 0, "", ","),
+            dropped
         };
         var actionEntries = [];
 
-        for (j = 0; j < oentry[6].length; j++) {
-            var actionid = oentry[6][j][0];
-            var atext = oentry[6][j][1];
-            var adead = oentry[6][j][2];
-            // alert("action deadline: " + adead);
-            if (!(
-                    adead == null ||
-                    adead.valueOf() == "".valueOf() ||
-                    adead.valueOf() == "null".valueOf()
-                ))
-                adead = getPrintDate(adead);
-            else adead = "TBD";
-            var awho = oentry[6][j][3];
-            if (awho == null || awho === "") awho = "None";
-            else {
-                awho = awho.split(",");
-                awho = generateFullNameFromId(awho[0], "");
+        if (dropped != 1) {
+            for (j = 0; j < oentry[6].length; j++) {
+                var actionid = oentry[6][j][0];
+                var atext = oentry[6][j][1];
+                var adead = oentry[6][j][2];
+                // alert("action deadline: " + adead);
+                if (!(
+                        adead == null ||
+                        adead.valueOf() == "".valueOf() ||
+                        adead.valueOf() == "null".valueOf()
+                    ))
+                    adead = getPrintDate(adead);
+                else adead = "TBD";
+                var awho = oentry[6][j][3];
+                if (awho == null || awho === "") awho = "None";
+                else {
+                    awho = awho.split(",");
+                    awho = generateFullNameFromId(awho[0], "");
+                }
+                var actionEntry = {
+                    action: atext,
+                    author: awho,
+                    targetdate: adead
+                };
+                actionEntries.push(actionEntry);
             }
+        } else {
             var actionEntry = {
-                action: atext,
-                author: awho,
-                targetdate: adead
+                action: 'Dropped',
+                author: dreason,
+                targetdate: ''
+
             };
             actionEntries.push(actionEntry);
         }
-        stratEntry["actionitems"] = actionEntries;
 
+        stratEntry["actionitems"] = actionEntries
         db_implementtable.push(stratEntry);
+
     }
 
     body =
@@ -28637,6 +28651,25 @@ function addimplementpagebreak(obj, startkey, db_strategy) {
         .find("tbody")
         .html("");
     var tempMaxHeight = maxHeight + $(obj).offset().top - 20;
+
+    console.log(db_strategy);
+
+    // IMPLEMENT ACTION TABLE
+    var markup12 = "<tr>";
+    if (db_strategy.dropped != 1) {
+        markup12 += '<th width="55%"> Action Item </th>';
+        markup12 += '<th width="25%"> Performer </th>';
+        markup12 += '<th class="text-right"> Target Date </th>';
+    } else {
+        markup12 += '<th width="20%"> Status </th>';
+        markup12 += '<th width="80%"> Reason </th>';
+    }
+    $(implement_action_table)
+        .find("tbody:last")
+        .append(markup12);
+
+
+
 
     $.each(db_strategy.actionitems, function(key, item) {
         if (key >= startkey) {

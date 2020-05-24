@@ -741,6 +741,7 @@ while($actionRow= mysqli_fetch_assoc($actionResult)) {
     $strategies[$actionRow['ssid']]['onTime'] = $onTime?$strategies[$actionRow['ssid']]['onTime'] +1 : $strategies[$actionRow['ssid']]['onTime'];
     $strategies[$actionRow['ssid']]['outStanding'] = $outStanding?$strategies[$actionRow['ssid']]['outStanding'] +1 : $strategies[$actionRow['ssid']]['outStanding'];
   }
+
   if(!isset($allProjectActions)) {
     $allProjectActions = array(
       'project' => $actionRow['pjid'],

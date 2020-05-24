@@ -22543,12 +22543,28 @@ function reopenSSV(ssObject) {
     $(".opt_btn_wrp").css("visibility", "hidden");
 }
 
+
 function reselectSS(ssObject) {
+    //
+    $(".opt_btn_wrp").hide();
+    $("#reselect_ssid").val(ssObject.ssid);
+    $("#reselect_modal").modal("show");
+    document.getElementById("reselect_reason").value = "";
+    $(".opt_btn_wrp").css("visibility", "hidden");
+}
+
+function saveReselectReason(ssObject) {
+    $(".opt_btn_wrp").hide();
+    $("#reselect_modal").modal("hide");
+    var ssreselect_rsn = document.getElementById("reselect_reason").value;
+    var ssid = document.getElementById("reselect_ssid").value;
     var ssData = {
         token: Gtoken,
         username: Gusername,
-        currentSS: ssObject.ssid
+        currentSS: ssid,
+        reselectReason: ssreselect_rsn
     };
+
     $.ajax({
         url: "reselect.php",
         type: "POST",

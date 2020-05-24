@@ -12,8 +12,8 @@ if($loginData === NULL) {
 //     die(json_encode(array("ERROR", "You are not an admin ")));
 // }
 $reselect_by = $loginData['pnid'];
-$sql = "UPDATE strategy_statement SET ss_unimplement = 0, reselect_date = '$currentTime',  reselect_by = $reselect_by WHERE ssid = $ssData->currentSS";
-var_dump($sql);
+ $sql = "UPDATE strategy_statement SET ss_unimplement = 0, reselected_reason = '$ssData->reselectReason' , reselect_date = '$currentTime',  reselect_by = $reselect_by WHERE ssid = $ssData->currentSS";
+//var_dump($sql);
 updateData($sql, $con);
 echo '["",""]';
 ?>

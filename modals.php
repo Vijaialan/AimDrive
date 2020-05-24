@@ -1658,3 +1658,32 @@
       </div>
    </div>
    </div>
+
+   <!------------------------------------ Reselcting modal------------------------------------------ -->
+
+   <div id="reselect_modal" class="modal fade" role="dialog">
+    <div class="modal-dialog draggable">
+         <!-- Modal content-->
+         <div class="modal-content draggable" id="reselect_modal_ss">
+            <div class="modal-header">
+               <h4 class="modal-title  highlight-modal-title">Reason for Reselecting Strategy Statement</h4>
+               <div class="drag_handle">&nbsp;</div>
+            </div>
+            <div class="modal-body">
+               <div class="clearfix"></div>
+               <div class="input_wrp">
+                  <label >Reason</label>
+                  <textarea type="text" class="form-control" id="reselect_reason"  onkeyup='activateButton("Strategy_submit");' required rows="3" 
+                     placeholder="This is a Mandatory field" color="red"></textarea>
+                     <input type="hidden" name="ssid" value='-1' id='reselect_ssid'>
+               </div>
+            </div>
+         
+         <div class="modal-footer">
+            <input type="submit" value="Save" onClick="saveReselectReason()" class="submit_btn action_btn" id="undrop_save"/>
+             <button type="button" class="cancel_btn" data-dismiss="modal">Cancel</button>
+         </div>
+      </div>
+   </div>
+   </div>
+

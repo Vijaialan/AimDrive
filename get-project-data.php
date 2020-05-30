@@ -730,6 +730,7 @@ while($actionRow= mysqli_fetch_assoc($actionResult)) {
       'ssdesc' => $actionRow['ss_desc'],
       'sshandle' => $actionRow['ss_handle'],
       'ssowner' => $actionRow['ss_owner'],
+      'sscomplete' => $actionRow['ss_complete'],
       'targetDate' => $actionRow['ss_enddate'],
       'dropped' => $dropped?1:0,
     );

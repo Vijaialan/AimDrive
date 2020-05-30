@@ -30183,7 +30183,7 @@ function setManagementReports() {
         //NEW
         for (var key in stratEnt[30]) {
             // console.log(stratEnt[30][key].inProgress);
-            if (stratEnt[30][key].inProgress != 0 || stratEnt[30][key].outStanding != 0) {
+            if (stratEnt[30][key].sscomplete != 1) {
                 manAllPendingStrategiesData.push([
                     stratEnt[30][key].ssdesc,
                     stratEnt[30][key].projectName,

@@ -28101,7 +28101,7 @@ function refreshCOR() {
         var unimplemented = oentry[31];
         var dropped = oentry[21];
         if (unimplemented == "1") continue;
-        if (dropped == "1") continue;
+        // if (dropped == "1") continue;
         if (selected.valueOf() == "SELECTED".valueOf()) {
             if (priority.valueOf() == "HIGH".valueOf()) {
                 highGain =
@@ -28668,7 +28668,7 @@ function addimplementpagebreak(obj, startkey, db_strategy) {
         .html("");
     var tempMaxHeight = maxHeight + $(obj).offset().top - 20;
 
-    console.log(db_strategy);
+    //console.log(db_strategy);
 
     // IMPLEMENT ACTION TABLE
     var markup12 = "<tr>";
@@ -29076,6 +29076,7 @@ function refreshProgressReport() {
         return;
     }
     let pStatus = "";
+    //console.log(Gstrategies);
     for (var GSkey in Gstrategies) {
         if (Gstrategies[GSkey][0] === stratEnt[0]) {
             pStatus = Gstrategies[GSkey][12];
@@ -29083,6 +29084,7 @@ function refreshProgressReport() {
     }
     var projectCurrency = stratEnt[6][1];
     var lastEdit = stratEnt[7];
+    //console.log(lastEdit);
     var status = stratEnt[GstatusIndex];
     allSS = [];
     selectedSS = [];
@@ -30178,9 +30180,9 @@ function setManagementReports() {
             ]);
         }
 
-        console.log(stratEnt[30]);
+        //console.log(stratEnt[30]);
 
-        //NEW
+        //NEW 
         for (var key in stratEnt[30]) {
             // console.log(stratEnt[30][key].inProgress);
             if (stratEnt[30][key].sscomplete != 1) {

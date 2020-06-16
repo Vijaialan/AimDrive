@@ -12873,11 +12873,13 @@ function setEDGenericHeader(page) {
             knowledgebaseActive +
             '"><a  class="switch-main-contents" switchThis="knowledgebase" href="directory.html">Knowledge Base</a></li>';
     }
+
+    /*'<li class="' +
+        academyActive +
+        '"><a href="https://anklesaria.talentlms.com/" target="_blank"></a></li>' +*/
     body =
         body +
-        '<li class="' +
-        academyActive +
-        '"><a href="https://anklesaria.talentlms.com/" target="_blank">Academy</a></li>' +
+
         `<li class=${learningActive}>
       <a class="switch-main-contents" switchThis="learning" href="learning.html">Tutorial</a>
     </li>` +
@@ -29076,7 +29078,6 @@ function refreshProgressReport() {
         return;
     }
     let pStatus = "";
-    //console.log(Gstrategies);
     for (var GSkey in Gstrategies) {
         if (Gstrategies[GSkey][0] === stratEnt[0]) {
             pStatus = Gstrategies[GSkey][12];
@@ -29084,7 +29085,6 @@ function refreshProgressReport() {
     }
     var projectCurrency = stratEnt[6][1];
     var lastEdit = stratEnt[7];
-    //console.log(lastEdit);
     var status = stratEnt[GstatusIndex];
     allSS = [];
     selectedSS = [];
@@ -29230,7 +29230,7 @@ function refreshProgressReport() {
               </tr>
               <tr>
                 <td>Last Updated:</td>
-                <td>${lastEdited}</td>
+                <td>${lastEdited}</td> 
               </tr>
               <tr>
                 <td>Strategies Selected for Implementation:</td>
@@ -30104,6 +30104,7 @@ function setManagementReports() {
         var totalActionsLatePerProject = 0;
         var totalActionsOnTimePerProject = 0;
         var proj = manProjects[i];
+        console.log(proj);
         var proj_id = proj[0];
         var projname = proj[4];
         var currency = proj[2] === null ? "" : proj[2][1];

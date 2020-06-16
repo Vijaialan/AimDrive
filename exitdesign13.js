@@ -12877,6 +12877,8 @@ function setEDGenericHeader(page) {
     /*'<li class="' +
         academyActive +
         '"><a href="https://anklesaria.talentlms.com/" target="_blank"></a></li>' +*/
+
+
     body =
         body +
 

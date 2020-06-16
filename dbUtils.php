@@ -67,7 +67,8 @@ function sendEmail($email_data) {
   $email->addContent(
       "text/html", $email_data['message']
   );
-  $sendgrid = new \SendGrid("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");
+  //$sendgrid = new \SendGrid("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");
+    $sendgrid = new \SendGrid("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");
   try {
       $response = $sendgrid->send($email);
       return $response;

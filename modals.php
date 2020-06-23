@@ -234,6 +234,18 @@
                      <label class="">Strategy Statement Number</label>
                      <input type="text" class="form-control" required onkeyup='activateButton("Strategy_submit");' id="add_strategy_no" >
                   </div>
+                  <h6 class="modal_label">Select Applicable Strategic Options </h6>
+                  <div class="strategy_list cus_scroll">
+                     <div id="add_allStrategicOptions"></div>
+                  </div>
+                  <div class="form-group">
+                  <label >Strategy statement Description</label>
+                  <textarea type="text" class="form-control" id="add_strategy_statmnt"  onkeyup='activateButton("Strategy_submit");' required rows="3" 
+                  placeholder="This is a Mandatory field" color="red"></textarea>
+                     
+                    
+                  </div>
+                  
                   <div class="form-group">
                   <label class="">Priority</label>
                   <select class="form-control" required="" id="add_priority_txt" >
@@ -245,17 +257,7 @@
                      
                   </div>
                   <div class="clearfix"></div>
-                  <div class="form-group">
-                  <label >Strategy statement</label>
-                  <textarea type="text" class="form-control" id="add_strategy_statmnt"  onkeyup='activateButton("Strategy_submit");' required rows="3" 
-                  placeholder="This is a Mandatory field" color="red"></textarea>
-                     
-                    
-                  </div>
-                  <h6 class="modal_label">Select Applicable Strategic Options </h6>
-                  <div class="strategy_list cus_scroll">
-                     <div id="add_allStrategicOptions"></div>
-                  </div>
+                  
                </div>
                <div class="modal-footer">
                   <input type="submit" value="Save" onClick="saveEDSS()" class="submit_btn action_btn" id="Strategy_submit"/>
@@ -1457,7 +1459,7 @@
                      <input id="action_date" type="text" onchange='activateButton("action_submit");' class="date-picker form-control date_icon"  />
                   </div>
                   <div class="input_wrp">
-                  <label class="">Select Performers </label>
+                  <label class="">Action Owner </label>
                      <div id="actionPerformers"></div>
                   </div>
                </div>

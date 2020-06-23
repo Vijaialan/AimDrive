@@ -12871,7 +12871,7 @@ function setEDGenericHeader(page) {
             body +
             '<li class="' +
             knowledgebaseActive +
-            '"><a  class="switch-main-contents" switchThis="knowledgebase" href="directory.html">Knowledge Base</a></li>';
+            '"><a  class="switch-main-contents" switchThis="knowledgebase" href="directory.html">Idea bank</a></li>';
     }
 
     /*'<li class="' +
@@ -15376,7 +15376,7 @@ function switchMainContentsInternal(page) {
         $("#example thead tr:eq(1) th").each(function() {
             var title = $(this).text();
             $(this).html(
-                '<input type="text" placeholder="Search ' +
+                '<input type="text" size="22" placeholder="Search ' +
                 title +
                 '" class="column_search" />'
             );

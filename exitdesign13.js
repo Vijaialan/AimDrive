@@ -29085,8 +29085,9 @@ function refreshProgressReport() {
             pStatus = Gstrategies[GSkey][12];
         }
     }
+    console.log(stratEnt);
     var projectCurrency = stratEnt[6][1];
-    var lastEdit = stratEnt[7];
+    var lastEdit = stratEnt[15];
     var status = stratEnt[GstatusIndex];
     allSS = [];
     selectedSS = [];
@@ -30106,7 +30107,7 @@ function setManagementReports() {
         var totalActionsLatePerProject = 0;
         var totalActionsOnTimePerProject = 0;
         var proj = manProjects[i];
-        console.log(proj);
+        //console.log(proj);
         var proj_id = proj[0];
         var projname = proj[4];
         var currency = proj[2] === null ? "" : proj[2][1];

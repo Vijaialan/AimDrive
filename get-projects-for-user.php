@@ -139,8 +139,29 @@ foreach ($output as $k => $value) {
     }
     $value[] = $start_date[$k];
     $value[] = $region[$k];
+
+    //FOR LAST UPDATE DATA IN PROJECT REPORT
+     $lastUpdateSql = "SELECT MAX(lastModified) lastModified FROM (
+        SELECT pj_lastmodtime lastModified,  coid, pjid  FROM  project T1 UNION
+        SELECT lastmodtime lastModified, coid, pjid FROM project_goal T2 UNION
+        SELECT last_update lastmodified, coid, pjid FROM project_task T3 UNION 
+        SELECT last_update lastModified, coid, pjid FROM cost_element T4 UNION 
+        SELECT last_update lastModified, coid, pjid FROM cost_driver  T5 UNION
+        SELECT last_update lastModified, coid, pjid FROM strategy_statement T6 UNION
+        SELECT last_update lastModified, coid, pjid FROM ss_benefit T7 UNION
+        SELECT last_update lastModified, coid, pjid FROM ss_risk T8 UNION
+        SELECT lastupdate lastModified, coid, pjid FROM `action` T9 UNION
+        SELECT last_update lastModified, coid, pjid FROM strategy_statement_savings T11) A 
+    WHERE coid=". $value[1][0]." AND pjid= ". $value[0];
+    $lastUpdateResult = obtain_query_result($lastUpdateSql);
+
+
+    while($lastUpdateRow = mysqli_fetch_assoc($lastUpdateResult)){
+        $projectLastMod = $lastUpdateRow['lastModified'];
+    }
+    $value[] = $projectLastMod; 
     
-    $output[$k] = $value; // 12
+    $output[$k] = $value; // 12  
 }
 
 /* 

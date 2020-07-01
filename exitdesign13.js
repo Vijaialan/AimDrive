@@ -15322,7 +15322,7 @@ function switchMainContentsInternal(page) {
     <tr>
             <th width="15%">Title</th>
             
-            <th width="10%">Critical Cost</th>
+            <th width="10%">Critical Costs</th>
             <th width="12%">Cost drivers</th>
             <th width="20%">Strategic Options</th>
             <th>Strategy Statements</th>
@@ -15330,7 +15330,7 @@ function switchMainContentsInternal(page) {
         <tr class="small-thead">
             <th width="15%">Title</th>
             
-            <th width="10%">Critical Cost</th>
+            <th width="10%">Critical Costs</th>
             <th width="12%">Cost drivers</th>
             <th width="20%">Strategic Options</th>
             <th>Strategy Statements</th>
@@ -15376,7 +15376,7 @@ function switchMainContentsInternal(page) {
         $("#example thead tr:eq(1) th").each(function() {
             var title = $(this).text();
             $(this).html(
-                '<input type="text" size="22" placeholder="Search ' +
+                '<input type="text" size="23" placeholder="Search ' +
                 title +
                 '" class="column_search" />'
             );

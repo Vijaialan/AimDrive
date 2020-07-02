@@ -581,6 +581,7 @@ function queryTypeSelected() {
  * Callback function to the login function once the login is successful
  * @callback
  */
+
 function loginOK(response) {
     var results = JSON.parse(response);
     if (results.length > 0) {
@@ -629,6 +630,7 @@ function loginFailed(response) {
     document.getElementById("loginstatus").innerHTML =
         "Login aborted -- server error!";
 }
+
 //get-project-data-start
 /**
  * Called when user clicks on the project from projects tab

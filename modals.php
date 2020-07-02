@@ -239,8 +239,9 @@
                      <div id="add_allStrategicOptions"></div>
                   </div>
                   <div class="form-group">
-                  <label >Strategy statement Description</label>
-                  <textarea type="text" class="form-control" id="add_strategy_statmnt"  onkeyup='activateButton("Strategy_submit");' required rows="3" 
+                  <label >Strategy Statement Description</label>
+                  <span id="charcount" class="charcnt"></span>
+                  <textarea type="text" class="form-control" id="add_strategy_statmnt"  onkeyup='charcountupdate(this.value);' required rows="5" maxlength="255"
                   placeholder="This is a Mandatory field" color="red"></textarea>
                      
                     

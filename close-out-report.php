@@ -7,7 +7,7 @@ $pce_sql = "SELECT pce.* from project_cost_estimate pce WHERE pce.pjid = $id";
 $g_sql = "SELECT g.* from project_goal g WHERE g.pjid = $id";
 $cc_sql = "SELECT ce.* from cost_element ce WHERE ce.pjid = $id ORDER BY ordering DESC";
 $so_sql = "SELECT so.so_desc strategic_option, so.selected so_selected, cd.name cost_driver, ce.name cost_element from cost_driver_so so JOIN cost_driver cd ON so.cdid =cd.cdid JOIN cost_element ce ON so.ceid = ce.ceid WHERE so.pjid = $id";
-$ss_sql = "SELECT ssid, ss_desc, ss_handle, priority FROM strategy_statement WHERE selected = 1 AND pjid = $id";
+$ss_sql = "SELECT ssid, ss_desc, ss_handle, priority, ss_dropped, drop_reason FROM strategy_statement WHERE selected = 1 AND pjid = $id";
 $ssb_sql = "SELECT SUM(expected_value) net_cost_improvement, ssid FROM ss_benefit WHERE pjid = $id GROUP BY ssid";
 $ssr_sql = "SELECT SUM(expected_value) net_revenue_improvement, ssid FROM ss_risk WHERE pjid = $id GROUP BY ssid";
 $ssa_sql = "SELECT a.* FROM action a WHERE a.pjid = $id";
@@ -26,7 +26,7 @@ $p_result=getData($pr_sql, $con);
 $title = $result['pj_name'];
 $description = $result['pj_desc'];
 $company = $result['co_name'];
-$primaryCost = money_format("%.2n", $result['pj_potentialsaving']);
+//$primaryCost = money_format("%.2n", $result['pj_potentialsaving']);
 // $overview = array('desc' => $desc);
 $overview = [$description];
 $g_max_length = 7;
@@ -128,8 +128,11 @@ foreach($ss_result as $ssbr) {
     $ss_data[$ssbr['ssid']] = array(
         'ss' => $ssbr['ss_handle'] . ' '. $ssbr['ss_desc'],
         'priority' => $ssbr['priority'],
+        'dropped' => $ssbr['ss_dropped'],
+        'dropped_reason' => $ssbr['drop_reason'],
     );
 }
+//print_r($ss_data);
 
 $reduce_step_single_data = $ss_data;
 $total_benefits_value = 0;
@@ -555,6 +558,7 @@ foreach($implement_step_single_data as $isd){
                 </section>
                 <?php } ?>
                 <!-- section 14 actions implement -->
+                <?php //var_dump($implement_final_data); ?>
                 <?php foreach($implement_final_data as $isd){ ?>
                 <?php
                 if(!isset($isd['ss'])) continue;
@@ -567,7 +571,9 @@ foreach($implement_step_single_data as $isd){
                     <h1 class="sec_title">Implement</h1>
                         <h2>The team is committed to completing the following actions and delivering the value identified</h2> </div>
                     <!------ body ------>
+                    
                     <div class="sec_body">
+                    
                         <table class="table table-bordered">
                             <thead>
                                 <tr valign='middle' style='font-size:1.75rem'>
@@ -585,6 +591,8 @@ foreach($implement_step_single_data as $isd){
                                 </tr>
                             </tbody>
                         </table>
+                    
+                    <?php if($isd['dropped'] == 0) { ?>
                         <table class="table table-bordered">
                             <thead>
                                 <tr valign='middle' style='font-size:1.75rem'>
@@ -603,6 +611,25 @@ foreach($implement_step_single_data as $isd){
                             <?php } ?>
                             </tbody>
                         </table>
+                        <?php } else {  ?>
+                            <table class="table table-bordered">
+                            <thead>
+                                <tr valign='middle' style='font-size:1.75rem'>
+                                    <th width="20%">Status</th>
+                                    <th width="80%">Reason</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr valign='middle'>
+                                    <td style="padding:8px 5px;"><?php echo 'Dropped' ?></td>
+                                    <td style="padding:8px 5px;"><?php echo $isd['dropped_reason']; ?></td>
+                                   
+                                </tr>
+                            <?php } ?>
+                            </tbody>
+                        </table>
+                            
                     </div>
                     <!------ footer ------>
                     

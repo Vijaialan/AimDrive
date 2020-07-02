@@ -22,7 +22,7 @@ if($row['selected']==1){
   die('["ERROR", "ss is already selected"]');
 }
 
-$q="update strategy_statement set selected=1 where
+$q="update strategy_statement set selected=1 , ss_unimplement= 0 where
  coid=$coid and buid=$buid and pjid=$pjid and ssid=$ssid";
 $result=obtain_query_result($q);
 

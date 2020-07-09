@@ -137,7 +137,7 @@ var finalString = "";
 var saveAdvancedQueryBody = "";
 var saveConjunctsBody = "";
 var saveInputDetails = [];
-
+var strategyNos = [];
 if (localStorage.getItem("Gtoken") !== null) {
     document.getElementById("prelogin-body").innerHTML = "";
     Gtoken = localStorage.getItem("Gtoken");
@@ -5926,6 +5926,7 @@ function reduceStepContents() {
             var priority = oentry[3];
             var selected = oentry[9];
             var sshandle = oentry[12];
+            strategyNos.push(sshandle);
             var fixedhandle = sshandle;
             let perfCalc = performance[0] + performance[1] - performance[2];
             let netPotentitalVIdentified = CurrencyFormat(
@@ -22308,7 +22309,17 @@ var allCBIDs = [];
  * Adding a new strategy statement
  */
 function saveEDSS() {
+    //strategyNo
     var handle = document.getElementById("add_strategy_no").value;
+    if (strategyNos.includes(handle) == true) {
+        myAlert(
+            "Attention",
+            "This Strategy Statement Number has already been used. You may continue numbering your Strategy Statement from number XX onward.",
+            "error"
+        );
+        return;
+
+    }
     var desc = document.getElementById("add_strategy_statmnt").value;
     var priority = document.getElementById("add_priority_txt").value;
     var favorite = [];
@@ -25572,6 +25583,7 @@ function mdStepContents2() {
         '<div id="gmsg" onClick="document.getElementById(gmsg).innerHTML=;"></div>' +
         '<div class="cost_driver_container_wrapper">';
     // alert("md 1");
+    //console.log(Gcurrentdata);
     for (var i = 0; i < Gcurrentdata[Gcdindex].length; i++) {
         // alert("md ce loop: " + i);
 

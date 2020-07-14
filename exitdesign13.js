@@ -4211,11 +4211,11 @@ function refreshMStep() {
                 cdstring +
                 "<THEAD><TR><TH>Critical costs</TH><TH colspan=" +
                 numdrivers +
-                "> Cost drivers </TH></TR></THEAD>";
+                "> Cost Drivers </TH></TR></THEAD>";
             else
                 cdstring =
                 cdstring +
-                "<THEAD><TR><TH>Critical costs</TH><TH> Cost drivers </TH></TR></THEAD>";
+                "<THEAD><TR><TH>Critical costs</TH><TH> Cost Drivers </TH></TR></THEAD>";
             var percent = getCEPercentCorrect(Gcostdrivers[i][0]);
             var parent = getCEParent(Gcostdrivers[i][0]);
 
@@ -4564,11 +4564,11 @@ function refreshDStep() {
                 kcdstring +
                 "<THEAD><TR><TH >Critical costs</TH><TH colspan=" +
                 numdrivers +
-                "> Cost drivers </TH></TR></THEAD>";
+                "> Cost Drivers </TH></TR></THEAD>";
             else
                 kcdstring =
                 kcdstring +
-                "<THEAD><TR><TH >Critical costs</TH><TH> Cost drivers </TH></TR></THEAD>";
+                "<THEAD><TR><TH >Critical costs</TH><TH> Cost Drivers </TH></TR></THEAD>";
             var percent = getCEPercentCorrect(Gcurrentdata[Gcdindex][i][0]);
             var parent = getCEParent(Gcurrentdata[Gcdindex][i][0]);
             var ceid = Gcurrentdata[Gcdindex][i][0];
@@ -12874,7 +12874,7 @@ function setEDGenericHeader(page) {
             body +
             '<li class="' +
             knowledgebaseActive +
-            '"><a  class="switch-main-contents" switchThis="knowledgebase" href="directory.html">Idea bank</a></li>';
+            '"><a  class="switch-main-contents" switchThis="knowledgebase" href="directory.html">Idea Bank</a></li>';
     }
 
     /*'<li class="' +
@@ -15326,7 +15326,7 @@ function switchMainContentsInternal(page) {
             <th width="15%">Title</th>
             
             <th width="10%">Critical Costs</th>
-            <th width="12%">Cost drivers</th>
+            <th width="12%">Cost Drivers</th>
             <th width="20%">Strategic Options</th>
             <th>Strategy Statements</th>
         </tr>
@@ -15334,7 +15334,7 @@ function switchMainContentsInternal(page) {
             <th width="15%">Title</th>
             
             <th width="10%">Critical Costs</th>
-            <th width="12%">Cost drivers</th>
+            <th width="12%">Cost Drivers</th>
             <th width="20%">Strategic Options</th>
             <th>Strategy Statements</th>
         </tr>
@@ -15344,7 +15344,7 @@ function switchMainContentsInternal(page) {
         <th width="15%">Title</th>
         
         <th width="10%">Critical Cost</th>
-        <th width="12%">Cost drivers</th>
+        <th width="12%">Cost Drivers</th>
         <th width="20%">Strategic Options</th>
         <th>Strategy Statements</th>
         </tr>
@@ -22312,9 +22312,14 @@ function saveEDSS() {
     //strategyNo
     var handle = document.getElementById("add_strategy_no").value;
     if (strategyNos.includes(handle) == true) {
+        var filtered = strategyNos.filter(function(item) {
+            return (parseInt(item) == item);
+        });
+        var NextSt = Math.max(...filtered);
+        NextSt++;
         myAlert(
             "Attention",
-            "This Strategy Statement Number has already been used. You may continue numbering your Strategy Statement from number XX onward.",
+            "This Strategy Statement Number has already been used. You may continue numbering your Strategy Statement from number" + "  " + NextSt + "  " + "onward.",
             "error"
         );
         return;
@@ -25562,7 +25567,7 @@ function mdStepContents2() {
         "<h4>Critical cost</h4>" +
         "</div>" +
         '<div class="cost_driver_sec pull-left">' +
-        "<h4>Cost drivers</h4>" +
+        "<h4>Cost Drivers</h4>" +
         "</div>" +
         '<div class="rt_ctrls pull-right">' +
         "<span>" +
@@ -28941,6 +28946,7 @@ function addmdpagebreak(obj, startkey, db_mdtable2) {
     let markup = tempTable2;
     var clone_key = startkey + 2;
     if (parseInt(clone_key) > -1) {
+        console.log(db_mdtable2);
         $.each(db_mdtable2, function(key, item) {
             if (
                 key >= startkey &&
@@ -31192,5 +31198,5 @@ function createtooltip(el) {
 function charcountupdate(str) {
     var lng = str.length;
     document.getElementById("charcount").innerHTML =
-        "255" - lng + " " + " " + "characters left";
+        "500" - lng + " " + " " + "characters left";
 }

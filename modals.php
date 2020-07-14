@@ -241,7 +241,7 @@
                   <div class="form-group">
                   <label >Strategy Statement Description</label>
                   <span id="charcount" class="charcnt"></span>
-                  <textarea type="text" class="form-control" id="add_strategy_statmnt"  onkeyup='charcountupdate(this.value);' required rows="5" maxlength="255"
+                  <textarea type="text" class="form-control" id="add_strategy_statmnt"  onkeyup='charcountupdate(this.value);' required rows="5" maxlength="500"
                   placeholder="This is a Mandatory field" color="red"></textarea>
                      
                     
@@ -767,7 +767,7 @@
                      <div class="form-group">
                         <label > Project Description</label>
                         <span id="charcount" class="charcnt"></span>
-                        <textarea type="text" class="form-control" maxlength="255" id="project_desc" onkeyup="charcountupdate(this.value)"  rows="5"></textarea>
+                        <textarea type="text" class="form-control" maxlength="500" id="project_desc" onkeyup="charcountupdate(this.value)"  rows="5"></textarea>
                         
                         <div class="error project_desc_error" style="color: red; margin-top:5px"></div>
                      </div>

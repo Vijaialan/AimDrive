@@ -1707,7 +1707,6 @@ function startupok(response) {
         return;
     }
     Gstrategies = result[1];
-
     reportStrategies = result[1];
     regProjs = result[2];
     depProjs = result[3];
@@ -24768,12 +24767,26 @@ function markEternal(ce) {
 
 function editCostElement(ce) {
     // alert("edit cost element " + ce);
+    oFindNode(costTree[0], ce);
+    console.log(selectedNode[2].length)
+    if (selectedNode[2].length > 0) {
+        $(".ce_modaltitle").text("Edit Cost Element");
+        //oFindNode(costTree[0], ce);
+        document.getElementById("ce_name").value = selectedNode[0];
+        document.getElementById("ce_value").value = selectedNode[1];
+        document.getElementById("ce_value").readOnly = true;
+        $('.cost_alert').css('color', 'red');
+        $(".cost_alert").text("(Unable to edit value as it is calculated as a sum of the value of sub-costs. Kindly edit the sub-costs)");
+    } else {
+        $(".ce_modaltitle").text("Edit Cost Element");
+        //oFindNode(costTree[0], ce);
+        document.getElementById("ce_name").value = selectedNode[0];
+        document.getElementById("ce_value").value = selectedNode[1];
+        document.getElementById("ce_value").readOnly = false;
+        $(".cost_alert").text("");
+    }
     $("#ce_modal").modal("show");
     $(".opt_btn_wrp").hide();
-    $(".ce_modaltitle").text("Edit Cost Element");
-    oFindNode(costTree[0], ce);
-    document.getElementById("ce_name").value = selectedNode[0];
-    document.getElementById("ce_value").value = selectedNode[1];
     deactivateButton("ce_submit");
     editingCE = ce;
     $(document).ready(function() {
@@ -28946,7 +28959,7 @@ function addmdpagebreak(obj, startkey, db_mdtable2) {
     let markup = tempTable2;
     var clone_key = startkey + 2;
     if (parseInt(clone_key) > -1) {
-        console.log(db_mdtable2);
+        //console.log(db_mdtable2);
         $.each(db_mdtable2, function(key, item) {
             if (
                 key >= startkey &&
@@ -29105,13 +29118,14 @@ function refreshProgressReport() {
             pStatus = Gstrategies[GSkey][12];
         }
     }
-    console.log(stratEnt);
+    //console.log(stratEnt);
     var projectCurrency = stratEnt[6][1];
     var lastEdit = stratEnt[15];
     var status = stratEnt[GstatusIndex];
     allSS = [];
     selectedSS = [];
     selectedSSNames = [];
+    selectedSSshort = [];
     eternalSS = [];
     unselectedSS = [];
     activeSS = [];
@@ -29662,6 +29676,7 @@ function refreshProgressReport() {
     let ttActions = 0;
     let valueDelivered = [];
     let valueNotDelivered = [];
+    let strategiesStat = [];
     let benfitTemp, riskTemp, valueRealizedTemp, valueIdentifiedTemp;
     for (var key in Gcurrentdata[34]) {
         if (Gcurrentdata[34][key].ss_dropped == 1) continue;
@@ -29686,6 +29701,7 @@ function refreshProgressReport() {
             valueNotDelivered.push(valueIdentifiedTemp - valueRealizedTemp);
         }
     }
+    //console.log(Gcurrentdata);
     for (var key in Gcurrentdata[30]) {
         ttActions =
             Gcurrentdata[30][key].totalActions - Gcurrentdata[30][key].dropped;
@@ -29699,12 +29715,23 @@ function refreshProgressReport() {
         behindSchedulePercent = Math.round(
             (Gcurrentdata[30][key].outStanding / ttActions) * 100
         );
+        //selectedSSNames.push(Gcurrentdata[30][key].sshandle + "-" + Gcurrentdata[30][key].ssdesc);
+        //selectedSSshort.push(Gcurrentdata[30][key].sshandle + "-" + truncate(Gcurrentdata[30][key].ssdesc, 35));
         selectedSSNames.push(Gcurrentdata[30][key].sshandle);
         actionsCompleted.push(completePercent);
         actionsOnSchedule.push(onSchedulePercent);
         actionsBehindSchedule.push(behindSchedulePercent);
+        strategiesStat.push(Gcurrentdata[30][key].ssdesc);
+    }
+
+    //console.log(selectedSSNames);
+    //MINIMIZE CONTENT
+    function truncate(source, size) {
+        return source.length > size ? source.slice(0, size - 1) + "…" : source;
     }
     let strategiesWithActions = selectedSSNames;
+    //let shortStat = selectedSSshort;
+    //console.log(shortStat);
     let actionItemsData = [{
             name: "Completed", //green
             data: actionsCompleted,
@@ -29851,7 +29878,9 @@ function refreshProgressReport() {
         });
         let progress_hbarchar_canvas = {
             chart: {
-                type: "bar"
+                type: "bar",
+                //data: strategiesWithActions
+                //height: 600
             },
             title: {
                 text: "Status of Action Items Completed per Strategy"
@@ -29862,6 +29891,7 @@ function refreshProgressReport() {
             colors: ["#2C7873", "#52DE97", "#FD5E53"],
             xAxis: {
                 categories: strategiesWithActions,
+                //margin: 500,
                 title: {
                     text: "Strategy Statements"
                 },
@@ -29873,6 +29903,8 @@ function refreshProgressReport() {
             yAxis: {
                 min: 0,
                 max: 100,
+                tickInterval: 10,
+                position: top,
                 title: {
                     text: "Action Items Progress"
                 }

@@ -167,7 +167,7 @@
                      
                   </div>
                   <div class="form-group">
-                     <label>Value</label>
+                     <label class="cost_value" >Value <span class="cost_alert" style="font-size: 80%;">.</span></label>
                      <input placeholder="Value is a mandatory field and fill only numbers" type="text" class="form-control formattedNumberField" required oninput="numbersOnlyPlease(this);" onkeyup='activateButton("ce_submit");' id="ce_value" pattern="[0=9]">
                      
                   </div>

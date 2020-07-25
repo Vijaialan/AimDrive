@@ -1409,10 +1409,14 @@ header {
     width: 20%;
     height: 185px;
     float: left;
-    color: #fff;
+    color: #fff !important;
     padding: 20px;
     position: relative;
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+a {
+    color: inherit;
 }
 
 .crit_cost_wrp .title {
@@ -1423,6 +1427,10 @@ header {
 
 .crit_cost_wrp .cost {
     font-family: "Nunito Sans", sans-serif;
+}
+
+.crit_cost_wrp h3 a:hover {
+    color: #fff;
 }
 
 .crit_cost_bottom {

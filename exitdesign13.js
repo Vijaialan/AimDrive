@@ -20691,8 +20691,12 @@ function addEDSSAction() {
             "</span>";
 
         deactivateButton("action_submit");
-
         document.getElementById("ssDesc").innerHTML = oentry[1];
+        if (oentry[18] == null) {
+            document.getElementById("ssTarget").value = '';
+        } else {
+            document.getElementById("ssTarget").value = oentry[18].substring(0, 10);
+        }
         document.getElementById("ssVal").innerHTML = CurrencyFormat(
             performance[0] + performance[1] - performance[2],
             GdefaultCurrency,
@@ -20700,7 +20704,7 @@ function addEDSSAction() {
             "",
             ","
         );
-        $("#action_date").datepicker("setDate", new Date());
+        //$("#action_date").datepicker("setDate", new Date());
         document.getElementById("action_desc").value = "";
         document.getElementById("action_date").value = "";
         populateActionPerformers("perfList", "actionPerformers", "");
@@ -21028,6 +21032,34 @@ function getIDFromName(name) {
     }
     return -1;
 }
+
+//Action Target Date Validation
+
+$(function() {
+    $("#action_date").datepicker();
+    $("#action_date").on("change", function() {
+        var ssDate = $("#ssTarget").val();
+        var selected = $(this).val();
+
+        var convertDate = function(usDate) {
+            var dateParts = usDate.split(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+            return dateParts[3] + "-" + dateParts[1] + "-" + dateParts[2];
+        }
+        var actDate = convertDate(selected); // 2013-12-06
+        if (ssDate != '') {
+            if (actDate > ssDate) {
+                error.textContent = "Action Item Target Date exceeds Strategy Statement Target Date. Kindly choose a date on or before the Strategy Statement Target Date."
+                error.style.color = "red"
+                document.getElementById("action_date").value = "";
+            } else {
+                error.textContent = ""
+                    //document.getElementById("action_date").value = "";
+            }
+
+        }
+
+    });
+});
 
 function saveEDSSAction() {
     $(".opt_btn_wrp").hide();
@@ -24768,7 +24800,7 @@ function markEternal(ce) {
 function editCostElement(ce) {
     // alert("edit cost element " + ce);
     oFindNode(costTree[0], ce);
-    console.log(selectedNode[2].length)
+    //console.log(selectedNode[2].length)
     if (selectedNode[2].length > 0) {
         $(".ce_modaltitle").text("Edit Cost Element");
         //oFindNode(costTree[0], ce);
@@ -25195,7 +25227,7 @@ function eternalStepContents2() {
             if (celement[8] != null && celement[8].valueOf() == "YES".valueOf())
                 criticalp = true;
             no_data = true;
-            body = body + "<tr>" + "<td width=50%>";
+            body = body + "<tr>" + "<td width=50%><a href='#' class='switch-main-contents' switchthis='Identify'>";
 
             if (criticalp) {
                 body =
@@ -25226,7 +25258,7 @@ function eternalStepContents2() {
             body =
                 body +
                 celement[1] +
-                "</td>" +
+                "</a></td>" +
                 "<td width=15%>" +
                 CurrencyFormat(val, GdefaultCurrency, 0, "", ",") +
                 "</td>" +
@@ -25299,9 +25331,9 @@ function eternalStepContents2() {
             '<div class="cost_driver_container slider_1">' +
             "<!------ critical_cost ------>  " +
             '<div class="crit_cost_wrp">' +
-            '<h3 class="title">' +
+            '<h3 class="title"><a href="#" class="switch-main-contents" switchthis="Measure">' +
             centry[1] +
-            "</h3>" +
+            "</a></h3>" +
             '<p class="cost">' +
             CurrencyFormat(centry[4], GdefaultCurrency, 0, "", ",") +
             "</p>" +
@@ -25511,9 +25543,9 @@ function eternalStepContents2() {
             "</ul>" +
             "</div>" +
             "</div>" +
-            '<p class="strategy_stat">' +
+            '<p class="strategy_stat"><a href="#" class="switch-main-contents" switchthis="Reduce">' +
             ssEntry[1] +
-            "</p> " +
+            "</a></p> " +
             '<ul class="info_option_wrp stat_action">' +
             "<li> " +
             '<div class="item total_bc_value">' +
@@ -28055,6 +28087,7 @@ function refreshCOR() {
     // need two passes because of the format of the report *&#$%!@#**
     var numKCDs = 0,
         numAllDrivers = 0;
+    //console.log(Gcurrentdata);
     for (var i = 0; i < Gcurrentdata[Gcdindex].length; i++) {
         var celement = Gcurrentdata[Gcdindex][i];
         var cdCEID = celement[0];
@@ -28957,9 +28990,9 @@ function addmdpagebreak(obj, startkey, db_mdtable2) {
     $(sec_body).html("");
     var tempMaxHeight = maxHeight + $(obj).offset().top - 20;
     let markup = tempTable2;
+    //console.log(db_mdtable2);
     var clone_key = startkey + 2;
     if (parseInt(clone_key) > -1) {
-        //console.log(db_mdtable2);
         $.each(db_mdtable2, function(key, item) {
             if (
                 key >= startkey &&
@@ -29701,6 +29734,7 @@ function refreshProgressReport() {
             valueNotDelivered.push(valueIdentifiedTemp - valueRealizedTemp);
         }
     }
+    //console.log(p_pendingActions);
     //console.log(Gcurrentdata);
     for (var key in Gcurrentdata[30]) {
         ttActions =
@@ -29716,7 +29750,7 @@ function refreshProgressReport() {
             (Gcurrentdata[30][key].outStanding / ttActions) * 100
         );
         //selectedSSNames.push(Gcurrentdata[30][key].sshandle + "-" + Gcurrentdata[30][key].ssdesc);
-        //selectedSSshort.push(Gcurrentdata[30][key].sshandle + "-" + truncate(Gcurrentdata[30][key].ssdesc, 35));
+        selectedSSshort.push(Gcurrentdata[30][key].sshandle + "-" + truncate(Gcurrentdata[30][key].ssdesc, 35));
         selectedSSNames.push(Gcurrentdata[30][key].sshandle);
         actionsCompleted.push(completePercent);
         actionsOnSchedule.push(onSchedulePercent);
@@ -29724,17 +29758,20 @@ function refreshProgressReport() {
         strategiesStat.push(Gcurrentdata[30][key].ssdesc);
     }
 
-    //console.log(selectedSSNames);
+    console.log(actionsCompleted);
     //MINIMIZE CONTENT
     function truncate(source, size) {
         return source.length > size ? source.slice(0, size - 1) + "…" : source;
     }
     let strategiesWithActions = selectedSSNames;
-    //let shortStat = selectedSSshort;
+    let shortStat = selectedSSshort;
+    let fullStat = strategiesStat;
     //console.log(shortStat);
+    //console.log(manAllPendingActionsData);
     let actionItemsData = [{
             name: "Completed", //green
             data: actionsCompleted,
+            //data: strategiesStat,
             index: 2
         },
         {
@@ -29748,6 +29785,7 @@ function refreshProgressReport() {
             index: 0
         }
     ];
+    //console.log(actionItemsData);
     $(function() {
         $(".cus_scroll").overlayScrollbars({});
         if (VRxAxis.length === 0) {
@@ -29879,8 +29917,6 @@ function refreshProgressReport() {
         let progress_hbarchar_canvas = {
             chart: {
                 type: "bar",
-                //data: strategiesWithActions
-                //height: 600
             },
             title: {
                 text: "Status of Action Items Completed per Strategy"
@@ -29889,26 +29925,65 @@ function refreshProgressReport() {
                 pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
             },
             colors: ["#2C7873", "#52DE97", "#FD5E53"],
-            xAxis: {
-                categories: strategiesWithActions,
-                //margin: 500,
-                title: {
-                    text: "Strategy Statements"
+            xAxis: [{
+                    labels: {
+                        //step: 3,
+                        //padding: '55px',
+                        //whiteSpace: 10,
+                        //reserveSpace: true,
+                        align: 'left',
+                        reserveSpace: true,
+                        style: {
+                            fontSize: '14px',
+                            //width: '300px',
+                            // whiteSpace: 'nowrap',
+                            // paddingLeft: '10px',
+                            // paddingRight: '10px',
+                            // paddingTop: '50px',
+                            // paddingBottom: '10px',
+                            // lineWidth: 20,
+                            // padding: '100px'
+                            //color: 'red'
+                        },
+                        //tickPixelInterval: 100,
+                        //showLastLabel: true
+                    },
+                    categories: strategiesWithActions,
+                    //categories: shortStat,
+                    //categories: fullStat,
+                    title: {
+                        text: "Strategy Statements"
+                    },
+                    scrollbar: {
+                        enabled: true,
+                        showFull: false
+                    }
                 },
-                scrollbar: {
-                    enabled: true,
-                    showFull: false
+
+            ],
+            yAxis: [{
+                    labels: {
+                        //  step: 5,
+                    },
+                    min: 0,
+                    max: 100,
+                    tickInterval: 10,
+                    position: 'top',
+                    title: {
+                        text: "Action Items Progress"
+                    }
+                },
+                {
+                    min: 0,
+                    max: 100,
+                    tickInterval: 10,
+                    //overflow: 'allow',
+                    opposite: true,
+                    title: {
+                        text: "Action Items Progress"
+                    }
                 }
-            },
-            yAxis: {
-                min: 0,
-                max: 100,
-                tickInterval: 10,
-                position: top,
-                title: {
-                    text: "Action Items Progress"
-                }
-            },
+            ],
             credits: {
                 enabled: false
             },

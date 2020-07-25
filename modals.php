@@ -1455,9 +1455,11 @@
                      <label class="">Action </label>
                      <input placeholder="This field is mandatory." type="text" class="form-control" required onkeyup='activateButton("action_submit");' id="action_desc" >
                   </div>
+                  <input type="hidden" id="ssTarget">
                   <div class="form-group input_wrp">
                   <label class="">Target Date</label>
-                     <input id="action_date" type="text" onchange='activateButton("action_submit");' class="date-picker form-control date_icon"  />
+                     <input id="action_date" type="text"  onchange='activateButton("action_submit");' class="date-picker form-control date_icon"  />
+                     <span id="error"></span> 
                   </div>
                   <div class="input_wrp">
                   <label class="">Action Owner </label>

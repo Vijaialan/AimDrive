@@ -1528,15 +1528,19 @@
                     <div class="form-group grid_2 no_margin">
                     <label class="">Start Date</label>
                      <input id="input_startdate" type="text" onchange='activateButton("Strategy_submits");' class="date-picker form-control date_icon" />
-                    
                    </div>
 
                    <div class="form-group grid_2">
                    <label class="">Target Date</label>
                      <input id="input_enddate" type="text" onchange='activateButton("Strategy_submits");' class="date-picker form-control date_icon" />
-                     
                    </div>
-                   <div class="form-group">
+
+                  <div class="form-group"> 
+                  <span class="error sstarget_error" id="sstarget_error" style="color: red"></span>
+                  <span class="error ssstart_error" id="ssstart_error" style="color: red"></span>
+                  </div>
+
+                   <div class="form-group owner">
                     <label class="">Select Owner </label>
                      <select id="multiselect_owners" class="form-control">
 

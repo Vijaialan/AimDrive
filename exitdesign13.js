@@ -20648,6 +20648,7 @@ function populateActionPerformers(datalistname, divname, performers) {
  * @param {number} pid - Person Id
  */
 function addEDSSAction() {
+    error.textContent = "";
     if (GCurrentSSDropped) {
         //
         myAlert(
@@ -21040,13 +21041,14 @@ $(function() {
     $("#action_date").on("change", function() {
         var ssDate = $("#ssTarget").val();
         var selected = $(this).val();
+        console.log(ssDate);
 
         var convertDate = function(usDate) {
             var dateParts = usDate.split(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
             return dateParts[3] + "-" + dateParts[1] + "-" + dateParts[2];
         }
         var actDate = convertDate(selected); // 2013-12-06
-        if (ssDate != '') {
+        if (ssDate !== '' && ssDate !== null) {
             if (actDate > ssDate) {
                 error.textContent = "Action Item Target Date exceeds Strategy Statement Target Date. Kindly choose a date on or before the Strategy Statement Target Date."
                 error.style.color = "red"
@@ -21060,6 +21062,59 @@ $(function() {
 
     });
 });
+//SS Start & End Date validation
+$(function() {
+    $("#input_enddate").on("change", function() {
+
+        var ssStartDt = format($("#input_startdate").val());
+        var ssEndDt = format($("#input_enddate").val());
+        console.log(ssStartDt, ssEndDt);
+        if (ssStartDt !== undefined) {
+            if (ssStartDt > ssEndDt) {
+                $("#input_enddate").val("");
+                $(".sstarget_error")
+                    .text("Target Date is before the Start Date. Kindly choose a date after the Start Date.")
+                    .show();
+                return false;
+
+            } else {
+                $("#sstarget_error").hide();
+            }
+        }
+        $("#ssstart_error").hide();
+
+    });
+    $("#input_startdate").on("change", function() {
+        var ssStartDt = format($("#input_startdate").val());
+        var ssEndDt = format($("#input_enddate").val());
+        console.log(ssStartDt, ssEndDt);
+        if (ssEndDt !== undefined) {
+            if (ssStartDt > ssEndDt) {
+                $("#input_startdate").val("");
+                $(".ssstart_error")
+                    .text("Start Date is after the Target Date. Kindly choose a date before the Target Date.")
+                    .show();
+                return false;
+            } else {
+                $("#ssstart_error").hide();
+            }
+        }
+        $("#sstarget_error").hide();
+
+    });
+
+});
+
+function format(inputDate) {
+    var date = new Date(inputDate);
+    if (!isNaN(date.getTime())) {
+        var day = date.getDate().toString();
+        var month = (date.getMonth() + 1).toString();
+        // Months use 0 index.
+
+        return (date.getFullYear()) + '-' + (month[1] ? month : '0' + month[0]) + '-' + (day[1] ? day : '0' + day[0]);
+    }
+}
 
 function saveEDSSAction() {
     $(".opt_btn_wrp").hide();
@@ -22218,6 +22273,8 @@ var SSUpdateFrom = 1;
  * @param {object} ssObject - strategy statement object
  */
 function editEDSSS(page, ssid, ssObject) {
+    $("#sstarget_error").hide();
+
     if (ssObject.sscomplete == 1) {
         myAlert(
             "Attention",
@@ -25227,7 +25284,7 @@ function eternalStepContents2() {
             if (celement[8] != null && celement[8].valueOf() == "YES".valueOf())
                 criticalp = true;
             no_data = true;
-            body = body + "<tr>" + "<td width=50%><a href='#' class='switch-main-contents' switchthis='Identify'>";
+            body = body + "<tr>" + "<td width=50%><strong><a href='#' class='switch-main-contents' switchthis='Identify'>";
 
             if (criticalp) {
                 body =
@@ -25258,7 +25315,7 @@ function eternalStepContents2() {
             body =
                 body +
                 celement[1] +
-                "</a></td>" +
+                "</a></strong></td>" +
                 "<td width=15%>" +
                 CurrencyFormat(val, GdefaultCurrency, 0, "", ",") +
                 "</td>" +
@@ -25331,7 +25388,7 @@ function eternalStepContents2() {
             '<div class="cost_driver_container slider_1">' +
             "<!------ critical_cost ------>  " +
             '<div class="crit_cost_wrp">' +
-            '<h3 class="title"><a href="#" class="switch-main-contents" switchthis="Measure">' +
+            '<h3 class="title"><a  href="#" class="switch-main-contents" switchthis="Measure">' +
             centry[1] +
             "</a></h3>" +
             '<p class="cost">' +
@@ -25543,7 +25600,7 @@ function eternalStepContents2() {
             "</ul>" +
             "</div>" +
             "</div>" +
-            '<p class="strategy_stat"><a href="#" class="switch-main-contents" switchthis="Reduce">' +
+            '<p class="strategy_stat"><a href="strategy- 415" class="switch-main-contents" switchthis="Reduce">' +
             ssEntry[1] +
             "</a></p> " +
             '<ul class="info_option_wrp stat_action">' +

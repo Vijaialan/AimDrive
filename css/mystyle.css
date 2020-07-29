@@ -27,12 +27,13 @@ li {
     padding: 0;
 }
 
-a,
+
+/* a,
 a:hover,
 a:focus {
     text-decoration: none;
     outline: 0;
-}
+} */
 
 button {
     border: none;
@@ -999,6 +1000,12 @@ header {
 .row_saved_data td:first-child {
     width: 75px;
     padding: 0;
+    /*font-weight: bold;*/
+}
+
+.row_saved_data a {
+    text-decoration: underline;
+    color: #2c4c73;
 }
 
 .row_saved_data td:nth-child(3) {
@@ -1030,6 +1037,11 @@ header {
     color: #333;
     font-size: 13px;
     margin-top: 13px;
+}
+
+.et_state_list .strategy_stat a {
+    text-decoration: underline;
+    color: #2c4c73;
 }
 
 
@@ -1425,13 +1437,19 @@ a {
     margin-top: 0;
 }
 
+.crit_cost_wrp .title a {
+    text-decoration: underline;
+    color: #fff;
+}
+
 .crit_cost_wrp .cost {
     font-family: "Nunito Sans", sans-serif;
 }
 
-.crit_cost_wrp h3 a:hover {
+
+/* .crit_cost_wrp h3 a:hover {
     color: #fff;
-}
+} */
 
 .crit_cost_bottom {
     position: absolute;

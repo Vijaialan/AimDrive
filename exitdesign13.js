@@ -20648,7 +20648,6 @@ function populateActionPerformers(datalistname, divname, performers) {
  * @param {number} pid - Person Id
  */
 function addEDSSAction() {
-    error.textContent = "";
     if (GCurrentSSDropped) {
         //
         myAlert(
@@ -20705,14 +20704,16 @@ function addEDSSAction() {
             "",
             ","
         );
-        //$("#action_date").datepicker("setDate", new Date());
+        $("#action_date").datepicker("setDate", new Date());
         document.getElementById("action_desc").value = "";
-        document.getElementById("action_date").value = "";
+        // document.getElementById("action_date").value = "";
         populateActionPerformers("perfList", "actionPerformers", "");
         // document.getElementById("action_who").value = "";
         $(".actiontitle").text("Add Action");
-        $(".datepicker").datepicker("update", "");
+        //  $(".datepicker").datepicker("update", "");
+        $('#action_date').val("").datepicker("update");
         $("#action_modal").modal("show");
+        error.textContent = "";
     }
 }
 /**
@@ -21041,7 +21042,11 @@ $(function() {
     $("#action_date").on("change", function() {
         var ssDate = $("#ssTarget").val();
         var selected = $(this).val();
-        console.log(ssDate);
+
+        // function targetDate() {
+        //     var ssDate = document.getElementById("ssTarget").value;
+        //     var selected = document.getElementById("action_date").value;
+        //     console.log(ssDate);
 
         var convertDate = function(usDate) {
             var dateParts = usDate.split(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
@@ -21050,7 +21055,7 @@ $(function() {
         var actDate = convertDate(selected); // 2013-12-06
         if (ssDate !== '' && ssDate !== null) {
             if (actDate > ssDate) {
-                error.textContent = "Action Item Target Date exceeds Strategy Statement Target Date. Kindly choose a date on or before the Strategy Statement Target Date."
+                error.textContent = "Action Item Target Date cannot exceed Strategy Statement Target Date. Kindly choose a date on or before the Strategy Statement Target Date."
                 error.style.color = "red"
                 document.getElementById("action_date").value = "";
             } else {
@@ -21059,7 +21064,7 @@ $(function() {
             }
 
         }
-
+        //}
     });
 });
 //SS Start & End Date validation
@@ -21073,7 +21078,7 @@ $(function() {
             if (ssStartDt > ssEndDt) {
                 $("#input_enddate").val("");
                 $(".sstarget_error")
-                    .text("Target Date is before the Start Date. Kindly choose a date after the Start Date.")
+                    .text("Target Date cannot be before the Start Date. Kindly choose a date after the Start Date.")
                     .show();
                 return false;
 
@@ -21092,7 +21097,7 @@ $(function() {
             if (ssStartDt > ssEndDt) {
                 $("#input_startdate").val("");
                 $(".ssstart_error")
-                    .text("Start Date is after the Target Date. Kindly choose a date before the Target Date.")
+                    .text("Start Date cannot be after the Target Date. Kindly choose a date before the Target Date")
                     .show();
                 return false;
             } else {
@@ -29807,7 +29812,7 @@ function refreshProgressReport() {
             (Gcurrentdata[30][key].outStanding / ttActions) * 100
         );
         //selectedSSNames.push(Gcurrentdata[30][key].sshandle + "-" + Gcurrentdata[30][key].ssdesc);
-        selectedSSshort.push(Gcurrentdata[30][key].sshandle + "-" + truncate(Gcurrentdata[30][key].ssdesc, 35));
+        selectedSSshort.push(Gcurrentdata[30][key].sshandle + "-" + Gcurrentdata[30][key].ssdesc);
         selectedSSNames.push(Gcurrentdata[30][key].sshandle);
         actionsCompleted.push(completePercent);
         actionsOnSchedule.push(onSchedulePercent);
@@ -29815,20 +29820,23 @@ function refreshProgressReport() {
         strategiesStat.push(Gcurrentdata[30][key].ssdesc);
     }
 
-    console.log(actionsCompleted);
+    //console.log(actionsCompleted);
     //MINIMIZE CONTENT
     function truncate(source, size) {
         return source.length > size ? source.slice(0, size - 1) + "…" : source;
     }
     let strategiesWithActions = selectedSSNames;
     let shortStat = selectedSSshort;
-    let fullStat = strategiesStat;
-    //console.log(shortStat);
-    //console.log(manAllPendingActionsData);
+    //let fullStat = strategiesStat;
+
+    //trimming string 
+    let shortCategories = shortStat.map((category) => {
+        return category.substr(0, 38)
+    });
+
     let actionItemsData = [{
             name: "Completed", //green
             data: actionsCompleted,
-            //data: strategiesStat,
             index: 2
         },
         {
@@ -29978,36 +29986,19 @@ function refreshProgressReport() {
             title: {
                 text: "Status of Action Items Completed per Strategy"
             },
-            tooltip: {
-                pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
-            },
+
             colors: ["#2C7873", "#52DE97", "#FD5E53"],
             xAxis: [{
+                    max: 10,
                     labels: {
                         //step: 3,
-                        //padding: '55px',
-                        //whiteSpace: 10,
-                        //reserveSpace: true,
                         align: 'left',
                         reserveSpace: true,
                         style: {
                             fontSize: '14px',
-                            //width: '300px',
-                            // whiteSpace: 'nowrap',
-                            // paddingLeft: '10px',
-                            // paddingRight: '10px',
-                            // paddingTop: '50px',
-                            // paddingBottom: '10px',
-                            // lineWidth: 20,
-                            // padding: '100px'
-                            //color: 'red'
                         },
-                        //tickPixelInterval: 100,
-                        //showLastLabel: true
                     },
-                    categories: strategiesWithActions,
-                    //categories: shortStat,
-                    //categories: fullStat,
+                    categories: shortCategories,
                     title: {
                         text: "Strategy Statements"
                     },
@@ -30018,6 +30009,16 @@ function refreshProgressReport() {
                 },
 
             ],
+            tooltip: {
+
+                formatter: function() {
+                    //var index = categories.indexOf(this.x); 
+                    let index = shortCategories.indexOf(this.x)
+                    let comment = shortStat[index]
+                    return comment + "<br><b>" + this.series.name + ": " + this.y + "%"
+                },
+                //pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
+            },
             yAxis: [{
                     labels: {
                         //  step: 5,
@@ -30386,6 +30387,7 @@ function setManagementReports() {
         }
 
         //END
+        //console.log(oentry);
         if (stratEnt[Grbindex].length > 0) {
             for (var j = 0; j < stratEnt[Grbindex].length; j++) {
                 // loop 2

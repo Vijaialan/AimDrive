@@ -1458,7 +1458,7 @@
                   <input type="hidden" id="ssTarget">
                   <div class="form-group input_wrp">
                   <label class="">Target Date</label>
-                     <input id="action_date" type="text"  onchange='activateButton("action_submit");' class="date-picker form-control date_icon"  />
+                     <input id="action_date" type="text" onchange='activateButton("action_submit");' class="date-picker form-control date_icon"  />
                      <span id="error"></span> 
                   </div>
                   <div class="input_wrp">

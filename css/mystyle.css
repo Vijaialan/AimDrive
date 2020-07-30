@@ -1044,6 +1044,12 @@ header {
     color: #2c4c73;
 }
 
+.et_state_list .strategy_stat:hover a {
+    text-decoration: none !important;
+    outline: 0 !important;
+    font-weight: bold !important;
+}
+
 
 /* -- hierarchy saved data action btn-- */
 

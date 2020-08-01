@@ -4156,6 +4156,11 @@ div#mymsg_modal {
     z-index: 1200 !important;
 }
 
+div#mymsg_modal_cost {
+    display: block;
+    z-index: 1200 !important;
+}
+
 
 /* .modal-header{padding-bottom: 0px;} */
 

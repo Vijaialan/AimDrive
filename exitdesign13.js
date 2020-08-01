@@ -21073,7 +21073,7 @@ $(function() {
 
         var ssStartDt = format($("#input_startdate").val());
         var ssEndDt = format($("#input_enddate").val());
-        console.log(ssStartDt, ssEndDt);
+        // console.log(ssStartDt, ssEndDt);
         if (ssStartDt !== undefined) {
             if (ssStartDt > ssEndDt) {
                 $("#input_enddate").val("");
@@ -21092,7 +21092,7 @@ $(function() {
     $("#input_startdate").on("change", function() {
         var ssStartDt = format($("#input_startdate").val());
         var ssEndDt = format($("#input_enddate").val());
-        console.log(ssStartDt, ssEndDt);
+        // console.log(ssStartDt, ssEndDt);
         if (ssEndDt !== undefined) {
             if (ssStartDt > ssEndDt) {
                 $("#input_startdate").val("");
@@ -21489,6 +21489,9 @@ function myAlert(title, msg, type) {
     if (type.valueOf() == "error".valueOf()) alertSubClass = " alert-danger";
     else if (type.valueOf() == "warning".valueOf())
         alertSubClass = " alert-warning";
+    else if (type.valueOf() == "info".valueOf())
+        alertSubClass = " alert-info";
+
     document.getElementById("mymsgbody").innerHTML =
         '<div class="alert' + alertSubClass + '">' + msg + "</div>";
 }
@@ -24357,9 +24360,9 @@ function renderEDTree(node, level, up, down) {
             "></button>";
 
         var impbutton =
-            '<button class="text-capitalize action_btn_2"  onClick="markImpactable(' +
+            '<button class="text-capitalize action_btn_2" data-placement="left" onClick="markImpactable(' +
             costid +
-            ');" data-toggle="tooltip" data-placement="top" title="Not marked as impactable cost"' +
+            ');" data-toggle="tooltip" data-placement="top"  title="For a Cost to be Impactable, it should be a significant cost and it should have potential to generate savings (quantitative & qualitative)"' +
             disableUpdates +
             "></button>";
         if (impactable != null && impactable.valueOf() == "YES".valueOf())
@@ -24441,7 +24444,7 @@ function renderEDTree(node, level, up, down) {
                 '" onclick="markFuture(' +
                 costid +
                 ');"> Future Cash Flow </a> </li>' +
-                '<li> <a href="javascript:void(0);"  class="mark_impactable ' +
+                '<li title="For a Cost to be Impactable, it should be a significant cost and it should have potential to generate savings (quantitative & qualitative)" > <a href="javascript:void(0);"  class="mark_impactable ' +
                 impChecked +
                 '" onclick="markImpactable(' +
                 costid +
@@ -25419,7 +25422,7 @@ function eternalStepContents2() {
         var numdrivers = 0;
         if (cdelement[2] != null) numdrivers = cdelement[2].length;
         for (var k = 0; k < numdrivers; k++) {
-            // alert("cd inner details loop 1");
+            //alert("cd inner details loop 1");
             var cdentry = cdelement[2][k];
 
             var cdid = cdentry[0];
@@ -25530,7 +25533,7 @@ function eternalStepContents2() {
                 '<div class="opt_btn_wrp optdropdown costdriverdropdown" style="display:none;">' +
                 "<h4>Select cost driver as</h4>" +
                 '<ul class="cost_action">' +
-                '<li> <a href="javascript:void(0);"  class="impact_btn"> Impactable Cost Driver </a> </li>' +
+                '<li> <a href="javascript:void(0);"  class="impact_btn" > Impactable Cost Driver </a> </li>' +
                 '<li> <a href="javascript:void(0);"  class="keycost_btn" > Key Cost Driver </a> </li>' +
                 '<li> <a href="javascript:void(0);"  class="eternal_btn"> Mark for Eternal Watchlist </a> </li>' +
                 "</ul>" +
@@ -25700,6 +25703,7 @@ function mdStepContents2() {
         // alert("md ce loop: " + i);
 
         var cdelement = Gcurrentdata[Gcdindex][i];
+        console.log(cdelement);
         var cdCEID = cdelement[0];
         // alert("md step 2 - ce = " + cdCEID);
         // cdelement: 0 cdid, 1 cdname, 2 position, 3 unused, Element 4: [0 num, 1 den, 2 currval, 3 improve, 4 target, 5 unit, 6 key, 7 status ]
@@ -26014,7 +26018,7 @@ function mdStepContents2() {
                     '<div class="opt_btn_wrp optdropdown costdriverdropdown" style="display:none;">' +
                     "<h4>Select cost driver as</h4>" +
                     '<ul class="cd_actions">' +
-                    '<li> <a href="javascript:void(0);"  class="impact_btn" onclick="markCDImpactable(' +
+                    '<li> <a href="javascript:void(0);"  class="impact_btn" title="For a Cost Driver to be Impactable, it should significantly affect a Critical Cost and the team - using this Cost Driver, should have the ability to formulate Strategies that generate savings" onclick="markCDImpactable(' +
                     cdCEID +
                     "," +
                     cdid +
@@ -26083,6 +26087,7 @@ function mdStepContents2() {
                 cdentry[5] != null &&
                 cdentry[5].length > 0
             ) {
+                console.log(cdentry[5]);
                 for (var m = 0; m < cdentry[5].length; m++) {
                     var soid = cdentry[5][m][0];
                     // alert("processing so " + soid);
@@ -26260,7 +26265,18 @@ function getCDEntry(ce, cd) {
 var contextualCE = -1;
 var editingCD = -1;
 
+//Checking cost driver
 function addEDCostDriver(ce) {
+    var noCostDr = getNumCDEntries(ce);
+    //console.log(noCostDr);
+    if (noCostDr == 0) {
+        myAlert(
+            "Attention",
+            "Kindly ensure that all the Cost Drivers are listed before listing/carrying forward any Strategic Options, and selecting Critical/Impactable Cost Drivers",
+            "info"
+        );
+        //return;
+    }
     $(".error").hide();
     $("#cost_driver_modal").modal("show");
     contextualCE = ce;
@@ -26562,6 +26578,14 @@ var editngSO = -1;
 function addEDSO(ce, cd) {
     $(".opt_btn_wrp").hide();
     var cdentry = getCDEntry(ce, cd);
+    if (cdentry[5].length == 0) {
+        myAlert(
+            "Attention",
+            "Kindly ensure that all the Strategic Options are listed before selecting Critical/Impactable Cost Drivers, and carrying forward any Strategic Options",
+            "info"
+        );
+        //return;
+    }
     var num = "",
         den = "",
         cdname = "",
@@ -29831,7 +29855,7 @@ function refreshProgressReport() {
 
     //trimming string 
     let shortCategories = shortStat.map((category) => {
-        return category.substr(0, 38)
+        return category.substr(0, 38) + "..."
     });
 
     let actionItemsData = [{
@@ -29989,26 +30013,31 @@ function refreshProgressReport() {
 
             colors: ["#2C7873", "#52DE97", "#FD5E53"],
             xAxis: [{
-                    max: 10,
-                    labels: {
-                        //step: 3,
-                        align: 'left',
-                        reserveSpace: true,
-                        style: {
-                            fontSize: '14px',
-                        },
+                max: 10,
+                categories: shortCategories,
+                labels: {
+                    // enabled: true,
+                    // formatter: function() {
+                    //     let index = shortCategories.indexOf(this.x)
+                    //     let comment1 = shortStat[index]
+                    //     return '<span title="' + index + '">' + index + '</span>';
+                    // },
+                    // useHTML: true,
+                    align: 'left',
+                    reserveSpace: true,
+                    style: {
+                        fontSize: '14px',
                     },
-                    categories: shortCategories,
-                    title: {
-                        text: "Strategy Statements"
-                    },
-                    scrollbar: {
-                        enabled: true,
-                        showFull: false
-                    }
                 },
+                title: {
+                    text: "Strategy Statements"
+                },
+                scrollbar: {
+                    enabled: true,
+                    showFull: false
+                }
 
-            ],
+            }],
             tooltip: {
 
                 formatter: function() {
@@ -30028,7 +30057,7 @@ function refreshProgressReport() {
                     tickInterval: 10,
                     position: 'top',
                     title: {
-                        text: "Action Items Progress"
+                        text: "Action Items Progress(%)"
                     }
                 },
                 {
@@ -30038,7 +30067,7 @@ function refreshProgressReport() {
                     //overflow: 'allow',
                     opposite: true,
                     title: {
-                        text: "Action Items Progress"
+                        text: "Action Items Progress(%)"
                     }
                 }
             ],

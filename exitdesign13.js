@@ -25699,11 +25699,26 @@ function mdStepContents2() {
         '<div class="cost_driver_container_wrapper">';
     // alert("md 1");
     //console.log(Gcurrentdata);
+    var sumCostDr = 0;
+    for (var i = 0; i < Gcurrentdata[Gcdindex].length; i++) {
+        var cdelement1 = Gcurrentdata[Gcdindex][i];
+        sumCostDr += cdelement1[2].length;
+    }
+    //console.log(sumCostDr);
+    if (sumCostDr == 0) {
+        myAlert(
+            "Attention",
+            "<p><b>As a best practice, kindly update the Cost Drivers & Strategic Options in the same sequence as listed below:</b> </p><li>1. List out all the Cost Drivers</li><li>2. List out all the Strategic Options</li><li>3. Select Impactable and Key Cost Drivers</li><li>4. Select Strategic Options to be carried forward to the Reduce Step</li>",
+            "info"
+        );
+        //return;
+    }
     for (var i = 0; i < Gcurrentdata[Gcdindex].length; i++) {
         // alert("md ce loop: " + i);
 
+
         var cdelement = Gcurrentdata[Gcdindex][i];
-        console.log(cdelement);
+        //console.log(cdelement);
         var cdCEID = cdelement[0];
         // alert("md step 2 - ce = " + cdCEID);
         // cdelement: 0 cdid, 1 cdname, 2 position, 3 unused, Element 4: [0 num, 1 den, 2 currval, 3 improve, 4 target, 5 unit, 6 key, 7 status ]
@@ -25754,6 +25769,7 @@ function mdStepContents2() {
             cdCEID +
             '">';
         var numdrivers = 0;
+        //console.log(cdelement[2].length);
         if (cdelement[2] != null) numdrivers = cdelement[2].length;
         // alert("md step 3 - numdrivers = " + numdrivers);
         var lastcdID = -1;
@@ -26087,7 +26103,7 @@ function mdStepContents2() {
                 cdentry[5] != null &&
                 cdentry[5].length > 0
             ) {
-                console.log(cdentry[5]);
+                //console.log(cdentry[5]);
                 for (var m = 0; m < cdentry[5].length; m++) {
                     var soid = cdentry[5][m][0];
                     // alert("processing so " + soid);

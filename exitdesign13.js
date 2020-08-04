@@ -20766,7 +20766,7 @@ function editEDSSAction(i, ssObject1) {
     } else {
         // currentActionId = actionId;
 
-        $(".datepicker").datepicker("update", "");
+        //$(".datepicker").datepicker("update", "");
         $(".opt_btn_wrp").hide();
         $(".actiontitle").text("Edit Action");
         var oentry = findSSEntry(ssObject1.ssid);
@@ -20814,6 +20814,7 @@ function editEDSSAction(i, ssObject1) {
         populateActionPerformers("perfList", "actionPerformers", ae[3]);
         deactivateButton("action_submit");
         $("#action_modal").modal("show");
+        error.textContent = "";
     }
     $(".opt_btn_wrp").css("visibility", "hidden");
 }
@@ -21493,6 +21494,20 @@ function myAlert(title, msg, type) {
         alertSubClass = " alert-info";
 
     document.getElementById("mymsgbody").innerHTML =
+        '<div class="alert' + alertSubClass + '">' + msg + "</div>";
+}
+
+function myPractice(title, msg, type) {
+    $("#mymsg_modal_pract").modal("show");
+    document.getElementById("mymsgtitle1").innerHTML = title;
+    var alertSubClass = " alert-success";
+    if (type.valueOf() == "error".valueOf()) alertSubClass = " alert-danger";
+    else if (type.valueOf() == "warning".valueOf())
+        alertSubClass = " alert-warning";
+    else if (type.valueOf() == "info".valueOf())
+        alertSubClass = " alert-info";
+
+    document.getElementById("mymsgbody1").innerHTML =
         '<div class="alert' + alertSubClass + '">' + msg + "</div>";
 }
 
@@ -25698,27 +25713,38 @@ function mdStepContents2() {
         '<div id="gmsg" onClick="document.getElementById(gmsg).innerHTML=;"></div>' +
         '<div class="cost_driver_container_wrapper">';
     // alert("md 1");
-    //console.log(Gcurrentdata);
+    console.log(Gcurrentdata);
     var sumCostDr = 0;
     for (var i = 0; i < Gcurrentdata[Gcdindex].length; i++) {
         var cdelement1 = Gcurrentdata[Gcdindex][i];
         sumCostDr += cdelement1[2].length;
     }
-    //console.log(sumCostDr);
-    if (sumCostDr == 0) {
-        myAlert(
+    if (cdelement1 == undefined || cdelement1 == null) { //NO CRITICAL COST SELECTED
+        myPractice(
             "Attention",
-            "<p><b>As a best practice, kindly update the Cost Drivers & Strategic Options in the same sequence as listed below:</b> </p><li>1. List out all the Cost Drivers</li><li>2. List out all the Strategic Options</li><li>3. Select Impactable and Key Cost Drivers</li><li>4. Select Strategic Options to be carried forward to the Reduce Step</li>",
+            "Critical Costs have not been selected in Identify step for further analysis. Kindly go back to the Identify step and select Critical Costs before adding Cost Drivers and Strategic Options in this step.",
             "info"
         );
-        //return;
+
+
+    } else {
+        if (sumCostDr == 0) { // COST DRIVER NOT ADDED
+            myPractice(
+                "Attention",
+                "<p><b>As a best practice, kindly update the Cost Drivers & Strategic Options in the same sequence as listed below:</b> </p><li>1. List out all the Cost Drivers</li><li>2. List out all the Strategic Options</li><li>3. Select Impactable and Key Cost Drivers</li><li>4. Select Strategic Options to be carried forward to the Reduce Step</li>",
+                "info"
+            );
+            //return;
+        }
+
     }
+
     for (var i = 0; i < Gcurrentdata[Gcdindex].length; i++) {
         // alert("md ce loop: " + i);
 
 
         var cdelement = Gcurrentdata[Gcdindex][i];
-        //console.log(cdelement);
+        console.log(cdelement);
         var cdCEID = cdelement[0];
         // alert("md step 2 - ce = " + cdCEID);
         // cdelement: 0 cdid, 1 cdname, 2 position, 3 unused, Element 4: [0 num, 1 den, 2 currval, 3 improve, 4 target, 5 unit, 6 key, 7 status ]
@@ -26286,7 +26312,7 @@ function addEDCostDriver(ce) {
     var noCostDr = getNumCDEntries(ce);
     //console.log(noCostDr);
     if (noCostDr == 0) {
-        myAlert(
+        myPractice(
             "Attention",
             "Kindly ensure that all the Cost Drivers are listed before listing/carrying forward any Strategic Options, and selecting Critical/Impactable Cost Drivers",
             "info"
@@ -26595,7 +26621,7 @@ function addEDSO(ce, cd) {
     $(".opt_btn_wrp").hide();
     var cdentry = getCDEntry(ce, cd);
     if (cdentry[5].length == 0) {
-        myAlert(
+        myPractice(
             "Attention",
             "Kindly ensure that all the Strategic Options are listed before selecting Critical/Impactable Cost Drivers, and carrying forward any Strategic Options",
             "info"

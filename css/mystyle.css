@@ -1333,7 +1333,7 @@ header {
 }
 
 .row_saved_data:hover {
-    outline: 2px solid #39af00;
+    /*outline: 2px solid #39af00;*/
 }
 
 
@@ -1446,6 +1446,11 @@ a {
 .crit_cost_wrp .title a {
     text-decoration: underline;
     color: #fff;
+}
+
+.crit_cost_wrp .title a:hover {
+    text-decoration: none !important;
+    outline: 0;
 }
 
 .crit_cost_wrp .cost {
@@ -1562,7 +1567,7 @@ a {
 /* -------- cd item hover wrap start -------- */
 
 .cd_item:hover {
-    border: 1px solid #39af00;
+    /* border: 1px solid #39af00; */
 }
 
 .cd_hover_wrap {
@@ -4159,6 +4164,17 @@ div#mymsg_modal {
 div#mymsg_modal_cost {
     display: block;
     z-index: 1200 !important;
+}
+
+#mymsgtitle1 {
+    color: #31708f;
+    font-weight: bold;
+}
+
+#mymsg_modal_pract {
+    display: block;
+    z-index: 1200 !important;
+    top: 20%;
 }
 
 

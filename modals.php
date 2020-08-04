@@ -1697,24 +1697,23 @@
    </div>
 
    <!---------------------------------- Message before add CD  -------------------------------->
-   <div id="mymsg_modal_cost" class="modal fade" role="dialog" style="display: none; z-index: 1100 !important;">
+   <div id="mymsg_modal_pract" class="modal fade" role="dialog" style="display: none; z-index: 1800 !important;">
          <div class="modal-dialog draggable">
             <!-- Modal content-->
             <div class="modal-content draggable" id="mymModal">
                <div class="modal-header">
                   <h4 class="modal-title">
-                     <div id="mymsgtitle"> Attention</div>
+                     <div id="mymsgtitle1"></div>
                   </h4>
-                  <div class="drag_handle">&nbsp;</div>
+                  <!-- <div class="drag_handle">&nbsp;</div> -->
                </div>
                <div class="modal-body">
                   <div>
-                  <div id="mymsgbody" class="alert alert-info">Kindly ensure that all the Cost Drivers are listed before listing/carrying forward any Strategic Options, and selecting Critical/Impactable Cost Drivers</div>
+                  <div id="mymsgbody1"></div>
                   </div>
-                  <input type="hidden" id="cost_element_no">
                </div>
                <div class="modal-footer">
-                  <button type="button" class="cancel_btn" id="cost_element_no"  data-dismiss="modal" onclick="openaddEDCostDriver(this)">Dismiss</button>
+                  <button type="button" class="cancel_btn" data-dismiss="modal">Okay</button>
                </div>
             </div>
          </div>

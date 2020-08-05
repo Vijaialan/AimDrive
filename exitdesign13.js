@@ -20765,7 +20765,6 @@ function editEDSSAction(i, ssObject1) {
         );
     } else {
         // currentActionId = actionId;
-
         //$(".datepicker").datepicker("update", "");
         $(".opt_btn_wrp").hide();
         $(".actiontitle").text("Edit Action");
@@ -20793,6 +20792,11 @@ function editEDSSAction(i, ssObject1) {
         //alert(str2);
         document.getElementById("ssHeaderA").innerHTML = str1 + str2;
         document.getElementById("ssDesc").innerHTML = oentry[1];
+        if (oentry[18] == null) {
+            document.getElementById("ssTarget").value = '';
+        } else {
+            document.getElementById("ssTarget").value = oentry[18].substring(0, 10);
+        }
         document.getElementById("ssVal").innerHTML = CurrencyFormat(
             performance[0] + performance[1] - performance[2],
             GdefaultCurrency,
@@ -20809,12 +20813,14 @@ function editEDSSAction(i, ssObject1) {
 
         if (delms[0].valueOf() != "".valueOf())
             setDateById("action_date", delms[0]);
-        else setDateById("action_date", "");
+        else $('#action_date').val("").datepicker("update");
+        //setDateById("action_date", "");
 
         populateActionPerformers("perfList", "actionPerformers", ae[3]);
         deactivateButton("action_submit");
         $("#action_modal").modal("show");
         error.textContent = "";
+
     }
     $(".opt_btn_wrp").css("visibility", "hidden");
 }
@@ -21039,7 +21045,7 @@ function getIDFromName(name) {
 //Action Target Date Validation
 
 $(function() {
-    $("#action_date").datepicker();
+    // $("#action_date").datepicker();
     $("#action_date").on("change", function() {
         var ssDate = $("#ssTarget").val();
         var selected = $(this).val();
@@ -21047,7 +21053,7 @@ $(function() {
         // function targetDate() {
         //     var ssDate = document.getElementById("ssTarget").value;
         //     var selected = document.getElementById("action_date").value;
-        //     console.log(ssDate);
+        //console.log(ssDate);
 
         var convertDate = function(usDate) {
             var dateParts = usDate.split(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);

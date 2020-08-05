@@ -1213,6 +1213,67 @@ header {
 }
 
 
+/* IMP css */
+
+a.mark_impactable {
+    text-decoration: underline;
+}
+
+a.mark_impactable:hover {
+    cursor: help;
+    position: relative;
+}
+
+a.mark_impactable span {
+    display: none;
+}
+
+a.mark_impactable:hover span {
+    border: 1px solid #183151;
+    border-radius: 6px;
+    padding: 5px 0;
+    display: block;
+    z-index: 1;
+    text-align: center;
+    background: #ffffcc;
+    width: 300px;
+    bottom: 70%;
+    left: 20%;
+    position: absolute;
+    text-decoration: none;
+    margin-left: -330px;
+}
+
+a.impact_btn {
+    /*text-decoration: underline;*/
+}
+
+a.impact_btn:hover {
+    cursor: help;
+    position: relative;
+}
+
+a.impact_btn span {
+    display: none;
+}
+
+a.impact_btn:hover span {
+    border: 1px solid #183151;
+    border-radius: 6px;
+    padding: 5px 0;
+    display: block;
+    z-index: 1;
+    text-align: center;
+    background: #ffffcc;
+    width: 350px;
+    bottom: 70%;
+    left: 50%;
+    position: absolute;
+    text-decoration: none;
+    margin-left: -350px;
+}
+
+
 /* -- click events classes on click option dropdown -- */
 
 .critical_bg,

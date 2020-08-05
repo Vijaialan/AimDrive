@@ -24465,11 +24465,11 @@ function renderEDTree(node, level, up, down) {
                 '" onclick="markFuture(' +
                 costid +
                 ');"> Future Cash Flow </a> </li>' +
-                '<li title="For a Cost to be Impactable, it should be a significant cost and it should have potential to generate savings (quantitative & qualitative)" > <a href="javascript:void(0);"  class="mark_impactable ' +
+                '<li><a href="javascript:void(0);"  class="mark_impactable ' +
                 impChecked +
                 '" onclick="markImpactable(' +
                 costid +
-                ')"> Impactable Cost </a> </li>' +
+                ')"> Impactable Cost <span>For a Cost to be Impactable, it should be a significant cost and it should have potential to generate savings (quantitative & qualitative)</span> </a> </li>' +
                 '<li> <a href="javascript:void(0);"  class="mark_critical ' +
                 critChecked +
                 '" onclick="markCritical(' +
@@ -26066,11 +26066,11 @@ function mdStepContents2() {
                     '<div class="opt_btn_wrp optdropdown costdriverdropdown" style="display:none;">' +
                     "<h4>Select cost driver as</h4>" +
                     '<ul class="cd_actions">' +
-                    '<li> <a href="javascript:void(0);"  class="impact_btn" title="For a Cost Driver to be Impactable, it should significantly affect a Critical Cost and the team - using this Cost Driver, should have the ability to formulate Strategies that generate savings" onclick="markCDImpactable(' +
+                    '<li> <a href="javascript:void(0);"  class="impact_btn" onclick="markCDImpactable(' +
                     cdCEID +
                     "," +
                     cdid +
-                    ')"> Impactable Cost Driver </a> </li>' +
+                    ')"> Impactable Cost Driver <span>For a Cost Driver to be Impactable, it should significantly affect a Critical Cost and the team - using this Cost Driver, should have the ability to formulate Strategies that generate savings  </span></a> </li>' +
                     '<li> <a href="javascript:void(0);"  class="keycost_btn" onclick="markCDKey(' +
                     cdCEID +
                     "," +

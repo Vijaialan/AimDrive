@@ -4232,10 +4232,15 @@ div#mymsg_modal_cost {
     font-weight: bold;
 }
 
+#mymModal1 {
+    width: 640px;
+}
+
 #mymsg_modal_pract {
     display: block;
     z-index: 1200 !important;
     top: 20%;
+    left: -3%;
 }
 
 

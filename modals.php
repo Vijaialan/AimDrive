@@ -1700,7 +1700,7 @@
    <div id="mymsg_modal_pract" class="modal fade" role="dialog" style="display: none; z-index: 1800 !important;">
          <div class="modal-dialog draggable">
             <!-- Modal content-->
-            <div class="modal-content draggable" id="mymModal">
+            <div class="modal-content draggable" id="mymModal1">
                <div class="modal-header">
                   <h4 class="modal-title">
                      <div id="mymsgtitle1"></div>

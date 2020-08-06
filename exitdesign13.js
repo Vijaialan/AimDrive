@@ -30061,7 +30061,7 @@ function refreshProgressReport() {
 
             colors: ["#2C7873", "#52DE97", "#FD5E53"],
             xAxis: [{
-                max: 10,
+                //max: 10,
                 categories: shortCategories,
                 labels: {
                     // enabled: true,

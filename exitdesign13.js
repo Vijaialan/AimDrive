@@ -30552,6 +30552,7 @@ function refreshProgressReport() {
         let progress_hbarchar_canvas = {
             chart: {
                 type: "bar",
+                height: (shortCategories.length) * 38
             },
             title: {
                 text: "Status of Action Items Completed per Strategy"
@@ -30562,13 +30563,6 @@ function refreshProgressReport() {
                 //max: 10,
                 categories: shortCategories,
                 labels: {
-                    // enabled: true,
-                    // formatter: function() {
-                    //     let index = shortCategories.indexOf(this.x)
-                    //     let comment1 = shortStat[index]
-                    //     return '<span title="' + index + '">' + index + '</span>';
-                    // },
-                    // useHTML: true,
                     align: 'left',
                     reserveSpace: true,
                     style: {
@@ -30587,7 +30581,6 @@ function refreshProgressReport() {
             tooltip: {
 
                 formatter: function() {
-                    //var index = categories.indexOf(this.x); 
                     let index = shortCategories.indexOf(this.x)
                     let comment = shortStat[index]
                     return comment + "<br><b>" + this.series.name + ": " + this.y + "%"

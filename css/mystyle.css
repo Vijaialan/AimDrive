@@ -4103,7 +4103,7 @@ label.input_label.floating_label.newsupplierfield {
 .projects_scroll {
     position: absolute;
     height: calc(100% - 220px);
-    width: calc(100% - 121px);
+    width: calc(100% - 200px);
     border: 1px solid #d4d4d4;
     border-top: 0px !important;
     background: #fff;

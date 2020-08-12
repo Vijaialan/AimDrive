@@ -1589,7 +1589,6 @@ function refreshVerifyContents(response) {
 
 function getNextStrategyAsNeeded(obj) {
     var result = JSON.parse(obj);
-    //
     if (result.length > 0) {
         if (result[0].valueOf() == "".valueOf()) {
             allManProjectsData.push(result[1]);
@@ -12372,9 +12371,510 @@ function includeSupplierP(id) {
 /**
  * Prepares the html post login. The projects table is prepared.
  */
+var allManProjectsDataTempPro = [];
+var allManProjectsDataPro = [];
+var ManDataRetrieved = 0;
+
 function setEDMyProjectsBody() {
-    var body =
-        '<div class="container-fluid">' +
+    //START 08082020
+    console.trace();
+    var allManProjectsDataTempPro = [];
+    var allManProjectsDataPro = [];
+    manProjects = Gstrategies;
+
+    function loadajax() {
+        for (var i = 0; i < manProjects.length; i++) {
+            var proj = manProjects[i];
+            var projid = proj[0];
+            //console.log(projid);
+            $.ajax({
+                async: false,
+                url: "get-project-data.php?username=" +
+                    encodeURIComponent(Gusername) +
+                    "&token=" +
+                    encodeURIComponent(Gtoken) +
+                    "&project=" +
+                    projid +
+                    "&company=" +
+                    getCompanyForProject(projid) +
+                    "&bu=" +
+                    getBUForProject(projid),
+                type: "POST",
+                datatype: JSON,
+                success: function(obj) {
+                    var result = JSON.parse(obj);
+                    allManProjectsDataPro.push(result[1]);
+                    allManProjectsDataTempPro.push(result[1]);
+                    //console.log(allManProjectsDataTempPro);
+                    if (allManProjectsDataTempPro.length == manProjects.length) {
+                        //console.log(allManProjectsDataTempPro);
+                        loadMyProjects();
+                    }
+                },
+                // timeout: 3000
+
+            });
+        }
+        // console.log(allManProjectsDataTempPro);
+    }
+
+    $(function() {
+        //console.log("ready!");
+        loadajax();
+    });
+
+    manProjects = reportStrategies;
+    //GmgmtReportCurrency = manProjects[0][6][1];
+    GmgmtReportCurrency = "USD"
+    manValuesByProjectData = [];
+    manAllPendingActionsData = [];
+    manAllPendingStrategiesData = [];
+    manReverseUserData = [];
+    manActive = 0;
+    manCompleted = 0;
+    manDropped = 0;
+    activeSS = [];
+    lateSS = [];
+    completedSS = [];
+    allSS = [];
+    selectedSS = [];
+    eternalSS = [];
+    progressSSActions = [];
+    ganttChartData = [];
+    ganttLowerCursor = -1;
+    ganttUpperCursor = -1;
+    manAllProjectsData = [];
+    var totalAcrossAll = 0;
+    var totalValueRealized = 0;
+    var totalNumSelected = 0;
+    var totalRealizedValue = 0;
+    var totalActionsOnTime = 0;
+    var totalActionsLate = 0;
+    var totalIdentifiedValue = 0;
+    var valueRealized = 0;
+    var numSelected = 0;
+    var totalActionsInProgress = 0;
+    var totalActionsCompleted = 0;
+    var totalIdentifiedValue = 0;
+    var totalActionsLatePerProject = 0;
+    var totalStrategiesOnTime = 0;
+    var totalStrategies = 0;
+    var totalStrategiesCompleted = 0;
+    var totalStrategiesInProgress = 0;
+    var totalOutstandingStrategies = 0;
+
+    var strategiesImplemented = 0;
+    var strategiesOnSchedule = 0;
+    var strategiesBeyondSchedule = 0;
+
+    function loadMyProjects() {
+        for (var i = 0; i < manProjects.length; i++) {
+            //loop 1
+            var totalActionsCompletedPerProject = 0;
+            var totalIdentifiedValuePerProject = 0;
+            var valueRealizedPerProject = 0;
+            var numSelectedPerProject = 0;
+            var totalActionsInProgressPerProject = 0;
+            var totalActionsPerProject = 0;
+            var totalActionsCompletedPerProject = 0;
+            var totalIdentifiedValuePerProject = 0;
+            var totalActionsLatePerProject = 0;
+            var totalActionsOnTimePerProject = 0;
+            var proj = manProjects[i];
+            //console.log(proj);
+            var proj_id = proj[0];
+            var projname = proj[4];
+            var currency = proj[2] === null ? "" : proj[2][1];
+
+            var status = proj[GstatusIndex];
+            if (status == null) status = "";
+            var lastEdit = proj[7];
+            if (status.valueOf() == "INACTIVE".valueOf()) {
+                status = "DROPPED";
+                manDropped++;
+            } else if (status.valueOf() == "COMPLETED".valueOf()) manCompleted++;
+            else {
+                status = "ACTIVE";
+                manActive++;
+            }
+            var stratEnt = allManProjectsDataTempPro[i];
+            //console.log(stratEnt);
+            if (allManProjectsDataTempPro.length > 0) {
+                valueRealized += parseInt(stratEnt[31].realized);
+                if (stratEnt === undefined) continue;
+                //
+                var currency = stratEnt[2][1];
+                if (currency == null) currency = "";
+                if (stratEnt[Grbindex] == null) continue;
+                var totalActions = 0;
+
+                for (var key in stratEnt[27]) {
+                    totalActionsPerProject += stratEnt[27][key].totalActions;
+                    totalActionsCompletedPerProject += stratEnt[27][key].completed;
+                    totalActionsInProgressPerProject += stratEnt[27][key].inProgress;
+                    totalActionsLatePerProject += stratEnt[27][key].outStanding;
+                    totalActionsOnTimePerProject += stratEnt[27][key].onTime;
+                    totalActions += stratEnt[27][key].totalActions;
+                    totalActionsCompleted += stratEnt[27][key].completed;
+                    totalActionsInProgress += stratEnt[27][key].inProgress;
+                    totalActionsLate += stratEnt[27][key].outStanding;
+                    totalActionsOnTime += stratEnt[27][key].onTime;
+                    manReverseUserData.push(stratEnt[27][key]);
+                }
+
+                totalStrategies += stratEnt[30].length;
+
+                for (var key in stratEnt[30]) {
+                    //
+                    if (stratEnt[30][key].completed === stratEnt[30][key].totalActions) {
+                        strategiesImplemented++;
+                    } else if (stratEnt[30][key].outStanding > stratEnt[30][key].onTime) {
+                        strategiesBeyondSchedule++;
+                    } else {
+                        strategiesOnSchedule++;
+                    }
+                    if (stratEnt[30][key].inProgress > 0) {
+                        totalStrategiesInProgress += 1;
+                    }
+                    if (stratEnt[30][key].completed > 0) {
+                        totalStrategiesCompleted += 1;
+                    }
+                    if (stratEnt[30][key].outStanding > 0) {
+                        totalOutstandingStrategies += 1;
+                    }
+                    if (stratEnt[30][key].onTime > 0) {
+                        totalStrategiesOnTime += 1;
+                    }
+
+
+                }
+                //console.log(oentry);
+                if (stratEnt[Grbindex].length > 0) {
+                    for (var j = 0; j < stratEnt[Grbindex].length; j++) {
+                        // loop 2
+                        var oentry = stratEnt[Grbindex][j];
+                        //
+                        //
+                        var ss = oentry[0];
+                        var ssname = oentry[1];
+                        var sshandle = oentry[12].substring(0, 7);
+                        var impSel = oentry[9];
+                        allSS.push(oentry);
+                        if (impSel.valueOf() == "SELECTED".valueOf()) {
+                            var actualSavings = oentry[13];
+                            numSelected++;
+                            numSelectedPerProject++;
+                            var performance = getSummaryPerformanceForStrat(ss, stratEnt[12]);
+                            let performanceObj = performance[5];
+                            if (performanceObj != null) {
+                                totalIdentifiedValuePerProject +=
+                                    performanceObj.totalIdentifiedValue;
+                                totalIdentifiedValue += performanceObj.totalIdentifiedValue;
+                                totalAcrossAll += performanceObj.totalIdentifiedValue;
+                            }
+                            //
+                            var actions = oentry[6];
+                            if (actions == null) continue;
+                            progressSSActions.push([
+                                ss,
+                                sshandle,
+                                totalActions,
+                                totalActionsCompleted,
+                                totalActionsLate,
+                                totalActionsOnTime
+                            ]);
+                            //
+                        } else {
+                            if (
+                                oentry.length >= 12 &&
+                                oentry[11] != null &&
+                                oentry[11].valueOf() == "ETERNAL".valueOf()
+                            )
+                                eternalSS.push(oentry);
+                            else unselectedSS.push(oentry);
+                        }
+                    }
+                }
+
+                // manAllProjectsData.push([
+                //     projname,
+                //     status,
+                //     proj_id,
+                //     totalIdentifiedValuePerProject,
+                //     stratEnt[31].realized,
+                //     //numSelectedPerProject,
+                //     //totalStrategiesCompleted,
+                //     strategiesImplemented,
+                //     totalActionsInProgressPerProject,
+                //     currency,
+                //     stratEnt[26],
+                //     stratEnt[32],
+                //     strategiesImplemented,
+                //     stratEnt[30]
+
+                // ]);
+                // manValuesByProjectData.push(stratEnt[30]);
+
+
+                var compflag = 2;
+
+                // if (stratEnt[29].totalActions) {
+                //     var ssActionEntry = {
+                //         id: i,
+                //         name: stratEnt[29].pj_name,
+                //         startyear: stratEnt[29].startYear,
+                //         endyear: stratEnt[29].endYear,
+                //         progress: numberFormat(
+                //             (stratEnt[29].completedActions / stratEnt[29].totalActions) * 100,
+                //             0
+                //         ),
+                //         flag: compflag
+                //     };
+                //     ganttChartData.push(ssActionEntry);
+                // }
+            }
+        }
+
+
+        ///
+        document.getElementById("mainbody").innerHTML = body;
+        $("body").mouseover(function(ev) {
+            var currentclass = $(ev.target).attr("class");
+            var tooltipEl = document.getElementById("chartjs-tooltip");
+            if (tooltipEl) tooltipEl.innerHTML = "";
+
+            var tooltipE2 = document.getElementById("chartjs-tooltip2");
+            if (tooltipE2) tooltipE2.innerHTML = "";
+        });
+
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip({
+                container: "body",
+                html: true
+            });
+        });
+
+        var configPie1 = {
+            type: "pie",
+            plugins: [ChartDataLabels],
+            data: {
+                datasets: [{
+                    data: [
+                        numSelected,
+                        allSS.length - (numSelected + eternalSS.length),
+                        eternalSS.length
+                    ],
+                    backgroundColor: [
+                        "rgba(43, 75, 116, 1)",
+                        "rgba(191, 195, 197, 1)",
+                        "rgba(188, 79, 213, 1)"
+                    ],
+                    label: "Dataset 1"
+                }],
+                labels: ["Selected", "Dropped", "Eternal"]
+            },
+            options: {
+                responsive: false,
+                maintainAspectRatio: true,
+                legend: {
+                    display: false
+                }
+            }
+        };
+
+        var configPie11 = {
+            type: "pie",
+            plugins: [ChartDataLabels],
+            data: {
+                datasets: [{
+                    data: [
+                        strategiesImplemented,
+                        strategiesOnSchedule,
+                        strategiesBeyondSchedule
+                    ],
+                    backgroundColor: [
+                        "rgba(84, 178, 5, 1)",
+                        "rgba(221, 221, 47, 1)",
+                        "rgba(235, 86, 42, 1)"
+                    ],
+                    label: "Dataset 1"
+                }],
+                labels: ["Implemented", "On Schedule", "Behind Schedule"]
+            },
+            options: {
+                responsive: false,
+                maintainAspectRatio: true,
+                legend: {
+                    display: false
+                }
+            }
+        };
+
+        var ctx1 = document
+            .getElementById("strategies_piechart1_canvas")
+            .getContext("2d");
+        window.myPie = new Chart(ctx1, configPie1);
+
+        var ctx11 = document
+            .getElementById("strategies_piechart2_canvas_all")
+            .getContext("2d");
+        window.myPie = new Chart(ctx11, configPie11);
+
+        var ctx3 = document
+            .getElementById("strategies_piechart2_canvas_all")
+            .getContext("2d");
+        window.myHorizontalBar = new Chart(ctx3, configPie11);
+
+        // ganttChartLowerCursor = -1;
+        // ganttChartUpperCursor = 0;
+        // $(function() {
+        //     $(".cus_scroll").overlayScrollbars({});
+        // });
+
+        //console.log(manActive);
+        //$(".container-fluid dataviz").load(" .container-fluid dataviz");
+        //$("").val(manActive);
+
+        $('.number1').text(manActive);
+        $('.number2').text(manCompleted);
+        $('.number3').text(manDropped);
+        $('#totalAcrossAll').text('USD  ' + totalAcrossAll);
+        $('#valueRealized').text('USD  ' + valueRealized);
+
+    }
+
+
+    var body = '<div class="container-fluid dataviz">' +
+        '        <div class="row">' +
+        '            <div class="col-lg-6 col-md-6 col-sm-6">' +
+        '                <div class="sec_head">' +
+        '                    <h2 class="sec_title no_margin">Summary</h2>' +
+        "                </div>" +
+        "            </div>" +
+        '            <div class="col-lg-6 col-md-6 col-sm-6 text-right">' +
+        '            <div class="row">' +
+        "            </div>" +
+        "            </div>" +
+        "        </div>" +
+        '        <div class="row">' +
+        '            <div class="col-lg-4 col-md-4 col-sm-4">' +
+        '                <div class="main_block">' +
+        '                    <div class="row block1">' +
+        '                        <div class="col-lg-7 col-md-7 col-sm-7">' +
+        "                            <section>" +
+        '                                <div class="head">' +
+        "                                    Projects" +
+        "                                </div>" +
+        '                                <div class="number1" id="activeProjects">' +
+        manActive +
+        "                                </div>" +
+        '                                <div class="status">' +
+        "                                    Active" +
+        "                                </div>" +
+        "                            </section>" +
+        "                        </div>" +
+        '                        <div class="col-lg-5 col-md-5 col-sm-5">' +
+        '                            <section class="sub_block2">' +
+        '                                <div class="number2">' +
+        manCompleted +
+        "                                </div>" +
+        '                                <div class="status_green">' +
+        "                                    Completed" +
+        "                                </div>" +
+        "                            </section>" +
+        '                            <section class="sub_block3">' +
+        '                                <div class="number3">' +
+        manDropped +
+        "                                </div>" +
+        '                                <div class="status_black">' +
+        "                                    Dropped" +
+        "                                </div>" +
+        "                            </section>" +
+        "                        </div>" +
+        "                    </div>" +
+        "                </div>" +
+        "            </div>" +
+        '            <div class="col-lg-4 col-md-4 col-sm-4">' +
+        '                <div class="main_block block2">' +
+        "                    <section>" +
+        '                        <div class="head">' +
+        "                            Value across projects" +
+        "                        </div>" +
+        '                        <div class="row">' +
+        '                            <div class="col-lg-3 col-md-3 col-sm-3">' +
+        "                                <center>" +
+        '                                <img src="images/value_identified_blue.png" alt="Value-identified" /></center>' +
+        "                            </div>" +
+        '                            <div class="col-lg-9 col-md-9 col-sm-9">' +
+        '                                <div class="status">' +
+        "                                    Value identified" +
+        "                                </div>" +
+        '                                <div class="number1" id="totalAcrossAll">' +
+        CurrencyFormat(totalAcrossAll, GmgmtReportCurrency, 0, "", ",") +
+        "                                </div>" +
+        "                            </div>" +
+        "                        </div>" +
+        "                        <br />" +
+        '                        <div class="row">' +
+        '                            <div class="col-lg-3 col-md-3 col-sm-3">' +
+        "                                <center>" +
+        '                                <img src="images/value_realized_green.png" alt="Value-realized" /></center>' +
+        "                            </div>" +
+        '                            <div class="col-lg-9 col-md-9 col-sm-9">' +
+        '                                <div class="status_green">' +
+        "                                    Value realized" +
+        "                                </div>" +
+        '                                <div class="number2" id="valueRealized">' +
+        CurrencyFormat(valueRealized, GmgmtReportCurrency, 0, "", ",") +
+        "                                </div>" +
+        "                            </div>" +
+        "                        </div>" +
+        "                    </section>" +
+        "                </div>" +
+        "            </div>" +
+        '        <div class="row"> ' +
+        '            <div class="col-lg-4 col-md-4 col-sm-4"> ' +
+        '                <div class="main_block block3 indi-reports-pie-chart"> ' +
+        "                    <section> " +
+        '                        <div class="head"> ' +
+        "                            Strategies " +
+        "                        </div> " +
+        '                        <div class="row"> ' +
+        '                            <div class="col-lg-6 col-md-6 col-sm-6"><h3 class="h3-strategies">Identified for Benefit / Risk analysis</h3> ' +
+        "</div>" +
+        ' <div class="col-lg-6 col-md-6 col-sm-6"><h3 class="h3-strategies">Selected for implementation</h3> ' +
+        "</div>" +
+        "</div>" +
+        '  <div class="row"> ' +
+        '   <div class="col-lg-6 col-md-6 col-sm-6"> <canvas id="strategies_piechart1_canvas" style="width:210px; margin-left:-16px"></canvas>' +
+        "</div>" +
+        ' <div class="col-lg-6 col-md-6 col-sm-6"> <canvas id="strategies_piechart2_canvas_all" style="width:210px;padding-top:2px;margin-left:-16px"></canvas>' +
+        "</div>" +
+        "</div>" +
+        ' <div class="row"> ' +
+        '<div class="col-lg-6 col-md-6 col-sm-6"> ' +
+        " <ul class='piechart-label less-width'> " +
+        ' <li><span class="circle circle5">&nbsp;</span> Selected</li> ' +
+        ' <li><span class="circle circle6">&nbsp;</span> Dropped</li> ' +
+        '<li><span class="circle circle7">&nbsp;</span> Eternal</li> ' +
+        " </ul> </div>" +
+        ' <div class="col-lg-6 col-md-6 col-sm-6"> ' +
+        " <ul class='piechart-label more-width'> " +
+        ' <li><span class="circle circle8">&nbsp;</span> Implemented</li> ' +
+        ' <li><span class="circle circle9">&nbsp;</span> On Schedule</li> ' +
+        '  <li><span class="circle circle10">&nbsp;</span> Behind Schedule</li> ' +
+        "  </ul> </div>" +
+        "</div>" +
+        "</div>" +
+        "                        </div> " +
+        "                    </section> ";
+    //end
+
+
+
+
+    ///
+    body += '<div class="container-fluid">' +
         '<div class="row">' +
         "<!-- people list -->" +
         '<div class="col-lg-12 col-md-12 col-sm-12 people_list">' +
@@ -12466,12 +12966,10 @@ function setEDMyProjectsBody() {
         body =
             body +
             // '<a href="#" class=" table_ctrls searchbox"><img src="images/search_icon.png" /></a>' +
-
-            '<div class="rt_ctrls pull-right">' +
             '<a href="javascript:void(0);"  class="btn prmary_btn" onClick="addEDProject()" id="openprojects_modal">' +
             '<i class="fa fa-plus" aria-hidden="true"></i> Project' +
-            "</a>" +
-            "</div>";
+            "</a>";
+        //"</div>";
     }
 
     body =
@@ -12857,7 +13355,7 @@ function setEDGenericHeader(page) {
         '<ul class="tab_nav  pull-left">' +
         '<li class="' +
         projectsActive +
-        '"><a   class="switch-main-contents" switchThis="myprojects" href="index.php">Projects</a></li>' +
+        '"><a   class="switch-main-contents" switchThis="myprojects" href="index.php">My Projects</a></li>' +
         '<li class="' +
         reportsActive +
         '"><a  class="switch-main-contents" switchThis="reports" href="reports.html">Reports</a></li>';
@@ -30369,7 +30867,7 @@ function setManagementReports() {
         var totalActionsLatePerProject = 0;
         var totalActionsOnTimePerProject = 0;
         var proj = manProjects[i];
-        //console.log(proj);
+        // console.log(proj);
         var proj_id = proj[0];
         var projname = proj[4];
         var currency = proj[2] === null ? "" : proj[2][1];
@@ -30386,6 +30884,7 @@ function setManagementReports() {
             manActive++;
         }
         var stratEnt = allManProjectsDataTemp[i];
+        console.log(stratEnt);
 
         valueRealized += parseInt(stratEnt[31].realized);
         if (stratEnt === undefined) continue;

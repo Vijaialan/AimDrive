@@ -12738,8 +12738,9 @@ function setEDMyProjectsBody() {
         $('.number1').text(manActive);
         $('.number2').text(manCompleted);
         $('.number3').text(manDropped);
-        $('#totalAcrossAll').text('USD  ' + totalAcrossAll);
-        $('#valueRealized').text('USD  ' + valueRealized);
+        $('#totalAcrossAll').text(CurrencyFormat(totalAcrossAll, GmgmtReportCurrency, 0, "", ","));
+        $('#valueRealized').text(CurrencyFormat(valueRealized, GmgmtReportCurrency, 0, "", ","));
+
 
     }
 
@@ -30403,6 +30404,12 @@ function refreshProgressReport() {
     let shortCategories = shortStat.map((category) => {
         return category.substr(0, 38) + "..."
     });
+    var GraphSize = 0;
+    if (shortCategories.length <= 5) {
+        GraphSize = 70;
+    } else {
+        GraphSize = 35;
+    }
 
     let actionItemsData = [{
             name: "Completed", //green
@@ -30552,7 +30559,7 @@ function refreshProgressReport() {
         let progress_hbarchar_canvas = {
             chart: {
                 type: "bar",
-                height: (shortCategories.length) * 38
+                height: (shortCategories.length) * GraphSize
             },
             title: {
                 text: "Status of Action Items Completed per Strategy"

@@ -30405,10 +30405,10 @@ function refreshProgressReport() {
         return category.substr(0, 38) + "..."
     });
     var GraphSize = 0;
-    if (shortCategories.length <= 5) {
+    if (shortCategories.length <= 10) {
         GraphSize = 70;
     } else {
-        GraphSize = 35;
+        GraphSize = 30;
     }
 
     let actionItemsData = [{

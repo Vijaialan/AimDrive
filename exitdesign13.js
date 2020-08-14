@@ -12368,68 +12368,24 @@ function includeSupplierP(id) {
     }
     return false;
 }
+
+
 /**
  * Prepares the html post login. The projects table is prepared.
  */
+
 var allManProjectsDataTempPro = [];
 var allManProjectsDataPro = [];
-var ManDataRetrieved = 0;
+var PrjectData = [];
 
 function setEDMyProjectsBody() {
     //START 08082020
     console.trace();
-    var allManProjectsDataTempPro = [];
-    var allManProjectsDataPro = [];
+
     manProjects = Gstrategies;
-
-    function loadajax() {
-        for (var i = 0; i < manProjects.length; i++) {
-            var proj = manProjects[i];
-            var projid = proj[0];
-            //console.log(projid);
-            $.ajax({
-                async: false,
-                url: "get-project-data.php?username=" +
-                    encodeURIComponent(Gusername) +
-                    "&token=" +
-                    encodeURIComponent(Gtoken) +
-                    "&project=" +
-                    projid +
-                    "&company=" +
-                    getCompanyForProject(projid) +
-                    "&bu=" +
-                    getBUForProject(projid),
-                type: "POST",
-                datatype: JSON,
-                success: function(obj) {
-                    var result = JSON.parse(obj);
-                    allManProjectsDataPro.push(result[1]);
-                    allManProjectsDataTempPro.push(result[1]);
-                    //console.log(allManProjectsDataTempPro);
-                    if (allManProjectsDataTempPro.length == manProjects.length) {
-                        //console.log(allManProjectsDataTempPro);
-                        loadMyProjects();
-                    }
-                },
-                // timeout: 3000
-
-            });
-        }
-        // console.log(allManProjectsDataTempPro);
-    }
-
-    $(function() {
-        //console.log("ready!");
-        loadajax();
-    });
-
     manProjects = reportStrategies;
     //GmgmtReportCurrency = manProjects[0][6][1];
-    GmgmtReportCurrency = "USD"
-    manValuesByProjectData = [];
-    manAllPendingActionsData = [];
-    manAllPendingStrategiesData = [];
-    manReverseUserData = [];
+    GmgmtReportCurrency = "USD";
     manActive = 0;
     manCompleted = 0;
     manDropped = 0;
@@ -12440,309 +12396,166 @@ function setEDMyProjectsBody() {
     selectedSS = [];
     eternalSS = [];
     progressSSActions = [];
-    ganttChartData = [];
-    ganttLowerCursor = -1;
-    ganttUpperCursor = -1;
     manAllProjectsData = [];
     var totalAcrossAll = 0;
-    var totalValueRealized = 0;
-    var totalNumSelected = 0;
-    var totalRealizedValue = 0;
-    var totalActionsOnTime = 0;
-    var totalActionsLate = 0;
-    var totalIdentifiedValue = 0;
     var valueRealized = 0;
     var numSelected = 0;
-    var totalActionsInProgress = 0;
-    var totalActionsCompleted = 0;
-    var totalIdentifiedValue = 0;
-    var totalActionsLatePerProject = 0;
-    var totalStrategiesOnTime = 0;
-    var totalStrategies = 0;
-    var totalStrategiesCompleted = 0;
-    var totalStrategiesInProgress = 0;
-    var totalOutstandingStrategies = 0;
-
     var strategiesImplemented = 0;
     var strategiesOnSchedule = 0;
     var strategiesBeyondSchedule = 0;
+    var selectedProject = [];
 
-    function loadMyProjects() {
-        for (var i = 0; i < manProjects.length; i++) {
-            //loop 1
-            var totalActionsCompletedPerProject = 0;
-            var totalIdentifiedValuePerProject = 0;
-            var valueRealizedPerProject = 0;
-            var numSelectedPerProject = 0;
-            var totalActionsInProgressPerProject = 0;
-            var totalActionsPerProject = 0;
-            var totalActionsCompletedPerProject = 0;
-            var totalIdentifiedValuePerProject = 0;
-            var totalActionsLatePerProject = 0;
-            var totalActionsOnTimePerProject = 0;
-            var proj = manProjects[i];
-            //console.log(proj);
-            var proj_id = proj[0];
-            var projname = proj[4];
-            var currency = proj[2] === null ? "" : proj[2][1];
-
-            var status = proj[GstatusIndex];
-            if (status == null) status = "";
-            var lastEdit = proj[7];
-            if (status.valueOf() == "INACTIVE".valueOf()) {
-                status = "DROPPED";
-                manDropped++;
-            } else if (status.valueOf() == "COMPLETED".valueOf()) manCompleted++;
-            else {
-                status = "ACTIVE";
-                manActive++;
-            }
-            var stratEnt = allManProjectsDataTempPro[i];
-            //console.log(stratEnt);
-            if (allManProjectsDataTempPro.length > 0) {
-                valueRealized += parseInt(stratEnt[31].realized);
-                if (stratEnt === undefined) continue;
-                //
-                var currency = stratEnt[2][1];
-                if (currency == null) currency = "";
-                if (stratEnt[Grbindex] == null) continue;
-                var totalActions = 0;
-
-                for (var key in stratEnt[27]) {
-                    totalActionsPerProject += stratEnt[27][key].totalActions;
-                    totalActionsCompletedPerProject += stratEnt[27][key].completed;
-                    totalActionsInProgressPerProject += stratEnt[27][key].inProgress;
-                    totalActionsLatePerProject += stratEnt[27][key].outStanding;
-                    totalActionsOnTimePerProject += stratEnt[27][key].onTime;
-                    totalActions += stratEnt[27][key].totalActions;
-                    totalActionsCompleted += stratEnt[27][key].completed;
-                    totalActionsInProgress += stratEnt[27][key].inProgress;
-                    totalActionsLate += stratEnt[27][key].outStanding;
-                    totalActionsOnTime += stratEnt[27][key].onTime;
-                    manReverseUserData.push(stratEnt[27][key]);
-                }
-
-                totalStrategies += stratEnt[30].length;
-
-                for (var key in stratEnt[30]) {
-                    //
-                    if (stratEnt[30][key].completed === stratEnt[30][key].totalActions) {
-                        strategiesImplemented++;
-                    } else if (stratEnt[30][key].outStanding > stratEnt[30][key].onTime) {
-                        strategiesBeyondSchedule++;
-                    } else {
-                        strategiesOnSchedule++;
-                    }
-                    if (stratEnt[30][key].inProgress > 0) {
-                        totalStrategiesInProgress += 1;
-                    }
-                    if (stratEnt[30][key].completed > 0) {
-                        totalStrategiesCompleted += 1;
-                    }
-                    if (stratEnt[30][key].outStanding > 0) {
-                        totalOutstandingStrategies += 1;
-                    }
-                    if (stratEnt[30][key].onTime > 0) {
-                        totalStrategiesOnTime += 1;
-                    }
-
-
-                }
-                //console.log(oentry);
-                if (stratEnt[Grbindex].length > 0) {
-                    for (var j = 0; j < stratEnt[Grbindex].length; j++) {
-                        // loop 2
-                        var oentry = stratEnt[Grbindex][j];
-                        //
-                        //
-                        var ss = oentry[0];
-                        var ssname = oentry[1];
-                        var sshandle = oentry[12].substring(0, 7);
-                        var impSel = oentry[9];
-                        allSS.push(oentry);
-                        if (impSel.valueOf() == "SELECTED".valueOf()) {
-                            var actualSavings = oentry[13];
-                            numSelected++;
-                            numSelectedPerProject++;
-                            var performance = getSummaryPerformanceForStrat(ss, stratEnt[12]);
-                            let performanceObj = performance[5];
-                            if (performanceObj != null) {
-                                totalIdentifiedValuePerProject +=
-                                    performanceObj.totalIdentifiedValue;
-                                totalIdentifiedValue += performanceObj.totalIdentifiedValue;
-                                totalAcrossAll += performanceObj.totalIdentifiedValue;
-                            }
-                            //
-                            var actions = oentry[6];
-                            if (actions == null) continue;
-                            progressSSActions.push([
-                                ss,
-                                sshandle,
-                                totalActions,
-                                totalActionsCompleted,
-                                totalActionsLate,
-                                totalActionsOnTime
-                            ]);
-                            //
-                        } else {
-                            if (
-                                oentry.length >= 12 &&
-                                oentry[11] != null &&
-                                oentry[11].valueOf() == "ETERNAL".valueOf()
-                            )
-                                eternalSS.push(oentry);
-                            else unselectedSS.push(oentry);
-                        }
-                    }
-                }
-
-                // manAllProjectsData.push([
-                //     projname,
-                //     status,
-                //     proj_id,
-                //     totalIdentifiedValuePerProject,
-                //     stratEnt[31].realized,
-                //     //numSelectedPerProject,
-                //     //totalStrategiesCompleted,
-                //     strategiesImplemented,
-                //     totalActionsInProgressPerProject,
-                //     currency,
-                //     stratEnt[26],
-                //     stratEnt[32],
-                //     strategiesImplemented,
-                //     stratEnt[30]
-
-                // ]);
-                // manValuesByProjectData.push(stratEnt[30]);
-
-
-                var compflag = 2;
-
-                // if (stratEnt[29].totalActions) {
-                //     var ssActionEntry = {
-                //         id: i,
-                //         name: stratEnt[29].pj_name,
-                //         startyear: stratEnt[29].startYear,
-                //         endyear: stratEnt[29].endYear,
-                //         progress: numberFormat(
-                //             (stratEnt[29].completedActions / stratEnt[29].totalActions) * 100,
-                //             0
-                //         ),
-                //         flag: compflag
-                //     };
-                //     ganttChartData.push(ssActionEntry);
-                // }
-            }
+    for (var i = 0; i < manProjects.length; i++) {
+        //loop 1
+        var proj = manProjects[i];
+        var proj_id = proj[0];
+        var projid = proj[0]
+        var projname = proj[4];
+        var currency = proj[2] === null ? "" : proj[2][1];
+        var status = proj[GstatusIndex];
+        if (status == null) status = "";
+        var lastEdit = proj[7];
+        if (status.valueOf() == "INACTIVE".valueOf()) {
+            status = "DROPPED";
+            manDropped++;
+        } else if (status.valueOf() == "COMPLETED".valueOf()) manCompleted++;
+        else {
+            status = "ACTIVE";
+            manActive++;
         }
 
-
-        ///
-        document.getElementById("mainbody").innerHTML = body;
-        $("body").mouseover(function(ev) {
-            var currentclass = $(ev.target).attr("class");
-            var tooltipEl = document.getElementById("chartjs-tooltip");
-            if (tooltipEl) tooltipEl.innerHTML = "";
-
-            var tooltipE2 = document.getElementById("chartjs-tooltip2");
-            if (tooltipE2) tooltipE2.innerHTML = "";
-        });
-
-        $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip({
-                container: "body",
-                html: true
-            });
-        });
-
-        var configPie1 = {
-            type: "pie",
-            plugins: [ChartDataLabels],
-            data: {
-                datasets: [{
-                    data: [
-                        numSelected,
-                        allSS.length - (numSelected + eternalSS.length),
-                        eternalSS.length
-                    ],
-                    backgroundColor: [
-                        "rgba(43, 75, 116, 1)",
-                        "rgba(191, 195, 197, 1)",
-                        "rgba(188, 79, 213, 1)"
-                    ],
-                    label: "Dataset 1"
-                }],
-                labels: ["Selected", "Dropped", "Eternal"]
-            },
-            options: {
-                responsive: false,
-                maintainAspectRatio: true,
-                legend: {
-                    display: false
-                }
-            }
-        };
-
-        var configPie11 = {
-            type: "pie",
-            plugins: [ChartDataLabels],
-            data: {
-                datasets: [{
-                    data: [
-                        strategiesImplemented,
-                        strategiesOnSchedule,
-                        strategiesBeyondSchedule
-                    ],
-                    backgroundColor: [
-                        "rgba(84, 178, 5, 1)",
-                        "rgba(221, 221, 47, 1)",
-                        "rgba(235, 86, 42, 1)"
-                    ],
-                    label: "Dataset 1"
-                }],
-                labels: ["Implemented", "On Schedule", "Behind Schedule"]
-            },
-            options: {
-                responsive: false,
-                maintainAspectRatio: true,
-                legend: {
-                    display: false
-                }
-            }
-        };
-
-        var ctx1 = document
-            .getElementById("strategies_piechart1_canvas")
-            .getContext("2d");
-        window.myPie = new Chart(ctx1, configPie1);
-
-        var ctx11 = document
-            .getElementById("strategies_piechart2_canvas_all")
-            .getContext("2d");
-        window.myPie = new Chart(ctx11, configPie11);
-
-        var ctx3 = document
-            .getElementById("strategies_piechart2_canvas_all")
-            .getContext("2d");
-        window.myHorizontalBar = new Chart(ctx3, configPie11);
-
-        // ganttChartLowerCursor = -1;
-        // ganttChartUpperCursor = 0;
-        // $(function() {
-        //     $(".cus_scroll").overlayScrollbars({});
-        // });
-
-        //console.log(manActive);
-        //$(".container-fluid dataviz").load(" .container-fluid dataviz");
-        //$("").val(manActive);
-
-        $('.number1').text(manActive);
-        $('.number2').text(manCompleted);
-        $('.number3').text(manDropped);
-        $('#totalAcrossAll').text(CurrencyFormat(totalAcrossAll, GmgmtReportCurrency, 0, "", ","));
-        $('#valueRealized').text(CurrencyFormat(valueRealized, GmgmtReportCurrency, 0, "", ","));
-
-
+        selectedProject.push(proj[0]);
     }
+
+    //Data request
+    $.ajax({
+        type: "POST",
+        async: false,
+        url: "getOveralldata.php?username=" + encodeURIComponent(Gusername) +
+            "&token=" +
+            encodeURIComponent(Gtoken) +
+            "&project=" +
+            selectedProject,
+
+        success: function(data) {
+            var result = JSON.parse(data);
+            allManProjectsDataTempPro.push(result[1]);
+            //console.log(result);
+
+        }
+    });
+
+    PrjectData = allManProjectsDataTempPro[0];
+    totalAcrossAll = PrjectData[0];
+    valueRealized = PrjectData[1];
+
+    //layout Starts
+    document.getElementById("mainbody").innerHTML = body;
+    $("body").mouseover(function(ev) {
+        var currentclass = $(ev.target).attr("class");
+        var tooltipEl = document.getElementById("chartjs-tooltip");
+        if (tooltipEl) tooltipEl.innerHTML = "";
+
+        var tooltipE2 = document.getElementById("chartjs-tooltip2");
+        if (tooltipE2) tooltipE2.innerHTML = "";
+    });
+
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip({
+            container: "body",
+            html: true
+        });
+    });
+
+    var configPie1 = {
+        type: "pie",
+        plugins: [ChartDataLabels],
+        data: {
+            datasets: [{
+                data: [
+                    numSelected,
+                    allSS.length - (numSelected + eternalSS.length),
+                    eternalSS.length
+                ],
+                backgroundColor: [
+                    "rgba(43, 75, 116, 1)",
+                    "rgba(191, 195, 197, 1)",
+                    "rgba(188, 79, 213, 1)"
+                ],
+                label: "Dataset 1"
+            }],
+            labels: ["Selected", "Dropped", "Eternal"]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: true,
+            legend: {
+                display: false
+            }
+        }
+    };
+
+    var configPie11 = {
+        type: "pie",
+        plugins: [ChartDataLabels],
+        data: {
+            datasets: [{
+                data: [
+                    strategiesImplemented,
+                    strategiesOnSchedule,
+                    strategiesBeyondSchedule
+                ],
+                backgroundColor: [
+                    "rgba(84, 178, 5, 1)",
+                    "rgba(221, 221, 47, 1)",
+                    "rgba(235, 86, 42, 1)"
+                ],
+                label: "Dataset 1"
+            }],
+            labels: ["Implemented", "On Schedule", "Behind Schedule"]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: true,
+            legend: {
+                display: false
+            }
+        }
+    };
+
+    // var ctx1 = document
+    //     .getElementById("strategies_piechart1_canvas")
+    //     .getContext("2d");
+    // window.myPie = new Chart(ctx1, configPie1);
+
+    // var ctx11 = document
+    //     .getElementById("strategies_piechart2_canvas_all")
+    //     .getContext("2d");
+    // window.myPie = new Chart(ctx11, configPie11);
+
+    // var ctx3 = document
+    //     .getElementById("strategies_piechart2_canvas_all")
+    //     .getContext("2d");
+    // window.myHorizontalBar = new Chart(ctx3, configPie11);
+
+    // ganttChartLowerCursor = -1;
+    // ganttChartUpperCursor = 0;
+    // $(function() {
+    //     $(".cus_scroll").overlayScrollbars({});
+    // });
+
+    //console.log(manActive);
+    //$(".container-fluid dataviz").load(" .container-fluid dataviz");
+    //$("").val(manActive);
+
+    // $('.number1').text(manActive);
+    // $('.number2').text(manCompleted);
+    // $('.number3').text(manDropped);
+    // $('#totalAcrossAll').text(CurrencyFormat(totalAcrossAll, GmgmtReportCurrency, 0, "", ","));
+    // $('#valueRealized').text(CurrencyFormat(valueRealized, GmgmtReportCurrency, 0, "", ","));
+
+
+    // }
 
 
     var body = '<div class="container-fluid dataviz">' +

@@ -17,6 +17,7 @@ while($row= mysqli_fetch_assoc($result)) {
  $identified = $row['IDENT'];
 
 }
+
 $q1= "SELECT IFNULL(SUM(value),0) realized FROM `strategy_statement_savings` WHERE pjid IN (". $_REQUEST["project"] .")";
 $result1=obtain_query_result($q1);
 
@@ -26,9 +27,52 @@ while($row1= mysqli_fetch_assoc($result1)) {
 
 }
 
+$q2="SELECT COUNT(*) TOTAL, SUM(selected) SEL , SUM(ss_dropped) DRP , SUM(CASE WHEN ss_status='ETERNAL' THEN 1 ELSE 0 END ) ET FROM `strategy_statement` WHERE pjid IN (SELECT pjid FROM project WHERE length(pj_status)<4) AND pjid IN (". $_REQUEST["project"] .")";
+
+$result2=obtain_query_result($q2);
+
+while($row2= mysqli_fetch_assoc($result2)) {
+ 
+ $Selected = $row2['SEL'];
+ $Dropped = $row2['TOTAL'] - ($row2['SEL'] + $row2['ET']);
+ $Eternal = $row2['ET'];
+
+
+}
+
+$q3="SELECT *, (Scheduled-Implemented) Onsceduled  FROM (
+    SELECT *,
+    SUM(CASE WHEN Completed=TotalAction THEN 1 ELSE 0 END) Implemented,
+    SUM(CASE WHEN Outstanding > onTime THEN 1 ELSE 0 END)  BehindSchedule,
+    SUM(CASE WHEN Outstanding > onTime THEN 0 ELSE 1 END)  Scheduled
+    FROM (
+    SELECT *, (TotalAction - (Completed+Outstanding)) onTime, (TotalAction - Completed) inProgress
+    FROM (
+    SELECT ssid,
+    (SELECT COUNT(actionid) FROM action WHERE ssid=A.ssid) TotalAction,
+    (SELECT COUNT(*) FROM action WHERE completiontime IS NOT NULL AND ssid=A.ssid) Completed,
+    (SELECT COUNT(*) FROM action WHERE deadline < now() AND completiontime IS NULL AND ssid=A.ssid) Outstanding
+    FROM strategy_statement A WHERE ss_unimplement<>1 AND ss_dropped<>1 AND selected=1 AND pjid IN (". $_REQUEST["project"] ." )) B) C) D";
+
+$result3=obtain_query_result($q3);
+
+while($row3= mysqli_fetch_assoc($result3)) {
+    $Implemented = $row3['Implemented'];
+    $Onsceduled = $row3['Onsceduled'];
+    $BehindSchedule = $row3['BehindSchedule'];
+}
+
 $com = array(
     mb_convert_encoding($identified,'UTF-8','UTF-8'),
-    mb_convert_encoding($realized,'UTF-8','UTF-8')
+    mb_convert_encoding($realized,'UTF-8','UTF-8'),
+    mb_convert_encoding($Selected,'UTF-8','UTF-8'),
+    mb_convert_encoding($Dropped,'UTF-8','UTF-8'),
+    mb_convert_encoding($Eternal,'UTF-8','UTF-8'),
+    mb_convert_encoding($Implemented,'UTF-8','UTF-8'),
+    mb_convert_encoding($Onsceduled,'UTF-8','UTF-8'),
+    mb_convert_encoding($BehindSchedule,'UTF-8','UTF-8'),
+
+
 );
 
 

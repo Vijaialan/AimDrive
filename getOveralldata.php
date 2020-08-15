@@ -52,7 +52,7 @@ $q3="SELECT *, (Scheduled-Implemented) Onsceduled  FROM (
     (SELECT COUNT(actionid) FROM action WHERE ssid=A.ssid) TotalAction,
     (SELECT COUNT(*) FROM action WHERE completiontime IS NOT NULL AND ssid=A.ssid) Completed,
     (SELECT COUNT(*) FROM action WHERE deadline < now() AND completiontime IS NULL AND ssid=A.ssid) Outstanding
-    FROM strategy_statement A WHERE ss_unimplement<>1 AND ss_dropped<>1 AND selected=1) B) C)D";
+    FROM strategy_statement A WHERE ss_unimplement<>1 AND ss_dropped<>1 AND selected=1 AND pjid IN (". $_REQUEST["project"] .")) B) C)D";
 
 $result3=obtain_query_result($q3);
 

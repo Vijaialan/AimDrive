@@ -57,7 +57,7 @@ while($row2= mysqli_fetch_assoc($result2)) {
 $q3 ="SELECT COUNT(*) TotalSS, 
 SUM(ss_complete) Implemented,
 SUM(CASE WHEN ss_enddate < now() AND ss_complete=0 THEN 1 ELSE 0 END) BehindSchedule,
-SUM(CASE WHEN (ss_enddate > now() or ss_enddate IS NULL) AND ss_complete=0 THEN 1 ELSE 0 END) Onsceduled
+SUM(CASE WHEN (ss_enddate >= now() or ss_enddate IS NULL) AND ss_complete=0 THEN 1 ELSE 0 END) Onsceduled
 FROM `strategy_statement` WHERE selected=1 AND pjid IN (SELECT pjid FROM project WHERE pj_status<>'INACTIVE' AND pjid IN (". $_REQUEST["project"] .") )";
 
 $result3=obtain_query_result($q3);

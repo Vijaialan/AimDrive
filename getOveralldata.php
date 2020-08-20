@@ -27,7 +27,7 @@ while($row1= mysqli_fetch_assoc($result1)) {
 
 }
 
-$q2="SELECT COUNT(*) TOTAL, SUM(selected) SEL , SUM(ss_dropped) DRP , SUM(CASE WHEN ss_status='ETERNAL' THEN 1 ELSE 0 END ) ET FROM `strategy_statement` WHERE pjid IN (SELECT pjid FROM project WHERE length(pj_status)<4) AND pjid IN (". $_REQUEST["project"] .")";
+$q2="SELECT COUNT(*) TOTAL, SUM(selected) SEL , SUM(ss_dropped) DRP , SUM(CASE WHEN ss_status='ETERNAL' THEN 1 ELSE 0 END ) ET FROM `strategy_statement` WHERE  pjid IN (SELECT pjid FROM project WHERE pj_status<>'INACTIVE') AND pjid IN (". $_REQUEST["project"] .")";
 
 $result2=obtain_query_result($q2);
 
@@ -40,19 +40,25 @@ while($row2= mysqli_fetch_assoc($result2)) {
 
 }
 
-$q3="SELECT *, (Scheduled-Implemented) Onsceduled  FROM (
-    SELECT 
-    SUM(CASE WHEN Completed=TotalAction THEN 1 ELSE 0 END) Implemented,
-    SUM(CASE WHEN Outstanding > onTime THEN 1 ELSE 0 END)  BehindSchedule,
-    SUM(CASE WHEN Outstanding > onTime THEN 0 ELSE 1 END)  Scheduled
-    FROM (
-    SELECT *, (TotalAction - (Completed+Outstanding)) onTime, (TotalAction - Completed) inProgress
-    FROM (
-    SELECT ssid,
-    (SELECT COUNT(actionid) FROM action WHERE ssid=A.ssid) TotalAction,
-    (SELECT COUNT(*) FROM action WHERE completiontime IS NOT NULL AND ssid=A.ssid) Completed,
-    (SELECT COUNT(*) FROM action WHERE deadline < now() AND completiontime IS NULL AND ssid=A.ssid) Outstanding
-    FROM strategy_statement A WHERE ss_unimplement<>1 AND ss_dropped<>1 AND selected=1 AND pjid IN (". $_REQUEST["project"] .")) B) C)D";
+// $q3 ="SELECT *, (Scheduled-Implemented) Onsceduled  FROM (
+//     SELECT 
+// 	COUNT(ssid) TotalSS,
+//     SUM(CASE WHEN Completed=TotalAction THEN 1 ELSE 0 END) Implemented,
+//     SUM(CASE WHEN Outstanding > Ontime  THEN 1 ELSE 0 END)  BehindSchedule,
+//     SUM(CASE WHEN Outstanding > Ontime THEN 0 ELSE 1 END)  Scheduled
+//     FROM (
+//     SELECT ssid,
+//     (SELECT COUNT(actionid) FROM action WHERE ssid=A.ssid) TotalAction,
+//     (SELECT COUNT(*) FROM action WHERE completiontime IS NOT NULL AND ssid=A.ssid) Completed,
+//     (SELECT COUNT(*) FROM action WHERE deadline < now() AND completiontime IS NULL AND ssid=A.ssid) Outstanding,
+//      (SELECT COUNT(*) FROM action WHERE (deadline IS NULL or deadline > now()) AND completiontime IS NULL AND ssid=A.ssid) Ontime
+//     FROM strategy_statement A WHERE selected=1 AND pjid IN (SELECT pjid FROM project WHERE pj_status<>'INACTIVE') AND pjid IN (". $_REQUEST["project"] .") GROUP BY ssid ) B) C";
+
+$q3 ="SELECT COUNT(*) TotalSS, 
+SUM(ss_complete) Implemented,
+SUM(CASE WHEN ss_enddate > now() THEN 1 ELSE 0 END) BehindSchedule,
+SUM(CASE WHEN (ss_enddate < now() or ss_enddate IS NULL) AND ss_complete=0 THEN 1 ELSE 0 END) Onsceduled
+FROM `strategy_statement` WHERE selected=1 AND pjid IN (SELECT pjid FROM project WHERE pj_status<>'INACTIVE' AND pjid IN (". $_REQUEST["project"] .") )";
 
 $result3=obtain_query_result($q3);
 

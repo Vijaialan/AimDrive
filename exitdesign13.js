@@ -30708,7 +30708,7 @@ function setManagementReports() {
         }
 
         totalStrategies += stratEnt[30].length;
-        console.log(stratEnt[30]);
+        // console.log(stratEnt[30]);
 
         for (var key in stratEnt[30]) {
             //
@@ -30774,7 +30774,7 @@ function setManagementReports() {
                 var ssname = oentry[1];
                 var sshandle = oentry[12].substring(0, 7);
                 var impSel = oentry[9];
-                allSS.push(oentry);
+                //allSS.push(oentry);
                 if (impSel.valueOf() == "SELECTED".valueOf()) {
                     var actualSavings = oentry[13];
                     numSelected++;

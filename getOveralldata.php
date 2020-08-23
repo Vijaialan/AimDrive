@@ -27,14 +27,18 @@ while($row1= mysqli_fetch_assoc($result1)) {
 
 }
 
-$q2="SELECT COUNT(*) TOTAL, SUM(selected) SEL , SUM(ss_dropped) DRP , SUM(CASE WHEN ss_status='ETERNAL' THEN 1 ELSE 0 END ) ET FROM `strategy_statement` WHERE  pjid IN (SELECT pjid FROM project WHERE pj_status<>'INACTIVE') AND pjid IN (". $_REQUEST["project"] .")";
+// $q2="SELECT COUNT(*) TOTAL, SUM(selected) SEL , SUM(ss_dropped) DRP , SUM(CASE WHEN selected=0 AND ss_status<>'ETERNAL'  THEN 1 ELSE 0 END) UNSEL,  SUM(CASE WHEN ss_status='ETERNAL' THEN 1 ELSE 0 END ) ET FROM `strategy_statement` WHERE  pjid IN (SELECT pjid FROM project WHERE pj_status<>'INACTIVE') AND pjid IN (". $_REQUEST["project"] .")";
+
+$q2 ="SELECT COUNT(*) TOTAL, SUM(CASE WHEN selected=1 AND ss_dropped=0 THEN 1 ELSE 0 END) SEL , SUM(CASE WHEN ss_dropped=1 AND selected=0 AND ss_status<>'ETERNAL'  THEN 1 ELSE 0 END) DRP , SUM(CASE WHEN selected=0 AND ss_status<>'ETERNAL' AND ss_dropped<>1  THEN 1 ELSE 0 END) UNSEL,  SUM(CASE WHEN ss_status='ETERNAL' THEN 1 ELSE 0 END ) ET FROM `strategy_statement` WHERE  pjid IN (SELECT pjid FROM project WHERE pj_status<>'INACTIVE') AND pjid IN (". $_REQUEST["project"] .")";
 
 $result2=obtain_query_result($q2);
 
 while($row2= mysqli_fetch_assoc($result2)) {
  
  $Selected = $row2['SEL'];
- $Dropped = $row2['TOTAL'] - ($row2['SEL'] + $row2['ET']);
+ $Unselected = $row2['UNSEL'];
+ $Dropped = $row2['DRP'];
+ //$Dropped = $row2['TOTAL'] - ($row2['SEL'] + $row2['ET']);
  $Eternal = $row2['ET'];
 
 
@@ -58,7 +62,7 @@ $q3 ="SELECT COUNT(*) TotalSS,
 SUM(ss_complete) Implemented,
 SUM(CASE WHEN ss_enddate < now() AND ss_complete=0 THEN 1 ELSE 0 END) BehindSchedule,
 SUM(CASE WHEN (ss_enddate >= now() or ss_enddate IS NULL) AND ss_complete=0 THEN 1 ELSE 0 END) Onsceduled
-FROM `strategy_statement` WHERE selected=1 AND pjid IN (SELECT pjid FROM project WHERE pj_status<>'INACTIVE' AND pjid IN (". $_REQUEST["project"] .") )";
+FROM `strategy_statement` WHERE ss_dropped = 0 AND selected = 1 AND pjid IN (SELECT pjid FROM project WHERE pj_status<>'INACTIVE' AND pjid IN (". $_REQUEST["project"] .") )";
 
 $result3=obtain_query_result($q3);
 
@@ -72,6 +76,7 @@ $com = array(
     mb_convert_encoding($identified,'UTF-8','UTF-8'),
     mb_convert_encoding($realized,'UTF-8','UTF-8'),
     mb_convert_encoding($Selected,'UTF-8','UTF-8'),
+    mb_convert_encoding($Unselected,'UTF-8','UTF-8'),
     mb_convert_encoding($Dropped,'UTF-8','UTF-8'),
     mb_convert_encoding($Eternal,'UTF-8','UTF-8'),
     mb_convert_encoding($Implemented,'UTF-8','UTF-8'),

@@ -12448,13 +12448,16 @@ function setEDMyProjectsBody() {
     PrjectData = allManProjectsDataTempPro[0];
     totalAcrossAll = PrjectData[0];
     valueRealized = PrjectData[1];
+    //pie chart 1
     numSelected = PrjectData[2];
-    numDropped = PrjectData[3];
-    numEternal = PrjectData[4];
+    numUnselected = PrjectData[3]
+    numDropped = PrjectData[4];
+    numEternal = PrjectData[5];
     //console.log(numDropped);
-    strategiesImplemented = PrjectData[5];
-    strategiesOnSchedule = PrjectData[6];
-    strategiesBeyondSchedule = PrjectData[7];
+    //pie chart 2 
+    strategiesImplemented = PrjectData[6];
+    strategiesOnSchedule = PrjectData[7];
+    strategiesBeyondSchedule = PrjectData[8];
 
 
 
@@ -12570,8 +12573,10 @@ function setEDMyProjectsBody() {
         '<div class="col-lg-6 col-md-6 col-sm-6"> ' +
         " <ul class='piechart-label less-width'> " +
         ' <li><span class="circle circle5">&nbsp;</span> Selected</li> ' +
+        '<li><span class="circle circle9">&nbsp;</span> Un Selected </li> ' +
         ' <li><span class="circle circle6">&nbsp;</span> Dropped</li> ' +
         '<li><span class="circle circle7">&nbsp;</span> Eternal</li> ' +
+
         " </ul> </div>" +
         ' <div class="col-lg-6 col-md-6 col-sm-6"> ' +
         " <ul class='piechart-label more-width'> " +
@@ -12859,17 +12864,19 @@ function setEDMyProjectsBody() {
             datasets: [{
                 data: [
                     numSelected,
+                    numUnselected,
                     numDropped,
                     numEternal
                 ],
                 backgroundColor: [
                     "rgba(43, 75, 116, 1)",
+                    "rgba(221, 221, 47, 1)",
                     "rgba(191, 195, 197, 1)",
                     "rgba(188, 79, 213, 1)"
                 ],
                 label: "Dataset 1"
             }],
-            labels: ["Selected", "Dropped", "Eternal"]
+            labels: ["Selected", "Un Selected", "Dropped", "Eternal"]
         },
         options: {
             responsive: false,

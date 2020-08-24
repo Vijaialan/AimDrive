@@ -60,8 +60,8 @@ while($row2= mysqli_fetch_assoc($result2)) {
 
 $q3 ="SELECT COUNT(*) TotalSS, 
 SUM(ss_complete) Implemented,
-SUM(CASE WHEN ss_enddate < now() AND ss_complete=0 AND (ss_dropped=0 AND unimplement=0)  THEN 1 ELSE 0 END) BehindSchedule,
-SUM(CASE WHEN (ss_enddate >= now() or ss_enddate IS NULL) AND ss_complete=0 AND (ss_dropped=0 AND unimplement=0)  THEN 1 ELSE 0 END) Onsceduled,
+SUM(CASE WHEN ss_enddate < now() AND ss_complete=0 AND (ss_dropped=0 AND ss_unimplement=0)  THEN 1 ELSE 0 END) BehindSchedule,
+SUM(CASE WHEN (ss_enddate >= now() or ss_enddate IS NULL) AND ss_complete=0 AND (ss_dropped=0 AND ss_unimplement=0)  THEN 1 ELSE 0 END) Onsceduled,
 SUM(CASE WHEN ss_dropped = 1 OR ss_unimplement = 1 THEN 1 ELSE 0 END) Unselected
 FROM `strategy_statement` WHERE selected = 1  AND pjid IN (SELECT pjid FROM project WHERE pj_status<>'INACTIVE' AND pjid IN (". $_REQUEST["project"] .") )";
 

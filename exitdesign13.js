@@ -22526,15 +22526,15 @@ var editingSS = -1;
 function addEDSS() {
     editingSS = -1;
     document.getElementById("add_strategy_no").value = "";
+    document.getElementById("SSaction").value = "";
     // document.getElementById("priority_txt").value= "";
-    //document.getElementById("add_strategy_statmnt").value = "";
     activateButton("Strategy_submit");
     document.getElementById("add_priority_txt").value = "";
     initStrategicOptions(-1, "add_allStrategicOptions");
-    $(".strategy_modaltitle").text("Add Strategy Statement");
+    //$(".strategy_modaltitle").text("Add Strategy Statement");
     document.getElementById("add_strategy_statmnt").value = "";
-    //alert('test');
-
+    var tempSSst = '';
+    charcountupdate(tempSSst);
     $(".opt_btn_wrp").hide();
 }
 
@@ -22543,14 +22543,16 @@ var SSUpdateFrom = 1;
 function editEDSS(page) {
     SSUpdateFrom = page;
     editingSS = GcurrentSS;
+    document.getElementById("SSaction").value = page;
     var oentry = findSSEntry(GcurrentSS);
     activateButton("Strategy_submit");
     document.getElementById("add_strategy_no").value = oentry[12];
     document.getElementById("add_priority_txt").value = oentry[3];
     document.getElementById("add_strategy_statmnt").value = oentry[1];
     initStrategicOptionsOld(GcurrentSS, "add_allStrategicOptions");
-    $("#strategy_modaltitle").text("Edit Strategy");
+    $(".strategy_modaltitle").text("Edit Strategy");
     $("#strategy_modal").modal("show");
+    charcountupdate(oentry[1]);
 }
 
 function deleteEDSS(ss, selected) {
@@ -22744,7 +22746,8 @@ var allCBIDs = [];
 function saveEDSS() {
     //strategyNo
     var handle = document.getElementById("add_strategy_no").value;
-    if (strategyNos.includes(handle) == true) {
+    var SSaction = document.getElementById("SSaction").value;
+    if (strategyNos.includes(handle) == true && SSaction == '') {
         var filtered = strategyNos.filter(function(item) {
             return (parseInt(item) == item);
         });

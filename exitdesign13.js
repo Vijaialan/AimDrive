@@ -12583,7 +12583,7 @@ function setEDMyProjectsBody() {
         ' <li><span class="circle circle8">&nbsp;</span> Implemented</li> ' +
         ' <li><span class="circle circle9">&nbsp;</span> On Schedule</li> ' +
         '  <li><span class="circle circle10">&nbsp;</span> Behind Schedule</li> ' +
-        '  <li><span class="circle circle11">&nbsp;</span> Un Selected</li> ' +
+        '  <li><span class="circle circle11">&nbsp;</span> Unselected</li> ' +
         "  </ul> </div>" +
         "</div>" +
         "</div>" +
@@ -12870,9 +12870,9 @@ function setEDMyProjectsBody() {
                     numEternal
                 ],
                 backgroundColor: [
-                    "rgba(44,120,115, 0.8)",
-                    "rgba(253,94,83, 0.8)",
-                    "rgba(255,186,90, 0.8)"
+                    "rgba(44,120,115)",
+                    "rgba(253,94,83)",
+                    "rgba(255,186,90)"
                     //"rgba(43, 75, 116, 1)",
                     //"rgba(221, 221, 47, 1)",
                     //"rgba(191, 195, 197, 1)",
@@ -12903,10 +12903,10 @@ function setEDMyProjectsBody() {
                     strategiesUnSelected
                 ],
                 backgroundColor: [
-                    "rgba(44,120,115, 0.8)",
-                    "rgba(82,222,151, 0.8)",
-                    "rgba(253,94,83, 0.8)",
-                    "rgba(255,186,90, 0.8)"
+                    "rgba(44,120,115)",
+                    "rgba(82,222,151)",
+                    "rgba(253,94,83)",
+                    "rgba(255,186,90)"
                     //"rgba(84, 178, 5, 1)",
                     //"rgba(221, 221, 47, 1)",
                     //"rgba(235, 86, 42, 1)"
@@ -22527,11 +22527,13 @@ function addEDSS() {
     editingSS = -1;
     document.getElementById("add_strategy_no").value = "";
     // document.getElementById("priority_txt").value= "";
+    //document.getElementById("add_strategy_statmnt").value = "";
     activateButton("Strategy_submit");
     document.getElementById("add_priority_txt").value = "";
-    document.getElementById("add_strategy_statmnt").value = "";
     initStrategicOptions(-1, "add_allStrategicOptions");
     $(".strategy_modaltitle").text("Add Strategy Statement");
+    document.getElementById("add_strategy_statmnt").value = "";
+    //alert('test');
 
     $(".opt_btn_wrp").hide();
 }
@@ -31089,6 +31091,7 @@ function setManagementReports() {
         ' <li><span class="circle circle8">&nbsp;</span> Implemented</li> ' +
         ' <li><span class="circle circle9">&nbsp;</span> On Schedule</li> ' +
         '  <li><span class="circle circle10">&nbsp;</span> Behind Schedule</li> ' +
+        '  <li><span class="circle circle11">&nbsp;</span> Unselected</li> ' +
         "  </ul> </div>" +
         "</div>" +
         "</div>" +
@@ -31632,9 +31635,12 @@ function setManagementReports() {
                     eternalSS.length
                 ],
                 backgroundColor: [
-                    "rgba(43, 75, 116, 1)",
-                    "rgba(191, 195, 197, 1)",
-                    "rgba(188, 79, 213, 1)"
+                    "rgba(44,120,115, 0.8)",
+                    "rgba(253,94,83, 0.8)",
+                    "rgba(255,186,90, 0.8)"
+                    // "rgba(43, 75, 116, 1)",
+                    // "rgba(191, 195, 197, 1)",
+                    // "rgba(188, 79, 213, 1)"
                 ],
                 label: "Dataset 1"
             }],
@@ -31660,9 +31666,13 @@ function setManagementReports() {
                     strategiesBeyondSchedule
                 ],
                 backgroundColor: [
-                    "rgba(84, 178, 5, 1)",
-                    "rgba(221, 221, 47, 1)",
-                    "rgba(235, 86, 42, 1)"
+                    // "rgba(84, 178, 5, 1)",
+                    // "rgba(221, 221, 47, 1)",
+                    // "rgba(235, 86, 42, 1)"
+                    "rgba(44,120,115)",
+                    "rgba(82,222,151)",
+                    "rgba(253,94,83)",
+                    "rgba(255,186,90)"
                 ],
                 label: "Dataset 1"
             }],

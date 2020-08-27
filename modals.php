@@ -167,10 +167,11 @@
                      
                   </div>
                   <div class="form-group">
-                     <label class="cost_value" >Value <span class="cost_alert" style="font-size: 80%;">.</span></label>
+                     <label class="cost_value" >Value </label>
                      <input placeholder="Value is a mandatory field and fill only numbers" type="text" class="form-control formattedNumberField" required oninput="numbersOnlyPlease(this);" onkeyup='activateButton("ce_submit");' id="ce_value" pattern="[0=9]">
                      
                   </div>
+                  <div class="form-group"><span class="cost_alert" style="font-size: 90%;">.</span></div>
                   <div class="clearfix"></div>
                </div>
                <div class="modal-footer">

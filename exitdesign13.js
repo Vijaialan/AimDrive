@@ -12380,12 +12380,12 @@ function setEDMyProjectsBody() {
     var allManProjectsDataPro = [];
     var PrjectData = [];
     manProjects = Gstrategies;
-    manProjects = reportStrategies;
+    //manProjects = reportStrategies;
     //GmgmtReportCurrency = manProjects[0][6][1];
     GmgmtReportCurrency = "USD";
-    manActive = 0;
-    manCompleted = 0;
-    manDropped = 0;
+    manActiveIndex = 0;
+    manCompletedIndex = 0;
+    manDroppedIndex = 0;
     activeSS = [];
     lateSS = [];
     completedSS = [];
@@ -12394,14 +12394,14 @@ function setEDMyProjectsBody() {
     eternalSS = [];
     progressSSActions = [];
     manAllProjectsData = [];
-    var totalAcrossAll = 0;
-    var valueRealized = 0;
-    var numSelected = 0;
-    var numDropped = 0;
-    var numEternal = 0;
-    var strategiesImplemented = 0;
-    var strategiesOnSchedule = 0;
-    var strategiesBeyondSchedule = 0;
+    var totalAcrossAllIndex = 0;
+    var valueRealizedIndex = 0;
+    var numSelectedIndex = 0;
+    var numDroppedIndex = 0;
+    var numEternalIndex = 0;
+    var strategiesImplementedIndex = 0;
+    var strategiesOnScheduleIndex = 0;
+    var strategiesBeyondScheduleIndex = 0;
     var selectedProject = [];
 
     for (var i = 0; i < manProjects.length; i++) {
@@ -12416,15 +12416,16 @@ function setEDMyProjectsBody() {
         var lastEdit = proj[7];
         if (status.valueOf() == "INACTIVE".valueOf()) {
             status = "DROPPED";
-            manDropped++;
-        } else if (status.valueOf() == "COMPLETED".valueOf()) manCompleted++;
+            manDroppedIndex++;
+        } else if (status.valueOf() == "COMPLETED".valueOf()) manCompletedIndex++;
         else {
             status = "ACTIVE";
-            manActive++;
+            manActiveIndex++;
         }
 
         selectedProject.push(proj[0]);
     }
+    //console.log(selectedProject);
 
     //Data request
     $.ajax({
@@ -12446,19 +12447,19 @@ function setEDMyProjectsBody() {
     });
 
     PrjectData = allManProjectsDataTempPro[0];
-    totalAcrossAll = PrjectData[0];
-    valueRealized = PrjectData[1];
+    totalAcrossAllIndex = PrjectData[0];
+    valueRealizedIndex = PrjectData[1];
     //pie chart 1
-    numSelected = PrjectData[2];
+    numSelectedIndex = PrjectData[2];
     //numUnselected = PrjectData[3]
-    numDropped = PrjectData[3];
-    numEternal = PrjectData[4];
+    numDroppedIndex = PrjectData[3];
+    numEternalIndex = PrjectData[4];
     //console.log(numDropped);
     //pie chart 2 
-    strategiesImplemented = PrjectData[5];
-    strategiesOnSchedule = PrjectData[6];
-    strategiesBeyondSchedule = PrjectData[7];
-    strategiesUnSelected = PrjectData[8];
+    strategiesImplementedIndex = PrjectData[5];
+    strategiesOnScheduleIndex = PrjectData[6];
+    strategiesBeyondScheduleIndex = PrjectData[7];
+    strategiesUnSelectedIndex = PrjectData[8];
 
 
 
@@ -12485,7 +12486,7 @@ function setEDMyProjectsBody() {
         "                                    Projects" +
         "                                </div>" +
         '                                <div class="number1" id="activeProjects">' +
-        manActive +
+        manActiveIndex +
         "                                </div>" +
         '                                <div class="status">' +
         "                                    Active" +
@@ -12495,7 +12496,7 @@ function setEDMyProjectsBody() {
         '                        <div class="col-lg-5 col-md-5 col-sm-5">' +
         '                            <section class="sub_block2">' +
         '                                <div class="number2">' +
-        manCompleted +
+        manCompletedIndex +
         "                                </div>" +
         '                                <div class="status_green">' +
         "                                    Completed" +
@@ -12503,7 +12504,7 @@ function setEDMyProjectsBody() {
         "                            </section>" +
         '                            <section class="sub_block3">' +
         '                                <div class="number3">' +
-        manDropped +
+        manDroppedIndex +
         "                                </div>" +
         '                                <div class="status_black">' +
         "                                    Dropped" +
@@ -12529,7 +12530,7 @@ function setEDMyProjectsBody() {
         "                                    Value identified" +
         "                                </div>" +
         '                                <div class="number1" id="totalAcrossAll">' +
-        CurrencyFormat(totalAcrossAll, GmgmtReportCurrency, 0, "", ",") +
+        CurrencyFormat(totalAcrossAllIndex, GmgmtReportCurrency, 0, "", ",") +
         "                                </div>" +
         "                            </div>" +
         "                        </div>" +
@@ -12544,7 +12545,7 @@ function setEDMyProjectsBody() {
         "                                    Value realized" +
         "                                </div>" +
         '                                <div class="number2" id="valueRealized">' +
-        CurrencyFormat(valueRealized, GmgmtReportCurrency, 0, "", ",") +
+        CurrencyFormat(valueRealizedIndex, GmgmtReportCurrency, 0, "", ",") +
         "                                </div>" +
         "                            </div>" +
         "                        </div>" +
@@ -12864,10 +12865,10 @@ function setEDMyProjectsBody() {
         data: {
             datasets: [{
                 data: [
-                    numSelected,
+                    numSelectedIndex,
                     //numUnselected,
-                    numDropped,
-                    numEternal
+                    numDroppedIndex,
+                    numEternalIndex
                 ],
                 backgroundColor: [
                     "rgba(44,120,115)",
@@ -12897,14 +12898,14 @@ function setEDMyProjectsBody() {
         data: {
             datasets: [{
                 data: [
-                    strategiesImplemented,
-                    strategiesOnSchedule,
-                    strategiesBeyondSchedule,
-                    strategiesUnSelected
+                    strategiesImplementedIndex,
+                    strategiesOnScheduleIndex,
+                    strategiesBeyondScheduleIndex,
+                    strategiesUnSelectedIndex
                 ],
                 backgroundColor: [
                     "rgba(44,120,115)",
-                    "rgba(82,222,151)",
+                    "#52DE97",
                     "rgba(253,94,83)",
                     "rgba(255,186,90)"
                     //"rgba(84, 178, 5, 1)",
@@ -17980,6 +17981,30 @@ function refreshBackground() {
             }
         }
     }
+
+    body =
+        body +
+        '<table >' +
+        "<thead>" +
+        "<tr>" +
+        '<th></th>' +
+        "</tr>" +
+        "</thead>" +
+        "</table>" +
+        '<table class="table files_table">' +
+        '<tbody>' +
+        '<tr >' +
+        '<th style="border-style:hidden;"></th>' +
+        "</tr>" +
+        '<tr>' +
+        '<th style="border-style:hidden;"></th>' +
+        "</tr>" +
+        '<tr>' +
+        '<th style="border-style:hidden;"></th>' +
+        "</tr>" +
+        "</tbody>" +
+        "</table>";
+
     //alert("background 1");
     body =
         body +
@@ -26038,7 +26063,7 @@ function mdStepContents2() {
         '<div id="gmsg" onClick="document.getElementById(gmsg).innerHTML=;"></div>' +
         '<div class="cost_driver_container_wrapper">';
     // alert("md 1");
-    console.log(Gcurrentdata);
+    //console.log(Gcurrentdata);
     var sumCostDr = 0;
     for (var i = 0; i < Gcurrentdata[Gcdindex].length; i++) {
         var cdelement1 = Gcurrentdata[Gcdindex][i];
@@ -26064,16 +26089,19 @@ function mdStepContents2() {
 
     }
 
+    //console.log(Gcurrentdata);
+
     for (var i = 0; i < Gcurrentdata[Gcdindex].length; i++) {
         // alert("md ce loop: " + i);
 
 
         var cdelement = Gcurrentdata[Gcdindex][i];
-        console.log(cdelement);
+        //console.log(cdelement);
         var cdCEID = cdelement[0];
         // alert("md step 2 - ce = " + cdCEID);
         // cdelement: 0 cdid, 1 cdname, 2 position, 3 unused, Element 4: [0 num, 1 den, 2 currval, 3 improve, 4 target, 5 unit, 6 key, 7 status ]
         var centry = getCEEntry(cdCEID);
+        //console.log(centry);
         var esPanelId = "espanel-" + cdCEID;
         var carID = "carousel_" + cdCEID;
         var sliderID = "slider_" + cdCEID;

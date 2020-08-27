@@ -12905,12 +12905,19 @@ function setEDMyProjectsBody() {
                 ],
                 backgroundColor: [
                     "rgba(44,120,115)",
-                    "#52DE97",
+                    "rgba(82,222,151)",
                     "rgba(253,94,83)",
                     "rgba(255,186,90)"
                     //"rgba(84, 178, 5, 1)",
                     //"rgba(221, 221, 47, 1)",
                     //"rgba(235, 86, 42, 1)"
+                ],
+                hoverBackgroundColor: [
+                    "rgba(44,120,115)",
+                    "rgba(82,222,151)",
+                    "rgba(253,94,83)",
+                    "rgba(255,186,90)"
+
                 ],
                 label: "Dataset 1"
             }],

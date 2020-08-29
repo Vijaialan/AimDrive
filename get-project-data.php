@@ -197,8 +197,9 @@ while($rowce= mysqli_fetch_assoc($resultce)) {
 $output[]=$ceans;
 $totalQuarters = [];
 $valueRealizedPerQuarter = [];
-$q2="select * from strategy_statement where
- coid=$company and buid=$bu and pjid=$project";
+$q2="select * from strategy_statement where pjid in (SELECT pjid FROM project WHERE pj_status<>'INACTIVE') and
+  pjid=$project";
+  //coid=$company and buid=$bu and
 $result2=obtain_query_result($q2);
 $ss=array();
 $totalRiskValue = 0;
@@ -659,7 +660,7 @@ while($row2= mysqli_fetch_assoc($result2)) {
   $ms[]=array($row2['pjmsid'],$row2['ms_label'],$row2['ms_date']);
 }
 //IFNULL((SELECT firstname FROM person WHERE pnid= ss.ss_owner),'Not Available')  ss_ownername
-$actionSql = "SELECT a.*, a.pjid apjid,p.pj_name, ss.ssid,ss.selected,ss.ss_handle, ss.ss_desc, ss.pjid, ss.ss_unimplement, ss.ss_dropped, ss.ss_complete, ss.ss_owner , ss.ss_enddate  FROM strategy_statement ss LEFT JOIN action a ON a.ssid = ss.ssid JOIN project p ON ss.pjid = p.pjid WHERE ss.selected=1 AND ss.pjid = $project";
+$actionSql = "SELECT a.*, a.pjid apjid,p.pj_name, ss.ssid,ss.selected,ss.ss_handle, ss.ss_desc, ss.pjid, ss.ss_unimplement, ss.ss_dropped, ss.ss_complete, ss.ss_owner , ss.ss_enddate  FROM strategy_statement ss LEFT JOIN action a ON a.ssid = ss.ssid JOIN project p ON ss.pjid = p.pjid WHERE ss.selected=1 AND ss.pjid = $project AND p.pj_status<>'INACTIVE'";
 $actionResult=obtain_query_result($actionSql);
 $allActions = [];
 // $allProjectActions = [];
@@ -728,6 +729,9 @@ while($actionRow= mysqli_fetch_assoc($actionResult)) {
       'outStanding' => $outStanding?1:0,
       'ssid' => $actionRow['ssid'],
       'ssdesc' => $actionRow['ss_desc'],
+      'selected' => $actionRow['selected'],
+      'ss_dropped' => $actionRow['ss_dropped'],
+      'ss_unimplement' => $actionRow['ss_unimplement'],
       'sshandle' => $actionRow['ss_handle'],
       'ssowner' => $actionRow['ss_owner'],
       'sscomplete' => $actionRow['ss_complete'],

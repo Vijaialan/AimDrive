@@ -30610,6 +30610,10 @@ function filterReportsByDept(event) {
  * HTML for all reports prepared
  */
 function setManagementReports() {
+    var d = new Date();
+    d = new Date(d.getTime() - 3000000);
+    var currentDate = d.getFullYear().toString() + "-" + ((d.getMonth() + 1).toString().length == 2 ? (d.getMonth() + 1).toString() : "0" + (d.getMonth() + 1).toString()) + "-" + (d.getDate().toString().length == 2 ? d.getDate().toString() : "0" + d.getDate().toString()) + " " + (d.getHours().toString().length == 2 ? d.getHours().toString() : "0" + d.getHours().toString()) + ":" + ((parseInt(d.getMinutes() / 5) * 5).toString().length == 2 ? (parseInt(d.getMinutes() / 5) * 5).toString() : "0" + (parseInt(d.getMinutes() / 5) * 5).toString()) + ":00";
+    //console.log(currentDate);
     console.trace();
     let abc =
         selectedClientReports !== "all" ? clientProjs[selectedClientReports] : [];
@@ -30709,6 +30713,12 @@ function setManagementReports() {
     var strategiesOnSchedule = 0;
     var strategiesBeyondSchedule = 0;
 
+    var SSselected = 0;
+    var SSImplemented = 0;
+    var SSonSchedule = 0;
+    var SSbeondSchedule = 0;
+    var SSunSelected = 0;
+    //var TotalStrategiesCnt = 0;
     for (var i = 0; i < manProjects.length; i++) {
         //loop 1
         var totalActionsCompletedPerProject = 0;
@@ -30764,7 +30774,7 @@ function setManagementReports() {
         }
 
         totalStrategies += stratEnt[30].length;
-        // console.log(stratEnt[30]);
+        //console.log(stratEnt);
 
         for (var key in stratEnt[30]) {
             //
@@ -30788,7 +30798,30 @@ function setManagementReports() {
                 totalStrategiesOnTime += 1;
             }
 
+            if (stratEnt[30][key].selected == 1) {
 
+                SSselected++;
+
+                if (stratEnt[30][key].sscomplete == 1) {
+                    SSImplemented++;
+                }
+                // if (stratEnt[30][key].ss_dropped == 1 || stratEnt[30][key].ss_unimplement == 1) {
+                //     SSunSelected++;
+                // }
+                if (stratEnt[30][key].targetDate == null || stratEnt[30][key].targetDate > currentDate) {
+                    if (stratEnt[30][key].ss_dropped == 0 && stratEnt[30][key].ss_unimplement == 0 &&
+                        stratEnt[30][key].sscomplete == 0) {
+                        SSonSchedule++;
+                    }
+
+                }
+                if (stratEnt[30][key].targetDate <= currentDate) {
+                    if (stratEnt[30][key].ss_dropped == 0 && stratEnt[30][key].ss_unimplement == 0 &&
+                        stratEnt[30][key].sscomplete == 0) {
+                        SSbeondSchedule++;
+                    }
+                }
+            }
         }
 
         for (var key in stratEnt[28]) {
@@ -31673,12 +31706,18 @@ function setManagementReports() {
                     eternalSS.length
                 ],
                 backgroundColor: [
-                    "rgba(44,120,115, 0.8)",
-                    "rgba(253,94,83, 0.8)",
-                    "rgba(255,186,90, 0.8)"
+                    "rgba(44,120,115)",
+                    "rgba(253,94,83)",
+                    "rgba(255,186,90)"
+
                     // "rgba(43, 75, 116, 1)",
                     // "rgba(191, 195, 197, 1)",
                     // "rgba(188, 79, 213, 1)"
+                ],
+                hoverBackgroundColor: [
+                    "rgba(44,120,115)",
+                    "rgba(253,94,83)",
+                    "rgba(255,186,90)"
                 ],
                 label: "Dataset 1"
             }],
@@ -31699,14 +31738,21 @@ function setManagementReports() {
         data: {
             datasets: [{
                 data: [
-                    strategiesImplemented,
-                    strategiesOnSchedule,
-                    strategiesBeyondSchedule
+                    SSImplemented,
+                    SSonSchedule,
+                    SSbeondSchedule,
+                    numSelected - (SSImplemented + SSonSchedule + SSbeondSchedule)
                 ],
                 backgroundColor: [
-                    // "rgba(84, 178, 5, 1)",
-                    // "rgba(221, 221, 47, 1)",
-                    // "rgba(235, 86, 42, 1)"
+                    "rgba(44,120,115)",
+                    "rgba(82,222,151)",
+                    "rgba(253,94,83)",
+                    "rgba(255,186,90)"
+                    //"rgba(84, 178, 5, 1)",
+                    //"rgba(221, 221, 47, 1)",
+                    //"rgba(235, 86, 42, 1)"
+                ],
+                hoverBackgroundColor: [
                     "rgba(44,120,115)",
                     "rgba(82,222,151)",
                     "rgba(253,94,83)",
@@ -31714,7 +31760,7 @@ function setManagementReports() {
                 ],
                 label: "Dataset 1"
             }],
-            labels: ["Implemented", "On Schedule", "Behind Schedule"]
+            labels: ["Implemented", "On Schedule", "Behind Schedule", "Unselected"]
         },
         options: {
             responsive: false,

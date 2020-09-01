@@ -13658,7 +13658,7 @@ function refreshFileSidePanel() {
                         '<td width="10%">' +
                         '<div class="company_opt">' +
                         '<button class="text-capitalize more_option opt_btn" onclick="goalDataOption($(this))"><img src="images/ver_more_black.png" alt="more"> </button>' +
-                        '<div class="opt_btn_wrp"> ' +
+                        '<div class="opt_btn_wrp" style="position: inherit !important;width: 165px;margin-left: -158px !important;"> ' +
                         '<ul class="other_action">                                         ' +
                         // '<li> <a href="javascript:void(0);"  class="mark_edit_cost" onclick="alert(edit document tbd)"> Edit </a> </li>' +
                         '<li><a href="javascript:void(0);"  class="mark_del_cost" onclick="deleteEDDocument(' +
@@ -13673,6 +13673,30 @@ function refreshFileSidePanel() {
             }
         }
     }
+
+    body =
+        body +
+        '<table >' +
+        "<thead>" +
+        "<tr>" +
+        '<th></th>' +
+        "</tr>" +
+        "</thead>" +
+        "</table>" +
+        '<table class="table files_table">' +
+        '<tbody>' +
+        '<tr >' +
+        '<th style="border-style:hidden;"></th>' +
+        "</tr>" +
+        '<tr>' +
+        '<th style="border-style:hidden;"></th>' +
+        "</tr>" +
+        '<tr>' +
+        '<th style="border-style:hidden;"></th>' +
+        "</tr>" +
+        "</tbody>" +
+        "</table>";
+
     body = body + "</tbody>" + "</table>" + "</div>" + "</div>" + "</section>";
     document.getElementById("sideFilePanel").innerHTML = body;
 }
@@ -17973,7 +17997,7 @@ function refreshBackground() {
                         '<td width="10%">' +
                         '<div class="company_opt">' +
                         '<button class="text-capitalize more_option opt_btn" onclick="goalDataOption($(this))"><img src="images/ver_more_black.png" alt="more"> </button>' +
-                        '<div class="opt_btn_wrp"> ' +
+                        '<div class="opt_btn_wrp" style="position: inherit !important;width: 165px;margin-left: -158px !important;"> ' +
                         '<ul class="other_action">                                         ' +
                         // '<li> <a href="javascript:void(0);"  class="mark_edit_cost" onclick="alert(edit document tbd)"> Edit </a> </li>' +
                         '<li><a href="javascript:void(0);"  class="mark_del_cost" onclick="deleteEDDocument(' +

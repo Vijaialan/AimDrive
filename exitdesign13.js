@@ -30690,6 +30690,11 @@ function setManagementReports() {
     ganttLowerCursor = -1;
     ganttUpperCursor = -1;
     manAllProjectsData = [];
+    ActionCompleted = [];
+    ActionImpemented = [];
+    ActionOnschedule = [];
+    ActionBehidSchedule = [];
+    projectIdName = [];
     var totalAcrossAll = 0;
     var totalValueRealized = 0;
     var totalNumSelected = 0;
@@ -30718,6 +30723,11 @@ function setManagementReports() {
     var SSonSchedule = 0;
     var SSbeondSchedule = 0;
     var SSunSelected = 0;
+
+
+    var actTotalAction = 0;
+    var actDropped = 0;
+
     //var TotalStrategiesCnt = 0;
     for (var i = 0; i < manProjects.length; i++) {
         //loop 1
@@ -30736,6 +30746,8 @@ function setManagementReports() {
         var proj_id = proj[0];
         var projname = proj[4];
         var currency = proj[2] === null ? "" : proj[2][1];
+
+        projectIdName.push(proj_id + '-' + projname);
 
         var status = proj[GstatusIndex];
         if (status == null) status = "";
@@ -30773,8 +30785,14 @@ function setManagementReports() {
             manReverseUserData.push(stratEnt[27][key]);
         }
 
+        //Action status per Project
+        actDropped = stratEnt[32].totalActions - (stratEnt[32].completed + stratEnt[32].inProgress);
+        actTotalAction = stratEnt[32].totalActions - actDropped;
+        ActionCompleted.push(Math.round((stratEnt[32].completed / actTotalAction) * 100));
+        ActionOnschedule.push(Math.round((stratEnt[32].onTime / actTotalAction) * 100));
+        ActionBehidSchedule.push(Math.round((stratEnt[32].outStanding / actTotalAction) * 100));
+
         totalStrategies += stratEnt[30].length;
-        //console.log(stratEnt);
 
         for (var key in stratEnt[30]) {
             //
@@ -30937,6 +30955,26 @@ function setManagementReports() {
             ganttChartData.push(ssActionEntry);
         }
     }
+
+    //Set array for H-chart
+    let ActionStatusPerProject = [{
+            name: "Completed",
+            data: ActionCompleted,
+            index: 2
+        },
+        {
+            name: "On Schedule",
+            data: ActionOnschedule,
+            index: 1
+        },
+        {
+            name: "Behind Schedule",
+            data: ActionBehidSchedule,
+            index: 0
+        }
+    ];
+
+    //console.log(ActionStatusPerProject);
     var yearsReports = '<option value="all">Select All</option>';
     var clientsReports = '<option value="all">Select All</option>';
     var suppliersReports = '<option value="all">Select All</option>';
@@ -31186,7 +31224,7 @@ function setManagementReports() {
         "                        </div>" +
         '                        <div class="row">' +
         '                            <div class="col-lg-12 col-md-12 col-sm-12">' +
-        '                                <div id="progress_hbarchar_canvas" class= "projects_scroll cus_scroll" style="width: 99%; font-size: 12px;">' +
+        '                                <div id="action_comp_hbarchar_canvas" class= "projects_scroll cus_scroll" style="width: 99%; font-size: 12px;">' +
         '                                    <table width="100%;"></table>' +
         "                                </div>" +
         "                            </div>" +
@@ -31815,6 +31853,92 @@ function setManagementReports() {
         .getElementById("actionitem_piechart2_canvas")
         .getContext("2d");
     window.myHorizontalBar = new Chart(ctx3, configPie2);
+
+    //H - chart 
+    var GraphSize = 0;
+    if (projectIdName.length <= 10) {
+        GraphSize = 70;
+    } else {
+        GraphSize = 30;
+    }
+    $(function() {
+        let action_item_status_perproject = {
+
+            chart: {
+                type: "bar",
+                height: (projectIdName.length) * GraphSize
+            },
+            title: {
+                text: ""
+            },
+
+            colors: ["#2C7873", "#52DE97", "#FD5E53"],
+            xAxis: [{
+                //max: 10,
+                categories: projectIdName,
+                labels: {
+                    align: 'left',
+                    reserveSpace: true,
+                    style: {
+                        fontSize: '14px',
+                    },
+                },
+                title: {
+                    text: "Project Name"
+                },
+                scrollbar: {
+                    enabled: true,
+                    showFull: false
+                }
+
+            }],
+            tooltip: {
+                pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
+            },
+            yAxis: [{
+                    labels: {
+                        //  step: 5,
+                    },
+                    min: 0,
+                    max: 100,
+                    tickInterval: 10,
+                    position: 'top',
+                    title: {
+                        text: "Action Items Progress(%)"
+                    }
+                },
+                {
+                    min: 0,
+                    max: 100,
+                    tickInterval: 10,
+                    //overflow: 'allow',
+                    opposite: true,
+                    title: {
+                        text: "Action Items Progress(%)"
+                    }
+                }
+            ],
+            credits: {
+                enabled: false
+            },
+            legend: {
+                layout: "vertical",
+                align: "right",
+                verticalAlign: "middle",
+                reversed: true
+            },
+
+            plotOptions: {
+                series: {
+                    stacking: "normal"
+                }
+            },
+            series: ActionStatusPerProject
+        };
+        Highcharts.chart("action_comp_hbarchar_canvas", action_item_status_perproject);
+
+    });
+    // END - H -chart 
 
     ganttChartLowerCursor = -1;
     ganttChartUpperCursor = 0;

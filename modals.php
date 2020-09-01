@@ -233,7 +233,7 @@
                <div class="modal-body">
                   <div class="form-group">
                      <label class="">Strategy Statement Number</label>
-                     <input type="text" class="form-control" required onkeyup='activateButton("Strategy_submit");' id="add_strategy_no" >
+                     <input type="text" class="form-control" required onkeyup='activateButton("Strategy_submit");' id="add_strategy_no" readonly>
                      <input type="hidden" id="SSaction" >
                   </div>
                   <h6 class="modal_label">Select Applicable Strategic Options </h6>

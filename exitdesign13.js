@@ -22581,13 +22581,20 @@ var editingSS = -1;
 
 function addEDSS() {
     editingSS = -1;
-    document.getElementById("add_strategy_no").value = "";
+    //Find next SS number 
+    var filtered = strategyNos.filter(function(item) {
+        return (parseInt(item) == item);
+    });
+    var NextSt = Math.max(...filtered);
+    NextSt++;
+
+    document.getElementById("add_strategy_no").value = NextSt;
     document.getElementById("SSaction").value = "";
     // document.getElementById("priority_txt").value= "";
     activateButton("Strategy_submit");
     document.getElementById("add_priority_txt").value = "";
     initStrategicOptions(-1, "add_allStrategicOptions");
-    //$(".strategy_modaltitle").text("Add Strategy Statement");
+    $(".strategy_modaltitle").text("Add Strategy Statement");
     document.getElementById("add_strategy_statmnt").value = "";
     var tempSSst = '';
     charcountupdate(tempSSst);

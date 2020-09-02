@@ -22589,8 +22589,12 @@ function addEDSS() {
     var filtered = strategyNos.filter(function(item) {
         return (parseInt(item) == item);
     });
-    var NextSt = Math.max(...filtered);
-    NextSt++;
+    if (filtered.length) {
+        var NextSt = Math.max(...filtered);
+        NextSt++;
+    } else {
+        NextSt = 1;
+    }
     document.getElementById("add_strategy_no").value = NextSt;
     document.getElementById("SSaction").value = "";
     // document.getElementById("priority_txt").value= "";
@@ -30736,6 +30740,11 @@ function setManagementReports() {
     ActionOnschedule = [];
     ActionBehidSchedule = [];
     projectIdName = [];
+
+    ProjectSSCompleted = [];
+    ProjectSSBehindSchedule = [];
+    ProjectSSOnSchedule = [];
+
     var totalAcrossAll = 0;
     var totalValueRealized = 0;
     var totalNumSelected = 0;
@@ -30768,6 +30777,9 @@ function setManagementReports() {
 
     var actTotalAction = 0;
     var actDropped = 0;
+
+    var totStrategiesProject = 0;
+
 
     //var TotalStrategiesCnt = 0;
     for (var i = 0; i < manProjects.length; i++) {
@@ -30837,6 +30849,8 @@ function setManagementReports() {
 
         for (var key in stratEnt[30]) {
             //
+            totStrategiesProject++;
+
             if (stratEnt[30][key].completed === stratEnt[30][key].totalActions) {
                 strategiesImplemented++;
             } else if (stratEnt[30][key].outStanding > stratEnt[30][key].onTime) {
@@ -30881,7 +30895,26 @@ function setManagementReports() {
                     }
                 }
             }
+            //SS H-chart
+            // if (stratEnt[30][key].sscomplete == 1) {
+            //     sscompletedPerProject += 1;
+            // }
+            // if (stratEnt[30][key].sscomplete == 0 && stratEnt[30][key].dropped == 0) {
+            //     if (stratEnt[30][key].targetDate < currentDate) {
+            //         ssBehindSchedulePerProject += 1;
+            //     }
+            //     if (singleSStargetDate > curdateTime || singleSStargetDate == null) {
+            //         ssOnSchedulePerProject += 1;
+            //     }
+            // }
+
+
         }
+
+        // ProjectSSCompleted.push(Math.round((sscompletedPerProject / totStrategiesProject) * 100));
+        // ProjectSSBehindSchedule.push(Math.round((ssBehindSchedulePerProject / totStrategiesProject) * 100));
+        // ProjectSSOnSchedule.push(Math.round((ssOnSchedulePerProject / totStrategiesProject) * 100));
+
 
         for (var key in stratEnt[28]) {
             manAllPendingActionsData.push([

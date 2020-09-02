@@ -5904,6 +5904,8 @@ function reduceStepContents() {
       <i class="fa fa-plus" aria-hidden="true"></i> Strategy Statements</a>`;
     }
     body = body + "</div>" + "</div>";
+    //Clear SS NO
+    strategyNos = [];
 
     if (Gcurrentdata[Grbindex] != null) {
         for (var i = 0; i < Gcurrentdata[Grbindex].length; i++) {
@@ -22589,7 +22591,6 @@ function addEDSS() {
     });
     var NextSt = Math.max(...filtered);
     NextSt++;
-    strategyNos = [];
     document.getElementById("add_strategy_no").value = NextSt;
     document.getElementById("SSaction").value = "";
     // document.getElementById("priority_txt").value= "";

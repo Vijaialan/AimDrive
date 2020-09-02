@@ -22582,7 +22582,7 @@ var editingSS = -1;
 function addEDSS() {
     editingSS = -1;
     //Find next SS number 
-    //console.log(strategyNos);
+    console.log(strategyNos);
     document.getElementById("add_strategy_no").value = "";
     var filtered = strategyNos.filter(function(item) {
         return (parseInt(item) == item);

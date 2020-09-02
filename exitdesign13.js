@@ -22584,7 +22584,7 @@ var editingSS = -1;
 function addEDSS() {
     editingSS = -1;
     //Find next SS number 
-    console.log(strategyNos);
+    //console.log(strategyNos);
     document.getElementById("add_strategy_no").value = "";
     var filtered = strategyNos.filter(function(item) {
         return (parseInt(item) == item);
@@ -24733,6 +24733,7 @@ function renderEDTree(node, level, up, down) {
             '<img src="images/critical_icon.png"/> ' +
             "</span>";
         // alert("here 4");
+        //console.log(node[7]);
         nodestring =
             nodestring +
             criticalicon +
@@ -25359,6 +25360,10 @@ var parentCE = -1;
 var editingCE = -1;
 
 function addSubCost(ce) {
+    //clear edit alert
+    document.getElementById("ce_value").readOnly = false;
+    $(".cost_alert").text("");
+
     $("#ce_modal").modal("show");
     $(".opt_btn_wrp").hide();
     $(".ce_modaltitle").text("Add Sub-Cost");
@@ -26143,6 +26148,7 @@ function mdStepContents2() {
         // cdelement: 0 cdid, 1 cdname, 2 position, 3 unused, Element 4: [0 num, 1 den, 2 currval, 3 improve, 4 target, 5 unit, 6 key, 7 status ]
         var centry = getCEEntry(cdCEID);
         //console.log(centry);
+        //console.log(centry);
         var esPanelId = "espanel-" + cdCEID;
         var carID = "carousel_" + cdCEID;
         var sliderID = "slider_" + cdCEID;
@@ -26160,7 +26166,8 @@ function mdStepContents2() {
             centry[1] +
             "</h3>" +
             '<p class="cost">' +
-            CurrencyFormat(centry[4], GdefaultCurrency, 0, "", ",") +
+            //CurrencyFormat(centry[4], GdefaultCurrency, 0, "", ",") +
+            CurrencyFormat(getComputedCost(centry[0]), GdefaultCurrency, 0, "", ",") +
             "</p>" +
             '<div class="crit_cost_bottom">' +
             '<span class="pull-left est_values_btn">' +

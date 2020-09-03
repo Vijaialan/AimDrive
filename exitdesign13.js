@@ -30665,6 +30665,12 @@ function setManagementReports() {
     var currentDate = d.getFullYear().toString() + "-" + ((d.getMonth() + 1).toString().length == 2 ? (d.getMonth() + 1).toString() : "0" + (d.getMonth() + 1).toString()) + "-" + (d.getDate().toString().length == 2 ? d.getDate().toString() : "0" + d.getDate().toString()) + " " + (d.getHours().toString().length == 2 ? d.getHours().toString() : "0" + d.getHours().toString()) + ":" + ((parseInt(d.getMinutes() / 5) * 5).toString().length == 2 ? (parseInt(d.getMinutes() / 5) * 5).toString() : "0" + (parseInt(d.getMinutes() / 5) * 5).toString()) + ":00";
     //console.log(currentDate);
     console.trace();
+
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var curdateTime = date + ' ' + time;
+
     let abc =
         selectedClientReports !== "all" ? clientProjs[selectedClientReports] : [];
     let bcd = selectedDeptReports !== "all" ? depProjs[selectedDeptReports] : [];
@@ -30919,10 +30925,10 @@ function setManagementReports() {
                 ssDropped += 1;
             }
             if (stratEnt[30][key].sscomplete == 0 && stratEnt[30][key].dropped == 0 && stratEnt[30][key].ss_unimplement == 0) {
-                if (stratEnt[30][key].targetDate < currentDate) {
+                if (stratEnt[30][key].targetDate < curdateTime) {
                     ssBehindSchedulePerProject += 1;
                 }
-                if (stratEnt[30][key].targetDate > currentDate || stratEnt[30][key].targetDate == null) {
+                if (stratEnt[30][key].targetDate > curdateTime || stratEnt[30][key].targetDate == null) {
                     ssOnSchedulePerProject += 1;
                 }
             }

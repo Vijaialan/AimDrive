@@ -30918,7 +30918,7 @@ function setManagementReports() {
             if (stratEnt[30][key].dropped == 1) {
                 ssDropped += 1;
             }
-            if (stratEnt[30][key].sscomplete == 0 && stratEnt[30][key].dropped == 0) {
+            if (stratEnt[30][key].sscomplete == 0 && stratEnt[30][key].dropped == 0 && stratEnt[30][key].ss_unimplement == 0) {
                 if (stratEnt[30][key].targetDate < currentDate) {
                     ssBehindSchedulePerProject += 1;
                 }

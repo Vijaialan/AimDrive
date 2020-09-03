@@ -30934,7 +30934,8 @@ function setManagementReports() {
 
         TotalSS = sscompletedPerProject + ssBehindSchedulePerProject + ssOnSchedulePerProject;
 
-        // console.log(totStrategiesProject, sscompletedPerProject, ssBehindSchedulePerProject, ssOnSchedulePerProject);
+        console.log(TotalSS, sscompletedPerProjec, ssOnSchedulePerProject, ssBehindSchedulePerProject);
+
         ProjectSSCompleted.push(Math.round((sscompletedPerProject / TotalSS) * 100));
         ProjectSSBehindSchedule.push(Math.round((ssBehindSchedulePerProject / TotalSS) * 100));
         ProjectSSOnSchedule.push(Math.round((ssOnSchedulePerProject / TotalSS) * 100));

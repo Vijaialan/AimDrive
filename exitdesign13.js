@@ -24939,7 +24939,11 @@ function computeBottomUpCosts(node) {
     return cost;
 }
 
+
 function getComputedCost(ce) {
+
+    console.log(allNodeCosts);
+
     for (var i = 0; i < allNodeCosts.length; i++) {
         if (ce == allNodeCosts[i][0]) {
             return allNodeCosts[i][1];
@@ -25815,7 +25819,8 @@ function eternalStepContents2() {
             centry[1] +
             "</a></h3>" +
             '<p class="cost">' +
-            CurrencyFormat(centry[4], GdefaultCurrency, 0, "", ",") +
+            //CurrencyFormat(centry[4], GdefaultCurrency, 0, "", ",") +
+            CurrencyFormat(getComputedCost(centry[0]), GdefaultCurrency, 0, "", ",") +
             "</p>" +
             '<div class="crit_cost_bottom">' +
             '<span class="pull-left est_values_btn">' +
@@ -30778,7 +30783,8 @@ function setManagementReports() {
     var actTotalAction = 0;
     var actDropped = 0;
 
-    var totStrategiesProject = 0;
+
+
 
 
     //var TotalStrategiesCnt = 0;
@@ -30794,6 +30800,13 @@ function setManagementReports() {
         var totalIdentifiedValuePerProject = 0;
         var totalActionsLatePerProject = 0;
         var totalActionsOnTimePerProject = 0;
+
+        var sscompletedPerProject = 0;
+        var ssBehindSchedulePerProject = 0;
+        var ssOnSchedulePerProject = 0;
+        var ssDropped = 0;
+
+
         var proj = manProjects[i];
         // console.log(proj);
         var proj_id = proj[0];
@@ -30847,6 +30860,9 @@ function setManagementReports() {
 
         totalStrategies += stratEnt[30].length;
 
+        var TotalSS = 0;
+        var totStrategiesProject = 0;
+
         for (var key in stratEnt[30]) {
             //
             totStrategiesProject++;
@@ -30896,24 +30912,32 @@ function setManagementReports() {
                 }
             }
             //SS H-chart
-            // if (stratEnt[30][key].sscomplete == 1) {
-            //     sscompletedPerProject += 1;
-            // }
-            // if (stratEnt[30][key].sscomplete == 0 && stratEnt[30][key].dropped == 0) {
-            //     if (stratEnt[30][key].targetDate < currentDate) {
-            //         ssBehindSchedulePerProject += 1;
-            //     }
-            //     if (singleSStargetDate > curdateTime || singleSStargetDate == null) {
-            //         ssOnSchedulePerProject += 1;
-            //     }
-            // }
+            if (stratEnt[30][key].sscomplete == 1) {
+                sscompletedPerProject += 1;
+            }
+            if (stratEnt[30][key].dropped == 1) {
+                ssDropped += 1;
+            }
+            if (stratEnt[30][key].sscomplete == 0 && stratEnt[30][key].dropped == 0) {
+                if (stratEnt[30][key].targetDate < currentDate) {
+                    ssBehindSchedulePerProject += 1;
+                }
+                if (stratEnt[30][key].targetDate > currentDate || stratEnt[30][key].targetDate == null) {
+                    ssOnSchedulePerProject += 1;
+                }
+            }
 
 
         }
 
-        // ProjectSSCompleted.push(Math.round((sscompletedPerProject / totStrategiesProject) * 100));
-        // ProjectSSBehindSchedule.push(Math.round((ssBehindSchedulePerProject / totStrategiesProject) * 100));
-        // ProjectSSOnSchedule.push(Math.round((ssOnSchedulePerProject / totStrategiesProject) * 100));
+        //TotalSS = totStrategiesProject - ssDropped;
+
+        TotalSS = sscompletedPerProject + ssBehindSchedulePerProject + ssOnSchedulePerProject;
+
+        // console.log(totStrategiesProject, sscompletedPerProject, ssBehindSchedulePerProject, ssOnSchedulePerProject);
+        ProjectSSCompleted.push(Math.round((sscompletedPerProject / TotalSS) * 100));
+        ProjectSSBehindSchedule.push(Math.round((ssBehindSchedulePerProject / TotalSS) * 100));
+        ProjectSSOnSchedule.push(Math.round((ssOnSchedulePerProject / TotalSS) * 100));
 
 
         for (var key in stratEnt[28]) {
@@ -31029,6 +31053,26 @@ function setManagementReports() {
             ganttChartData.push(ssActionEntry);
         }
     }
+
+    //Set array fro SS H-Chart
+    let projectImpStatusData = [{
+            name: "Completed",
+            data: ProjectSSCompleted,
+            index: 2
+        },
+        {
+            name: "On Schedule",
+            data: ProjectSSOnSchedule,
+            index: 1
+        },
+        {
+            name: "Behind Schedule",
+            data: ProjectSSBehindSchedule,
+            index: 0
+        }
+    ];
+
+    //console.log(projectImpStatusData);
 
     //Set array for H-chart
     let ActionStatusPerProject = [{
@@ -31287,6 +31331,44 @@ function setManagementReports() {
         "                </div>" +
         "            </div>" +
         "        </div>" +
+        //for Status of Strategy Statements Completed per Project starts
+        '        <div class="row">' +
+        '            <div class="col-lg-8 col-md-8 col-sm-8">' +
+        '                <div class="main_block">' +
+
+        "                    <section>" +
+        '                        <div class="row">' +
+        '                            <div class="col-lg-6 col-md-6 col-sm-6 head">' +
+        "                                Status of Strategy Statements completed per Project" +
+        "                            </div>" +
+        "                        </div>" +
+        '                        <div class="row">' +
+        '                            <div class="col-lg-12 col-md-12 col-sm-12">' +
+        '                                <div id="projectSS_progress_hbarchar_canvas" class= "projects_scroll cus_scroll" style="width: 99%; font-size: 12px;">' +
+        '                                    <table width="100%;"></table>' +
+        "                                </div>" +
+        "                            </div>" +
+        "                        </div>" +
+        "                    </section>" +
+
+        "              </div>" +
+        "            </div>" +
+        '            <div class="col-lg-4 col-md-4 col-sm-4">' +
+        '                <div class="main_block block3">' +
+        "                    <section>" +
+        '                        <div class="head">' +
+        "                            Strategy Statements status" +
+        "                        </div>" +
+        '                        <div class="row">' +
+        '                            <div class="col-lg-12 col-md-12 col-sm-12">' +
+        '                                <canvas id="ss_piechart2_canvas" style="width: auto; height: 170px;"></canvas>' +
+        "                            </div>" +
+        "                        </div>" +
+        "                    </section>" +
+        "                </div>" +
+        "            </div>" +
+        "        </div>" +
+        //for Status of Strategy Statements Completed per Project design ends
         '        <div class="row">' +
         '            <div class="col-lg-8 col-md-8 col-sm-8">' +
         '                <div class="main_block block2 gannt_block">' +
@@ -31401,6 +31483,7 @@ function setManagementReports() {
     body +=
         '<div class="projects_scroll cus_scroll">' +
         '<table class="table projects_table" id="projects_table">';
+
     //console.log(manAllProjectsData);
 
     for (var x = 0; x < manAllProjectsData.length; x++) {
@@ -31914,10 +31997,59 @@ function setManagementReports() {
             }
         }
     };
+
+    //for ss status small pic chart starts
+
+    var ssconfigPie2 = {
+        type: "pie",
+        plugins: [ChartDataLabels],
+        data: {
+            datasets: [{
+                data: [
+                    SSImplemented,
+                    SSonSchedule,
+                    SSbeondSchedule,
+                    numSelected - (SSImplemented + SSonSchedule + SSbeondSchedule)
+                ],
+                backgroundColor: [
+                    "rgba(44,120,115)",
+                    "rgba(82,222,151)",
+                    "rgba(253,94,83)",
+                    "rgba(255,186,90)"
+                ],
+                hoverBackgroundColor: [
+                    "rgba(44,120,115)",
+                    "rgba(82,222,151)",
+                    "rgba(253,94,83)",
+                    "rgba(255,186,90)"
+                ],
+                label: "Dataset 1"
+            }],
+            labels: ["Implemented", "On Schedule", "Behind Schedule", "Unselected"]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: true,
+            legend: {
+                display: true,
+                position: "right",
+                labels: {
+                    fontFamily: "'Nunito', sans-serif",
+                    fontStyle: "bold",
+                    fontColor: "#333",
+                    usePointStyle: true
+                }
+            }
+        }
+    };
+    //for ss status small pic chart ends
+
+
     var ctx1 = document
         .getElementById("strategies_piechart1_canvas")
         .getContext("2d");
     window.myPie = new Chart(ctx1, configPie1);
+
     var ctx11 = document
         .getElementById("strategies_piechart2_canvas_all")
         .getContext("2d");
@@ -31927,6 +32059,12 @@ function setManagementReports() {
         .getElementById("actionitem_piechart2_canvas")
         .getContext("2d");
     window.myHorizontalBar = new Chart(ctx3, configPie2);
+
+    //for ss staus small pic chart starts
+    var ctx4 = document
+        .getElementById("ss_piechart2_canvas")
+        .getContext("2d");
+    window.myHorizontalBar = new Chart(ctx4, ssconfigPie2);
 
     //H - chart 
     var GraphSize = 0;
@@ -32009,7 +32147,89 @@ function setManagementReports() {
             },
             series: ActionStatusPerProject
         };
+
         Highcharts.chart("action_comp_hbarchar_canvas", action_item_status_perproject);
+
+        //SS H-CHART
+        let project_progress_hbarchar_canvas = {
+
+            chart: {
+                type: "bar",
+                // height: 900,
+                height: (projectIdName.length) * GraphSize
+            },
+            title: {
+                text: ""
+            },
+
+            colors: ["#2C7873", "#52DE97", "#FD5E53"],
+            xAxis: [{
+                //max: 10,
+                categories: projectIdName,
+                labels: {
+                    align: 'left',
+                    reserveSpace: true,
+                    style: {
+                        fontSize: '14px',
+                    },
+                },
+                title: {
+                    text: "Project Name"
+                },
+                scrollbar: {
+                    enabled: true,
+                    showFull: false
+                }
+
+            }],
+            tooltip: {
+
+
+                pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
+            },
+            yAxis: [{
+                    labels: {
+                        //  step: 5,
+                    },
+                    min: 0,
+                    max: 100,
+                    tickInterval: 10,
+                    position: 'top',
+                    title: {
+                        text: "Action Items Progress(%)"
+                    }
+                },
+                {
+                    min: 0,
+                    max: 100,
+                    tickInterval: 10,
+                    //overflow: 'allow',
+                    opposite: true,
+                    title: {
+                        text: "Action Items Progress(%)"
+                    }
+                }
+            ],
+            credits: {
+                enabled: false
+            },
+            legend: {
+                layout: "vertical",
+                align: "right",
+                verticalAlign: "middle",
+                reversed: true
+            },
+
+            plotOptions: {
+                series: {
+                    stacking: "normal"
+                }
+            },
+            series: projectImpStatusData
+        };
+        //  console.log(projectName);
+        Highcharts.chart("projectSS_progress_hbarchar_canvas", project_progress_hbarchar_canvas);
+
 
     });
     // END - H -chart 

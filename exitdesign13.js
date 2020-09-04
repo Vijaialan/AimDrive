@@ -24913,6 +24913,7 @@ function isLeaf(node) {
 var allNodeCosts = [];
 
 function computeBottomUpCosts(node) {
+    //console.log(node);
     var ce = "";
     if (node == null) return;
     if (node[7] != null) ce = node[7];
@@ -24941,9 +24942,6 @@ function computeBottomUpCosts(node) {
 
 
 function getComputedCost(ce) {
-
-    console.log(allNodeCosts);
-
     for (var i = 0; i < allNodeCosts.length; i++) {
         if (ce == allNodeCosts[i][0]) {
             return allNodeCosts[i][1];
@@ -25698,6 +25696,189 @@ function eternalStepContents2() {
         "</div>" +
         '<div class="et_primary_cost">' +
         '<table class="row_saved_data  et_pricost_table">';
+
+    //
+    var total_cost = 0,
+        total_critical_cost = 0,
+        numCCEs = 0;
+    if (Gcurrentdata[Gprimeindex] == null || Gcurrentdata[Gprimeindex][0] == null)
+        return;
+    costTree = [
+        [
+            Gcurrentdata[Gprimeindex][0],
+            Gcurrentdata[Gprimeindex][1],
+            [],
+            "",
+            "",
+            "",
+            "NO", -1,
+            Gcurrentdata[Gprimeindex][3],
+            null,
+            0
+        ], // in ED design, only the first will be used...
+        [
+            "Acquisition Cost",
+            Gcurrentdata[Gprimeindex][5],
+            [],
+            "",
+            "",
+            "",
+            "NO", -1,
+            Gcurrentdata[Gprimeindex][3],
+            null,
+            1
+        ],
+        [
+            "Usage Cost",
+            Gcurrentdata[Gprimeindex][6],
+            [],
+            "",
+            "",
+            "",
+            "NO", -1,
+            Gcurrentdata[Gprimeindex][3],
+            null,
+            2
+        ],
+        [
+            "End of Life Cost",
+            Gcurrentdata[Gprimeindex][7],
+            [],
+            "",
+            "",
+            "",
+            "NO", -1,
+            Gcurrentdata[Gprimeindex][3],
+            null,
+            3
+        ]
+    ];
+
+    // alert("idContents 6");
+
+    // make the ce the last value (we need this to do saves in incremental fashion)
+    var parents = [
+        [
+            costTree[0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0]
+        ],
+        [
+            costTree[1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1]
+        ],
+        [
+            costTree[2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2]
+        ],
+        [
+            costTree[3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3]
+        ]
+    ];
+    var currentlevel = 0;
+    var currentcost = 0; // indicates the tree number
+    if (Gcurrentdata[Gelementsindex] != null) {
+        // this will be an array: 1st entry has cost element details;
+        // 2nd entry has a list of critical cost elements -- determined by the user
+        if (Gcurrentdata[Gelementsindex][0] != null) {
+            for (var i = 0; i < Gcurrentdata[Gelementsindex][0].length; i++) {
+                var element = Gcurrentdata[Gelementsindex][0][i];
+                var ce = element[0];
+                var cename = element[1];
+                var level = element[2];
+                var val = element[4];
+                if (typeof val == "string") val = parseFloat(val);
+                var imp = element[5];
+                var fut = element[6];
+                var com = element[7];
+                var ordering = element[3];
+                var costtype = element[10];
+                if (typeof costtype == "string") costtype = parseInt(costtype); // should be 0, 1, 2, or 3...
+                var selected = "NO";
+
+                // see if the cost element is listed as critical going forward
+                if (Gcurrentdata[Gelementsindex][1] != null) {
+                    for (var k = 0; k < Gcurrentdata[Gelementsindex][1].length; k++) {
+                        if (
+                            (ce + "").valueOf() ==
+                            (Gcurrentdata[Gelementsindex][1][k] + "").valueOf()
+                        )
+                            selected = "YES";
+                    }
+                }
+                // last "" ==> is the units of the value/future
+                // cost element key: fcf == 4, impactable == 3, selected == 6, comment == 5, ordering == 8
+                var newnode = [
+                    cename,
+                    val, [],
+                    imp,
+                    fut,
+                    com,
+                    selected,
+                    ce + "",
+                    ordering,
+                    null,
+                    costtype
+                ];
+
+                if (level == currentlevel + 1) {
+                    // make it a child of the prior level top of the stack
+                    parents[costtype][currentlevel][2].push(newnode);
+                    newnode[9] = parents[costtype][currentlevel];
+                } else if (level == currentlevel) {
+                    // sibling
+                    parents[costtype][currentlevel - 1][2].push(newnode);
+                    newnode[9] = parents[costtype][currentlevel - 1];
+                } // we are going back to an earlier node
+                else {
+                    parents[costtype][level - 1][2].push(newnode);
+                    newnode[9] = parents[costtype][level - 1];
+                }
+                parents[costtype][level] = newnode;
+                currentlevel = level;
+            }
+        }
+    }
+
+    allNodeCosts = []; // reset the whole cost structure
+    computeBottomUpCosts(costTree[0]);
+    //
     var no_data = false;
     if (Gcurrentdata[Gelementsindex][0] != null) {
         for (var i = 0; i < Gcurrentdata[Gelementsindex][0].length; i++) {
@@ -26144,12 +26325,193 @@ function mdStepContents2() {
 
     }
 
-    //console.log(Gcurrentdata);
+    //
+    var total_cost = 0,
+        total_critical_cost = 0,
+        numCCEs = 0;
+    if (Gcurrentdata[Gprimeindex] == null || Gcurrentdata[Gprimeindex][0] == null)
+        return;
+    costTree = [
+        [
+            Gcurrentdata[Gprimeindex][0],
+            Gcurrentdata[Gprimeindex][1],
+            [],
+            "",
+            "",
+            "",
+            "NO", -1,
+            Gcurrentdata[Gprimeindex][3],
+            null,
+            0
+        ], // in ED design, only the first will be used...
+        [
+            "Acquisition Cost",
+            Gcurrentdata[Gprimeindex][5],
+            [],
+            "",
+            "",
+            "",
+            "NO", -1,
+            Gcurrentdata[Gprimeindex][3],
+            null,
+            1
+        ],
+        [
+            "Usage Cost",
+            Gcurrentdata[Gprimeindex][6],
+            [],
+            "",
+            "",
+            "",
+            "NO", -1,
+            Gcurrentdata[Gprimeindex][3],
+            null,
+            2
+        ],
+        [
+            "End of Life Cost",
+            Gcurrentdata[Gprimeindex][7],
+            [],
+            "",
+            "",
+            "",
+            "NO", -1,
+            Gcurrentdata[Gprimeindex][3],
+            null,
+            3
+        ]
+    ];
 
+    // alert("idContents 6");
+
+    // make the ce the last value (we need this to do saves in incremental fashion)
+    var parents = [
+        [
+            costTree[0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0],
+            ["", "", [], "", "", "", "NO", "", "", null, 0]
+        ],
+        [
+            costTree[1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1],
+            ["", "", [], "", "", "", "NO", "", "", null, 1]
+        ],
+        [
+            costTree[2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2],
+            ["", "", [], "", "", "", "NO", "", "", null, 2]
+        ],
+        [
+            costTree[3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3],
+            ["", "", [], "", "", "", "NO", "", "", null, 3]
+        ]
+    ];
+    var currentlevel = 0;
+    var currentcost = 0; // indicates the tree number
+    if (Gcurrentdata[Gelementsindex] != null) {
+        // this will be an array: 1st entry has cost element details;
+        // 2nd entry has a list of critical cost elements -- determined by the user
+        if (Gcurrentdata[Gelementsindex][0] != null) {
+            for (var i = 0; i < Gcurrentdata[Gelementsindex][0].length; i++) {
+                var element = Gcurrentdata[Gelementsindex][0][i];
+                var ce = element[0];
+                var cename = element[1];
+                var level = element[2];
+                var val = element[4];
+                if (typeof val == "string") val = parseFloat(val);
+                var imp = element[5];
+                var fut = element[6];
+                var com = element[7];
+                var ordering = element[3];
+                var costtype = element[10];
+                if (typeof costtype == "string") costtype = parseInt(costtype); // should be 0, 1, 2, or 3...
+                var selected = "NO";
+
+                // see if the cost element is listed as critical going forward
+                if (Gcurrentdata[Gelementsindex][1] != null) {
+                    for (var k = 0; k < Gcurrentdata[Gelementsindex][1].length; k++) {
+                        if (
+                            (ce + "").valueOf() ==
+                            (Gcurrentdata[Gelementsindex][1][k] + "").valueOf()
+                        )
+                            selected = "YES";
+                    }
+                }
+                // last "" ==> is the units of the value/future
+                // cost element key: fcf == 4, impactable == 3, selected == 6, comment == 5, ordering == 8
+                var newnode = [
+                    cename,
+                    val, [],
+                    imp,
+                    fut,
+                    com,
+                    selected,
+                    ce + "",
+                    ordering,
+                    null,
+                    costtype
+                ];
+
+                if (level == currentlevel + 1) {
+                    // make it a child of the prior level top of the stack
+                    parents[costtype][currentlevel][2].push(newnode);
+                    newnode[9] = parents[costtype][currentlevel];
+                } else if (level == currentlevel) {
+                    // sibling
+                    parents[costtype][currentlevel - 1][2].push(newnode);
+                    newnode[9] = parents[costtype][currentlevel - 1];
+                } // we are going back to an earlier node
+                else {
+                    parents[costtype][level - 1][2].push(newnode);
+                    newnode[9] = parents[costtype][level - 1];
+                }
+                parents[costtype][level] = newnode;
+                currentlevel = level;
+            }
+        }
+    }
+
+
+
+
+    allNodeCosts = []; // reset the whole cost structure
+    computeBottomUpCosts(costTree[0]);
+    //
     for (var i = 0; i < Gcurrentdata[Gcdindex].length; i++) {
         // alert("md ce loop: " + i);
-
-
         var cdelement = Gcurrentdata[Gcdindex][i];
         //console.log(cdelement);
         var cdCEID = cdelement[0];

@@ -10023,8 +10023,10 @@ function addPersonToProject() {
         type: "POST",
         success: updateEDPersonsAddPart,
         error: personEDOpFailed
-            //,datatype: "json"
+
+        //,datatype: "json"
     });
+    //console.log(updateEDPersonsAddPart);
 }
 
 function saveEDPerson() {
@@ -31702,7 +31704,7 @@ function setManagementReports() {
         "        </div>" +
         //for Status of Strategy Statements Completed per Project starts
         '        <div class="row">' +
-        '            <div class="col-lg-8 col-md-8 col-sm-8">' +
+        '            <div class="col-lg-12 col-md-12 col-sm-12">' +
         '                <div class="main_block">' +
 
         "                    <section>" +
@@ -31722,20 +31724,7 @@ function setManagementReports() {
 
         "              </div>" +
         "            </div>" +
-        '            <div class="col-lg-4 col-md-4 col-sm-4">' +
-        '                <div class="main_block block3">' +
-        "                    <section>" +
-        '                        <div class="head">' +
-        "                            Strategy Statements status" +
-        "                        </div>" +
-        '                        <div class="row">' +
-        '                            <div class="col-lg-12 col-md-12 col-sm-12">' +
-        '                                <canvas id="ss_piechart2_canvas" style="width: auto; height: 170px;"></canvas>' +
-        "                            </div>" +
-        "                        </div>" +
-        "                    </section>" +
-        "                </div>" +
-        "            </div>" +
+
         "        </div>" +
         //for Status of Strategy Statements Completed per Project design ends
         '        <div class="row">' +
@@ -31761,7 +31750,7 @@ function setManagementReports() {
         '                <div class="main_block block3">' +
         "                    <section>" +
         '                        <div class="head">' +
-        "                            Action item status" +
+        "                            Status of Action items" +
         "                        </div>" +
         '                        <div class="row">' +
         '                            <div class="col-lg-12 col-md-12 col-sm-12">' +
@@ -32343,9 +32332,16 @@ function setManagementReports() {
             datasets: [{
                 data: data,
                 backgroundColor: [
-                    "rgba(84, 178, 5, 1)",
-                    "rgba(221, 221, 47, 1)",
-                    "rgba(235, 86, 42, 1)"
+                    "rgba(44,120,115)",
+                    "rgba(82,222,151)",
+                    "rgba(253,94,83)",
+                    "rgba(255,186,90)"
+                ],
+                hoverBackgroundColor: [
+                    "rgba(44,120,115)",
+                    "rgba(82,222,151)",
+                    "rgba(253,94,83)",
+                    "rgba(255,186,90)"
                 ],
                 label: "Dataset 1"
             }],
@@ -32430,10 +32426,10 @@ function setManagementReports() {
     window.myHorizontalBar = new Chart(ctx3, configPie2);
 
     //for ss staus small pic chart starts
-    var ctx4 = document
-        .getElementById("ss_piechart2_canvas")
-        .getContext("2d");
-    window.myHorizontalBar = new Chart(ctx4, ssconfigPie2);
+    // var ctx4 = document
+    //     .getElementById("ss_piechart2_canvas")
+    //     .getContext("2d");
+    // window.myHorizontalBar = new Chart(ctx4, ssconfigPie2);
 
     //H - chart 
     var GraphSize = 0;
@@ -32565,7 +32561,7 @@ function setManagementReports() {
                     tickInterval: 10,
                     position: 'top',
                     title: {
-                        text: "Action Items Progress(%)"
+                        text: "Strategy Statements Progress (%)"
                     }
                 },
                 {
@@ -32575,7 +32571,7 @@ function setManagementReports() {
                     //overflow: 'allow',
                     opposite: true,
                     title: {
-                        text: "Action Items Progress(%)"
+                        text: "Strategy Statements Progress (%)"
                     }
                 }
             ],

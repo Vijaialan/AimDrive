@@ -6290,7 +6290,6 @@ function adescid(ss) {
 }
 
 
-
 function addSSAction(ss, len) {
     var desc, who, when;
     desc = "<< new action " + len + " >>";
@@ -32638,3 +32637,5 @@ function charcountupdate(str) {
     document.getElementById("charcount").innerHTML =
         "500" - lng + " " + " " + "characters left";
 }
+
+//08092020

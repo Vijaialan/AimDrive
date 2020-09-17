@@ -19,7 +19,14 @@ $to = 'sharathreddy@stepnstones.in';
     // $headers .= 'Bcc: welcome2@example.com' . "\r\n"; 
 
     //Send email 
-mail($to, $subject, $htmlContent, $headers);
+if(mail($to, $subject, $htmlContent, $headers))
+{
+    echo 'Success';
+}
+else{
+    echo 'Fail';
+}
+
     
 
 

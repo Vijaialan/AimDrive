@@ -117,9 +117,10 @@ $email_data = array(
 require 'send_email.php';
 
 $EmailPush = new MailFunction(); //should add in all where we need SMS part
-$result = $EmailPush->SendMail($uemail, $ulast, $ufirst, $telephone, $employer, $job, $admin_role);
-// $txt = "user id date";
-// $myfile = file_put_contents('logs.txt', $uemail.PHP_EOL , FILE_APPEND | LOCK_EX);
+$result = $EmailPush->SendMail($uemail);
+
+
+$myfile = file_put_contents('logs.txt', $uemail.PHP_EOL , FILE_APPEND | LOCK_EX);
 //print_r($result);
 
 $pnid=$personRow['pnid'];

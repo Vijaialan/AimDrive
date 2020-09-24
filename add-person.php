@@ -1,6 +1,6 @@
 <?php
 // uemail upwd ufirst ulast telephone job employer
-// include 'dbUtils.php';
+//include 'dbUtils.php';
 require 'CONNECT_TO_DB.php';
 //$row is the row of person for this user
 //$admin is "admin" if the person works for CMS, otherwise ""
@@ -110,18 +110,17 @@ $email_data = array(
   'to_name' => $ufirst.' '.$ulast,
   'message' => 'Hello '.$ufirst.' '.$ulast.', we have generated a new password to login into aimdrive portal. Your username is your email id and password is temp111',
 );
-// $email_response = sendEmail($email_data);
-// var_dump($email_data);
-}
+
+include 'send_email.php';
+$email_response = sendEmailNew($email_data);
+// var_dump($email_data);}
 // var_dump($companyRow);
-require 'send_email.php';
-
-$EmailPush = new MailFunction(); //should add in all where we need SMS part
-$result = $EmailPush->SendMail($uemail);
 
 
-$myfile = file_put_contents('logs.txt', $uemail.PHP_EOL , FILE_APPEND | LOCK_EX);
-//print_r($result);
+// require 'send_email.php';
+// $EmailPush = new MailFunction(); //should add in all where we need SMS part
+// $result = $EmailPush->SendMail($uemail);
+
 
 $pnid=$personRow['pnid'];
 echo json_encode(array("",$pnid));

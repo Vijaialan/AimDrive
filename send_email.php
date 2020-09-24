@@ -1,4 +1,3 @@
-
 <?php
 
 //for mail function
@@ -26,11 +25,34 @@ class MailFunction
     // $headers .= 'Bcc: welcome2@example.com' . "\r\n"; 
 
     //Send email 
-    mail($to, $subject, $htmlContent, $headers);
+    ///mail($to, $subject, $htmlContent, $headers);
 
-    //$myfile = file_put_contents('logs.txt', $ufirst.PHP_EOL , FILE_APPEND | LOCK_EX);
+    $myfile = file_put_contents('logs.txt', $from.PHP_EOL , FILE_APPEND | LOCK_EX);
     //return $mgs;
 
   }
 }
+
+/* Send email */
+function sendEmailNew($email_data) {
+  require("sendgrid/sendgrid-php.php");
+  $email = new \SendGrid\Mail\Mail(); 
+  $email->setFrom("vijay@stepnstones.in", "Stepnstones");
+  $email->setSubject($email_data['subject']);
+  $email->addTo($email_data['to'], $email_data['to_name']);
+  $email->addContent("text/plain", $email_data['message']);
+  $email->addContent(
+      "text/html", $email_data['message']
+  );
+  //$sendgrid = new \SendGrid("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"); //Sagar
+  //$sendgrid = new \SendGrid("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"); //Sheetal
+    $sendgrid = new \SendGrid("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"); //Vijay
+  try {
+      $response = $sendgrid->send($email);
+      return $response;
+  } catch (Exception $e) {
+      return $e->getMessage();
+  }
+}
+
 ?>

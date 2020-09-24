@@ -1,6 +1,7 @@
 <?php
+
 // uemail upwd ufirst ulast telephone job employer
-//include 'dbUtils.php';
+include 'dbUtils.php';
 require 'CONNECT_TO_DB.php';
 //$row is the row of person for this user
 //$admin is "admin" if the person works for CMS, otherwise ""
@@ -22,6 +23,7 @@ require 'CONNECT_TO_DB.php';
 //       return $e->getMessage();
 //   }
 // }
+
 if($admin!="admin"){
   die('["ERROR", "not permitted"]');
 }
@@ -102,6 +104,7 @@ $result=obtain_query_result($q);
 if(!$personRow=mysqli_fetch_assoc($result)) {
   die('["ERROR", "insert did not return a new row!"]');
 }
+
 //send email
 // var_dump($personRow);
 $email_data = array(
@@ -113,15 +116,16 @@ $email_data = array(
 
 include 'send_email.php';
 $email_response = sendEmailNew($email_data);
-// var_dump($email_data);}
+// var_dump($email_data);
 // var_dump($companyRow);
 
 
 // require 'send_email.php';
 // $EmailPush = new MailFunction(); //should add in all where we need SMS part
 // $result = $EmailPush->SendMail($uemail);
-
+}
 
 $pnid=$personRow['pnid'];
 echo json_encode(array("",$pnid));
+
 ?>

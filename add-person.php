@@ -116,7 +116,7 @@ $email_data = array(
 
 include 'send_email.php';
 $email_response = sendEmailNew($email_data);
-var_dump($email_data);
+//var_dump($email_data);
 // var_dump($companyRow);
 
 

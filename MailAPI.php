@@ -10,7 +10,7 @@
 
 $email = new \SendGrid\Mail\Mail(); 
 $email->setFrom("vijay@stepnstones.in", "Example User");
-$email->setSubject("Sending with SendGrid is Fun");
+$email->setSubject("Test Mail ");
 $email->addTo("vijay@stepnstones.in", "Example User");
 $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
 $email->addContent(

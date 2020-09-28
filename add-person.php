@@ -45,6 +45,15 @@ if(!$companyRow = mysqli_fetch_assoc($result)) {
   die('["ERROR", "employer does not exist"]');
 }
 $company_name = $companyRow['co_name'];
+//NEW
+$co_supplier = $companyRow['co_supplier'];
+$project_details="select * from project where coid=$employer";
+$pro_result=obtain_query_result($project_details);
+$pro_details = mysqli_fetch_assoc($pro_result);
+$pj_name = $pro_details['pj_name'];
+$pj_desc = $pro_details['pj_desc'];
+$pj_primarycost = $pro_details['pj_primarycost'];
+$pj_startdate =  $pro_details['pj_startdate'];
 
 if(array_key_exists ("uemail",$_REQUEST)){
   $uemail=slashquote($_REQUEST["uemail"]);
@@ -107,11 +116,13 @@ if(!$personRow=mysqli_fetch_assoc($result)) {
 
 //send email
 // var_dump($personRow);
+include 'mail_content.php';
+$body_message = CreateHtml($pj_name,$pj_desc,$co_supplier,$pj_primarycost,$pj_startdate);
 $email_data = array(
   'to' => $uemail,
-  'subject' => 'You have been added as '.$role_name.' to '.$company_name.' projects.',
+  'subject' => 'AIM&DRIVE: Stakeholder added for '.$pj_name.'.',
   'to_name' => $ufirst.' '.$ulast,
-  'message' => 'Hello '.$ufirst.' '.$ulast.', we have generated a new password to login into aimdrive portal. Your username is your email id and password is temp111',
+  'message' => $body_message,
 );
 
 include 'send_email.php';

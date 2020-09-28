@@ -47,7 +47,7 @@ function sendEmailNew($email_data) {
   //$sendgrid = new \SendGrid("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"); //
   //$sendgrid = new \SendGrid("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"); //Sheetal
   //$sendgrid = new \SendGrid("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"); //Vijay
-  $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+  echo $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
 
   try {
       $response = $sendgrid->send($email);

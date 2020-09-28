@@ -1,5 +1,7 @@
 <?php
 
+echo $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+
 //for mail function
 class MailFunction
 {

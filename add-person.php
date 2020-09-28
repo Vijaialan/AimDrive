@@ -47,7 +47,7 @@ if(!$companyRow = mysqli_fetch_assoc($result)) {
 $company_name = $companyRow['co_name'];
 //NEW
 $co_supplier = $companyRow['co_supplier'];
-$project_details="select * from project where coid=$employer";
+$project_details="select * from project where coid=$employer limit 1";
 $pro_result=obtain_query_result($project_details);
 $pro_details = mysqli_fetch_assoc($pro_result);
 $pj_name = $pro_details['pj_name'];

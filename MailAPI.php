@@ -16,8 +16,16 @@ $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
 $email->addContent(
     "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
 );
-$sendgrid = new \SendGrid("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"); //Vijay
-//$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+
+// echo "export SENDGRID_API_KEY='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'" > sendgrid.env
+// echo "sendgrid.env" >> .gitignore
+// source ./sendgrid.env
+
+
+
+//$sendgrid = new \SendGrid("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"); //Vijay
+echo $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+
 try {
     $response = $sendgrid->send($email);
     print $response->statusCode() . "\n";

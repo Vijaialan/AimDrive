@@ -10,13 +10,14 @@
 
 $email = new \SendGrid\Mail\Mail(); 
 $email->setFrom("vijay@stepnstones.in", "Example User");
-$email->setSubject("Test Mail ");
+$email->setSubject("Test New Mail AIM");
 $email->addTo("vijay@stepnstones.in", "Example User");
 $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
 $email->addContent(
     "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
 );
-$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+$sendgrid = new \SendGrid("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"); //Vijay
+//$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
 try {
     $response = $sendgrid->send($email);
     print $response->statusCode() . "\n";

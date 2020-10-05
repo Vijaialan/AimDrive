@@ -21,14 +21,16 @@ $email->addContent(
 // echo "sendgrid.env" >> .gitignore
 // source ./sendgrid.env
 
-echo $SENDGRID_API_KEY;
+//echo $SENDGRID_API_KEY;
 
 //$sendgrid = new \SendGrid("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"); //Vijay
 
 //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
 //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
 
-$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+//$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+
+$sendgrid = $SENDGRID_API_KEY;
 
 try {
     $response = $sendgrid->send($email);

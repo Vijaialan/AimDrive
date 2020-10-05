@@ -21,7 +21,7 @@ $email->addContent(
 // echo "sendgrid.env" >> .gitignore
 // source ./sendgrid.env
 
-
+echo $SENDGRID_API_KEY;
 
 //$sendgrid = new \SendGrid("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"); //Vijay
 

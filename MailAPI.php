@@ -10,7 +10,7 @@
 
 $email = new \SendGrid\Mail\Mail(); 
 $email->setFrom("vijay@stepnstones.in", "Example User");
-$email->setSubject("Test New Mail AIM");
+$email->setSubject("Test New Mail AIM KEY");
 $email->addTo("vijay@stepnstones.in", "Example User");
 $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
 $email->addContent(
@@ -24,7 +24,11 @@ $email->addContent(
 
 
 //$sendgrid = new \SendGrid("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"); //Vijay
-echo $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+
+//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
+//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
+
+$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
 
 try {
     $response = $sendgrid->send($email);

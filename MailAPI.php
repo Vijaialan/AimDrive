@@ -30,7 +30,7 @@ $email->addContent(
 
 //$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
 
-$sendgrid = $SENDGRID_API_KEY;
+$sendgrid = new \SendGrid($SENDGRID_API_KEY);
 
 try {
     $response = $sendgrid->send($email);

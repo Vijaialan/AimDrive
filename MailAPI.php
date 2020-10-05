@@ -23,14 +23,10 @@ $email->addContent(
 
 //echo $SENDGRID_API_KEY;
 
-//$sendgrid = new \SendGrid("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"); //Vijay
-
-//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
-//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
+$sendgrid = new \SendGrid("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"); //Vijay
 
 //$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
-
-echo $sendgrid = new \SendGrid("'".$SENDGRID_API_KEY."'");
+//$sendgrid = new \SendGrid("'".$SENDGRID_API_KEY."'");
 
 try {
     $response = $sendgrid->send($email);

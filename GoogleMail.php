@@ -7,6 +7,8 @@ $titles = 'From: admin@anklesaria.com' . "\r\n" .
     'Reply-To: admin@anklesaria.com' . "\r\n" .
     'X-Mailer: PHP/' .phpversion();
 mail($to, $title, $content, $titles);
+
+
 ?>
-?>
+
 

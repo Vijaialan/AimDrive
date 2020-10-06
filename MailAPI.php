@@ -1,7 +1,11 @@
 <?php
 //require 'vendor/autoload.php'; // If you're using Composer (recommended)
 // Comment out the above line if not using Composer
- require("sendgrid/sendgrid-php.php");
+
+require 'vendor/autoload.php';
+require "sendgrid/sendgrid-php.php";
+
+ //require_once 'MailApiKey.php';
 // If not using Composer, uncomment the above line and
 // download sendgrid-php.zip from the latest release here,
 // replacing <PATH TO> with the path to the sendgrid-php.php file,
@@ -17,16 +21,9 @@ $email->addContent(
     "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
 );
 
-// echo "export SENDGRID_API_KEY='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'" > sendgrid.env
-// echo "sendgrid.env" >> .gitignore
-// source ./sendgrid.env
-
-//echo $SENDGRID_API_KEY;
-
-$sendgrid = new \SendGrid("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"); //Vijay
-
-//$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
 //$sendgrid = new \SendGrid("'".$SENDGRID_API_KEY."'");
+//$sendgrid = new \SendGrid("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"); //Vijay
+$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
 
 try {
     $response = $sendgrid->send($email);

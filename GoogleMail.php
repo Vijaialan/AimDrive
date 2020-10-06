@@ -14,10 +14,10 @@ mail($to, $title, $content, $titles);
 
 
 <?php
-    ini_set( 'display_errors', 1 );
-    error_reporting( E_ALL );
+    //ini_set( 'display_errors', 1 );
+    //error_reporting( E_ALL );
     $from = "vijay@stepnstones.in";
-    $to = "vijay@stepnstones.in";
+    $to = "vijaialan07@gmail.com";
     $subject = "PHP Mail Test script";
     $message = "This is a test to check the PHP Mail functionality";
     $headers = "From:" . $from;

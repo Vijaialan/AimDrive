@@ -23,3 +23,6 @@ mail($to, $title, $content, $titles);
     $headers = "From:" . $from;
 $headers .= "Reply-To: $to";
     var_dump(mail($to,$subject,$message,$headers));
+
+    ?>
+    

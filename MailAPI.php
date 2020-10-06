@@ -12,6 +12,15 @@ require "sendgrid/sendgrid-php.php";
 // which is included in the download:
 // https://github.com/sendgrid/sendgrid-php/releases
 
+
+require_once 'dbconfig.php';
+
+require_once '/var/secure/MailApiKey.php';
+
+echo $Sendgrid;
+
+
+
 $email = new \SendGrid\Mail\Mail(); 
 $email->setFrom("vijay@stepnstones.in", "Example User");
 $email->setSubject("Test New Mail AIM KEY");
@@ -23,7 +32,7 @@ $email->addContent(
 
 //$sendgrid = new \SendGrid("'".$SENDGRID_API_KEY."'");
 //$sendgrid = new \SendGrid("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"); //Vijay
-$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+$sendgrid = new \SendGrid($Sendgrid);
 
 try {
     $response = $sendgrid->send($email);

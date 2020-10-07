@@ -16,11 +16,10 @@ require_once '/var/secure/MailApiKey.php';
 
 $email = new \SendGrid\Mail\Mail(); 
 $email->setFrom("vijay@stepnstones.in", "Example User");
-$email->setSubject("Test New Mail AIM KEY");
+$email->setSubject("Test New Mail Action");
 $email->addTo("vijay@stepnstones.in", "Example User");
 $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
-$email->addContent(
-    "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
+$email->addContent("text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
 );
 
 $sendgrid = new \SendGrid($Sendgrid);

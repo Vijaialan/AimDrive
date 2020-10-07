@@ -39,26 +39,26 @@ if($_POST['mailAction'] == 'actionOwner')
   $email_data = array(
     'to' => $_POST['to'],
     'subject' => $_POST['subject'],
-    'to_name' => $_POST['to_name'],
     'message' => $_POST['message'],
   );
-  echo $email_response = sendEmailNew($email_data);
+  print_r($email_data);
+  $email_response = sendEmailNew($email_data);  
 }
 
 /* Send email */
 function sendEmailNew($email_data) {
 
-  require("sendgrid/sendgrid-php.php");
-  require_once('/var/secure/MailApiKey.php');
-
+  require "sendgrid/sendgrid-php.php";
+  require_once '/var/secure/MailApiKey.php';
 
   $email = new \SendGrid\Mail\Mail(); 
   $email->setFrom("admin@anklesaria.com", "Aim&Drive");
   $email->setSubject($email_data['subject']);
-  $email->addTo($email_data['to'], $email_data['to_name']);
+  $email->addTo($email_data['to'], "Admin");
   //$email->addContent("text/plain", $email_data['message']);
   $email->addContent("text/html", $email_data['message']);
 
+  
   //$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
 
   $sendgrid = new \SendGrid($sendgrid);

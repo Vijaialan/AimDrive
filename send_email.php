@@ -41,8 +41,9 @@ if($_POST['mailAction'] == 'actionOwner')
     'subject' => $_POST['subject'],
     'message' => $_POST['message'],
   );
-  print_r($email_data);
-  $email_response = sendEmailNew($email_data);  
+  //print_r($email_data);
+  $email_response = sendEmailNew($email_data); 
+  var_dump($email_response); 
 }
 
 /* Send email */

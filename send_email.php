@@ -53,16 +53,15 @@ function sendEmailNew($email_data) {
   require_once '/var/secure/MailApiKey.php';
 
   $email = new \SendGrid\Mail\Mail(); 
-  $email->setFrom("admin@anklesaria.com", "Aim&Drive");
+  $email->setFrom("vijay@stepnstones.in", "AimDrive");
   $email->setSubject($email_data['subject']);
   $email->addTo($email_data['to'], "Admin");
   //$email->addContent("text/plain", $email_data['message']);
   $email->addContent("text/html", $email_data['message']);
-
   
   //$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
 
-  $sendgrid = new \SendGrid($sendgrid);
+  $sendgrid = new \SendGrid($Sendgrid);
   try {
       $response = $sendgrid->send($email);
       return $response;

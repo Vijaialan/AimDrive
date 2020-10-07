@@ -10638,6 +10638,21 @@ function getFirstLastFromId(id) {
     return ["NA", "NA", "NA"];
 }
 
+function getEmailFromId(id) {
+    //console.log(id);
+    for (var i = 0; i < Gpersons[1].length; i++) {
+        if (Gpersons[1][i][0] == id) {
+            return [
+                // Gpersons[1][i][3] === undefined ? "" : Gpersons[1][i][3].trim(),
+                // Gpersons[1][i][4] === undefined ? "" : Gpersons[1][i][4].trim(),
+                // Gpersons[1][i][3][0] + Gpersons[1][i][4][0]
+                Gpersons[1][i][1]
+            ];
+        }
+    }
+    return ["NA"];
+}
+
 function getPersonEntryFromId(id) {
     for (var i = 0; i < Gpersons[1].length; i++) {
         if (Gpersons[1][i][0] == id) {
@@ -21534,6 +21549,22 @@ function saveEDSSAction() {
         deadline: dd,
         actionId: editingAction
     };
+
+    var email = getEmailFromId(id);
+    $.ajax({
+        url: "send_email.php",
+        type: "POST",
+        data: {
+            mailAction: 'actionOwner',
+            to: email[0],
+            to_name: getFirstLastFromId(id),
+            subject: 'AIM&DRIVE: Action Item Owners assigned for',
+            message: 'Action Items assigned to you for Strategy Statement'
+        },
+        success: function(msg) {
+            console.log(msg);
+        }
+    });
 
     storeSSPageState();
     showTimedMessage("gmsg", "Saving action plan...", 0, false);
@@ -32638,4 +32669,5 @@ function charcountupdate(str) {
         "500" - lng + " " + " " + "characters left";
 }
 
+//08092020
 //08092020

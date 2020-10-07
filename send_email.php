@@ -11,7 +11,7 @@ class MailFunction
     $to = 'sharathreddy@stepnstones.in';
     //$to = 'conroy.fernandes@anklesaria.com';
     $from = 'sharathreddy@stepnstones.in';
-    $fromName = 'Sharath';
+    $fromName = 'Admin ';
     $subject = "Creating New Project";
     $htmlContent = '<h5>hi</h5>';
     $headers = "From: Aim&Drive\r\n";
@@ -25,32 +25,43 @@ class MailFunction
     // $headers .= 'From: '.$fromName.'<'.$from.'>' . "\r\n"; 
     // $headers .= 'Cc: vijay@stepnstones.in' . "\r\n"; 
     // $headers .= 'Bcc: welcome2@example.com' . "\r\n"; 
-
-    //Send email 
-    ///mail($to, $subject, $htmlContent, $headers);
-
-    $myfile = file_put_contents('logs.txt', $from.PHP_EOL , FILE_APPEND | LOCK_EX);
-    //return $mgs;
+    // $myfile = file_put_contents('logs.txt', $from.PHP_EOL , FILE_APPEND | LOCK_EX);
+    // return $mgs;
 
   }
 }
 
+
+//Assign Action Item Owner
+
+if($_POST['mailAction'] == 'actionOwner')
+{
+  $email_data = array(
+    'to' => $_POST['to'],
+    'subject' => $_POST['subject'],
+    'to_name' => $_POST['to_name'],
+    'message' => $_POST['message'],
+  );
+  echo $email_response = sendEmailNew($email_data);
+}
+
 /* Send email */
 function sendEmailNew($email_data) {
+
   require("sendgrid/sendgrid-php.php");
+  require_once('/var/secure/MailApiKey.php');
+
+
   $email = new \SendGrid\Mail\Mail(); 
-  $email->setFrom("vijay@stepnstones.in", "Stepnstones");
+  $email->setFrom("admin@anklesaria.com", "Aim&Drive");
   $email->setSubject($email_data['subject']);
   $email->addTo($email_data['to'], $email_data['to_name']);
   //$email->addContent("text/plain", $email_data['message']);
   $email->addContent("text/html", $email_data['message']);
 
+  //$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
 
-  //$sendgrid = new \SendGrid("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"); //
-  //$sendgrid = new \SendGrid("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"); //Sheetal
-    $sendgrid = new \SendGrid("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"); //Vijay
-  //echo $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
-
+  $sendgrid = new \SendGrid($sendgrid);
   try {
       $response = $sendgrid->send($email);
       return $response;
@@ -59,6 +70,23 @@ function sendEmailNew($email_data) {
   }
 }
 
+
+// function sendMainGun(){
+//   # Include the Autoloader (see "Libraries" for install instructions)
+// require 'vendor/autoload.php';
+// use Mailgun\Mailgun;
+// # Instantiate the client.
+
+// $domain = "mail.anklesaria.com";
+// # Make the call to the client.
+// $result = $mgClient->sendMessage($domain, array(
+//     'from'  => 'New Mail  <sharathreddy@stepnstones.in>',
+//     'to'    => 'Play Boy <sharathreddy@stepnstones.in>',
+//     'subject' => 'Hello',
+//     'text'  => 'Final Testing some Mailgun awesomness!'
+// ));
+
+// }
 
 
 

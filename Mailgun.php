@@ -5,6 +5,7 @@
 require 'vendor/autoload.php';
 use Mailgun\Mailgun;
 # Instantiate the client.
+$mgClient = new Mailgun($Mailgun);
 
 $domain = "mail.anklesaria.com";
 # Make the call to the client.

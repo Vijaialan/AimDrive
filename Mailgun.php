@@ -9,6 +9,8 @@ use Mailgun\Mailgun;
 # Instantiate the client.
 $mgClient = new Mailgun($Mailgun);
 
+echo $Mailgun;
+
 $domain = "mail.anklesaria.com";
 # Make the call to the client.
 $result = $mgClient->sendMessage($domain, array(
@@ -17,6 +19,8 @@ $result = $mgClient->sendMessage($domain, array(
     'subject' => 'Hello',
     'text'  => 'Final Testing some Mailgun awesomness!'
 ));
+
+var_dump($result);
 
 
 ?>

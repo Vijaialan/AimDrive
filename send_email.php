@@ -57,7 +57,7 @@ if ($_POST['mailAction'] == 'taskParticipant') {
     'subject' => 'AIM&DRIVE: Project Setup Tasks assigned for ' . $_POST['ProjectName'],
     'message' => $body_message,
   );
-  //print_r($email_data);
+  print_r($email_data);
   $email_response = sendEmailNew($email_data); 
   var_dump($email_response); 
 }
@@ -78,10 +78,10 @@ function sendEmailNew($email_data)
   require_once '/var/secure/MailApiKey.php';
 
   $email = new \SendGrid\Mail\Mail();
-  $email->setFrom("vijay@stepnstones.in", "AimDrive");
+  $email->setFrom("conroy.fernandes@anklesaria.com", "AimDrive");
   $email->setSubject($email_data['subject']);
   $email->addTo($email_data['to'], "Admin");
-  $email->addBcc($email_data['bcc']);
+  //$email->addBcc($email_data['bcc']);
   //$email->addContent("text/plain", $email_data['message']);
   $email->addContent("text/html", $email_data['message']);
 

@@ -1,5 +1,5 @@
 <?php
-
+require 'mail_content.php';
 //echo $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
 
 //for mail function
@@ -32,62 +32,88 @@ class MailFunction
 }
 
 
-//Assign Action Item Owner
-
-if($_POST['mailAction'] == 'actionOwner')
-{
+//22 - Assign Action Item Owner
+if ($_POST['mailAction'] == 'actionOwner') {
+  $body_message = CreateHtml($_POST);
   $email_data = array(
-    'to' => $_POST['to'],
-    'subject' => $_POST['subject'],
-    'message' => $_POST['message'],
+    'to' => $_POST['email'],
+    'to_name' => '',
+    'subject' => 'AIM&DRIVE: Action Item Owners assigned for ' . $_POST['pname'],
+    'message' => $body_message,
+  );
+  //print_r($email_data);
+  //$email_response = sendEmailNew($email_data); 
+  //var_dump($email_response); 
+}
+
+
+//11 - Participant is added to a new task
+if ($_POST['mailAction'] == 'taskParticipant') {
+  $body_message = CreateHtml($_POST);
+  $email_data = array(
+    'to' => $_POST['EmailId'][0],
+    'to_name' => '',
+    'bcc' => implode(', ', $_POST['EmailId']),
+    'subject' => 'AIM&DRIVE: Project Setup Tasks assigned for ' . $_POST['ProjectName'],
+    'message' => $body_message,
   );
   //print_r($email_data);
   $email_response = sendEmailNew($email_data); 
   var_dump($email_response); 
 }
 
+
+
+
+
+
+
+
+
 /* Send email */
-function sendEmailNew($email_data) {
+function sendEmailNew($email_data)
+{
 
   require "sendgrid/sendgrid-php.php";
   require_once '/var/secure/MailApiKey.php';
 
-  $email = new \SendGrid\Mail\Mail(); 
+  $email = new \SendGrid\Mail\Mail();
   $email->setFrom("vijay@stepnstones.in", "AimDrive");
   $email->setSubject($email_data['subject']);
   $email->addTo($email_data['to'], "Admin");
+  $email->addBcc($email_data['bcc']);
   //$email->addContent("text/plain", $email_data['message']);
   $email->addContent("text/html", $email_data['message']);
-  
+
   //$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
 
   $sendgrid = new \SendGrid($Sendgrid);
   try {
-      $response = $sendgrid->send($email);
-      return $response;
+    $response = $sendgrid->send($email);
+    return $response;
   } catch (Exception $e) {
-      return $e->getMessage();
+    return $e->getMessage();
   }
 }
 
 
 // function sendMainGun(){
-//   # Include the Autoloader (see "Libraries" for install instructions)
+  
+// # Include the Autoloader (see "Libraries" for install instructions)
 // require 'vendor/autoload.php';
+// require_once '/var/secure/MailApiKey.php';
+// //require 'C:/xampp/htdocs/API/TEST.PHP';
+
 // use Mailgun\Mailgun;
 // # Instantiate the client.
-
+// $mgClient = new Mailgun($Mailgun);
 // $domain = "mail.anklesaria.com";
 // # Make the call to the client.
 // $result = $mgClient->sendMessage($domain, array(
 //     'from'  => 'New Mail  <sharathreddy@stepnstones.in>',
-//     'to'    => 'Play Boy <sharathreddy@stepnstones.in>',
+//     'to'    => 'Test Mail <sharathreddy@stepnstones.in>',
 //     'subject' => 'Hello',
 //     'text'  => 'Final Testing some Mailgun awesomness!'
 // ));
 
 // }
-
-
-
-?>

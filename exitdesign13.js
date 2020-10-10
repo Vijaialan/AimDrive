@@ -18390,6 +18390,7 @@ var editingSession = -1;
 
 var editingTask = -1;
 var taskPerformers = [];
+var taskperformersemail = [];
 var wpPerformers = [];
 
 var editingAction = -1;
@@ -18654,6 +18655,29 @@ function saveTask() {
                 //,datatype: "json"
         });
     }
+    //11 - Participant is added to a new task 
+    for (var i = 0; i < taskPerformers.length; i++) {
+        var emailid = getEmailFromId(taskPerformers[i]);
+        taskperformersemail.push(emailid[0]);
+    }
+    var ProjectTaskData = {
+        EmailId: taskperformersemail,
+        ProjectName: getStrategyName(Gcurrentstrategy),
+        TaskDescription: encodeURIComponent(document.getElementById("tasktext").value),
+        DueDate: date,
+        ProcessStep: encodeURIComponent(document.getElementById("taskprocess").value),
+        mailAction: 'taskParticipant'
+    }
+    console.log(ProjectTaskData);
+    $.ajax({
+        url: "send_email.php",
+        type: "POST",
+        data: ProjectTaskData,
+        success: function(msg) {
+            console.log(msg);
+        }
+    });
+    //11 - END
 }
 
 function confirmDeleteTask(i) {
@@ -21550,21 +21574,26 @@ function saveEDSSAction() {
         actionId: editingAction
     };
 
+    //22 - Action Item Owner is assigned
     var email = getEmailFromId(id);
+    var actionmailData = {
+        email: email[0],
+        pname: getCompanyForProject(Gcurrentstrategy),
+        ssid: GcurrentSS,
+        ssName: '',
+        actionDesc: desc,
+        targetDate: dd,
+        mailAction: 'actionOwner'
+    }
     $.ajax({
         url: "send_email.php",
         type: "POST",
-        data: {
-            mailAction: 'actionOwner',
-            to: email[0],
-            to_name: getFirstLastFromId(id),
-            subject: 'AIM&DRIVE: Action Item Owners assigned for',
-            message: 'Action Items assigned to you for Strategy Statement'
-        },
+        data: actionmailData,
         success: function(msg) {
-            console.log(msg);
+            //console.log(msg);
         }
     });
+    //22 - END
 
     storeSSPageState();
     showTimedMessage("gmsg", "Saving action plan...", 0, false);
@@ -32669,5 +32698,6 @@ function charcountupdate(str) {
         "500" - lng + " " + " " + "characters left";
 }
 
+//08092020
 //08092020
 //08092020

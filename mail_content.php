@@ -53,60 +53,42 @@
 
 //  $body = CreateHtml('test proj','testing');
 //  echo $body;
-function CreateHtml($pj_name, $pj_desc, $co_supplier, $pj_primarycost, $pj_startdate)
+function CreateHtml($Content)
 {
-
   $htmlbody = '
 <html lang="en">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  </head>
-  <body>
-  
-  
-  <header>
-  <img src="images/logo_big.png">
-  </header>
-  
-  <section>
-    
-    <table>
-    <h3 id="subject">You have been added to the Project ' . $pj_name . '</h3>
-    <tr>
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+  <body><header><img src="images/logo_big.png"></header><section><table>
+  <h3 id="subject">You have been added to the Project ' . $Content['ProjectName'] . '</h3>
+      
+                    <tr>
                         <td style="width: 30%;"><p>Project name : </p></td> 
-                        <td style="width: 70%;"><p>' . $pj_name . '</p></td> 
+                        <td style="width: 70%;"><p>' . $Content['ProjectName'] . '</p></td> 
                     </tr>
   
                       <tr>
                         <td style="width: 30%;"><p>Project Description : </p></td> 
-                        <td style="width: 70%;"><p>' . $pj_desc . '</p></td> 
+                        <td style="width: 70%;"><p>' . $Content['TaskDescription'] . '</p></td> 
                     </tr>
   
-                 <tr>
+                    <tr>
                         <td style="width: 30%;"><p>Supplier Name : </p></td> 
-                        <td ><p>' . $co_supplier . '</p></td> 
+                        <td ><p>' . $Content['TaskDescription'] . '</p></td> 
                     </tr>
   
                      <tr>
                         <td style="width: 30%;"><p>Project Value : </p></td> 
-                        <td style="width: 70%;"><p>' . $pj_primarycost . '</p></td> 
+                        <td style="width: 70%;"><p>' . $Content['TaskDescription'] . '</p></td> 
                     </tr> 
                      <tr>
                         <td style="width: 30%;"><p>Start Date : </p></td> 
-                        <td style="width: 70%;"><p> ' . $pj_startdate . '</p></td> 
+                        <td style="width: 70%;"><p> ' . $Content['TaskDescription']. '</p></td> 
                     </tr> 
                       
-    </table>
-  </section>
-  
-  <footer>
-  <p>Copyright © 2020-2021 Aim&Drive, All Rights Reserved.</p></footer>
-  
-  </body>
-  </html>';
-  return $htmlbody;
+    </table></section>
+  <footer><p>Copyright © 2020-2021 Aim&Drive, All Rights Reserved.</p></footer></body></html>';
 
+  return $htmlbody;
 }
+
 ?>

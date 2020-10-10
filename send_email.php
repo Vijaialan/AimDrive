@@ -51,9 +51,9 @@ if ($_POST['mailAction'] == 'actionOwner') {
 if ($_POST['mailAction'] == 'taskParticipant') {
   $body_message = CreateHtml($_POST);
   $email_data = array(
-    'to' => $_POST['EmailId'][0],
+    //'to' => $_POST['EmailId'][0],
+    'to' => implode(', ', $_POST['EmailId']),
     'to_name' => '',
-    'bcc' => implode(', ', $_POST['EmailId']),
     'subject' => 'AIM&DRIVE: Project Setup Tasks assigned for ' . $_POST['ProjectName'],
     'message' => $body_message,
   );

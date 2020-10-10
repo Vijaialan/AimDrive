@@ -18663,9 +18663,9 @@ function saveTask() {
     var ProjectTaskData = {
         EmailId: taskperformersemail,
         ProjectName: getStrategyName(Gcurrentstrategy),
-        TaskDescription: encodeURIComponent(document.getElementById("tasktext").value),
+        TaskDescription: document.getElementById("tasktext").value,
         DueDate: date,
-        ProcessStep: encodeURIComponent(document.getElementById("taskprocess").value),
+        ProcessStep: document.getElementById("taskprocess").value,
         mailAction: 'taskParticipant'
     }
     console.log(ProjectTaskData);

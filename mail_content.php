@@ -29,7 +29,7 @@ function CreateHtml($Content)
   {
     $DueDate = '<tr>
                 <td style="width: 30%;"><p>Due Date  : </p></td> 
-                <td style="width: 70%;><p>' . $Content['DueDate'] . '</p></td> 
+                <td style="width: 70%;"><p>' . $Content['DueDate'] . '</p></td> 
                </tr>';
   }
   if(!empty($Content['ProcessStep']))

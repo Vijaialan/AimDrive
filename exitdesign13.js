@@ -18664,7 +18664,7 @@ function saveTask() {
         EmailId: taskperformersemail,
         ProjectName: getStrategyName(Gcurrentstrategy),
         TaskDescription: document.getElementById("tasktext").value,
-        DueDate: date,
+        DueDate: document.getElementById("input_taskdate").value,
         ProcessStep: document.getElementById("taskprocess").value,
         mailAction: 'taskParticipant',
         mailIntro: 'You have been added to a new project task for ' + getStrategyName(Gcurrentstrategy)

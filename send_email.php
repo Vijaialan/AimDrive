@@ -59,9 +59,9 @@ if ($_POST['mailAction'] == 'taskParticipant') {
     'message' => $body_message,
   );
 
-  //print_r($email_data);
+  print_r($email_data);
   $email_response = sendEmailNew($email_data); 
-  //var_dump($email_response); 
+  var_dump($email_response); 
 }
 
 

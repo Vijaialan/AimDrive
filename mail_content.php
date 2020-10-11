@@ -46,8 +46,7 @@ function CreateHtml($Content)
   $footer = '</table></section>
   <footer><p>Copyright © 2020-2021 Aim&Drive, All Rights Reserved.</p></footer></body></html>';
 
-
-
+  //return full html content
   return $htmlbody . $bodyContent . $footer;
 }
 

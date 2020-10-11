@@ -13,7 +13,7 @@ function CreateHtml($Content)
 
   if(!empty($Content['ProjectName']))
   {
-    $Pname = '<tr  style ="visibility:hidden";">
+    $Pname = '<tr>
               <td style="width: 30%;"><p>Project name : </p></td> 
               <td style="width: 70%;"><p>' . $Content['ProjectName'] . '</p></td> 
               </tr>';

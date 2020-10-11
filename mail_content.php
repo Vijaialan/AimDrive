@@ -8,8 +8,8 @@ function CreateHtml($Content)
   $htmlbody = '
 <html lang="en">
   <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
-  <body><header><img src="images/logo_big.png"></header><section><table>
-  <h3 id="subject">' . $Content[''] . '</h3>';
+  <body><section>
+  <h3 id="subject">'.$Content['mailIntro'].'</h3><table>';
 
   if(!empty($Content['ProjectName']))
   {

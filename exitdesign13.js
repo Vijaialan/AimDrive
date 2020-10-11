@@ -18661,14 +18661,15 @@ function saveTask() {
         taskperformersemail.push(emailid[0]);
     }
     var ProjectTaskData = {
-        EmailId: taskperformersemail,
-        ProjectName: getStrategyName(Gcurrentstrategy),
-        TaskDescription: document.getElementById("tasktext").value,
-        DueDate: date,
-        ProcessStep: document.getElementById("taskprocess").value,
-        mailAction: 'taskParticipant'
-    }
-    console.log(ProjectTaskData);
+            EmailId: taskperformersemail,
+            ProjectName: getStrategyName(Gcurrentstrategy),
+            TaskDescription: document.getElementById("tasktext").value,
+            DueDate: date,
+            ProcessStep: document.getElementById("taskprocess").value,
+            mailAction: 'taskParticipant',
+            mailIntro: 'You have been added to a new project task for ' + getStrategyName(Gcurrentstrategy)
+        }
+        //console.log(ProjectTaskData);
     $.ajax({
         url: "send_email.php",
         type: "POST",

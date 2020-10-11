@@ -29,7 +29,7 @@ function CreateHtml($Content)
   {
     $DueDate = '<tr>
                 <td style="width: 30%;"><p>Due Date  : </p></td> 
-                <td ><p>' . $Content['DueDate'] . '</p></td> 
+                <td style="width: 70%;><p>' . $Content['DueDate'] . '</p></td> 
                </tr>';
   }
   if(!empty($Content['ProcessStep']))
@@ -41,14 +41,14 @@ function CreateHtml($Content)
                     </tr>'; 
   }
               
-  $bodyContent = $Pname + $TaskDesc + $DueDate + $ProcessStep;
+  $bodyContent = $Pname . $TaskDesc . $DueDate . $ProcessStep;
                       
   $footer = '</table></section>
   <footer><p>Copyright © 2020-2021 Aim&Drive, All Rights Reserved.</p></footer></body></html>';
 
 
 
-  return $htmlbody + $bodyContent + $footer;
+  return $htmlbody . $bodyContent . $footer;
 }
 
 ?>

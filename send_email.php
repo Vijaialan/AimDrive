@@ -58,8 +58,8 @@ if ($_POST['mailAction'] == 'taskParticipant') {
     'subject' => 'AIM&DRIVE: Project Setup Tasks assigned for ' . $_POST['ProjectName'],
     'message' => $body_message,
   );
-  
-  print_r($email_data);
+
+  //print_r($email_data);
   $email_response = sendEmailNew($email_data); 
   //var_dump($email_response); 
 }

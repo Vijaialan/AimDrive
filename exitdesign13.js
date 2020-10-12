@@ -18392,6 +18392,8 @@ var editingTask = -1;
 var taskPerformers = [];
 var taskperformersemail = [];
 var wpPerformers = [];
+var wpPerformersemail = [];
+var SSactionOwnersemail = [];
 
 var editingAction = -1;
 
@@ -18661,15 +18663,15 @@ function saveTask() {
         taskperformersemail.push(emailid[0]);
     }
     var ProjectTaskData = {
-        EmailId: taskperformersemail,
-        ProjectName: getStrategyName(Gcurrentstrategy),
-        TaskDescription: document.getElementById("tasktext").value,
-        DueDate: document.getElementById("input_taskdate").value,
-        ProcessStep: document.getElementById("taskprocess").value,
-        mailAction: 'taskParticipant',
-        mailIntro: 'You have been added to a new project task for ' + getStrategyName(Gcurrentstrategy)
-    }
-    console.log(ProjectTaskData);
+            EmailId: taskperformersemail,
+            ProjectName: getStrategyName(Gcurrentstrategy),
+            TaskDescription: document.getElementById("tasktext").value,
+            DueDate: document.getElementById("input_taskdate").value,
+            ProcessStep: document.getElementById("taskprocess").value,
+            mailAction: 'taskParticipant',
+            mailIntro: 'You have been added to a new project task for ' + getStrategyName(Gcurrentstrategy)
+        }
+        //console.log(ProjectTaskData);
     $.ajax({
         url: "send_email.php",
         type: "POST",
@@ -18908,6 +18910,39 @@ function saveWorkPlan() {
                 //,datatype: "json"
         });
     }
+    //5th Participant is selected starts
+    for (var i = 0; i < wpPerformers.length; i++) {
+        var emailid = getEmailFromId(wpPerformers[i]);
+        wpPerformersemail.push(emailid[0]);
+    }
+    //var email = getEmailFromId(ssowner);
+    var addParticipantData = {
+        email: wpPerformersemail[0],
+        ProjectName: getStrategyName(Gcurrentstrategy),
+        Agenda: document.getElementById("workplantext").value,
+        ProcessStep: document.getElementById("workprocess").value,
+        Location: document.getElementById("worklocation").value,
+        SessionType: document.getElementById("worksessiontype").value,
+        DateTime: starttime,
+        //Gusername: encodeURIComponent(Gusername),
+        //project: encodeURIComponent(Gcurrentstrategy),
+        //company: getCompanyForProject(Gcurrentstrategy),
+        //bu: getBUForProject(Gcurrentstrategy),
+        // endtime: endtime,
+        mailAction: 'ParticipantSelected',
+        mailIntro: 'You have been invited to participate in the Workshop for ' + getStrategyName(Gcurrentstrategy)
+    };
+    //console.log(addParticipantData);
+    $.ajax({
+        url: "send_email.php",
+        type: "POST",
+        data: addParticipantData,
+        success: function(msg) {
+            console.log(msg);
+        }
+    });
+    //5th Participant is selected ends
+
 }
 
 function confirmDeleteWorkPlan(i) {
@@ -22727,6 +22762,8 @@ function deleteEDSSIm(ssObject) {
 
     var drop_reason = document.getElementById("drop_reason").value;
     var ssid = document.getElementById("drop_ssid").value;
+    var desc = document.getElementById("strategy_statmnt").value;
+    var names = getFirstLast(Gusername);
     var ssData = {
         token: Gtoken,
         username: Gusername,
@@ -22744,6 +22781,47 @@ function deleteEDSSIm(ssObject) {
     });
 
     $(".opt_btn_wrp").hide();
+
+    //28th SS is dropped  starts
+    var SSoentry = findSSEntry(GcurrentSS);
+    var email = getEmailFromId(SSoentry[0]);
+    let SSactionOwners = getActionOwners(SSoentry[6]);
+    for (var i = 0; i < SSactionOwners.length; i++) {
+        var emailid = getEmailFromId(SSactionOwners[i]);
+        SSactionOwnersemail.push(emailid[0]);
+    }
+    var ssDropMailData = {
+        email: email[0],
+        ProjectName: getStrategyName(Gcurrentstrategy),
+        StrategyStatementNo: SSoentry[12],
+        ProjectDescription: SSoentry[1],
+        Priority: SSoentry[3],
+        DropReason: drop_reason,
+        ActionOwners: SSactionOwnersemail,
+        DroppedBy: names[0] + " " + names[1],
+        // Gusername: Gusername,
+        // token: Gtoken,
+        // project: Gcurrentstrategy,
+        //company: getCompanyForProject(Gcurrentstrategy),
+        //bu: getBUForProject(Gcurrentstrategy),
+        //ss: editingSS,
+        // ssnumber: GcurrentSS,
+        mailAction: 'ssDropped',
+        mailIntro: 'Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been dropped.'
+    };
+    //console.log(SSoentry);
+    console.log(ssDropMailData);
+    $.ajax({
+        url: "send_email.php",
+        type: "POST",
+        data: ssDropMailData,
+        success: function(msg) {
+            console.log(msg);
+        }
+    });
+    //28th SS is dropped ends
+
+
 }
 
 var SSUpdateFrom = 1;
@@ -23066,6 +23144,38 @@ function saveEDSSI() {
         error: ssEDOpFailed
             //,datatype: "json"
     });
+
+    //15th SS Owner is assigned starts
+    var email = getEmailFromId(ssowner);
+    var ssEditMailData = {
+        email: email[0],
+        ProjectName: getStrategyName(Gcurrentstrategy),
+        StrategyNumber: editingSS,
+        project: Gcurrentstrategy,
+        Strategydesc: desc,
+        Priority: priority,
+        StartDate: startdate,
+        // Gusername: encodeURIComponent(Gusername),
+        //token: encodeURIComponent(Gtoken),
+        //company: getCompanyForProject(Gcurrentstrategy),
+        //bu: getBUForProject(Gcurrentstrategy),
+        //ssnumber: encodeURIComponent(handle),
+        //EndDate: encodeURIComponent(enddate),
+        //ssowner: encodeURIComponent(ssowner),
+        mailAction: 'ssEditMailData',
+        mailIntro: 'You have been assigned to Strategy Statement ' + editingSS + ' for ' + getStrategyName(Gcurrentstrategy)
+    };
+    //console.log(ssEditMailData);
+    $.ajax({
+        url: "send_email.php",
+        type: "POST",
+        data: ssEditMailData,
+        success: function(msg) {
+            console.log(msg);
+        }
+    });
+    //15th SS Owner is assigned ends
+
 }
 
 function saveUnDropReason() {
@@ -23111,6 +23221,46 @@ function saveUnSelectReason() {
         success: updateVerifyContents,
         error: progOpFailed
     });
+    //32nd SS is unselected starts
+    //GpnidclientID
+    var SSoentry = findSSEntry(GcurrentSS);
+    var email = getEmailFromId(SSoentry[0]);
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var names = getFirstLast(Gusername);
+    let SSactionOwners = getActionOwners(SSoentry[6]);
+    for (var i = 0; i < SSactionOwners.length; i++) {
+        var emailid = getEmailFromId(SSactionOwners[i]);
+        SSactionOwnersemail.push(emailid[0]);
+    }
+    var SSUnSelectReason = {
+        email: email[0],
+        StrategyStatementNo: SSoentry[12],
+        StrategyDescription: SSoentry[1],
+        Priority: SSoentry[3],
+        UnimplementReason: unimplement_reason,
+        DateOfUnselection: date,
+        UnselectedBy: names[0] + " " + names[1],
+        ActionOwners: SSactionOwnersemail,
+        //ProjectName: getStrategyName(Gcurrentstrategy),
+        //Gusername: encodeURIComponent(Gusername),
+        //project: encodeURIComponent(Gcurrentstrategy),
+        //company: getCompanyForProject(Gcurrentstrategy),
+        //bu: getBUForProject(Gcurrentstrategy),
+        mailAction: 'SSUnSelectImplementation',
+        mailIntro: 'Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been unselected for implementation.'
+    };
+    //console.log(SSUnSelectReason);
+    $.ajax({
+        url: "send_email.php",
+        type: "POST",
+        data: SSUnSelectReason,
+        success: function(msg) {
+            console.log(msg);
+        }
+    });
+    //32nd SS is unselected ends
+
 }
 
 function reopenSSV(ssObject) {
@@ -28161,6 +28311,41 @@ function addNPVtoSS() {
         error: progOpFailed
             //,datatype: "json"
     });
+    //34th  Value Realized is updated starts
+    var SSoentry = findSSEntry(GcurrentSS);
+    var email = getEmailFromId(SSoentry[0]);
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var UpdateSSvalueRelized = {
+        email: email[0],
+        ProjectName: getStrategyName(Gcurrentstrategy),
+        StrategyStatementNo: SSoentry[12],
+        StrategyDescription: SSoentry[1],
+        Priority: SSoentry[3],
+        ValueRealized: val,
+        //Gusername: encodeURIComponent(Gusername),
+        //project: encodeURIComponent(Gcurrentstrategy),
+        //company: getCompanyForProject(Gcurrentstrategy),
+        //bu: getBUForProject(Gcurrentstrategy),
+        //ss:  GcurrentSS,
+        DateOfRealization: updateDate,
+        ValueRealized: val,
+        Notes: notes,
+        mailAction: 'SSvalueRelizedUpdate',
+        mailIntro: 'Value Realized for Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been updated.'
+    };
+    //console.log(UpdateSSvalueRelized);
+    $.ajax({
+        url: "send_email.php",
+        type: "POST",
+        data: UpdateSSvalueRelized,
+        success: function(msg) {
+            console.log(msg);
+        }
+    });
+    //34th  Value Realized is updated ends
+
+
 }
 
 function deleteEDDocument(docid) {
@@ -32699,6 +32884,7 @@ function charcountupdate(str) {
         "500" - lng + " " + " " + "characters left";
 }
 
+//08092020
 //08092020
 //08092020
 //08092020

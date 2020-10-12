@@ -1,37 +1,70 @@
 <?php
 require 'mail_content.php';
 //echo $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+//5th Participant is selected starts
 
-//for mail function
-class MailFunction
-{
-  function SendMail($uemail)
-  {
-
-    $to = 'sharathreddy@stepnstones.in';
-    //$to = 'conroy.fernandes@anklesaria.com';
-    $from = 'sharathreddy@stepnstones.in';
-    $fromName = 'Admin ';
-    $subject = "Creating New Project";
-    $htmlContent = '<h5>hi</h5>';
-    $headers = "From: Aim&Drive\r\n";
-    $headers .= "Reply-To: $from\r\n";
-    $headers .= "Return-Path: $from\r\n";
-    $headers .= 'X-Mailer: PHP/' . phpversion();
-    $headers .= "MIME-Version: 1.0\r\n";
-    $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
-
-    // Additional headers 
-    // $headers .= 'From: '.$fromName.'<'.$from.'>' . "\r\n"; 
-    // $headers .= 'Cc: vijay@stepnstones.in' . "\r\n"; 
-    // $headers .= 'Bcc: welcome2@example.com' . "\r\n"; 
-    // $myfile = file_put_contents('logs.txt', $from.PHP_EOL , FILE_APPEND | LOCK_EX);
-    // return $mgs;
-
-  }
+if ($_POST['mailAction'] == 'ParticipantSelected') {
+  $body_message = CreateHtml($_POST);
+  $email_data = array(
+    'to' => $_POST['email'],
+    'subject' => 'AIM&DRIVE: Workshop Participants added for ' . $_POST['ProjectName'],
+    'message' => $body_message,
+  );
+  //print_r($email_data);
+  $email_response = sendEmailNew($email_data);
+  //var_dump($email_response); 
 }
+//5th Participant is selected ends
+//15th edit ss starts
+if ($_POST['mailAction'] == 'ssEditMailData') {
+  $body_message = CreateHtml($_POST);
+  $email_data = array(
+    'to' => $_POST['email'],
+    'subject' => 'AIM&DRIVE: Strategy Statement assigned for ' . $_POST['ProjectName'],
+    'message' => $body_message,
+  );
+  //print_r($email_data);
+  $email_response = sendEmailNew($email_data);
+}
+//15th edit ss ends
+//28th ss dropped starts
+if ($_POST['mailAction'] == 'ssDropped') {
+  $body_message = CreateHtml($_POST);
+  $email_data = array(
+    'to' => $_POST['email'],
+    'subject' => 'AIM&DRIVE: Strategy Statement dropped for ' . $_POST['ProjectName'],
+    'message' => $body_message,
+  );
+  //print_r($email_data);
+  $email_response = sendEmailNew($email_data);
+}
+//28th ss dropped ends
+//32nd SS is unselected starts
+if ($_POST['mailAction'] == 'SSUnSelectImplementation') {
+  $body_message = CreateHtml($_POST);
+  $email_data = array(
+    'to' => $_POST['email'],
+    'subject' => 'AIM&DRIVE: Strategy Statement unselected for implementation for ' . $_POST['ProjectName'],
+    'message' => $body_message,
+  );
+  //print_r($email_data);
+  $email_response = sendEmailNew($email_data);
+}
+//32nd SS is unselected ends
+//34th Value Realized is updated for a SS starts
+if ($_POST['mailAction'] == 'SSvalueRelizedUpdate') {
+  $body_message = CreateHtml($_POST);
+  $email_data = array(
+    'to' => $_POST['email'],
+    'subject' => 'AIM&DRIVE: Value Realized for ' . $_POST['ProjectName'],
+    'message' => $body_message,
+  );
+  //print_r($email_data);
+  $email_response = sendEmailNew($email_data);
+}
+//34th Value Realized is updated for a SS ends
 
-
+//SNS - 13
 //22 - Assign Action Item Owner
 if ($_POST['mailAction'] == 'actionOwner') {
   $body_message = CreateHtml($_POST);
@@ -45,8 +78,6 @@ if ($_POST['mailAction'] == 'actionOwner') {
   //$email_response = sendEmailNew($email_data); 
   //var_dump($email_response); 
 }
-
-
 //11 - Participant is added to a new task
 if ($_POST['mailAction'] == 'taskParticipant') {
 
@@ -59,9 +90,9 @@ if ($_POST['mailAction'] == 'taskParticipant') {
     'message' => $body_message,
   );
 
-  print_r($email_data);
-  $email_response = sendEmailNew($email_data); 
-  var_dump($email_response); 
+  //print_r($email_data);
+  $email_response = sendEmailNew($email_data);
+  //var_dump($email_response); 
 }
 
 

@@ -18663,7 +18663,7 @@ function saveTask() {
         taskperformersemail.push(emailid[0]);
     }
     var ProjectTaskData = {
-            EmailId: taskperformersemail,
+            email: taskperformersemail,
             ProjectName: getStrategyName(Gcurrentstrategy),
             TaskDescription: document.getElementById("tasktext").value,
             DueDate: document.getElementById("input_taskdate").value,

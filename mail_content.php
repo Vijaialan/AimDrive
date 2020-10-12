@@ -40,7 +40,7 @@ function CreateHtml($Content)
   $Data  = array_values($Content);
 
   $ContentTable = "";
-  $mailkeys = array('to_name', 'email', 'mailIntro', 'subject');
+  $mailkeys = array('to_name', 'email', 'mailIntro', 'subject', 'mailAction');
 
   foreach ($Title as $index => $code) {
     if (in_array($code, $mailkeys))  continue; # Skips

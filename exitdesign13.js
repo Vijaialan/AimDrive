@@ -22809,7 +22809,7 @@ function deleteEDSSIm(ssObject) {
         mailAction: 'ssDropped',
         mailIntro: 'Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been dropped.'
     };
-    //console.log(SSoentry);
+    console.log(SSoentry);
     console.log(ssDropMailData);
     $.ajax({
         url: "send_email.php",

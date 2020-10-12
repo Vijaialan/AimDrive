@@ -18,7 +18,7 @@ $email = new \SendGrid\Mail\Mail();
 $email->setFrom("conroy.fernandes@anklesaria.com", "Conroy");
 $email->setSubject("Test New Mail Action ");
 $email->addTo("vijay@stepnstones.in", "Example User");
-$email->addBcc("vijaialan07@gmail.com", "vijaialan.mca@gmail.com", "sharathreddy@stepnstones.in");
+$email->addBcc("vijaialan07@gmail.com", "Test");
 $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
 $email->addContent("text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
 );

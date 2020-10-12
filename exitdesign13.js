@@ -22784,7 +22784,7 @@ function deleteEDSSIm(ssObject) {
 
     //28th SS is dropped  starts
     var SSoentry = findSSEntry(GcurrentSS);
-    var email = getEmailFromId(SSoentry[0]);
+    var email = getEmailFromId(SSoentry[19]);
     let SSactionOwners = getActionOwners(SSoentry[6]);
     for (var i = 0; i < SSactionOwners.length; i++) {
         var emailid = getEmailFromId(SSactionOwners[i]);
@@ -23225,7 +23225,7 @@ function saveUnSelectReason() {
     //32nd SS is unselected starts
     //GpnidclientID
     var SSoentry = findSSEntry(GcurrentSS);
-    var email = getEmailFromId(SSoentry[0]);
+    var email = getEmailFromId(SSoentry[19]);
     var today = new Date();
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     var names = getFirstLast(Gusername);
@@ -28314,7 +28314,7 @@ function addNPVtoSS() {
     });
     //34th  Value Realized is updated starts
     var SSoentry = findSSEntry(GcurrentSS);
-    var email = getEmailFromId(SSoentry[0]);
+    var email = getEmailFromId(SSoentry[19]);
     var today = new Date();
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     var UpdateSSvalueRelized = {

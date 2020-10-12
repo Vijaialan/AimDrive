@@ -14,11 +14,13 @@ require "sendgrid/sendgrid-php.php";
 
 require_once '/var/secure/MailApiKey.php';
 
+$emailid = array("vijaialan07@gmail.com", "sharathreddy@stepnstones.in","vijaialan.mca@gmail.com");
+
 $email = new \SendGrid\Mail\Mail(); 
 $email->setFrom("conroy.fernandes@anklesaria.com", "Conroy");
 $email->setSubject("Test New Mail Action ");
 $email->addTo("vijay@stepnstones.in", "Example User");
-$email->addBcc("vijaialan07@gmail.com", "Test");
+$email->addBcc($emailid, "Test");
 $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
 $email->addContent("text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
 );

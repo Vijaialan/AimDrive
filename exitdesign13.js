@@ -23146,14 +23146,15 @@ function saveEDSSI() {
     });
 
     //15th SS Owner is assigned starts
+    var SSoentry = findSSEntry(GcurrentSS);
     var email = getEmailFromId(ssowner);
     var ssEditMailData = {
         email: email[0],
         ProjectName: getStrategyName(Gcurrentstrategy),
-        StrategyNumber: editingSS,
+        StrategyNumber: SSoentry[12],
         project: Gcurrentstrategy,
-        Strategydesc: desc,
-        Priority: priority,
+        StrategyDescription: SSoentry[1],
+        Priority: SSoentry[3],
         StartDate: startdate,
         // Gusername: encodeURIComponent(Gusername),
         //token: encodeURIComponent(Gtoken),

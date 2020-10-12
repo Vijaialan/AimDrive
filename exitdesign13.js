@@ -23152,7 +23152,7 @@ function saveEDSSI() {
         email: email[0],
         ProjectName: getStrategyName(Gcurrentstrategy),
         StrategyNumber: SSoentry[12],
-        project: Gcurrentstrategy,
+        //project: Gcurrentstrategy,
         StrategyDescription: SSoentry[1],
         Priority: SSoentry[3],
         StartDate: startdate,

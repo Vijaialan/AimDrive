@@ -1,8 +1,5 @@
 <?php
 
-//  $body = CreateHtml('test proj','testing');
-//  echo $body;
-
 function CreateHtml($Content)
 {
   $htmlbody = '
@@ -12,7 +9,7 @@ function CreateHtml($Content)
   #customers {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: 65%;
   }
   
   #customers td, #customers th {
@@ -27,15 +24,23 @@ function CreateHtml($Content)
   #customers th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
+    text-align: center;
+    background-color: #2b4b75;
     color: white;
+  }
+  .footer {
+    left: 0;
+    bottom: 0;
+    width: 65%;
+    background-color: #2b4b75;
+    color: white;
+    text-align: center;
   }
   </style>
   </head>
   <body><section>
-  <h3 id="subject">' . $Content['mailIntro'] . '</h3><table id="customers">';
-
+  <h3 id="subject">' . $Content['mailIntro'] . '</h3><table id="customers"><th colspan="2"> AIM&DRIVE </h>';
+  
   $Title = array_keys($Content);
   $Data  = array_values($Content);
 
@@ -45,7 +50,7 @@ function CreateHtml($Content)
   foreach ($Title as $index => $code) {
     if (in_array($code, $mailkeys))  continue; # Skips
     $ContentTable .= '<tr>
-    <td style="width: 28%;"><p>' . preg_replace('/(?<!\ )[A-Z]/', ' $0', $code) . '</p></td> 
+    <td style="width: 30%;"><p>' . preg_replace('/(?<!\ )[A-Z]/', ' $0', $code) . '</p></td> 
     
     <td style="width: 70%;"><p>' . $Data[$index] . '</p></td> 
     </tr>';
@@ -53,8 +58,11 @@ function CreateHtml($Content)
 
 
   $footer = '</table></section>
-  <footer><p>Copyright © 2020-2021 Aim&Drive, All Rights Reserved.</p></footer></body></html>';
+  <footer class="footer"><p>Copyright © 2020-2021 Aim&Drive, All Rights Reserved.</p></footer></body></html>';
 
   //return full html content
   return $htmlbody . $ContentTable . $footer;
 }
+
+
+?>

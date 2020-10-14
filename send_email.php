@@ -111,7 +111,7 @@ function sendEmailNew($email_data)
   require_once '/var/secure/MailApiKey.php';
 
   $email = new \SendGrid\Mail\Mail();
-  $email->setFrom("conroy.fernandes@anklesaria.com", "AimDrive");
+  $email->setFrom("conroy.fernandes@anklesaria.com", "AIM&DRIVE");
   $email->setSubject($email_data['subject']);
   $email->addTo($email_data['to'], "Admin");
   //$email->addBcc($email_data['bcc']);

@@ -29,14 +29,11 @@ function CreateHtml($Content)
     color: white;
   }
   .footer {
-    padding-top: 1px;
-    padding-bottom: 1px;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+    padding-top: 0.3px;
+    padding-bottom: 0.3px;
+    text-align: center;
     background-color: #2b4b75;
     color: white;
-    text-align: center;
   }
   </style>
   </head>

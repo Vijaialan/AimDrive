@@ -9,7 +9,7 @@ function CreateHtml($Content)
   #customers {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 65%;
+    width: 100%;
   }
   
   #customers td, #customers th {
@@ -29,9 +29,11 @@ function CreateHtml($Content)
     color: white;
   }
   .footer {
+    padding-top: 1px;
+    padding-bottom: 1px;
     left: 0;
     bottom: 0;
-    width: 65%;
+    width: 100%;
     background-color: #2b4b75;
     color: white;
     text-align: center;
@@ -45,7 +47,7 @@ function CreateHtml($Content)
   $Data  = array_values($Content);
 
   $ContentTable = "";
-  $mailkeys = array('to_name', 'email', 'mailIntro', 'subject', 'mailAction');
+  $mailkeys = array('to_name', 'email', 'mailIntro', 'subject', 'mailAction', 'ActionOwners');
 
   foreach ($Title as $index => $code) {
     if (in_array($code, $mailkeys))  continue; # Skips

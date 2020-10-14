@@ -39,7 +39,7 @@ function CreateHtml($Content)
   </head>
   <body><section>
   <h3 id="subject">' . $Content['mailIntro'] . '</h3><table id="customers"><th colspan="2"> AIM&DRIVE </h>';
-  
+
   $Title = array_keys($Content);
   $Data  = array_values($Content);
 
@@ -57,11 +57,10 @@ function CreateHtml($Content)
 
 
   $footer = '</table></section>
-  <footer class="footer"><p>Copyright © 2020-2021 Aim&Drive, All Rights Reserved.</p></footer></body></html>';
+  <table id="customers"> 
+  <th colspan="2">Copyright © 2020-2021 Aim&Drive, All Rights Reserved.</th>
+  </table></body></html>';
 
   //return full html content
   return $htmlbody . $ContentTable . $footer;
 }
-
-
-?>

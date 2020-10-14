@@ -58,7 +58,7 @@ function CreateHtml($Content)
 
   $footer = '</table></section>
   <table id="customers"> 
-  <th colspan="2">Copyright © 2020-2021 Aim&Drive, All Rights Reserved.</th>
+  <th colspan="2">Copyright © '. date("Y").'-'.date("Y",strtotime("+1 year")).' AIM&DRIVE, All Rights Reserved.</th>
   </table></body></html>';
 
   //return full html content

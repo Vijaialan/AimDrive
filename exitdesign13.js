@@ -10105,6 +10105,31 @@ function saveEDPerson() {
                 //,datatype: "json"
         });
     }
+    //03rd Participant is newly added starts 
+    //console.log(Gcurrentdata);
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    //var compname = getCompanyName(getCompanyForProject(Gcurrentstrategy));
+    var NewParticipantadded = {
+        email: email,
+        ProjectName: Gcurrentdata[0],
+        ProjectDescription: Gcurrentdata[1],
+        SupplierName: getCompanyName(cid),
+        ProjectValue: Gcurrentdata[2][0] + " " + Gcurrentdata[2][1],
+        StartDate: date,
+        mailAction: 'NewParticipantadded',
+        mailIntro: 'You have been added to the Project ' + Gcurrentdata[0]
+    };
+    // console.log(NewParticipantadded);
+    $.ajax({
+        url: "send_email.php",
+        type: "POST",
+        data: NewParticipantadded,
+        success: function(msg) {
+            console.log(msg);
+        }
+    });
+    //03rd Participant is newly added ends
 }
 
 function addPersonInternal() {
@@ -18394,6 +18419,7 @@ var taskperformersemail = [];
 var wpPerformers = [];
 var wpPerformersemail = [];
 var SSactionOwnersemail = [];
+var company_name_short = [];
 
 var editingAction = -1;
 
@@ -19888,6 +19914,31 @@ function saveEDProject() {
         error: strategyEDOpFailed
             //,datatype: "json"
     });
+    //02nd New Project is created starts 
+    for (var i = 0; i < userSelectedSuppliers.length; i++) {
+        var cmp_name = getCompanyName(userSelectedSuppliers[i]);
+        company_name_short.push(cmp_name);
+    }
+    var NewProjectCreated = {
+        email: Gusername,
+        ProjectName: name,
+        projectDescription: projdes,
+        ClientName: compname,
+        SupplierName: company_name_short.join(),
+        ProjectValue: save + " " + basecurrency,
+        StartDate: start_date,
+        mailAction: 'NewProjectCreated',
+        mailIntro: 'New Project Created.'
+    };
+    $.ajax({
+        url: "send_email.php",
+        type: "POST",
+        data: NewProjectCreated,
+        success: function(msg) {
+            console.log(msg);
+        }
+    });
+    //02nd New Project is created ends
 }
 
 function displayMessage() {
@@ -22117,6 +22168,10 @@ function saveNewProgressNote() {
     var completed = document.getElementById("setCompleted").checked;
     var dropped = document.getElementById("setDropped").checked;
     var updateProgress = document.getElementById("setProgress").checked;
+    var actionDesc = document.getElementById('actionDesc').innerHTML;
+    var actionDeadline = document.getElementById('actionDeadline').innerHTML;
+    var activeActionPos = document.getElementById('actionposition').innerHTML;
+
     if (comment === "") {
         $(".error").show();
         $("#input_update_error").html(
@@ -22159,6 +22214,31 @@ function saveNewProgressNote() {
         document.getElementById("input_progress").value = "";
         document.getElementById("setCompleted").checked = false;
         $("#progressnote_modal").modal("hide");
+        //35th Action Item is marked as complete starts
+        var names = getFirstLast(Gusername);
+        var SSoentry = findSSEntry(GcurrentSS);
+        var email = getEmailFromId(SSoentry[19]);
+        var ActionItemCompleted = {
+            email: email[0],
+            ProjectName: getStrategyName(Gcurrentstrategy),
+            StrategyStatementNo: SSoentry[12],
+            StrategyStatementDescription: SSoentry[1],
+            ActionItemDescription: actionDesc,
+            TargetDate: actionDeadline,
+            CompletionDate: getDateById("date-picker_progress"),
+            CompletedBy: names[0] + " " + names[1],
+            mailAction: 'ActionItemCompleted',
+            mailIntro: 'Action Item for Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been completed'
+        };
+        $.ajax({
+            url: "send_email.php",
+            type: "POST",
+            data: ActionItemCompleted,
+            success: function(msg) {
+                console.log(msg);
+            }
+        });
+        //35th Action Item is marked as complete ends
         return false;
     }
 
@@ -22197,6 +22277,40 @@ function saveNewProgressNote() {
         document.getElementById("input_progress").value = "";
         document.getElementById("setCompleted").checked = false;
         $("#progressnote_modal").modal("hide");
+        //36th Action Item is dropped starts
+        var activeAction = findActionEntryInSS(GcurrentSS, activeActionPos); //for taking currect action 
+        var names = getFirstLast(Gusername);
+        var SSoentry = findSSEntry(GcurrentSS);
+        var email = getEmailFromId(SSoentry[19]);
+        let SSactionOwners = getActionOwners(SSoentry[6]);
+        var ActionOwn = activeAction[3].split(',');
+        //console.log(ActionOwn);
+        for (var i = 0; i < ActionOwn.length; i++) {
+            var emailid = getEmailFromId(ActionOwn[i]);
+            SSactionOwnersemail.push(emailid[0]);
+        }
+        var ActionItemDropped = {
+            email: email[0],
+            ProjectName: getStrategyName(Gcurrentstrategy),
+            StrategyStatementNo: SSoentry[12],
+            StrategyDescription: SSoentry[1],
+            ActionItemDescription: actionDesc,
+            DroppingDate: date,
+            Reason: comment,
+            DroppedBy: names[0] + " " + names[1],
+            ActionOwners: SSactionOwnersemail,
+            mailAction: 'ActionItemDropped',
+            mailIntro: 'Action Item for Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been dropped',
+        };
+        $.ajax({
+            url: "send_email.php",
+            type: "POST",
+            data: ActionItemDropped,
+            success: function(msg) {
+                console.log(msg);
+            }
+        });
+        //36th Action Item is dropped ends
         return false;
     }
 
@@ -22234,6 +22348,32 @@ function saveNewProgressNote() {
             //,datatype: "json"
     });
     $("#progressnote_modal").modal("hide");
+    //38th Action Item progess percentage is updated starts
+    var names = getFirstLast(Gusername);
+    var SSoentry = findSSEntry(GcurrentSS);
+    var email = getEmailFromId(SSoentry[19]);
+    var ActionItemUpdated = {
+        email: email[0],
+        ProjectName: getStrategyName(Gcurrentstrategy),
+        StrategyStatementNo: SSoentry[12],
+        StrategyStatementDescription: SSoentry[1],
+        ActionItemDescription: actionDesc,
+        TargetDate: actionDeadline,
+        ProgressPercentage: progress,
+        UpdateDate: getDateById("date-picker_progress"),
+        UpdateNotes: comment,
+        mailAction: 'ActionItemUpdated',
+        mailIntro: 'Action Item for Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been updated'
+    };
+    $.ajax({
+        url: "send_email.php",
+        type: "POST",
+        data: ActionItemUpdated,
+        success: function(msg) {
+            console.log(msg);
+        }
+    });
+    //38th Action Item progess percentage is updated ends
 }
 
 function actionCompleteAddProgress(response) {
@@ -22794,18 +22934,18 @@ function deleteEDSSIm(ssObject) {
         email: email[0],
         ProjectName: getStrategyName(Gcurrentstrategy),
         StrategyStatementNo: SSoentry[12],
-        ProjectDescription: SSoentry[1],
+        StrategyStatementDescription: SSoentry[1],
         Priority: SSoentry[3],
-        DropReason: drop_reason,
+        ReasonForDropping: drop_reason,
         ActionOwners: SSactionOwnersemail,
         DroppedBy: names[0] + " " + names[1],
-        // Gusername: Gusername,
-        // token: Gtoken,
-        // project: Gcurrentstrategy,
+        //Gusername: Gusername,
+        //token: Gtoken,
+        //project: Gcurrentstrategy,
         //company: getCompanyForProject(Gcurrentstrategy),
         //bu: getBUForProject(Gcurrentstrategy),
         //ss: editingSS,
-        // ssnumber: GcurrentSS,
+        //ssnumber: GcurrentSS,
         mailAction: 'ssDropped',
         mailIntro: 'Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been dropped.'
     };
@@ -23151,12 +23291,11 @@ function saveEDSSI() {
     var ssEditMailData = {
         email: email[0],
         ProjectName: getStrategyName(Gcurrentstrategy),
-        StrategyNumber: SSoentry[12],
-        //project: Gcurrentstrategy,
-        StrategyDescription: SSoentry[1],
+        StrategyStatementNumber: SSoentry[12],
+        StrategyStatementDescription: SSoentry[1],
         Priority: SSoentry[3],
         StartDate: startdate,
-        // Gusername: encodeURIComponent(Gusername),
+        //Gusername: encodeURIComponent(Gusername),
         //token: encodeURIComponent(Gtoken),
         //company: getCompanyForProject(Gcurrentstrategy),
         //bu: getBUForProject(Gcurrentstrategy),
@@ -23164,7 +23303,7 @@ function saveEDSSI() {
         //EndDate: encodeURIComponent(enddate),
         //ssowner: encodeURIComponent(ssowner),
         mailAction: 'ssEditMailData',
-        mailIntro: 'You have been assigned to Strategy Statement ' + editingSS + ' for ' + getStrategyName(Gcurrentstrategy)
+        mailIntro: 'You have been assigned to Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy)
     };
     //console.log(ssEditMailData);
     $.ajax({
@@ -23237,9 +23376,9 @@ function saveUnSelectReason() {
     var SSUnSelectReason = {
         email: email[0],
         StrategyStatementNo: SSoentry[12],
-        StrategyDescription: SSoentry[1],
+        StrategyStatementDescription: SSoentry[1],
         Priority: SSoentry[3],
-        UnimplementReason: unimplement_reason,
+        ReasonForUnimplementation: unimplement_reason,
         DateOfUnselection: date,
         UnselectedBy: names[0] + " " + names[1],
         ActionOwners: SSactionOwnersemail,
@@ -28321,7 +28460,7 @@ function addNPVtoSS() {
         email: email[0],
         ProjectName: getStrategyName(Gcurrentstrategy),
         StrategyStatementNo: SSoentry[12],
-        StrategyDescription: SSoentry[1],
+        StrategyStatementDescription: SSoentry[1],
         Priority: SSoentry[3],
         ValueRealized: val,
         //Gusername: encodeURIComponent(Gusername),

@@ -10,8 +10,8 @@ if ($_POST['mailAction'] == 'ParticipantSelected') {
     'subject' => 'AIM&DRIVE: Workshop Participants added for ' . $_POST['ProjectName'],
     'message' => $body_message,
   );
-  //print_r($email_data);
-  $email_response = sendEmailNew($email_data);
+  print_r($email_data);
+  //$email_response = sendEmailNew($email_data);
   //var_dump($email_response); 
 }
 //5th Participant is selected ends
@@ -64,6 +64,74 @@ if ($_POST['mailAction'] == 'SSvalueRelizedUpdate') {
 }
 //34th Value Realized is updated for a SS ends
 
+//---------------------------Second day update -------------------------//
+//35th Action Item is marked as complete starts
+if ($_POST['mailAction'] == 'ActionItemCompleted') {
+  $body_message = CreateHtml($_POST);
+  $email_data = array(
+    'to' => $_POST['email'],
+    'subject' => 'AIM&DRIVE: Action Item completed for ' . $_POST['ProjectName'],
+    'message' => $body_message,
+  );
+  //print_r($email_data);
+  $email_response = sendEmailNew($email_data); 
+}
+//35th Action Item is marked as complete ends
+//36th Action Item is dropped starts
+if ($_POST['mailAction'] == 'ActionItemDropped') {
+  $single_id = array($_POST['email']);
+  $extra_ids = $_POST['ActionOwners'];
+  $multi_mail_id = array_merge($single_id, $extra_ids);
+  //print_r($multi_mail_id);
+  for ($i = 0; $i < count($multi_mail_id); $i++) {
+    $body_message = CreateHtml($_POST);
+    $email_data = array(
+      'to' => $multi_mail_id[$i],
+      'subject' => 'AIM&DRIVE: Action Item completed for ' . $_POST['ProjectName'],
+      'message' => $body_message,
+    );
+    //print_r($email_data);
+    $email_response = sendEmailNew($email_data);
+  }
+}
+//36th Action Item is dropped ends
+//38th Action Item progess percentage is updated starts
+if ($_POST['mailAction'] == 'ActionItemUpdated') {
+  $body_message = CreateHtml($_POST);
+  $email_data = array(
+    'to' => $_POST['email'],
+    'subject' => 'AIM&DRIVE: Action Item Progress updated for ' . $_POST['ProjectName'],
+    'message' => $body_message,
+  );
+  //print_r($email_data);
+  $email_response = sendEmailNew($email_data);
+}
+//38th Action Item progess percentage is updated starts
+//02nd New Project is created starts
+if ($_POST['mailAction'] == 'NewProjectCreated') {
+  $body_message = CreateHtml($_POST);
+  $email_data = array(
+    'to' => $_POST['email'],
+    'subject' => 'AIM&DRIVE: New Project Created',
+    'message' => $body_message,
+  );
+  //print_r($email_data);
+  $email_response = sendEmailNew($email_data);
+}
+//02nd New Project is created ends 
+//03rd Participant is newly added starts 
+if ($_POST['mailAction'] == 'NewParticipantadded') {
+  $body_message = CreateHtml($_POST);
+  $email_data = array(
+    'to' => $_POST['email'],
+    'subject' => 'AIM&DRIVE: Stakeholder added for ' . $_POST['ProjectName'],
+    'message' => $body_message,
+  );
+  //print_r($email_data);
+  $email_response = sendEmailNew($email_data);
+}
+//03rd Participant is newly added ends
+
 //SNS - 13
 //22 - Assign Action Item Owner
 if ($_POST['mailAction'] == 'actionOwner') {
@@ -75,7 +143,7 @@ if ($_POST['mailAction'] == 'actionOwner') {
     'message' => $body_message,
   );
   //print_r($email_data);
-  //$email_response = sendEmailNew($email_data); 
+  $email_response = sendEmailNew($email_data); 
   //var_dump($email_response); 
 }
 //11 - Participant is added to a new task
@@ -89,7 +157,6 @@ if ($_POST['mailAction'] == 'taskParticipant') {
     'subject' => 'AIM&DRIVE: Project Setup Tasks assigned for ' . $_POST['ProjectName'],
     'message' => $body_message,
   );
-
   //print_r($email_data);
   $email_response = sendEmailNew($email_data);
   //var_dump($email_response); 

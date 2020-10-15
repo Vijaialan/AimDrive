@@ -27,8 +27,7 @@ while ($wp_row = mysqli_fetch_array($wp_result)) {
 
         $days = getdateDiff($curDate, $wp_row['wp_date']);
         //if (1 == 1)
-        if ($days == 5) 
-        {
+        if ($days == 5) {
             $MailAction = 1;
             $wpData = array_merge(
                 $wpData,
@@ -72,8 +71,7 @@ while ($Trow = mysqli_fetch_array($task_result)) {
     if ($curDate >=  $Trow['DUE']) {
         $days = getdateDiff($curDate, $Trow['DUE']);
         //if (1 == 1)
-        if ($days == 5) 
-        {
+        if ($days == 5) {
             $MailAction = 1;
             $taskData = array_merge(
                 $taskData,
@@ -117,8 +115,7 @@ while ($SSrow = mysqli_fetch_array($SS_result)) {
     if ($curDate >=  $SSrow['ss_enddate']) {
         $days = getdateDiff($curDate, $SSrow['ss_enddate']);
         //if (1 == 1)
-        if ($days == 5) 
-        {
+        if ($days == 5) {
             $MailAction = 1;
             $SSData = array_merge(
                 $SSData,
@@ -161,8 +158,7 @@ while ($AI_row = mysqli_fetch_array($action_result)) {
     if ($curDate >=  $AI_row['Adeadline']) {
         $days = getdateDiff($curDate, $AI_row['Adeadline']);
         //if (1 == 1)
-        if ($days == 5)
-        {
+        if ($days == 5) {
             $MailAction = 1;
             $ActionData = array_merge(
                 $ActionData,
@@ -213,8 +209,8 @@ while ($SSAO_row = mysqli_fetch_array($SAowner_result)) {
             $ActoinItems,
             array(
                 //"ActionItemDescription" .'-'. $i => $ActOwner['ordering'] . ' - ' . $ActOwner['description'],
-                "ActionItemDescription" .'-'. $i => $ActOwner['description'],
-                "ActionTargetDate".'-'.$i => getDateFromat($ActOwner['deadline'])
+                "ActionItemDescription" . '-' . $i => $ActOwner['description'],
+                "ActionTargetDate" . '-' . $i => getDateFromat($ActOwner['deadline'])
             )
         );
         $ActionOwnerEmail = $ActOwner['responsible'];
@@ -226,7 +222,7 @@ while ($SSAO_row = mysqli_fetch_array($SAowner_result)) {
         "mailIntro" => 'Action Items assigned to you for Strategy Statement ' . $SSAO_row['ss_handle'] . ' for ' . $SSAO_row['pj_name']
     ));
 
-    $SS_ActionItem = array_merge($AownerData,$ActoinItems);
+    $SS_ActionItem = array_merge($AownerData, $ActoinItems);
     //print_r($ActoinItems);
     $email_content = callMailContent($SS_ActionItem, $MailAction);
     //print_r($email_content);
@@ -271,7 +267,7 @@ function getDateFromat($Date)
 //get person mail id
 function getParticipant($con, $ids)
 {
-    $emailId ='NA';
+    $emailId = 'NA';
     $email_sql = "SELECT * FROM person WHERE pnid IN ($ids) ";
     $result = mysqli_query($con, $email_sql);
     //print_r($result);
@@ -290,7 +286,7 @@ function sendEmailNew($email_data)
     $email = new \SendGrid\Mail\Mail();
     $email->setFrom("conroy.fernandes@anklesaria.com", "AIM&DRIVE");
     $email->setSubject($email_data['subject']);
-    $email->addTo($email_data['to'], "Admin");
+    $email->addTo($email_data['to']);
     //$email->addBcc($email_data['bcc']);
     //$email->addContent("text/plain", $email_data['message']);
     $email->addContent("text/html", $email_data['message']);

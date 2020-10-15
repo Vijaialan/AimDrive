@@ -26,8 +26,8 @@ while ($wp_row = mysqli_fetch_array($wp_result)) {
     if ($curDate >=  $wp_row['wp_date']) {
 
         $days = getdateDiff($curDate, $wp_row['wp_date']);
-        if (1 == 1)
-        //if ($days == 5) 
+        //if (1 == 1)
+        if ($days == 5) 
         {
             $MailAction = 1;
             $wpData = array_merge(
@@ -71,8 +71,8 @@ while ($Trow = mysqli_fetch_array($task_result)) {
     //if (1 == 1) 
     if ($curDate >=  $Trow['DUE']) {
         $days = getdateDiff($curDate, $Trow['DUE']);
-        if (1 == 2)
-        //if ($days == 5) 
+        //if (1 == 1)
+        if ($days == 5) 
         {
             $MailAction = 1;
             $taskData = array_merge(
@@ -83,7 +83,7 @@ while ($Trow = mysqli_fetch_array($task_result)) {
                     "mailIntro" => 'Project Setup Task due in 5 days...!'
                 )
             );
-        } elseif (0 == 0) {
+        } elseif ($days == 0) {
             $MailAction = 1;
             $taskData = array_merge(
                 $taskData,
@@ -116,8 +116,8 @@ while ($SSrow = mysqli_fetch_array($SS_result)) {
     );
     if ($curDate >=  $SSrow['ss_enddate']) {
         $days = getdateDiff($curDate, $SSrow['ss_enddate']);
-        if (1 == 1)
-        //if ($curDate == 5) 
+        //if (1 == 1)
+        if ($days == 5) 
         {
             $MailAction = 1;
             $SSData = array_merge(
@@ -160,8 +160,8 @@ while ($AI_row = mysqli_fetch_array($action_result)) {
     );
     if ($curDate >=  $AI_row['Adeadline']) {
         $days = getdateDiff($curDate, $AI_row['Adeadline']);
-        if (1 == 1)
-        //if ($curDate == 5)
+        //if (1 == 1)
+        if ($days == 5)
         {
             $MailAction = 1;
             $ActionData = array_merge(
@@ -172,7 +172,7 @@ while ($AI_row = mysqli_fetch_array($action_result)) {
                     "mailIntro" => 'Action Items due for completion in 5 days ...!'
                 )
             );
-        } elseif (0 == 0) {
+        } elseif ($days == 0) {
             $MailAction = 1;
             $ActionData = array_merge(
                 $ActionData,

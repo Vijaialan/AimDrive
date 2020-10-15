@@ -8,7 +8,7 @@ mysqli_set_charset($con, "utf8");
 $curDate = date("Y-m-d");
 
 //7 , 9 Session is coming up in 5 working day & 1 day
-$work_plan = "SELECT *, DATE(starttime) wp_date, TIME(starttime) stTime  FROM `project_meeting`  A, project_meeting_participant  B, project C  WHERE A.pjid=B.pjid AND B.pjid=C.pjid AND length(participant)>0 AND A.pjid IN (38,40)";
+$work_plan = "SELECT *, DATE(starttime) wp_date, TIME(starttime) stTime  FROM `project_meeting`  A, project_meeting_participant  B, project C  WHERE A.pjid=B.pjid AND B.pjid=C.pjid AND length(participant)>0 AND A.pjid IN (38,40,41)";
 $wp_result = mysqli_query($con, $work_plan);
 while ($wp_row = mysqli_fetch_array($wp_result)) {
     $MailAction = 0;
@@ -56,7 +56,7 @@ while ($wp_row = mysqli_fetch_array($wp_result)) {
 }
 
 // 12, 13 Task assigned to a participant is due in 5 working days
-$task = "SELECT A.*, B.*, C.pj_name, DATE(due_date) DUE FROM `project_task` A, project_task_participant B, project C WHERE A.pjid=B.pjid AND B.pjid=C.pjid AND A.pjtaskid=B.pjtaskid AND A.pjid IN (38,40) ORDER BY 4 LIMIT 10";
+$task = "SELECT A.*, B.*, C.pj_name, DATE(due_date) DUE FROM `project_task` A, project_task_participant B, project C WHERE A.pjid=B.pjid AND B.pjid=C.pjid AND A.pjtaskid=B.pjtaskid AND A.pjid IN (38,40,41) ORDER BY 4 LIMIT 10";
 $task_result = mysqli_query($con, $task);
 while ($Trow = mysqli_fetch_array($task_result)) {
     $MailAction = 0;
@@ -101,7 +101,7 @@ while ($Trow = mysqli_fetch_array($task_result)) {
 }
 
 //17, 19 SS Target date is due in 5 working days
-$SS = "SELECT * FROM `strategy_statement` A, project B WHERE A.pjid=B.pjid AND  `ss_dropped`=0 AND ss_complete=0 AND unimplement=0 AND ss_owner IS NOT NULL AND A.pjid IN (38,40) ";
+$SS = "SELECT * FROM `strategy_statement` A, project B WHERE A.pjid=B.pjid AND  `ss_dropped`=0 AND ss_complete=0 AND unimplement=0 AND ss_owner IS NOT NULL AND A.pjid IN (38,40,41) ";
 $SS_result = mysqli_query($con, $SS);
 while ($SSrow = mysqli_fetch_array($SS_result)) {
     $MailAction = 0;
@@ -146,7 +146,7 @@ while ($SSrow = mysqli_fetch_array($SS_result)) {
 }
 
 //24, 26 Action Item Target date is due in 5 working days
-$action = "SELECT actionid, description, responsible, DATE(deadline) Adeadline, A.ssid, ss_handle ,ss_desc, pj_name FROM action A, strategy_statement B, project C WHERE dropped=0 AND completed=0 AND deadline IS NOT NULL AND A.ssid=B.ssid AND A.pjid=B.pjid AND B.pjid=C.pjid AND length(responsible)>0 AND A.pjid IN (38,40) ";
+$action = "SELECT actionid, description, responsible, DATE(deadline) Adeadline, A.ssid, ss_handle ,ss_desc, pj_name FROM action A, strategy_statement B, project C WHERE dropped=0 AND completed=0 AND deadline IS NOT NULL AND A.ssid=B.ssid AND A.pjid=B.pjid AND B.pjid=C.pjid AND length(responsible)>0 AND A.pjid IN (38,40,41) ";
 $action_result = mysqli_query($con, $action);
 while ($AI_row = mysqli_fetch_array($action_result)) {
     $MailAction = 0;
@@ -192,7 +192,7 @@ while ($AI_row = mysqli_fetch_array($action_result)) {
 //22 Action Item Owner is assigned
 //$Aowner = "SELECT actionid, description, responsible, DATE(deadline) Adeadline, A.ssid, ss_handle ,ss_desc, pj_name FROM action A, strategy_statement B, project C WHERE dropped=0  AND deadline IS NOT NULL AND A.ssid=B.ssid AND A.pjid=B.pjid AND B.pjid=C.pjid AND LENGTH(responsible)> 0 AND A.pjid='38' "  ;
 
-$SSowner = "SELECT * FROM strategy_statement A, project B WHERE ss_dropped=0 AND ss_unimplement=0 AND ss_complete=0 AND A.pjid=B.pjid AND ssid IN (SELECT ssid from action WHERE DATE(lastupdate)='" . $curDate . "') AND A.pjid IN (38,40) limit 4";
+$SSowner = "SELECT * FROM strategy_statement A, project B WHERE ss_dropped=0 AND ss_unimplement=0 AND ss_complete=0 AND A.pjid=B.pjid AND ssid IN (SELECT ssid from action WHERE DATE(lastupdate)='" . $curDate . "') AND A.pjid IN (38,40,41) limit 4";
 $SAowner_result = mysqli_query($con, $SSowner);
 while ($SSAO_row = mysqli_fetch_array($SAowner_result)) {
     $MailAction = 1;
@@ -229,7 +229,7 @@ while ($SSAO_row = mysqli_fetch_array($SAowner_result)) {
     $SS_ActionItem = array_merge($AownerData,$ActoinItems);
     //print_r($ActoinItems);
     $email_content = callMailContent($SS_ActionItem, $MailAction);
-    print_r($email_content);
+    //print_r($email_content);
 }
 
 
@@ -251,8 +251,8 @@ function callMailContent($EData, $MailAction)
             'message' => $body_message,
         );
 
-        return ($email_data);
-        //return $email_response = sendEmailNew($email_data);
+        //return ($email_data);
+        return $email_response = sendEmailNew($email_data);
     }
 }
 

@@ -49,12 +49,10 @@ function CreateHtml($Content)
   foreach ($Title as $index => $code) {
     if (in_array($code, $mailkeys))  continue; # Skips
     $ContentTable .= '<tr>
-    <td style="width: 30%;"><p>' . preg_replace('/(?<!\ )[A-Z]/', ' $0', $code) . '</p></td> 
-    
+    <td style="width: 30%;"><p>' . preg_replace('/(?<!\ )[A-Z]/', ' $0', $code) . '</p></td>    
     <td style="width: 70%;"><p>' . $Data[$index] . '</p></td> 
     </tr>';
   }
-
 
   $footer = '</table></section>
   <table id="customers"> 

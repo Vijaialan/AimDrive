@@ -31478,7 +31478,8 @@ function setManagementReports() {
         return false;
     }
     manProjects = reportStrategies;
-    GmgmtReportCurrency = manProjects[0][6][1];
+    //GmgmtReportCurrency = manProjects[0][6][1];
+    GmgmtReportCurrency = "USD";
     manValuesByProjectData = [];
     manAllPendingActionsData = [];
     manAllPendingStrategiesData = [];

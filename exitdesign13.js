@@ -19624,8 +19624,9 @@ function addEDProject() {
     document.getElementById("project_desc").value = "";
     document.getElementById("project_region").value = "";
     document.getElementById("activeProject").checked = false;
-    generateCurrencyDatalist("currlist", "currencySelector");
+    //generateCurrencyDatalist("currlist", "currencySelector");
     document.getElementById("base_currency").value = "";
+    document.getElementById("base_currency").value = "USD";
     deactivateButton("project_submit");
     document.getElementById("project_value").value = "";
     generateSupplierSelector("supplierSelector", -1);

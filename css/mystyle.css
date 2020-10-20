@@ -1244,6 +1244,33 @@ a.mark_impactable:hover span {
     margin-left: -330px;
 }
 
+
+/* USD TEMP */
+
+#base_currency {
+    background: transparent;
+}
+
+#tooltip .tooltiptext {
+    visibility: hidden;
+    border: 1px solid #183151;
+    border-radius: 6px;
+    padding: 5px 2px;
+    display: block;
+    z-index: 1;
+    text-align: center;
+    background: #ffffcc;
+    width: auto;
+    bottom: 70%;
+    left: 35%;
+    position: absolute;
+    text-decoration: none;
+}
+
+#tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
 a.impact_btn {
     /*text-decoration: underline;*/
 }

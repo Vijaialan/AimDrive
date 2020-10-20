@@ -26,8 +26,9 @@ while ($wp_row = mysqli_fetch_array($wp_result)) {
     if ($curDate >=  $wp_row['wp_date']) {
 
         $days = getdateDiff($curDate, $wp_row['wp_date']);
-        //if (1 == 1)
-        if ($days == 5) {
+        if (1 == 1)
+        //if ($days == 5) 
+        {
             $MailAction = 1;
             $wpData = array_merge(
                 $wpData,
@@ -51,7 +52,7 @@ while ($wp_row = mysqli_fetch_array($wp_result)) {
     }
     // echo json_encode($wpData);
     $email_content = callMailContent($wpData, $MailAction);
-    //print_r($email_content);
+    print_r($email_content);
 }
 
 // 12, 13 Task assigned to a participant is due in 5 working days
@@ -247,8 +248,8 @@ function callMailContent($EData, $MailAction)
             'message' => $body_message,
         );
 
-        //return ($email_data);
-        return $email_response = sendEmailNew($email_data);
+        return ($email_data);
+        //return $email_response = sendEmailNew($email_data);
     }
 }
 

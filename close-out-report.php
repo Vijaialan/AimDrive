@@ -26,6 +26,7 @@ $p_result=getData($pr_sql, $con);
 $title = $result['pj_name'];
 $description = $result['pj_desc'];
 $company = $result['co_name'];
+$pj_costunit = $result['pj_costunit'];
 //$primaryCost = money_format("%.2n", $result['pj_potentialsaving']);
 // $overview = array('desc' => $desc);
 $overview = [$description];
@@ -44,7 +45,8 @@ foreach($pm_result as $pmr){
     $overview[] = $pmr['ms_label'].' '.date('jS M, Y',strtotime($pmr['ms_date']));
 }
 foreach($pce_result as $pcer){
-    $overview[] = $pcer['description'].': USD '.number_format($pcer['value']);
+    //$overview[] = $pcer['description'].': USD '.number_format($pcer['value']);
+    $overview[] = $pcer['description'].' : '.$pj_costunit .' '.  number_format($pcer['value']);
 }
 foreach($g_result as $g) {
     $goals[$g_start_index][] = $g;
@@ -464,7 +466,8 @@ foreach($implement_step_single_data as $isd){
                             <tbody>
                                 <tr valign='middle' style='font-size:1.75rem'>
                                     <th width="60%">Cost item</th>
-                                    <th width="20%">Cost($) </th>
+                                    <!-- <th width="20%">Cost($) </th> -->
+                                    <th width="20%">Cost(<?php echo $pj_costunit;?>) </th>
                                     <th width="15%">Percentage</th>
                                 </tr>
                                 <?php foreach($cc as $singlecc) { ?>
@@ -524,7 +527,7 @@ foreach($implement_step_single_data as $isd){
                     <!------ header ------>
                     <div class="sec_head tab_section">
                     <h1 class="sec_title">Reduce</h1>
-                        <h2>The Total Value identified from the Strategies selected for Implementation USD <?php echo number_format($total_value_identified); ?></h2> </div>
+                        <h2>The Total Value identified from the Strategies selected for Implementation <?php echo $pj_costunit.' '. number_format($total_value_identified); ?></h2> </div>
                     <!------ body ------>
                     <div class="sec_body">
                         <table class="table table-bordered">
@@ -546,7 +549,7 @@ foreach($implement_step_single_data as $isd){
                                 <tr valign='middle'>
                                     <td style="padding:8px 5px;"><?php echo $rsd['ss']; ?></td>
                                     <td style="padding:8px 5px;"><?php echo $rsd['priority']; ?></td>
-                                    <td style="padding:8px 5px;">USD <?php echo number_format($net_cost_improvement-$net_revenue_improvement); ?></td>
+                                    <td style="padding:8px 5px;"><?php echo $pj_costunit.' '. number_format($net_cost_improvement-$net_revenue_improvement); ?></td>
                                     
                                 </tr>
                             <?php } ?>
@@ -587,7 +590,7 @@ foreach($implement_step_single_data as $isd){
                                 <tr valign='middle'>
                                     <td style="padding:8px 5px;"><?php echo $isd['ss']?></td>
                                     <td style="padding:8px 5px;"><?php echo $isd['priority']?></td>
-                                    <td style="padding:8px 5px;" class="">USD <?php echo number_format($net_cost_improvement-$net_revenue_improvement);?></td>
+                                    <td style="padding:8px 5px;" class=""><?php echo $pj_costunit.' '. number_format($net_cost_improvement-$net_revenue_improvement);?></td>
                                 </tr>
                             </tbody>
                         </table>

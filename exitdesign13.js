@@ -29336,7 +29336,7 @@ function refreshCOR() {
         '                    <table class="table cost_breakdown_head"> ' +
         "                        <tr> " +
         '                            <td width="65%">Cost item</td> ' +
-        '                            <td width="20%">Cost($) </td> ' +
+        '                            <td width="20%">Cost(' + GdefaultCurrency + ') </td> ' +
         '                            <td width="15%">Percentage</td> ' +
         "                        </tr> " +
         "                    </table> " +

@@ -792,7 +792,8 @@
                          <div class="row">
                                 <div class="col-sm-6 form-group">
                                         <label >Base Currency</label>
-                                        <input autocomplete="off" type="text" list="currlist" class="form-control" required="" onkeyup='activateButton("project_submit");' id="base_currency">
+                                        <input autocomplete="off" type="text" placeholder="USD" title="Other Currencies will be available soon" readonly="" class="form-control" required="" onkeyup='activateButton("project_submit");' id="base_currency">
+                                        <!-- <input autocomplete="off" type="text" list="currlist" class="form-control" required="" onkeyup='activateButton("project_submit");' id="base_currency"> -->
                                         
                                         <div class="error base_currency_error" style="color: red; margin-top:5px"></div>
                                         <div id="currencySelector"></div>

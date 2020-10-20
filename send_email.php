@@ -1,20 +1,22 @@
 <?php
 require 'mail_content.php';
 //echo $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
-//5th Participant is selected starts
-
+//05th Participant is selected starts
 if ($_POST['mailAction'] == 'ParticipantSelected') {
-  $body_message = CreateHtml($_POST);
-  $email_data = array(
-    'to' => $_POST['email'],
-    'subject' => 'AIM&DRIVE: Workshop Participants added for ' . $_POST['ProjectName'],
-    'message' => $body_message,
-  );
-  print_r($email_data);
-  //$email_response = sendEmailNew($email_data);
-  //var_dump($email_response); 
+  $multi_mail_id = $_POST['email'];
+  for ($i = 0; $i < count($multi_mail_id); $i++) {
+    $body_message = CreateHtml($_POST);
+    $email_data = array(
+      'to' => $multi_mail_id[$i],
+      'subject' => 'AIM&DRIVE: Workshop Participants added for ' . $_POST['ProjectName'],
+      'message' => $body_message,
+    );
+    //print_r($email_data);
+    $email_response = sendEmailNew($email_data);
+  }
 }
-//5th Participant is selected ends
+//05th Participant is selected ends
+
 //15th edit ss starts
 if ($_POST['mailAction'] == 'ssEditMailData') {
   $body_message = CreateHtml($_POST);
@@ -27,30 +29,43 @@ if ($_POST['mailAction'] == 'ssEditMailData') {
   $email_response = sendEmailNew($email_data);
 }
 //15th edit ss ends
+
 //28th ss dropped starts
 if ($_POST['mailAction'] == 'ssDropped') {
-  $body_message = CreateHtml($_POST);
-  $email_data = array(
-    'to' => $_POST['email'],
-    'subject' => 'AIM&DRIVE: Strategy Statement dropped for ' . $_POST['ProjectName'],
-    'message' => $body_message,
-  );
-  //print_r($email_data);
-  $email_response = sendEmailNew($email_data);
+  $single_id = array($_POST['email']);
+  $extra_ids = $_POST['ActionOwners'];
+  $multi_mail_id = array_merge($single_id, $extra_ids);
+  for ($i = 0; $i < count($multi_mail_id); $i++) {
+    $body_message = CreateHtml($_POST);
+    $email_data = array(
+      'to' => $multi_mail_id[$i],
+      'subject' => 'AIM&DRIVE: Strategy Statement dropped for ' . $_POST['ProjectName'],
+      'message' => $body_message,
+    );
+    //print_r($email_data);
+    $email_response = sendEmailNew($email_data);
+  }
 }
 //28th ss dropped ends
+
 //32nd SS is unselected starts
 if ($_POST['mailAction'] == 'SSUnSelectImplementation') {
-  $body_message = CreateHtml($_POST);
-  $email_data = array(
-    'to' => $_POST['email'],
-    'subject' => 'AIM&DRIVE: Strategy Statement unselected for implementation for ' . $_POST['ProjectName'],
-    'message' => $body_message,
-  );
-  //print_r($email_data);
-  $email_response = sendEmailNew($email_data);
+  $single_id = array($_POST['email']);
+  $extra_ids = $_POST['ActionOwners'];
+  $multi_mail_id = array_merge($single_id, $extra_ids);
+  for ($i = 0; $i < count($multi_mail_id); $i++) {
+    $body_message = CreateHtml($_POST);
+    $email_data = array(
+      'to' => $multi_mail_id[$i],
+      'subject' => 'AIM&DRIVE: Strategy Statement unselected for implementation for ' . $_POST['ProjectName'],
+      'message' => $body_message,
+    );
+    //print_r($email_data);
+    $email_response = sendEmailNew($email_data);
+  }
 }
 //32nd SS is unselected ends
+
 //34th Value Realized is updated for a SS starts
 if ($_POST['mailAction'] == 'SSvalueRelizedUpdate') {
   $body_message = CreateHtml($_POST);
@@ -74,9 +89,10 @@ if ($_POST['mailAction'] == 'ActionItemCompleted') {
     'message' => $body_message,
   );
   //print_r($email_data);
-  $email_response = sendEmailNew($email_data); 
+  $email_response = sendEmailNew($email_data);
 }
 //35th Action Item is marked as complete ends
+
 //36th Action Item is dropped starts
 if ($_POST['mailAction'] == 'ActionItemDropped') {
   $single_id = array($_POST['email']);
@@ -95,6 +111,7 @@ if ($_POST['mailAction'] == 'ActionItemDropped') {
   }
 }
 //36th Action Item is dropped ends
+
 //38th Action Item progess percentage is updated starts
 if ($_POST['mailAction'] == 'ActionItemUpdated') {
   $body_message = CreateHtml($_POST);
@@ -107,6 +124,7 @@ if ($_POST['mailAction'] == 'ActionItemUpdated') {
   $email_response = sendEmailNew($email_data);
 }
 //38th Action Item progess percentage is updated starts
+
 //02nd New Project is created starts
 if ($_POST['mailAction'] == 'NewProjectCreated') {
   $body_message = CreateHtml($_POST);
@@ -119,6 +137,7 @@ if ($_POST['mailAction'] == 'NewProjectCreated') {
   $email_response = sendEmailNew($email_data);
 }
 //02nd New Project is created ends 
+
 //03rd Participant is newly added starts 
 if ($_POST['mailAction'] == 'NewParticipantadded') {
   $body_message = CreateHtml($_POST);
@@ -143,7 +162,7 @@ if ($_POST['mailAction'] == 'actionOwner') {
     'message' => $body_message,
   );
   //print_r($email_data);
-  $email_response = sendEmailNew($email_data); 
+  $email_response = sendEmailNew($email_data);
   //var_dump($email_response); 
 }
 //11 - Participant is added to a new task
@@ -161,13 +180,6 @@ if ($_POST['mailAction'] == 'taskParticipant') {
   $email_response = sendEmailNew($email_data);
   //var_dump($email_response); 
 }
-
-
-
-
-
-
-
 
 
 /* Send email */
@@ -195,25 +207,3 @@ function sendEmailNew($email_data)
     return $e->getMessage();
   }
 }
-
-
-// function sendMainGun(){
-  
-// # Include the Autoloader (see "Libraries" for install instructions)
-// require 'vendor/autoload.php';
-// require_once '/var/secure/MailApiKey.php';
-// //require 'C:/xampp/htdocs/API/TEST.PHP';
-
-// use Mailgun\Mailgun;
-// # Instantiate the client.
-// $mgClient = new Mailgun($Mailgun);
-// $domain = "mail.anklesaria.com";
-// # Make the call to the client.
-// $result = $mgClient->sendMessage($domain, array(
-//     'from'  => 'New Mail  <sharathreddy@stepnstones.in>',
-//     'to'    => 'Test Mail <sharathreddy@stepnstones.in>',
-//     'subject' => 'Hello',
-//     'text'  => 'Final Testing some Mailgun awesomness!'
-// ));
-
-// }

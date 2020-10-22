@@ -52,7 +52,7 @@ while ($wp_row = mysqli_fetch_array($wp_result)) {
     }
     // echo json_encode($wpData);
     $email_content = callMailContent($wpData, $MailAction);
-    //print_r($email_content);
+    print_r($email_content);
 }
 
 // 12, 13 Task assigned to a participant is due in 5 working days
@@ -96,7 +96,7 @@ while ($Trow = mysqli_fetch_array($task_result)) {
     }
     //echo json_encode($taskData);
     $email_content = callMailContent($taskData, $MailAction);
-    //print_r($email_content);
+    print_r($email_content);
 }
 
 //17, 19 SS Target date is due in 5 working days
@@ -140,7 +140,7 @@ while ($SSrow = mysqli_fetch_array($SS_result)) {
     }
     //json_encode($SSData);
     $email_content = callMailContent($SSData, $MailAction);
-    //print_r($email_content);
+    print_r($email_content);
 }
 
 //24, 26 Action Item Target date is due in 5 working days
@@ -183,7 +183,7 @@ while ($AI_row = mysqli_fetch_array($action_result)) {
     }
     //json_encode($SSData);
     $email_content = callMailContent($ActionData, $MailAction);
-    //print_r($email_content);
+    print_r($email_content);
 }
 
 //22 Action Item Owner is assigned
@@ -226,7 +226,7 @@ while ($SSAO_row = mysqli_fetch_array($SAowner_result)) {
     $SS_ActionItem = array_merge($AownerData, $ActoinItems);
     //print_r($ActoinItems);
     $email_content = callMailContent($SS_ActionItem, $MailAction);
-    //print_r($email_content);
+    print_r($email_content);
 }
 
 

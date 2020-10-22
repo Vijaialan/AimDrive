@@ -1265,6 +1265,10 @@ a.mark_impactable:hover span {
     left: 35%;
     position: absolute;
     text-decoration: none;
+    color: #333;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
 }
 
 #tooltip:hover .tooltiptext {

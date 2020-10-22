@@ -19629,18 +19629,11 @@ function addEDProject() {
     document.getElementById("base_currency").value = "USD";
     deactivateButton("project_submit");
     document.getElementById("project_value").value = "";
+    document.getElementById("project_start_date").value = "";
     generateSupplierSelector("supplierSelector", -1);
     $("#projects_modal").modal("show");
     //error
-    $(".client_name_error").hide();
-    $(".project_title_error").hide();
-    $(".project_desc_error").hide();
-    $(".client_dept_error").hide();
-
-
-
-
-
+    $(".client_name_error,.project_title_error,.project_desc_error,.client_dept_error").hide();
 
 }
 

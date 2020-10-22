@@ -19631,8 +19631,15 @@ function addEDProject() {
     document.getElementById("project_value").value = "";
     generateSupplierSelector("supplierSelector", -1);
     $("#projects_modal").modal("show");
-    $(".project_desc_error").val("");
-    $(".client_dept_error").val("");
+    //error
+    $(".client_name_error").hide();
+    $(".project_title_error").hide();
+    $(".project_desc_error").hide();
+    $(".client_dept_error").hide();
+
+
+
+
 
 
 }

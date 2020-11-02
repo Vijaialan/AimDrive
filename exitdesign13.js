@@ -10028,7 +10028,7 @@ function addPersonToProject() {
         //,datatype: "json"
     });
     //console.log(updateEDPersonsAddPart);
-    //03rd Participant is newly added starts 
+      //03rd Participant is newly added starts 
     //console.log(Gcurrentdata);
     var today = new Date();
     var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
@@ -10128,7 +10128,7 @@ function saveEDPerson() {
                 //,datatype: "json"
         });
     }
-
+  
 }
 
 function addPersonInternal() {
@@ -12419,7 +12419,7 @@ function includeSupplierP(id) {
  */
 function setEDMyProjectsBody() {
     //START 08082020
-    console.trace();
+   // console.trace();
     var allManProjectsDataTempPro = [];
     var allManProjectsDataPro = [];
     var PrjectData = [];
@@ -18450,6 +18450,7 @@ var SSactionOwnersemail = [];
 var company_name_short = [];
 var Exparticipentsemail = [];
 
+
 var editingAction = -1;
 
 function addTaskPerformers(response) {
@@ -21461,7 +21462,7 @@ function getActionImplementers(oentry) {
  * HTML for actions of a strategy statement in I step
  */
 function refreshSS_ED_Actions() {
-    console.trace();
+   // console.trace();
     var body = "";
     let temPbody = "";
     var deadline;
@@ -21660,7 +21661,7 @@ function format(inputDate) {
         var month = (date.getMonth() + 1).toString();
         // Months use 0 index.
 
-        return (date.getFullYear()) + '-' + (month[1] ? month : '0' + month[0]) + '-' + (day[1] ? day : '0' + day[0]);
+        return (month[1] ? month : '0' + month[0]) + '/' + (day[1] ? day : '0' + day[0]) + '/' + (date.getFullYear());
     }
 }
 
@@ -21697,8 +21698,8 @@ function saveEDSSAction() {
     };
 
 
-    //22 - Action Item Owner is assigned
-    var email = getEmailFromId(id);
+        //22 - Action Item Owner is assigned
+        var email = getEmailFromId(id);
     var actionmailData = {
         email: email[0],
         ProjectName: getCompanyForProject(Gcurrentstrategy),
@@ -21886,12 +21887,8 @@ function updateParticipants() {
     for (var i = 0; i < currentParticipants.length; i++) {
         currentParticipantIDs.push(currentParticipants[i][0]);
     }
-    // console.log(currentParticipantIDs);
 
-    // Exparticipentsemail.push(currentParticipantIDs[0]);
-    // console.log(Exparticipentsemail);
-
-    var added = [];
+var added = [];
     deleted = [];
     var proposedParticipants = [];
     for (var i = 0; i < candidateIDs.length; i++) {
@@ -21902,7 +21899,7 @@ function updateParticipants() {
             if (currentParticipantIDs.indexOf(pid) < 0)
             // not in the old team
                 added.push(pid);
-        } // person is NOT in the new team
+              } // person is NOT in the new team
         else {
             if (currentParticipantIDs.indexOf(pid) >= 0)
             // but in the old team
@@ -21910,29 +21907,33 @@ function updateParticipants() {
         }
     }
 
+
     //03rd 2nd part Participant is newly added starts 
-    // var today = new Date();
-    // var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
-    //       var ExiParticipantadded = {
-    //            email: Exparticipentsemail,
-    //            ProjectName: Gcurrentdata[0],
-    //            ProjectDescription: Gcurrentdata[1],
-    //            SupplierName:getCompanyName(cid),
-    //            ProjectValue: CurrencyFormat(Gcurrentdata[2][0], Gcurrentdata[2][1], 0, "", ","),
-    //            StartDate: date,
-    //            mailAction: 'ExiParticipantadded',
-    //            mailIntro:  'You have been added to the Project ' +Gcurrentdata[0]
-    //        };
-    //    // console.log(ExiParticipantadded);
-    //        $.ajax({
-    //            url: "send_email.php",
-    //            type: "POST",
-    //            data: ExiParticipantadded,
-    //            success: function (msg) {
-    //                console.log(msg);
-    //            }
-    //        });
-    //03rd 2nd part Participant is newly added ends
+    for (var i = 0; i < currentParticipantIDs.length; i++) {
+        var emailid = getEmailFromId(currentParticipantIDs[i]);
+        Exparticipentsemail.push(emailid[0]);
+    }
+  
+var today = new Date();
+var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+      var ExiParticipantadded = {
+           email: Exparticipentsemail,
+           ProjectName: Gcurrentdata[0],
+           ProjectDescription: Gcurrentdata[1],
+           ProjectValue: CurrencyFormat(Gcurrentdata[2][0], Gcurrentdata[2][1], 0, "", ","),
+           StartDate: date,
+           mailAction: 'ExiParticipantadded',
+           mailIntro:  'You have been added to the Project ' +Gcurrentdata[0]
+       };
+       $.ajax({
+           url: "send_email.php",
+           type: "POST",
+           data: ExiParticipantadded,
+           success: function (msg) {
+               console.log(msg);
+           }
+       });
+//03rd 2nd part Participant is newly added ends
 
     var operations = [];
     for (var i = 0; i < added.length; i++) {
@@ -22233,9 +22234,9 @@ function saveNewProgressNote() {
     var completed = document.getElementById("setCompleted").checked;
     var dropped = document.getElementById("setDropped").checked;
     var updateProgress = document.getElementById("setProgress").checked;
-    var actionDesc = document.getElementById('actionDesc').innerHTML;
-    var actionDeadline = document.getElementById('actionDeadline').innerHTML;
-    var activeActionPos = document.getElementById('actionposition').innerHTML;
+     var actionDesc = document.getElementById('actionDesc').innerHTML;
+     var actionDeadline = document.getElementById('actionDeadline').innerHTML;
+     var activeActionPos = document.getElementById('actionposition').innerHTML;
 
     if (comment === "") {
         $(".error").show();
@@ -22374,6 +22375,7 @@ function saveNewProgressNote() {
                 console.log(msg);
             }
         });
+        console.log(ActionItemDropped);
         //36th Action Item is dropped ends
         return false;
     }
@@ -22416,6 +22418,7 @@ function saveNewProgressNote() {
     var names = getFirstLast(Gusername);
     var SSoentry = findSSEntry(GcurrentSS);
     var email = getEmailFromId(SSoentry[19]);
+    var sy = '%';
     var ActionItemUpdated = {
         email: email[0],
         ProjectName: getStrategyName(Gcurrentstrategy),
@@ -22423,7 +22426,7 @@ function saveNewProgressNote() {
         StrategyStatementDescription: SSoentry[1],
         ActionItemDescription: actionDesc,
         TargetDate: actionDeadline,
-        ProgressPercentage: progress,
+        ProgressPercentage: progress  + " " +sy,
         UpdateDate: getOnlyDate(getDateById("date-picker_progress")),
         UpdateNotes: comment,
         mailAction: 'ActionItemUpdated',
@@ -23054,6 +23057,7 @@ function editEDSSS(page, ssid, ssObject) {
         editingSS = ssid;
         var oentry = findSSEntry(ssid);
         let input_startdate = oentry[17] !== null ? oentry[17].split(" ")[0] : "";
+        let input_enddate = oentry[18] !== null ? oentry[18].split(" ")[0] : "";
         $("#input_startdate").datepicker("setDate", new Date());
         $("#input_enddate").datepicker("setDate", new Date());
         // document.getElementById("input_taskdate").value = "";
@@ -23061,9 +23065,8 @@ function editEDSSS(page, ssid, ssObject) {
         document.getElementById("strategy_no").value = oentry[12];
         document.getElementById("priority_txt").value = oentry[3];
         document.getElementById("strategy_statmnt").value = oentry[1];
-        document.getElementById("input_startdate").value = input_startdate;
-        document.getElementById("input_enddate").value =
-            oentry[18] !== null ? oentry[18].split(" ")[0] : "";
+        document.getElementById("input_startdate").value = format(input_startdate);
+        document.getElementById("input_enddate").value =format(input_enddate);
         document.getElementById("multiselect_owners").value = oentry[19];
         $("#edit_strategy_modal").modal("show");
         $(".opt_btn_wrp").css("visibility", "hidden");
@@ -23342,6 +23345,7 @@ function saveEDSSI() {
     });
 
     //15th SS Owner is assigned starts
+
     var SSoentry = findSSEntry(GcurrentSS);
     var email = getEmailFromId(ssowner);
     var ssEditMailData = {
@@ -23349,8 +23353,8 @@ function saveEDSSI() {
         ProjectName: getStrategyName(Gcurrentstrategy),
         StrategyStatementNumber: SSoentry[12],
         StrategyStatementDescription: SSoentry[1],
-        StartDate: getOnlyDate2(startdate),
-        TargetDate: getOnlyDate2(enddate),
+        StartDate: getOnlyDate1(startdate),
+        TargetDate: getOnlyDate1(enddate),
         Priority: SSoentry[3],
         //NetPotentialValueIdentified : CurrencyFormat(temp, GdefaultCurrency, 0, "", ","),
         mailAction: 'ssEditMailData',
@@ -24600,7 +24604,7 @@ function fileEDOpFailed(response) {
  * HTML for identify step is prepared
  */
 function identifyStepContents() {
-    console.trace();
+    //console.trace();
     if (Gcurrentdata[Gprimeindex] == null || Gcurrentdata[Gprimeindex][0] == null)
         return;
     costTree = [
@@ -25353,7 +25357,7 @@ function getComputedCost(ce) {
  * HTML for identify step tree
  */
 function renderFullEDTree() {
-    console.trace();
+    //console.trace();
     oldCheckBoxValues = [];
     oldSelectValues = [];
     updateForm = "( ";
@@ -26080,7 +26084,7 @@ function markCEEternal(ce, criticalp) {
  * @param {number} pid - Person Id
  */
 function eternalStepContents2() {
-    console.trace();
+   // console.trace();
     body = "";
     body =
         body +
@@ -26668,7 +26672,7 @@ function getCEStatus(ce) {
  * @param {number} pid - Person Id
  */
 function mdStepContents2() {
-    console.trace();
+   // console.trace();
     var disableUpdates = "";
     if (Gadmin == 0) disableUpdates = " disabled";
 
@@ -28372,7 +28376,7 @@ function deactivateButton(id) {
  * @param {number} ss - strategy statement id
  */
 function setupUpdateVal(ss) {
-    console.trace();
+    //console.trace();
     console.log(ss);
     let allStrategies = Gcurrentdata[Grbindex];
     let currentStrategy = allStrategies.filter(function(strategies) {
@@ -28422,8 +28426,8 @@ function setupUpdateVal(ss) {
         "",
         ","
     );
-    document.getElementById("CurType").innerHTML = GdefaultCurrency;
-
+    document.getElementById("CurType").innerHTML =   GdefaultCurrency;
+      
     var actualSavings = oentry[13];
     if (actualSavings != null) {
         var valueRealisedTotal = 0;
@@ -28502,7 +28506,7 @@ function addNPVtoSS() {
     //34th  Value Realized is updated starts
     var ssCurType = document.getElementById('CurType').innerHTML;
     var SSoentry = findSSEntry(GcurrentSS);
-    console.log(SSoentry);
+   console.log(SSoentry);
     var email = getEmailFromId(SSoentry[19]);
     var today = new Date();
     var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
@@ -28514,8 +28518,8 @@ function addNPVtoSS() {
         StrategyStatementNumber: SSoentry[12],
         StrategyStatementDescription: SSoentry[1],
         Priority: SSoentry[3],
-        ValueRealized: CurrencyFormat(val, ssCurType, 0, "", ","),
-        // ValueRealized: val,
+        ValueRealized:  CurrencyFormat(val, ssCurType, 0, "", ","),
+      // ValueRealized: val,
         DateOfRealization: getOnlyDate(updateDate),
         Notes: notes,
         mailAction: 'SSvalueRelizedUpdate',
@@ -31393,7 +31397,7 @@ function refreshProgressReport() {
  * @param {number} pid - Person Id
  */
 function getAllReportData() {
-    console.trace();
+   // console.trace();
     manProjects = Gstrategies;
     allManProjectsData = [];
     allManProjectsDataTemp = [];
@@ -31461,7 +31465,7 @@ function setManagementReports() {
     d = new Date(d.getTime() - 3000000);
     var currentDate = d.getFullYear().toString() + "-" + ((d.getMonth() + 1).toString().length == 2 ? (d.getMonth() + 1).toString() : "0" + (d.getMonth() + 1).toString()) + "-" + (d.getDate().toString().length == 2 ? d.getDate().toString() : "0" + d.getDate().toString()) + " " + (d.getHours().toString().length == 2 ? d.getHours().toString() : "0" + d.getHours().toString()) + ":" + ((parseInt(d.getMinutes() / 5) * 5).toString().length == 2 ? (parseInt(d.getMinutes() / 5) * 5).toString() : "0" + (parseInt(d.getMinutes() / 5) * 5).toString()) + ":00";
     //console.log(currentDate);
-    console.trace();
+    //console.trace();
 
     var today = new Date();
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();

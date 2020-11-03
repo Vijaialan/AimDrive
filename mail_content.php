@@ -58,10 +58,14 @@ function CreateHtml($Content)
   }
 
   $footer = '</table></section>
-  <p id="note">This is an automated message - Please do not reply to this mail.</p>
+  
   <table id="customers"> 
   <th colspan="2">Copyright © '. date("Y").'-'.date("Y",strtotime("+1 year")).' AIM&DRIVE<sup>&#174;</sup>, All Rights Reserved.</th>
-  </table></body></html>';
+  </table>
+
+  <p id="note">This is an automated message - Please do not reply to this mail.</p>
+  
+  </body></html>';
 
   //return full html content
   return $htmlbody . $ContentTable . $footer;

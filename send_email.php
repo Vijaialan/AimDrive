@@ -208,9 +208,9 @@ function sendEmailNew($email_data)
   require_once '/var/secure/MailApiKey.php';
 
   $email = new \SendGrid\Mail\Mail();
-  $email->setFrom("conroy.fernandes@anklesaria.com", "");
+  $email->setFrom("conroy.fernandes@anklesaria.com", "AIM&DRIVE");
   $email->setSubject($email_data['subject']);
-  $email->addTo($email_data['to'], "Admin");
+  $email->addTo($email_data['to'],"");
   //$email->addBcc($email_data['bcc']);
   //$email->addContent("text/plain", $email_data['message']);
   $email->addContent("text/html", $email_data['message']);

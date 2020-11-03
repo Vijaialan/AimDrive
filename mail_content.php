@@ -1,8 +1,5 @@
 <?php
 
-//  $body = CreateHtml('test proj','testing');
-//  echo $body;
-
 function CreateHtml($Content)
 {
   $htmlbody = '
@@ -38,37 +35,31 @@ function CreateHtml($Content)
     background-color: #2b4b75;
     color: white;
   }
-  #note{
-    color:blue;
-  }
   </style>
   </head>
   <body><section>
-  <h3 id="subject">' . $Content['mailIntro'] . '</h3><table id="customers">
-  <th colspan="2"> AIM&DRIVE <sup>&#174;</sup> </th>';
-  
+  <h3 id="subject">' . $Content['mailIntro'] . '</h3><table id="customers"><th colspan="2"> AIM&DRIVE <sup>&#174;</sup></th>';
+
   $Title = array_keys($Content);
   $Data  = array_values($Content);
 
   $ContentTable = "";
-  $mailkeys = array('to_name', 'email', 'mailIntro', 'subject','ActionOwners','mailAction');
+  $mailkeys = array('to_name', 'email', 'mailIntro', 'subject', 'mailAction', 'ActionOwners');
 
   foreach ($Title as $index => $code) {
     if (in_array($code, $mailkeys))  continue; # Skips
-
     $ContentTable .= '<tr>
-    <td style="width: 28%;"><p>' . preg_replace('/(?<!\ )[A-Z]/', ' $0', $code) . '</p></td> 
-    
+    <td style="width: 30%;"><p>' . preg_replace('/(?<!\ )[A-Z]/', ' $0', $code) . '</p></td>    
     <td style="width: 70%;"><p>' . $Data[$index] . '</p></td> 
     </tr>';
   }
 
-
   $footer = '</table></section>
-  <footer>
-  <p id="note">This is an automated message - Please do not reply to this mail.</p>
-  <p>Copyright © 2020-2021 AIM&DRIVE<sup>&#174;</sup>, All Rights Reserved.</p></footer></body></html>';
+  <table id="customers"> 
+  <th colspan="2">Copyright © '. date("Y").'-'.date("Y",strtotime("+1 year")).' AIM&DRIVE<sup>&#174;</sup>, All Rights Reserved.</th>
+  </table></body></html>';
 
   //return full html content
   return $htmlbody . $ContentTable . $footer;
 }
+

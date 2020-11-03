@@ -9,7 +9,7 @@ if ($_POST['mailAction'] == 'ParticipantSelected') {
     $body_message = CreateHtml($_POST);
     $email_data = array(
       'to' => $multi_mail_id[$i],
-      'subject' => 'AIM&DRIVE '. $REG .' : Workshop Participants added for ' . $_POST['ProjectName'],
+      'subject' => 'AIM&DRIVE : Workshop Participants added for ' . $_POST['ProjectName'],
       'message' => $body_message,
     );
     //print_r($email_data);
@@ -23,7 +23,7 @@ if ($_POST['mailAction'] == 'ssEditMailData') {
   $body_message = CreateHtml($_POST);
   $email_data = array(
     'to' => $_POST['email'],
-    'subject' => 'AIM&DRIVE '. $REG .': Strategy Statement assigned for ' . $_POST['ProjectName'],
+    'subject' => 'AIM&DRIVE : Strategy Statement assigned for ' . $_POST['ProjectName'],
     'message' => $body_message,
   );
   //print_r($email_data);
@@ -40,7 +40,7 @@ if ($_POST['mailAction'] == 'ssDropped') {
     $body_message = CreateHtml($_POST);
     $email_data = array(
       'to' => $multi_mail_id[$i],
-      'subject' => 'AIM&DRIVE '. $REG .': Strategy Statement dropped for ' . $_POST['ProjectName'],
+      'subject' => 'AIM&DRIVE : Strategy Statement dropped for ' . $_POST['ProjectName'],
       'message' => $body_message,
     );
    // print_r($email_data);
@@ -58,7 +58,7 @@ if ($_POST['mailAction'] == 'SSUnSelectImplementation') {
     $body_message = CreateHtml($_POST);
     $email_data = array(
       'to' => $multi_mail_id[$i],
-      'subject' => 'AIM&DRIVE '. $REG .': Strategy Statement unselected for implementation for ' . $_POST['ProjectName'],
+      'subject' => 'AIM&DRIVE : Strategy Statement unselected for implementation for ' . $_POST['ProjectName'],
       'message' => $body_message,
     );
     //print_r($email_data);
@@ -72,7 +72,7 @@ if ($_POST['mailAction'] == 'SSvalueRelizedUpdate') {
   $body_message = CreateHtml($_POST);
   $email_data = array(
     'to' => $_POST['email'],
-    'subject' => 'AIM&DRIVE '. $REG .': Value Realized for ' . $_POST['ProjectName'],
+    'subject' => 'AIM&DRIVE : Value Realized for ' . $_POST['ProjectName'],
     'message' => $body_message,
   );
   //print_r($email_data);
@@ -86,7 +86,7 @@ if ($_POST['mailAction'] == 'ActionItemCompleted') {
   $body_message = CreateHtml($_POST);
   $email_data = array(
     'to' => $_POST['email'],
-    'subject' => 'AIM&DRIVE '. $REG .': Action Item completed for ' . $_POST['ProjectName'],
+    'subject' => 'AIM&DRIVE : Action Item completed for ' . $_POST['ProjectName'],
     'message' => $body_message,
   );
   //print_r($email_data);
@@ -104,7 +104,7 @@ if ($_POST['mailAction'] == 'ActionItemDropped') {
     $body_message = CreateHtml($_POST);
     $email_data = array(
       'to' => $multi_mail_id[$i],
-      'subject' => 'AIM&DRIVE '. $REG .': Action Item dropped for ' . $_POST['ProjectName'],
+      'subject' => 'AIM&DRIVE : Action Item dropped for ' . $_POST['ProjectName'],
       'message' => $body_message,
     );
    // print_r($email_data);
@@ -118,7 +118,7 @@ if ($_POST['mailAction'] == 'ActionItemUpdated') {
   $body_message = CreateHtml($_POST);
   $email_data = array(
     'to' => $_POST['email'],
-    'subject' => 'AIM&DRIVE '. $REG .': Action Item Progress updated for ' . $_POST['ProjectName'],
+    'subject' => 'AIM&DRIVE : Action Item Progress updated for ' . $_POST['ProjectName'],
     'message' => $body_message,
   );
  // print_r($email_data);
@@ -131,7 +131,7 @@ if ($_POST['mailAction'] == 'NewProjectCreated') {
   $body_message = CreateHtml($_POST);
   $email_data = array(
     'to' => $_POST['email'],
-    'subject' => 'AIM&DRIVE '. $REG .': New Project Created',
+    'subject' => 'AIM&DRIVE : New Project Created',
     'message' => $body_message,
   );
   //print_r($email_data);
@@ -144,7 +144,7 @@ if ($_POST['mailAction'] == 'NewParticipantadded') {
   $body_message = CreateHtml($_POST);
   $email_data = array(
     'to' => $_POST['email'],
-    'subject' => 'AIM&DRIVE '. $REG .': Stakeholder added for ' . $_POST['ProjectName'],
+    'subject' => 'AIM&DRIVE : Stakeholder added for ' . $_POST['ProjectName'],
     'message' => $body_message,
   );
   //print_r($email_data);
@@ -160,7 +160,7 @@ if($_POST['mailAction'] == 'ExiParticipantadded')
   $body_message = CreateHtml($_POST);
     $email_data = array(
     'to' => $extra_ids[$i],
-    'subject' => 'AIM&DRIVE '. $REG .': Stakeholder added for ' .$_POST['ProjectName'],
+    'subject' => 'AIM&DRIVE : Stakeholder added for ' .$_POST['ProjectName'],
     'message' => $body_message,
   );
    //print_r($email_data);
@@ -176,7 +176,7 @@ if ($_POST['mailAction'] == 'actionOwner') {
   $email_data = array(
     'to' => $_POST['email'],
     'to_name' => '',
-    'subject' => 'AIM&DRIVE '. $REG .': Action Item Owners assigned for ' . $_POST['ProjectName'],
+    'subject' => 'AIM&DRIVE : Action Item Owners assigned for ' . $_POST['ProjectName'],
     'message' => $body_message,
   );
   //print_r($email_data);
@@ -191,7 +191,7 @@ if ($_POST['mailAction'] == 'taskParticipant') {
     'to' => $_POST['email'][0],
     //'to' => implode(', ', $_POST['email']),
     'to_name' => '',
-    'subject' => 'AIM&DRIVE '. $REG .': Project Setup Tasks assigned for ' . $_POST['ProjectName'],
+    'subject' => 'AIM&DRIVE : Project Setup Tasks assigned for ' . $_POST['ProjectName'],
     'message' => $body_message,
   );
   //print_r($email_data);
@@ -208,7 +208,7 @@ function sendEmailNew($email_data)
   require_once '/var/secure/MailApiKey.php';
 
   $email = new \SendGrid\Mail\Mail();
-  $email->setFrom("conroy.fernandes@anklesaria.com", "Admin");
+  $email->setFrom("conroy.fernandes@anklesaria.com", "");
   $email->setSubject($email_data['subject']);
   $email->addTo($email_data['to'], "Admin");
   //$email->addBcc($email_data['bcc']);

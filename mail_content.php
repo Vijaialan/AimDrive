@@ -27,8 +27,15 @@ function CreateHtml($Content)
   #customers th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
+    text-align: center;
+    background-color: #2b4b75;
+    color: white;
+  }
+  .footer {
+    padding-top: 0.3px;
+    padding-bottom: 0.3px;
+    text-align: center;
+    background-color: #2b4b75;
     color: white;
   }
   #note{
@@ -37,8 +44,9 @@ function CreateHtml($Content)
   </style>
   </head>
   <body><section>
-  <h3 id="subject">' . $Content['mailIntro'] . '</h3><table id="customers">';
-
+  <h3 id="subject">' . $Content['mailIntro'] . '</h3><table id="customers">
+  <th colspan="2"> AIM&DRIVE <sup>&#174;</sup> </th>';
+  
   $Title = array_keys($Content);
   $Data  = array_values($Content);
 

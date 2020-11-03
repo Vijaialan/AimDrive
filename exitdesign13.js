@@ -10028,7 +10028,7 @@ function addPersonToProject() {
         //,datatype: "json"
     });
     //console.log(updateEDPersonsAddPart);
-      //03rd Participant is newly added starts 
+    //03rd Participant is newly added starts 
     //console.log(Gcurrentdata);
     var today = new Date();
     var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
@@ -10128,7 +10128,7 @@ function saveEDPerson() {
                 //,datatype: "json"
         });
     }
-  
+
 }
 
 function addPersonInternal() {
@@ -12419,7 +12419,7 @@ function includeSupplierP(id) {
  */
 function setEDMyProjectsBody() {
     //START 08082020
-   // console.trace();
+    // console.trace();
     var allManProjectsDataTempPro = [];
     var allManProjectsDataPro = [];
     var PrjectData = [];
@@ -19637,6 +19637,9 @@ function deletePersonInternal(perf) {
 }
 
 function addEDProject() {
+
+    loginGusername = localStorage.getItem("Gusername");
+
     editingProject = -1;
     $(".projectstitle").text("Add Project");
     var company_name = "";
@@ -19657,7 +19660,12 @@ function addEDProject() {
     document.getElementById("activeProject").checked = false;
     //generateCurrencyDatalist("currlist", "currencySelector");
     document.getElementById("base_currency").value = "";
-    document.getElementById("base_currency").value = "USD";
+    if (loginGusername == 'neil@value-ink.com') {
+        document.getElementById("base_currency").value = "AUD";
+    } else {
+        document.getElementById("base_currency").value = "USD";
+    }
+
     deactivateButton("project_submit");
     document.getElementById("project_value").value = "";
     document.getElementById("project_start_date").value = "";
@@ -19693,6 +19701,7 @@ function addEDProjectForCompany(cid) {
 }
 
 function editEDProject(i) {
+    loginGusername = localStorage.getItem("Gusername");
     editingProject = Gstrategies[i][0];
     var pentry = Gstrategies[i];
     $(".opt_btn_wrp").hide();
@@ -19714,12 +19723,18 @@ function editEDProject(i) {
     document.getElementById("activeProject").checked = status;
     generateCurrencyDatalist("currlist", "currencySelector");
     if (pentry[6] != null && pentry[6].length > 1) {
-        document.getElementById("base_currency").value = pentry[6][1];
+        // document.getElementById("base_currency").value = pentry[6][1];
         document.getElementById("project_value").value = pentry[6][0];
     } else {
-        document.getElementById("base_currency").value = "";
+        //document.getElementById("base_currency").value = "";
         document.getElementById("project_value").value = "";
     }
+    if (loginGusername == 'neil@value-ink.com') {
+        document.getElementById("base_currency").value = "AUD";
+    } else {
+        document.getElementById("base_currency").value = "USD";
+    }
+
     generateSupplierSelector("supplierSelector", editingProject);
 }
 
@@ -19851,11 +19866,18 @@ function numbersOnlyPlease(elem) {
  * @param {number} pid - Person Id
  */
 function saveEDProject() {
+    loginGusername = localStorage.getItem("Gusername");
+
     var name = document.getElementById("project_title").value;
     var compname = document.getElementById("client_name").value;
     var projdes = document.getElementById("project_desc").value;
     var deptname = document.getElementById("client_dept").value;
-    var basecurrency = document.getElementById("base_currency").value;
+    if (loginGusername == 'admin@anklesaria.com') {
+        var basecurrency = 'AUD';
+    } else {
+        var basecurrency = document.getElementById("base_currency").value;
+    }
+    //    var basecurrency = document.getElementById("base_currency").value;
     var new_supplier = document.getElementById("supp_name").value;
     var start_date = getDateById("project_start_date");
     start_date = start_date.split(",");
@@ -21462,7 +21484,7 @@ function getActionImplementers(oentry) {
  * HTML for actions of a strategy statement in I step
  */
 function refreshSS_ED_Actions() {
-   // console.trace();
+    // console.trace();
     var body = "";
     let temPbody = "";
     var deadline;
@@ -21698,8 +21720,8 @@ function saveEDSSAction() {
     };
 
 
-        //22 - Action Item Owner is assigned
-        var email = getEmailFromId(id);
+    //22 - Action Item Owner is assigned
+    var email = getEmailFromId(id);
     var actionmailData = {
         email: email[0],
         ProjectName: getCompanyForProject(Gcurrentstrategy),
@@ -21888,7 +21910,7 @@ function updateParticipants() {
         currentParticipantIDs.push(currentParticipants[i][0]);
     }
 
-var added = [];
+    var added = [];
     deleted = [];
     var proposedParticipants = [];
     for (var i = 0; i < candidateIDs.length; i++) {
@@ -21899,7 +21921,7 @@ var added = [];
             if (currentParticipantIDs.indexOf(pid) < 0)
             // not in the old team
                 added.push(pid);
-              } // person is NOT in the new team
+        } // person is NOT in the new team
         else {
             if (currentParticipantIDs.indexOf(pid) >= 0)
             // but in the old team
@@ -21913,27 +21935,27 @@ var added = [];
         var emailid = getEmailFromId(currentParticipantIDs[i]);
         Exparticipentsemail.push(emailid[0]);
     }
-  
-var today = new Date();
-var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
-      var ExiParticipantadded = {
-           email: Exparticipentsemail,
-           ProjectName: Gcurrentdata[0],
-           ProjectDescription: Gcurrentdata[1],
-           ProjectValue: CurrencyFormat(Gcurrentdata[2][0], Gcurrentdata[2][1], 0, "", ","),
-           StartDate: date,
-           mailAction: 'ExiParticipantadded',
-           mailIntro:  'You have been added to the Project ' +Gcurrentdata[0]
-       };
-       $.ajax({
-           url: "send_email.php",
-           type: "POST",
-           data: ExiParticipantadded,
-           success: function (msg) {
-               console.log(msg);
-           }
-       });
-//03rd 2nd part Participant is newly added ends
+
+    var today = new Date();
+    var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+    var ExiParticipantadded = {
+        email: Exparticipentsemail,
+        ProjectName: Gcurrentdata[0],
+        ProjectDescription: Gcurrentdata[1],
+        ProjectValue: CurrencyFormat(Gcurrentdata[2][0], Gcurrentdata[2][1], 0, "", ","),
+        StartDate: date,
+        mailAction: 'ExiParticipantadded',
+        mailIntro: 'You have been added to the Project ' + Gcurrentdata[0]
+    };
+    $.ajax({
+        url: "send_email.php",
+        type: "POST",
+        data: ExiParticipantadded,
+        success: function(msg) {
+            console.log(msg);
+        }
+    });
+    //03rd 2nd part Participant is newly added ends
 
     var operations = [];
     for (var i = 0; i < added.length; i++) {
@@ -22234,9 +22256,9 @@ function saveNewProgressNote() {
     var completed = document.getElementById("setCompleted").checked;
     var dropped = document.getElementById("setDropped").checked;
     var updateProgress = document.getElementById("setProgress").checked;
-     var actionDesc = document.getElementById('actionDesc').innerHTML;
-     var actionDeadline = document.getElementById('actionDeadline').innerHTML;
-     var activeActionPos = document.getElementById('actionposition').innerHTML;
+    var actionDesc = document.getElementById('actionDesc').innerHTML;
+    var actionDeadline = document.getElementById('actionDeadline').innerHTML;
+    var activeActionPos = document.getElementById('actionposition').innerHTML;
 
     if (comment === "") {
         $(".error").show();
@@ -22426,7 +22448,7 @@ function saveNewProgressNote() {
         StrategyStatementDescription: SSoentry[1],
         ActionItemDescription: actionDesc,
         TargetDate: actionDeadline,
-        ProgressPercentage: progress  + " " +sy,
+        ProgressPercentage: progress + " " + sy,
         UpdateDate: getOnlyDate(getDateById("date-picker_progress")),
         UpdateNotes: comment,
         mailAction: 'ActionItemUpdated',
@@ -23066,7 +23088,7 @@ function editEDSSS(page, ssid, ssObject) {
         document.getElementById("priority_txt").value = oentry[3];
         document.getElementById("strategy_statmnt").value = oentry[1];
         document.getElementById("input_startdate").value = format(input_startdate);
-        document.getElementById("input_enddate").value =format(input_enddate);
+        document.getElementById("input_enddate").value = format(input_enddate);
         document.getElementById("multiselect_owners").value = oentry[19];
         $("#edit_strategy_modal").modal("show");
         $(".opt_btn_wrp").css("visibility", "hidden");
@@ -26084,7 +26106,7 @@ function markCEEternal(ce, criticalp) {
  * @param {number} pid - Person Id
  */
 function eternalStepContents2() {
-   // console.trace();
+    // console.trace();
     body = "";
     body =
         body +
@@ -26672,7 +26694,7 @@ function getCEStatus(ce) {
  * @param {number} pid - Person Id
  */
 function mdStepContents2() {
-   // console.trace();
+    // console.trace();
     var disableUpdates = "";
     if (Gadmin == 0) disableUpdates = " disabled";
 
@@ -28426,8 +28448,8 @@ function setupUpdateVal(ss) {
         "",
         ","
     );
-    document.getElementById("CurType").innerHTML =   GdefaultCurrency;
-      
+    document.getElementById("CurType").innerHTML = GdefaultCurrency;
+
     var actualSavings = oentry[13];
     if (actualSavings != null) {
         var valueRealisedTotal = 0;
@@ -28506,7 +28528,7 @@ function addNPVtoSS() {
     //34th  Value Realized is updated starts
     var ssCurType = document.getElementById('CurType').innerHTML;
     var SSoentry = findSSEntry(GcurrentSS);
-   console.log(SSoentry);
+    console.log(SSoentry);
     var email = getEmailFromId(SSoentry[19]);
     var today = new Date();
     var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
@@ -28518,8 +28540,8 @@ function addNPVtoSS() {
         StrategyStatementNumber: SSoentry[12],
         StrategyStatementDescription: SSoentry[1],
         Priority: SSoentry[3],
-        ValueRealized:  CurrencyFormat(val, ssCurType, 0, "", ","),
-      // ValueRealized: val,
+        ValueRealized: CurrencyFormat(val, ssCurType, 0, "", ","),
+        // ValueRealized: val,
         DateOfRealization: getOnlyDate(updateDate),
         Notes: notes,
         mailAction: 'SSvalueRelizedUpdate',
@@ -31397,7 +31419,7 @@ function refreshProgressReport() {
  * @param {number} pid - Person Id
  */
 function getAllReportData() {
-   // console.trace();
+    // console.trace();
     manProjects = Gstrategies;
     allManProjectsData = [];
     allManProjectsDataTemp = [];

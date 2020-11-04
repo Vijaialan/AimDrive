@@ -14,6 +14,7 @@ if ($_POST['mailAction'] == 'ParticipantSelected') {
     );
     //print_r($email_data);
     $email_response = sendEmailNew($email_data);
+    print_r($email_response);
   }
 }
 //05th Participant is selected ends

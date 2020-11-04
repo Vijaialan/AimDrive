@@ -203,7 +203,7 @@ function saveNewRationale() {
         type: "POST",
         success: updateAStep,
         error: errorFun
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -279,7 +279,7 @@ function savePrimaryCost() {
         type: "POST",
         success: saveChangedGoals,
         error: errorFun
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 /**
@@ -315,7 +315,7 @@ function saveEDPrimaryCost() {
         type: "POST",
         success: saveEDAgree,
         error: errorEDFun
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -537,7 +537,7 @@ function includes(arr, obj) {
     return false;
 }
 
-function nothing() {}
+function nothing() { }
 /**
  * Used to login the user. Validates against the server
  */
@@ -551,7 +551,7 @@ function login() {
         type: "POST",
         success: loginOK,
         error: loginFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -622,7 +622,7 @@ function loginOK(response) {
         }
     } else
         document.getElementById("loginstatus").innerHTML =
-        '<font color="red">' + results + "</font>";
+            '<font color="red">' + results + "</font>";
 }
 
 function loginFailed(response) {
@@ -653,7 +653,7 @@ function selectStrategy(id) {
         type: "POST",
         success: strategyready,
         error: strategyabort
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -678,7 +678,7 @@ function reloadAStepData() {
         type: "POST",
         success: refreshNewAStep,
         error: goalOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -718,7 +718,7 @@ function driverUpdated(response) {
             type: "POST",
             success: refreshNewMStep,
             error: driverOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(result[1])) {
@@ -753,7 +753,7 @@ function kcdriverUpdated(response) {
             type: "POST",
             success: refreshNewDStep,
             error: driverOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(result[1])) {
@@ -787,7 +787,7 @@ function ssUpdated(response) {
             type: "POST",
             success: refreshNewRStep,
             error: ssOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(result[1])) {
@@ -821,7 +821,7 @@ function apUpdated(resp) {
             type: "POST",
             success: refreshNewImStep,
             error: imOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(result[1])) {
@@ -855,7 +855,7 @@ function veUpdated(resp) {
             type: "POST",
             success: refreshNewVStep,
             error: veOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(result[1])) {
@@ -889,7 +889,7 @@ function iStepSaved(response) {
             type: "POST",
             success: refreshNewIStep,
             error: istepOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
         coastClear = 1;
     } else {
@@ -917,7 +917,7 @@ function masterWorksheet(id) {
         type: "POST",
         success: generateReport,
         error: strategyabort
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -977,7 +977,7 @@ function updateSideFilePanel(response) {
             type: "POST",
             success: updateFileSectionOnly,
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(res[1])) {
@@ -1009,7 +1009,7 @@ function updateProjectTasksInternal() {
         type: "POST",
         success: strategyTasksReady,
         error: backOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -1034,7 +1034,7 @@ function updateProjectWPInternal() {
         type: "POST",
         success: strategyWPReady,
         error: backOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -1053,7 +1053,7 @@ function refreshEDStrategiesDelayed() {
         type: "POST",
         success: refreshEDStrategies,
         error: projectEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -1078,7 +1078,7 @@ function updateActionsTab(response) {
             type: "POST",
             success: internalUpdateActionsTab,
             error: actionOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(results[1])) {
@@ -1107,7 +1107,7 @@ function updateEDProgress(response) {
             type: "POST",
             success: refreshProgressNotesInternal,
             error: progOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(results[1])) {
@@ -1133,7 +1133,7 @@ function updateEDSS() {
         type: "POST",
         success: updateEDSSInternal,
         error: ssEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -1156,7 +1156,7 @@ function updateEDSSWithResult(response) {
             type: "POST",
             success: updateEDSSInternal,
             error: ssEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(results[1])) {
@@ -1190,7 +1190,7 @@ function iEDStepSaved(response) {
             type: "POST",
             success: refreshEDIStep,
             error: identifyEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
         coastClear = 1;
     } else {
@@ -1225,7 +1225,7 @@ function driverEDRefresh(response) {
             type: "POST",
             success: refreshEDMStep,
             error: driverEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(result[1])) {
@@ -1255,7 +1255,7 @@ function saveEDAgree(response) {
             type: "POST",
             success: refreshNewAStep,
             error: errorEDFun
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(result[1])) {
@@ -1284,7 +1284,7 @@ function updateVerifyContents(response) {
             type: "POST",
             success: refreshVerifyContents,
             error: progOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(results[1])) {
@@ -1325,7 +1325,7 @@ function retrieveNextStrategyData() {
         type: "POST",
         success: getNextStrategyAsNeeded,
         error: strategyabort
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -1663,7 +1663,7 @@ function startup() {
         type: "POST",
         success: startupok,
         error: startupfailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -1721,7 +1721,7 @@ function startupok(response) {
             type: "POST",
             success: companiesReady,
             error: startupfailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } // not an administrator...
     else {
@@ -1733,7 +1733,7 @@ function startupok(response) {
             type: "POST",
             success: usersReady,
             error: startupfailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -1828,7 +1828,7 @@ function getCompanyForProject(pid) {
     return -1;
 }
 
-function getSupplierForProject(pid) {}
+function getSupplierForProject(pid) { }
 /**
  * Gets the department or business unit information for a given project
  * @param {string} pid - project id.
@@ -1907,7 +1907,7 @@ function getComments(strategy) {
         type: "POST",
         success: refreshComments,
         error: veOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -1926,7 +1926,7 @@ function getDocuments(strategy) {
         type: "POST",
         success: refreshDocs,
         error: veOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -1976,7 +1976,7 @@ function submitComment(prefix) {
         type: "POST",
         success: updateComments,
         error: veOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -1989,7 +1989,7 @@ function docTypeSwitch(prefix) {
         var id = "docloc-" + prefix;
         document.getElementById("locspec-" + prefix).innerHTML =
             '<input type=file size=40 name="file" value="Upload" id="' + id + '">';
-        $("#" + id).change(function() {
+        $("#" + id).change(function () {
             var str = document.getElementById("docloc-" + prefix).value;
 
             var m = str.lastIndexOf("\\"); // look for / or \
@@ -2066,7 +2066,7 @@ function saveDoc(prefix, id) {
         type: "POST",
         success: getCurrentDocuments,
         error: docFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 /**
@@ -2125,12 +2125,12 @@ function refreshDocTab(prefix) {
                             "</textarea></TD>";
                         if (doctype.valueOf() == "Bookmark".valueOf())
                             tabstring =
-                            tabstring +
-                            '<TD style="background: lightgray;"><A target="_blank"  HREF="' +
-                            Gcurrentdata[Gdocsindex][i][1][j][6] +
-                            '">' +
-                            Gcurrentdata[Gdocsindex][i][1][j][6] +
-                            "</TD>";
+                                tabstring +
+                                '<TD style="background: lightgray;"><A target="_blank"  HREF="' +
+                                Gcurrentdata[Gdocsindex][i][1][j][6] +
+                                '">' +
+                                Gcurrentdata[Gdocsindex][i][1][j][6] +
+                                "</TD>";
                         else {
                             tabstring =
                                 tabstring +
@@ -2257,7 +2257,7 @@ function refreshDocTab(prefix) {
     // </form>';
 
     document.getElementById("doctab-" + prefix).innerHTML = tabstring;
-    document.getElementById("file_upload_form-" + prefix).onsubmit = function() {
+    document.getElementById("file_upload_form-" + prefix).onsubmit = function () {
         Gcurrentstep = prefix;
         document.getElementById("file_upload_form-" + prefix).target =
             "upload_target-" + prefix; //'upload_target' is the name of the iframe
@@ -2412,14 +2412,14 @@ function strategyHeader(prefix) {
     // only administrators (i.e., Anklesaria people) can save anything when it comes to A&D worksheets
     if (Gadmin > 0)
         linkstring =
-        linkstring +
-        '<button title="Save changes to ' +
-        prefix +
-        ' worksheet" type"button" class="' +
-        btnClass +
-        '" onClick="saveWorksheet(' +
-        prefix +
-        ')"> Save Worksheet</button>';
+            linkstring +
+            '<button title="Save changes to ' +
+            prefix +
+            ' worksheet" type"button" class="' +
+            btnClass +
+            '" onClick="saveWorksheet(' +
+            prefix +
+            ')"> Save Worksheet</button>';
 
     setEDProjectHeader(
         getTitle(prefix) + "</font></H5>",
@@ -2630,7 +2630,7 @@ function addGoalInternal(num) {
         type: "POST",
         success: updateAStep,
         error: goalOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -2642,13 +2642,13 @@ function addGoal(num) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         addGoalInternal(num);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {
+                    action: function () {
                         // do nothing...
                     }
                 }
@@ -2672,9 +2672,9 @@ function addEDGoal() {
     // document.getElementById("goalcblabel").style.visibility = "visible";
     // document.getElementById("separateGoals").checked = false;
     deactivateButton("goalButton");
-    $(document).ready(function() {
+    $(document).ready(function () {
         // $('button[type="button"]').attr('disabled','disabled');
-        $('input[type="text"]').on("keyup", function() {
+        $('input[type="text"]').on("keyup", function () {
             if ($(this).val != "") {
                 $('button[type="button"]').removeAttr("disabled");
             }
@@ -2708,9 +2708,9 @@ function editEDGoal(i) {
     // document.getElementById("goalcblabel").style.visibility = "hidden";
     deactivateButton("goalButton");
     GeditingGoal = i;
-    $(document).ready(function() {
+    $(document).ready(function () {
         // $('button[type="button"]').attr('disabled','disabled');
-        $('input[type="text"]').on("keyup", function() {
+        $('input[type="text"]').on("keyup", function () {
             if ($(this).val != "") {
                 $('button[type="button"]').removeAttr("disabled");
             }
@@ -2741,7 +2741,7 @@ function deleteEDGoal(i) {
         type: "POST",
         success: updateAStep,
         error: goalOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -2767,7 +2767,7 @@ function saveEDGoalSaved() {
             type: "POST",
             success: updateAStep,
             error: goalOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 
@@ -2795,7 +2795,7 @@ function saveEDGoalSaved() {
             type: "POST",
             success: updateAStep,
             error: goalOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -2822,7 +2822,7 @@ function addEDGoalInternal(goal, update) {
             type: "POST",
             success: updateAStep,
             error: goalOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         $.ajax({
@@ -2844,7 +2844,7 @@ function addEDGoalInternal(goal, update) {
             type: "POST",
             success: showTimedMessage("gmsg", "Goal added", 0, false),
             error: goalOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -2910,7 +2910,7 @@ function saveEDGoal() {
                 data: { goal: individualGoals },
                 success: updateAStep,
                 error: goalOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
         } // alert("adding goal: " + document.getElementById("goaldescription").value + "\nPerspective: " + document.getElementById("goalOperation").value)
         else {
@@ -2937,7 +2937,7 @@ function saveEDGoal() {
                 type: "POST",
                 success: updateAStep,
                 error: goalOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
         }
     }
@@ -3069,7 +3069,7 @@ function refreshGoals() {
             goalstring = goalstring + "</TR>";
         }
     }
-    if (Gadmin > 0) {}
+    if (Gadmin > 0) { }
 
     goalstring = goalstring + "</tbody></table></div>";
     return goalstring;
@@ -3115,7 +3115,7 @@ function saveGoal(i, update) {
             type: "POST",
             success: updateAStep,
             error: goalOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     else
         $.ajax({
@@ -3140,7 +3140,7 @@ function saveGoal(i, update) {
             type: "POST",
             success: showTimedMessage("gmsg", "Goal " + i + " saved", 4, false),
             error: goalOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
 }
 
@@ -3176,7 +3176,7 @@ function deleteGoalInternal(i) {
         type: "POST",
         success: updateAStep,
         error: goalOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -3188,13 +3188,13 @@ function deleteGoal(i) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         deleteGoalInternal(i);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -3258,7 +3258,7 @@ function moveDriverLeftInternal(i, j) {
         type: "POST",
         success: driverUpdated,
         error: driverOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -3270,13 +3270,13 @@ function moveDriverLeft(i, j) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         moveDriverLeftInternal(i, j);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -3314,7 +3314,7 @@ function moveDriverRightInternal(i, j) {
         type: "POST",
         success: driverUpdated,
         error: driverOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -3326,13 +3326,13 @@ function moveDriverRight(i, j) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         moveDriverRightInternal(i, j);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -3388,7 +3388,7 @@ function handleDrop(event) {
         type: "POST",
         success: driverUpdated,
         error: driverOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -3437,7 +3437,7 @@ function addDriverInternal(i) {
         type: "POST",
         success: driverUpdated,
         error: driverOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -3449,13 +3449,13 @@ function addDriver(i) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         addDriverInternal(i);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -3497,7 +3497,7 @@ function saveDriver(i, j, update) {
             type: "POST",
             success: driverUpdated,
             error: driverOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         $.ajax({
@@ -3528,7 +3528,7 @@ function saveDriver(i, j, update) {
             type: "POST",
             success: showTimedMessage("mstat", "driver updated", 0, false),
             error: driverOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -3559,7 +3559,7 @@ function deleteSOInternal(i, j, so) {
         type: "POST",
         success: kcdriverUpdated,
         error: driverOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -3571,13 +3571,13 @@ function deleteSO(i, j, so) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         deleteSOInternal(i, j, so);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -3612,7 +3612,7 @@ function upSOInternal(i, j, k) {
         type: "POST",
         success: kcdriverUpdated,
         error: driverOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -3624,13 +3624,13 @@ function upSO(i, j, k) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         upSOInternal(i, j, k);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -3666,7 +3666,7 @@ function downSOInternal(i, j, k) {
         type: "POST",
         success: kcdriverUpdated,
         error: driverOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -3678,13 +3678,13 @@ function downSO(i, j, k) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         downSOInternal(i, j, k);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -3718,7 +3718,7 @@ function saveSO(ce, driver, so, desc, selected, update) {
             type: "POST",
             success: kcdriverUpdated,
             error: driverOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         $.ajax({
@@ -3745,7 +3745,7 @@ function saveSO(ce, driver, so, desc, selected, update) {
             type: "POST",
             success: showTimedMessage("destat", "Strategic option saved", 0, false),
             error: driverOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -3789,7 +3789,7 @@ function addSOInternal(i, j) {
         type: "POST",
         success: kcdriverUpdated,
         error: driverOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -3801,13 +3801,13 @@ function addSO(i, j) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         addSOInternal(i, j);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -3836,7 +3836,7 @@ function addSOToDriver(costElement, driver, so, update) {
             type: "POST",
             success: showTimedMessage("destat", "Adding next option", 0, false),
             error: driverOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         $.ajax({
@@ -3859,7 +3859,7 @@ function addSOToDriver(costElement, driver, so, update) {
             type: "POST",
             success: kcdriverUpdated,
             error: driverOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -3902,13 +3902,13 @@ function addSOs(i, j) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         addSOsInternal(i, j);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -3946,7 +3946,7 @@ function makeKCDInternal2(i, j) {
         type: "POST",
         success: kcdriverUpdated,
         error: driverOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -3964,13 +3964,13 @@ function makeKCDInternal(i, j) {
                 buttons: {
                     OK: {
                         class: "blue",
-                        action: function() {
+                        action: function () {
                             makeKCDInternal2(i, j);
                         }
                     },
                     Cancel: {
                         class: "gray",
-                        action: function() {
+                        action: function () {
                             checkbox.checked = false;
                         }
                     }
@@ -3989,13 +3989,13 @@ function makeKCD(i, j) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         makeKCDInternal(i, j);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {
+                    action: function () {
                         checkbox.checked = !checkbox.checked;
                     }
                 }
@@ -4040,7 +4040,7 @@ function saveDSDriver(i, j, update) {
             type: "POST",
             success: kcdriverUpdated,
             error: driverOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         $.ajax({
@@ -4072,7 +4072,7 @@ function saveDSDriver(i, j, update) {
             type: "POST",
             success: showTimedMessage("destat", "driver saved", 0, false),
             error: driverOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -4099,7 +4099,7 @@ function deleteDriverInternal2(i, j) {
         type: "POST",
         success: driverUpdated,
         error: driverOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -4114,13 +4114,13 @@ function deleteDriverInternal(i, j) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         deleteDriverInternal2(i, j);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -4134,13 +4134,13 @@ function deleteDriver(i, j) {
         buttons: {
             OK: {
                 class: "blue",
-                action: function() {
+                action: function () {
                     deleteDriverInternal(i, j);
                 }
             },
             Cancel: {
                 class: "gray",
-                action: function() {}
+                action: function () { }
             }
         }
     });
@@ -4206,30 +4206,30 @@ function refreshMStep() {
             if (Gcostdrivers[i][2] != null) numdrivers = Gcostdrivers[i][2].length;
             if (numdrivers > 1)
                 cdstring =
-                cdstring +
-                "<THEAD><TR><TH>Critical costs</TH><TH colspan=" +
-                numdrivers +
-                "> Cost Drivers </TH></TR></THEAD>";
+                    cdstring +
+                    "<THEAD><TR><TH>Critical costs</TH><TH colspan=" +
+                    numdrivers +
+                    "> Cost Drivers </TH></TR></THEAD>";
             else
                 cdstring =
-                cdstring +
-                "<THEAD><TR><TH>Critical costs</TH><TH> Cost Drivers </TH></TR></THEAD>";
+                    cdstring +
+                    "<THEAD><TR><TH>Critical costs</TH><TH> Cost Drivers </TH></TR></THEAD>";
             var percent = getCEPercentCorrect(Gcostdrivers[i][0]);
             var parent = getCEParent(Gcostdrivers[i][0]);
 
             // alert("Parent: " + parent);
             if (parent == null)
                 cdstring =
-                cdstring +
-                '<TR><TD style="max-width: 140px; min-width: 140px; width: 140px" align=center>' +
-                Gcostdrivers[i][1];
+                    cdstring +
+                    '<TR><TD style="max-width: 140px; min-width: 140px; width: 140px" align=center>' +
+                    Gcostdrivers[i][1];
             else
                 cdstring =
-                cdstring +
-                '<TR><TD style="max-width: 140px; min-width: 140px; width: 140px" align=center><font color=orange> [' +
-                parent +
-                "]</font><br>" +
-                Gcostdrivers[i][1];
+                    cdstring +
+                    '<TR><TD style="max-width: 140px; min-width: 140px; width: 140px" align=center><font color=orange> [' +
+                    parent +
+                    "]</font><br>" +
+                    Gcostdrivers[i][1];
             cdstring =
                 cdstring +
                 "<BR><font color=blue> (" +
@@ -4338,40 +4338,40 @@ function refreshMStep() {
                     '<TR class="odd"><TD align=center><TABLE border=0 cellspacing=0 cellpadding=0 width=100%><TR><TD width=33% align=center>';
                 if (j > 0 && Gadmin == 1)
                     cdstring =
-                    cdstring +
-                    '<div style="opacity: 0.4;"><input type=image src="images/arrow-left.png" title="Move driver to the left" onClick="moveDriverLeft(' +
-                    i +
-                    ", " +
-                    j +
-                    ')"' +
-                    disabled +
-                    "></div>";
+                        cdstring +
+                        '<div style="opacity: 0.4;"><input type=image src="images/arrow-left.png" title="Move driver to the left" onClick="moveDriverLeft(' +
+                        i +
+                        ", " +
+                        j +
+                        ')"' +
+                        disabled +
+                        "></div>";
                 else cdstring = cdstring + "&nbsp;";
                 cdstring = cdstring + "</TD>";
                 if (Gadmin == 1)
                     cdstring =
-                    cdstring +
-                    '<TD width=34% align=center><div style="opacity: 0.4;"><input title="Delete this driver" type=image src="images/trash20.png" onClick="deleteDriver(' +
-                    i +
-                    "," +
-                    j +
-                    ')" value="Delete"' +
-                    disabled +
-                    "></div></TD><TD width=33% align=center>";
+                        cdstring +
+                        '<TD width=34% align=center><div style="opacity: 0.4;"><input title="Delete this driver" type=image src="images/trash20.png" onClick="deleteDriver(' +
+                        i +
+                        "," +
+                        j +
+                        ')" value="Delete"' +
+                        disabled +
+                        "></div></TD><TD width=33% align=center>";
                 else
                     cdstring =
-                    cdstring +
-                    "<TD width=34% align=center>&nbsp;</TD><TD width=33% align=center>";
+                        cdstring +
+                        "<TD width=34% align=center>&nbsp;</TD><TD width=33% align=center>";
                 if (j < numdrivers - 1 && Gadmin == 1)
                     cdstring =
-                    cdstring +
-                    '<div style="opacity: 0.4;"><input type=image src="images/arrow-right.png" title="Move driver to the right" onClick="moveDriverRight(' +
-                    i +
-                    ", " +
-                    j +
-                    ')"' +
-                    disabled +
-                    "></div>";
+                        cdstring +
+                        '<div style="opacity: 0.4;"><input type=image src="images/arrow-right.png" title="Move driver to the right" onClick="moveDriverRight(' +
+                        i +
+                        ", " +
+                        j +
+                        ')"' +
+                        disabled +
+                        "></div>";
                 else cdstring = cdstring + "&nbsp;";
                 cdstring = cdstring + "</TD></TR></TABLE></TD></TR>";
                 var checkboxid = "element-" + i + "-" + j;
@@ -4408,7 +4408,7 @@ function refreshMStep() {
         showEstimatePanel(id);
     }
 
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         $(".crit_cost_wrp").css({
             left: $(this).scrollLeft() + 0
         });
@@ -4416,7 +4416,7 @@ function refreshMStep() {
 
     restoreMainScrollXY();
 
-    document.getElementById("destroy-carousel-default").onclick = function() {
+    document.getElementById("destroy-carousel-default").onclick = function () {
         $(".strategic_option").hide(); // hide stretegic option in grid mode
         $(this).addClass("disable_activemode");
         $(".enable_icon").removeClass("enable_activemode");
@@ -4425,7 +4425,7 @@ function refreshMStep() {
         //$('.cd_item').css("position","static");
     };
 
-    document.getElementById("enable-carousel-default").onclick = function() {
+    document.getElementById("enable-carousel-default").onclick = function () {
         $(".strategic_option").show(); // show stretegic option
         $(this).addClass("enable_activemode");
         $(".disable_icon").removeClass("disable_activemode");
@@ -4439,7 +4439,7 @@ function refreshMStep() {
         //$('.cd_item').css("position","relative");
     };
 
-    $(".strategic_option").click(function() {
+    $(".strategic_option").click(function () {
         var item = $(this).closest(".cost_driver_container");
         // alert("id of object: " + $(this).attr("id"));
         $(item)
@@ -4454,8 +4454,8 @@ function refreshMStep() {
 
         if (
             $(item)
-            .find(".strategic_option")
-            .hasClass("stag_collapse")
+                .find(".strategic_option")
+                .hasClass("stag_collapse")
         ) {
             if ($.inArray($(this).attr("id"), ceSOPanels) < 0)
                 ceSOPanels.push($(this).attr("id"));
@@ -4478,17 +4478,17 @@ function refreshMStep() {
                 .removeClass("set_height");
         }
     });
-    $(function() {
+    $(function () {
         $(".cus_scroll").overlayScrollbars({});
     });
 
     // cd item option btn click open dropdown
-    $(".cd_item .opt_btn").click(function() {
+    $(".cd_item .opt_btn").click(function () {
         if (
             $(this)
-            .parent()
-            .find(".opt_btn_wrp")
-            .css("display") == "none"
+                .parent()
+                .find(".opt_btn_wrp")
+                .css("display") == "none"
         ) {
             $(".cd_item").removeClass("add_cdstyle");
             $(".opt_btn_wrp").hide();
@@ -4505,17 +4505,17 @@ function refreshMStep() {
         }
     });
 
-    $(".cd_item").hover(function() {
+    $(".cd_item").hover(function () {
         $("body").toggleClass("noscroll"); // hide vertical scroll of body
     });
 
     //stag option btn click open dropdown
-    $(".stag_item .opt_btn").click(function() {
+    $(".stag_item .opt_btn").click(function () {
         if (
             $(this)
-            .parent()
-            .find(".opt_btn_wrp")
-            .css("display") == "none"
+                .parent()
+                .find(".opt_btn_wrp")
+                .css("display") == "none"
         ) {
             $(".stag_item").removeClass("add_stag_border");
             $(".opt_btn_wrp").hide();
@@ -4559,35 +4559,35 @@ function refreshDStep() {
                 numdrivers = Gcurrentdata[Gcdindex][i][2].length;
             if (numdrivers > 1)
                 kcdstring =
-                kcdstring +
-                "<THEAD><TR><TH >Critical costs</TH><TH colspan=" +
-                numdrivers +
-                "> Cost Drivers </TH></TR></THEAD>";
+                    kcdstring +
+                    "<THEAD><TR><TH >Critical costs</TH><TH colspan=" +
+                    numdrivers +
+                    "> Cost Drivers </TH></TR></THEAD>";
             else
                 kcdstring =
-                kcdstring +
-                "<THEAD><TR><TH >Critical costs</TH><TH> Cost Drivers </TH></TR></THEAD>";
+                    kcdstring +
+                    "<THEAD><TR><TH >Critical costs</TH><TH> Cost Drivers </TH></TR></THEAD>";
             var percent = getCEPercentCorrect(Gcurrentdata[Gcdindex][i][0]);
             var parent = getCEParent(Gcurrentdata[Gcdindex][i][0]);
             var ceid = Gcurrentdata[Gcdindex][i][0];
             if (parent == null)
                 kcdstring =
-                kcdstring +
-                '<TR><TD style="max-width: 140px; min-width: 140px; width: 140px">' +
-                Gcurrentdata[Gcdindex][i][1] +
-                "<br><font color=blue> ( " +
-                percent +
-                "% of total) </font></TD>";
+                    kcdstring +
+                    '<TR><TD style="max-width: 140px; min-width: 140px; width: 140px">' +
+                    Gcurrentdata[Gcdindex][i][1] +
+                    "<br><font color=blue> ( " +
+                    percent +
+                    "% of total) </font></TD>";
             else
                 kcdstring =
-                kcdstring +
-                '<TR><TD style="max-width: 140px; min-width: 140px; width: 140px"><font color=orange>' +
-                parent +
-                "</font><br>[" +
-                Gcurrentdata[Gcdindex][i][1] +
-                "]<br><font color=blue> ( " +
-                percent +
-                "% of total) </font></TD>";
+                    kcdstring +
+                    '<TR><TD style="max-width: 140px; min-width: 140px; width: 140px"><font color=orange>' +
+                    parent +
+                    "</font><br>[" +
+                    Gcurrentdata[Gcdindex][i][1] +
+                    "]<br><font color=blue> ( " +
+                    percent +
+                    "% of total) </font></TD>";
             if (numdrivers == 0) kcdstring = kcdstring + "<TD>&nbsp;</TD>";
 
             var currentRow = '<TR class="odd"><TD><b>Current value:</b></TD>';
@@ -4702,17 +4702,17 @@ function refreshDStep() {
                 kcdstring = kcdstring + den;
                 if (kcdp)
                     kcdstring =
-                    kcdstring +
-                    '<TR><TD align=center><i><b><div style="background-color: yellow;">' +
-                    entry[1] +
-                    "</div></b></i></TD></TR>";
+                        kcdstring +
+                        '<TR><TD align=center><i><b><div style="background-color: yellow;">' +
+                        entry[1] +
+                        "</div></b></i></TD></TR>";
                 // driver name
                 else
                     kcdstring =
-                    kcdstring +
-                    "<TR><TD align=center><i><b>" +
-                    entry[1] +
-                    "</b></i></TD></TR>"; // driver name
+                        kcdstring +
+                        "<TR><TD align=center><i><b>" +
+                        entry[1] +
+                        "</b></i></TD></TR>"; // driver name
                 buttonsRow =
                     buttonsRow +
                     '<TD align=center><input class="btn-sm btn-info" onClick="saveDSDriver(' +
@@ -4790,25 +4790,25 @@ function refreshDStep() {
                                 ')" type="image" src="images/trash20.png"></div></TD>';
                             if (k > 0)
                                 factors =
-                                factors +
-                                '<TD align=center width=16><div style="opacity: 0.4;"><input type=image src="images/upArrow20.png" onClick="upSO(' +
-                                i +
-                                ", " +
-                                j +
-                                "," +
-                                (k + 1) +
-                                ')" title="Shift this strategic option UP one position"></div></TD>';
+                                    factors +
+                                    '<TD align=center width=16><div style="opacity: 0.4;"><input type=image src="images/upArrow20.png" onClick="upSO(' +
+                                    i +
+                                    ", " +
+                                    j +
+                                    "," +
+                                    (k + 1) +
+                                    ')" title="Shift this strategic option UP one position"></div></TD>';
                             else factors = factors + "<TD align=center width=16>&nbsp;</TD>";
                             if (k < entry[5].length - 1)
                                 factors =
-                                factors +
-                                '<TD align=center width=16><div style="opacity: 0.4;"><input type=image src="images/downArrow20.png" onClick="downSO(' +
-                                i +
-                                ", " +
-                                j +
-                                "," +
-                                (k + 1) +
-                                ')" title="Shift this strategic option down one position"></div></TD>';
+                                    factors +
+                                    '<TD align=center width=16><div style="opacity: 0.4;"><input type=image src="images/downArrow20.png" onClick="downSO(' +
+                                    i +
+                                    ", " +
+                                    j +
+                                    "," +
+                                    (k + 1) +
+                                    ')" title="Shift this strategic option down one position"></div></TD>';
                             else factors = factors + "<TD align=center width=16>&nbsp;</TD>";
                             factors =
                                 factors +
@@ -4825,21 +4825,21 @@ function refreshDStep() {
                                 "</textarea></TD></TR>";
                         } else
                             factors =
-                            factors +
-                            '<TR> <TD width=20 align=center><div id="' +
-                            socbcontid +
-                            '"> <input type=checkbox onchange="fixCheckBoxRowClass(' +
-                            checkboxprefixes +
-                            ", " +
-                            rowdat +
-                            ')" id="' +
-                            socbid +
-                            '" title="Select this strategic option to carry forward" ' +
-                            checked +
-                            disabled +
-                            "></div></TD><TD width=20 align=center>&nbsp</TD> <TD>" +
-                            sodesc +
-                            "</TD></TR>";
+                                factors +
+                                '<TR> <TD width=20 align=center><div id="' +
+                                socbcontid +
+                                '"> <input type=checkbox onchange="fixCheckBoxRowClass(' +
+                                checkboxprefixes +
+                                ", " +
+                                rowdat +
+                                ')" id="' +
+                                socbid +
+                                '" title="Select this strategic option to carry forward" ' +
+                                checked +
+                                disabled +
+                                "></div></TD><TD width=20 align=center>&nbsp</TD> <TD>" +
+                                sodesc +
+                                "</TD></TR>";
 
                         setOldCheckBoxValue(socbid, "" + sosel);
                     }
@@ -4967,13 +4967,13 @@ function addSSSo(ss) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         addSSSoInternal(ss);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -4993,13 +4993,13 @@ function deleteSSSo(ce, cd, ss, so) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         deleteSSSoInternal(ce, cd, ss, so);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -5040,7 +5040,7 @@ function setSSSo(ce, cd, ss, val, option, text) {
         type: "POST",
         success: ssUpdated,
         error: ssOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -5108,7 +5108,7 @@ function addSSRiskInternal(ss, len) {
         type: "POST",
         success: ssUpdated,
         error: ssOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -5120,13 +5120,13 @@ function addSSRisk(ss, len) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         addSSRiskInternal(ss, len);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -5155,7 +5155,7 @@ function deleteSSRiskInternal(ss, rb) {
         type: "POST",
         success: ssUpdated,
         error: ssOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -5167,13 +5167,13 @@ function deleteSSRisk(ss, rb) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         deleteSSRiskInternal(ss, rb);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -5245,7 +5245,7 @@ function saveSSRisk(ss, k, update) {
             type: "POST",
             success: ssUpdated,
             error: ssOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         $.ajax({
@@ -5276,7 +5276,7 @@ function saveSSRisk(ss, k, update) {
             type: "POST",
             success: showTimedMessage("restatus", "Saved risk", 0, false),
             error: ssOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -5307,7 +5307,7 @@ function addSSBenefitInternal(ss, len) {
         type: "POST",
         success: ssUpdated,
         error: ssOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -5319,13 +5319,13 @@ function addSSBenefit(ss, len) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         addSSBenefitInternal(ss, len);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -5354,7 +5354,7 @@ function deleteSSBenefitInternal(ss, rb) {
         type: "POST",
         success: ssUpdated,
         error: ssOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -5366,13 +5366,13 @@ function deleteSSBenefit(ss, rb) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         deleteSSBenefitInternal(ss, rb);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -5444,7 +5444,7 @@ function saveSSBenefit(ss, k, update) {
             type: "POST",
             success: ssUpdated,
             error: ssOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         $.ajax({
@@ -5475,7 +5475,7 @@ function saveSSBenefit(ss, k, update) {
             type: "POST",
             success: showTimedMessage("restatus", "Benefit saved", 0, false),
             error: ssOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -5502,7 +5502,7 @@ function addNewSSTemplate(num) {
         type: "POST",
         success: ssUpdated,
         error: ssOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -5543,7 +5543,7 @@ function saveSS(ss, update) {
                 type: "POST",
                 success: ssUpdated,
                 error: ssOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
         } else {
             $.ajax({
@@ -5580,7 +5580,7 @@ function saveSS(ss, update) {
                     false
                 ),
                 error: ssOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
         }
     } else {
@@ -5610,7 +5610,7 @@ function saveSS(ss, update) {
                 type: "POST",
                 success: ssUpdated,
                 error: ssOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
         } else {
             $.ajax({
@@ -5643,7 +5643,7 @@ function saveSS(ss, update) {
                     false
                 ),
                 error: ssOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
         }
     }
@@ -5684,7 +5684,7 @@ function addSSImpacted(ss) {
         type: "POST",
         success: ssUpdated,
         error: ssOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -5724,7 +5724,7 @@ function delSSImpacted(ss) {
         type: "POST",
         success: ssUpdated,
         error: ssOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -5750,7 +5750,7 @@ function selectSSInternal(ss) {
             type: "POST",
             success: ssUpdated,
             error: ssOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         GcurrentSS = ss;
@@ -5772,7 +5772,7 @@ function selectSSInternal(ss) {
             type: "POST",
             success: ssUpdated,
             error: ssOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -5785,13 +5785,13 @@ function selectSS(ss) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         selectSSInternal(ss);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {
+                    action: function () {
                         var checked = document.getElementById("sel-" + ss).checked;
                         document.getElementById("sel-" + ss).checked = !checked;
                     }
@@ -5847,7 +5847,7 @@ function refreshRPage() {
  */
 function refreshRStep() {
     document.getElementById("Reduce-body").innerHTML = reduceStepContents();
-    $(".strategy_stat_wrap").click(function() {
+    $(".strategy_stat_wrap").click(function () {
         var elements = this.id.split("-");
         GcurrentSS = parseInt(elements[1]);
         let ratOpn = localStorage.getItem("toggleId");
@@ -5877,7 +5877,7 @@ function refreshRStep() {
         $("#strategy-" + GcurrentSS).addClass("selected_strategy");
         $(".action_head").addClass("d-block");
     }
-    $(function() {
+    $(function () {
         $(".cus_scroll").overlayScrollbars({});
     });
     OverlayScrollbars(document.getElementById("left-panel"), {
@@ -6040,7 +6040,7 @@ function reduceStepContents() {
         }
     }
 
-    if (ss == null) {} else {
+    if (ss == null) { } else {
         if (Gadmin == 1) {
             body =
                 body +
@@ -6280,7 +6280,7 @@ function populateSSRisksBenefits() {
         "</div>";
 
     document.getElementById("ssRisksBenefits").innerHTML = body;
-    $(function() {
+    $(function () {
         $(".cus_scroll").overlayScrollbars({});
     });
 }
@@ -6319,7 +6319,7 @@ function addSSAction(ss, len) {
         type: "POST",
         success: apUpdated,
         error: imOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -6344,7 +6344,7 @@ function deleteSSActionInternal(ss, action) {
         type: "POST",
         success: apUpdated,
         error: imOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -6356,13 +6356,13 @@ function deleteSSAction(ss, action) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         deleteSSActionInternal(ss, action);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -6394,7 +6394,7 @@ function addSSActionComment(ss, action) {
         type: "POST",
         success: veUpdated,
         error: veOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -6423,7 +6423,7 @@ function addSSActionPercent(ss, action) {
         type: "POST",
         success: veUpdated,
         error: veOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -6454,7 +6454,7 @@ function setCompleted(ss, action) {
             type: "POST",
             success: veUpdated,
             error: veOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         $.ajax({
@@ -6479,7 +6479,7 @@ function setCompleted(ss, action) {
             type: "POST",
             success: veUpdated,
             error: veOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -6505,7 +6505,7 @@ function upSSActionInternal(ss, action, source) {
         type: "POST",
         success: apUpdated,
         error: imOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -6517,13 +6517,13 @@ function upSSAction(ss, action, source) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         upSSActionInternal(ss, action, source);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -6551,7 +6551,7 @@ function downSSActionInternal(ss, action, source) {
         type: "POST",
         success: apUpdated,
         error: imOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -6563,13 +6563,13 @@ function downSSAction(ss, action, source) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         downSSActionInternal(ss, action, source);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -6588,7 +6588,7 @@ function refreshImStep() {
         $(".action_head").addClass("d-block");
     }
     restoreSSPageState();
-    $(".stat_count").click(function() {
+    $(".stat_count").click(function () {
         var elements = this.id.split("-");
         GcurrentSS = parseInt(elements[1]);
         let ratOpn = localStorage.getItem("toggleId");
@@ -6619,7 +6619,7 @@ function refreshImStep() {
         $(".action_head").addClass("d-block");
     });
 
-    $(function() {
+    $(function () {
         $(".cus_scroll").overlayScrollbars({});
     });
 
@@ -6678,7 +6678,7 @@ function refreshVCharts() {
  */
 function refreshVStep() {
     document.getElementById("Verify-body").innerHTML = verifyStepContents();
-    $(".strategy_stat_wrap").click(function() {
+    $(".strategy_stat_wrap").click(function () {
         //
         var elements = this.id.split("-");
         GcurrentSS = parseInt(elements[1]);
@@ -6697,7 +6697,7 @@ function refreshVStep() {
         $(".action_head").addClass("d-block");
     });
 
-    $(function() {
+    $(function () {
         $(".cus_scroll").overlayScrollbars({});
     });
 
@@ -6710,7 +6710,7 @@ function refreshVStep() {
 
 function completeSS() {
     let allStrategies = Gcurrentdata[Grbindex];
-    let currentStrategy = allStrategies.filter(function(strategies) {
+    let currentStrategy = allStrategies.filter(function (strategies) {
         return strategies[0] == GcurrentSS;
     });
     let actions = currentStrategy[0][6];
@@ -6846,8 +6846,8 @@ function updateVerifyActions() {
                     if (len > 0) {
                         lastProg =
                             currentStrategy[7][len - 1][1] > 0 ?
-                            currentStrategy[7][len - 1][1] + "%" :
-                            "Dropped";
+                                currentStrategy[7][len - 1][1] + "%" :
+                                "Dropped";
                         lastUpdate = currentStrategy[7][len - 1][4];
                     }
                 }
@@ -6980,7 +6980,7 @@ function refreshEStep() {
     document.getElementById("econtent").innerHTML = estring;
 }
 
-function clearAllStrategyDisplay() {}
+function clearAllStrategyDisplay() { }
 
 function getProjectCurrency() {
     if (Gcurrentdata[2] != null && Gcurrentdata[2].length >= 2)
@@ -7119,15 +7119,15 @@ function fixSelCDClass(prefixes, cenum, drivnum) {
         //alert (prefixes[i]+"-"+row);
         if (
             document
-            .getElementById(prefixes[i] + "-" + cenum + "-" + drivnum)
-            .value.valueOf() ==
+                .getElementById(prefixes[i] + "-" + cenum + "-" + drivnum)
+                .value.valueOf() ==
             getOldSelectValue(prefixes[i] + "-" + cenum + "-" + drivnum).valueOf()
         ) {
             document.getElementById(
                 prefixes[i] + "-" + cenum + "-" + drivnum
             ).className = removeChanged(
                 document.getElementById(prefixes[i] + "-" + cenum + "-" + drivnum)
-                .className
+                    .className
             );
         } else {
             document.getElementById(
@@ -7202,17 +7202,17 @@ function fixTextCDClass(prefixes, cenum, drivnum) {
             continue;
         if (
             document
-            .getElementById(prefixes[i] + "-" + cenum + "-" + drivnum)
-            .value.valueOf() ==
+                .getElementById(prefixes[i] + "-" + cenum + "-" + drivnum)
+                .value.valueOf() ==
             document
-            .getElementById(prefixes[i] + "-" + cenum + "-" + drivnum)
-            .defaultValue.valueOf()
+                .getElementById(prefixes[i] + "-" + cenum + "-" + drivnum)
+                .defaultValue.valueOf()
         ) {
             document.getElementById(
                 prefixes[i] + "-" + cenum + "-" + drivnum
             ).className = removeChanged(
                 document.getElementById(prefixes[i] + "-" + cenum + "-" + drivnum)
-                .className
+                    .className
             );
         } else {
             document.getElementById(
@@ -7480,7 +7480,7 @@ function refreshAStep() {
     agstring = agreeContents();
     document.getElementById("Agree-body").innerHTML = agstring;
 
-    $(".sortable").click(function() {
+    $(".sortable").click(function () {
         var o = $(this).hasClass("asc") ? "desc" : "asc";
         $(".sortable")
             .removeClass("asc")
@@ -7509,7 +7509,7 @@ function refreshAStep() {
     }
     refreshGoals();
 
-    if (Gadmin == 0) {}
+    if (Gadmin == 0) { }
 }
 
 var activeColor = "#AAFFAA";
@@ -7614,7 +7614,7 @@ function strategiesTable(val) {
         // alert("active val: " + active);
         if (active.valueOf() == "INACTIVE".valueOf()) {
             if (val == 1)
-            // means show ONLY active projects
+                // means show ONLY active projects
                 continue;
             color = inactiveColor;
         }
@@ -7636,12 +7636,12 @@ function strategiesTable(val) {
             " ></TD>";
         if (color == inactiveColor)
             tabstring =
-            tabstring +
-            '<TD><span style="color: darkblue; background-color: ' +
-            color +
-            ';">' +
-            result[i][4] +
-            "</span></TD>";
+                tabstring +
+                '<TD><span style="color: darkblue; background-color: ' +
+                color +
+                ';">' +
+                result[i][4] +
+                "</span></TD>";
         else tabstring = tabstring + "<TD>" + result[i][4] + "</TD>";
         tabstring = tabstring + "<TD>" + result[i][1][1] + "</TD>";
         // tabstring = tabstring + '<TD>' + result[i][2] + '</TD>';
@@ -7804,14 +7804,14 @@ function refreshTeamArea(i) {
         teamstring + "<TR><TD>&nbsp;</TD><TD><select id=selperson width=60>";
     for (var n = 0; n < teamsters.length; n++)
         teamstring =
-        teamstring +
-        '<option value="' +
-        teamsters[n][0] +
-        '">' +
-        teamsters[n][1] +
-        "  (" +
-        teamsters[n][3] +
-        ")</option>";
+            teamstring +
+            '<option value="' +
+            teamsters[n][0] +
+            '">' +
+            teamsters[n][1] +
+            "  (" +
+            teamsters[n][3] +
+            ")</option>";
     teamstring = teamstring + "</select></TD><TD><select id=selrole>";
     teamstring = teamstring + "<option value=MEMBER>MEMBER</OPTION>";
     teamstring = teamstring + "<option value=LEADER>LEADER</OPTION>";
@@ -7847,14 +7847,14 @@ function refreshSupplierArea(i) {
     supstring = supstring + "<select id=stratsup>";
     for (var i = 0; i < Gcompanies.length; i++)
         if (Gcompanies[i].length >= 7)
-        // then it is a supplier...
+            // then it is a supplier...
             supstring =
-            supstring +
-            "<option value=" +
-            Gcompanies[i][0] +
-            ">" +
-            Gcompanies[i][1] +
-            "</option>";
+                supstring +
+                "<option value=" +
+                Gcompanies[i][0] +
+                ">" +
+                Gcompanies[i][1] +
+                "</option>";
     supstring = supstring + "</select></TD></TR>";
     supstring = supstring + "<TR><TD colspan=2 align=center>";
     supstring =
@@ -7929,7 +7929,7 @@ function addMember() {
         type: "POST",
         success: updateStrategies,
         error: teamOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -7963,7 +7963,7 @@ function removeMember() {
         type: "POST",
         success: updateStrategies,
         error: teamOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -7997,7 +7997,7 @@ function addSupplier() {
         type: "POST",
         success: updateStrategies,
         error: teamOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -8031,7 +8031,7 @@ function removeSupplier() {
         type: "POST",
         success: updateStrategies,
         error: teamOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -8093,7 +8093,7 @@ function updateStrategies(response) {
             type: "POST",
             success: refreshStrategies,
             error: strategyOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(res[1])) {
@@ -8150,7 +8150,7 @@ function addStrategyInternal() {
         type: "POST",
         success: updateStrategies,
         error: strategyOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -8162,13 +8162,13 @@ function addStrategy() {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         addStrategyInternal();
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -8238,7 +8238,7 @@ function saveStrategy(id, update) {
             type: "POST",
             success: updateStrategies,
             error: strategyOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         $.ajax({
@@ -8268,7 +8268,7 @@ function saveStrategy(id, update) {
                 false
             ),
             error: strategyOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -8408,7 +8408,7 @@ function activateProject(i) {
             type: "POST",
             success: updateStrategies,
             error: strategyOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else myAlert("ERROR", "status: " + stat, "error");
 }
@@ -8436,7 +8436,7 @@ function inactivateProject(i) {
             type: "POST",
             success: updateStrategies,
             error: strategyOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else myAlert("ERROR", "Nothing to do... " + stat, "error");
 }
@@ -8465,7 +8465,7 @@ function activateSS(ss, stat) {
             type: "POST",
             success: ssUpdated,
             error: ssOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -8494,7 +8494,7 @@ function inactivateSS(ss, stat) {
             type: "POST",
             success: ssUpdated,
             error: ssOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -8523,12 +8523,12 @@ function strategiesTableAdmin() {
         '<TD align=center><select style="max-width: 140px; min-width: 140px; width: 140px;" id=stratcomp onClick="loadProjects()">';
     for (var i = 0; i < Gcompanies.length; i++)
         tabstring =
-        tabstring +
-        "<option value=" +
-        Gcompanies[i][0] +
-        ">" +
-        Gcompanies[i][1] +
-        "</option>";
+            tabstring +
+            "<option value=" +
+            Gcompanies[i][0] +
+            ">" +
+            Gcompanies[i][1] +
+            "</option>";
     tabstring = tabstring + "<select></TD>";
     // tabstring = tabstring + '<TD><input id=stratdiv type=text></TD>';
     tabstring =
@@ -8686,14 +8686,14 @@ function strategiesTableAdmin() {
                 '"></TD>';
         } else
             tabstring =
-            tabstring +
-            '<TD align=center><input type=text oninput="fixTextRowClass(' +
-            prefixes +
-            ", " +
-            id +
-            ')" id="stsave-' +
-            id +
-            '" ></TD>';
+                tabstring +
+                '<TD align=center><input type=text oninput="fixTextRowClass(' +
+                prefixes +
+                ", " +
+                id +
+                ')" id="stsave-' +
+                id +
+                '" ></TD>';
         var eventspec =
             ' onChange="fixSelRowClass(' + selprefixes + ", " + id + ')"  ';
         tabstring =
@@ -8815,7 +8815,7 @@ function updateCompanies(response) {
             type: "POST",
             success: refreshCompanies,
             error: companyOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(res[1])) {
@@ -8911,7 +8911,7 @@ function addCompany() {
             type: "POST",
             success: updateCompanies,
             error: companyOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         $.ajax({
@@ -8934,7 +8934,7 @@ function addCompany() {
             type: "POST",
             success: updateCompanies,
             error: companyOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -8984,7 +8984,7 @@ function saveCompany(id, update) {
                 type: "POST",
                 success: updateCompanies,
                 error: companyOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
         else
             $.ajax({
@@ -9010,7 +9010,7 @@ function saveCompany(id, update) {
                 type: "POST",
                 success: updateCompanies,
                 error: companyOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
     } else {
         if (supplierp)
@@ -9042,7 +9042,7 @@ function saveCompany(id, update) {
                     false
                 ),
                 error: companyOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
         else
             $.ajax({
@@ -9073,7 +9073,7 @@ function saveCompany(id, update) {
                     false
                 ),
                 error: companyOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
     }
 }
@@ -9129,26 +9129,26 @@ function companiesTable() {
             "</textarea></TD>";
         if (Gcompanies[i][3] != null && Gcompanies[i][3].length >= 1)
             tabstring =
-            tabstring +
-            '<TD align=center><input type=text oninput="fixTextRowClass(' +
-            prefixes +
-            ", " +
-            id +
-            ')" id="cass-' +
-            id +
-            '" value="' +
-            CurrencyFormat(Gcompanies[i][3][0], "", 0, "", ",") +
-            '"></TD>';
+                tabstring +
+                '<TD align=center><input type=text oninput="fixTextRowClass(' +
+                prefixes +
+                ", " +
+                id +
+                ')" id="cass-' +
+                id +
+                '" value="' +
+                CurrencyFormat(Gcompanies[i][3][0], "", 0, "", ",") +
+                '"></TD>';
         else
             tabstring =
-            tabstring +
-            '<TD align=center><input type=text oninput="fixTextRowClass(' +
-            prefixes +
-            ", " +
-            id +
-            ')" id="cass-' +
-            id +
-            '" ></TD>';
+                tabstring +
+                '<TD align=center><input type=text oninput="fixTextRowClass(' +
+                prefixes +
+                ", " +
+                id +
+                ')" id="cass-' +
+                id +
+                '" ></TD>';
         tabstring =
             tabstring +
             '<TD align=center><input type=text oninput="fixTextRowClass(' +
@@ -9252,7 +9252,7 @@ function updateProjects(response) {
             type: "POST",
             success: refreshProjects,
             error: projectOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else showTimedMessage("projstat", "ERROR: " + res[0] + res[1], 0, true);
 }
@@ -9290,12 +9290,12 @@ function projectsTable() {
     tabstring = tabstring + "&nbsp;&nbsp; <select id=pcurr>";
     for (var m = 0; m < Gcurrency.length; m++)
         tabstring =
-        tabstring +
-        '<OPTION value="' +
-        Gcurrency[m] +
-        '">' +
-        Gcurrency[m] +
-        "</OPTION>";
+            tabstring +
+            '<OPTION value="' +
+            Gcurrency[m] +
+            '">' +
+            Gcurrency[m] +
+            "</OPTION>";
     tabstring = tabstring + "</select></TD></TR>";
     tabstring =
         tabstring +
@@ -9340,20 +9340,20 @@ function generateSelectDefault(id, values, sel) {
     for (var i = 0; i < values.length; i++) {
         if (values[i].valueOf() == sel.valueOf())
             selstring =
-            selstring +
-            '<option value="' +
-            values[i] +
-            '" selected>' +
-            values[i] +
-            "</option>";
+                selstring +
+                '<option value="' +
+                values[i] +
+                '" selected>' +
+                values[i] +
+                "</option>";
         else
             selstring =
-            selstring +
-            '<option value="' +
-            values[i] +
-            '">' +
-            values[i] +
-            "</option>";
+                selstring +
+                '<option value="' +
+                values[i] +
+                '">' +
+                values[i] +
+                "</option>";
     }
     selstring = selstring + "</select>";
     return selstring;
@@ -9365,20 +9365,20 @@ function generateSelectDefaultEvent(id, values, sel, eventspec) {
     for (var i = 0; i < values.length; i++) {
         if (values[i].valueOf() == sel.valueOf())
             selstring =
-            selstring +
-            '<option value="' +
-            values[i] +
-            '" selected>' +
-            values[i] +
-            "</option>";
+                selstring +
+                '<option value="' +
+                values[i] +
+                '" selected>' +
+                values[i] +
+                "</option>";
         else
             selstring =
-            selstring +
-            '<option value="' +
-            values[i] +
-            '">' +
-            values[i] +
-            "</option>";
+                selstring +
+                '<option value="' +
+                values[i] +
+                '">' +
+                values[i] +
+                "</option>";
     }
     selstring = selstring + "</select>";
 
@@ -9392,20 +9392,20 @@ function generateSelectDefaultEventClass(id, values, sel, eventspec, level) {
     for (var i = 0; i < values.length; i++) {
         if (values[i].valueOf() == sel.valueOf())
             selstring =
-            selstring +
-            '<option value="' +
-            values[i] +
-            '" selected>' +
-            values[i] +
-            "</option>";
+                selstring +
+                '<option value="' +
+                values[i] +
+                '" selected>' +
+                values[i] +
+                "</option>";
         else
             selstring =
-            selstring +
-            '<option value="' +
-            values[i] +
-            '">' +
-            values[i] +
-            "</option>";
+                selstring +
+                '<option value="' +
+                values[i] +
+                '">' +
+                values[i] +
+                "</option>";
     }
     selstring = selstring + "</select>";
 
@@ -9416,12 +9416,12 @@ function generateCurrencySelector(id) {
     var res = '<select id="' + id + '">';
     for (var m = 0; m < Gcurrency.length; m++)
         res =
-        res +
-        '<OPTION value="' +
-        Gcurrency[m] +
-        '">' +
-        Gcurrency[m] +
-        "</OPTION>";
+            res +
+            '<OPTION value="' +
+            Gcurrency[m] +
+            '">' +
+            Gcurrency[m] +
+            "</OPTION>";
     return res;
 }
 
@@ -9430,20 +9430,20 @@ function generateCurrencySelectorWithDefault(id, val) {
     for (var m = 0; m < Gcurrency.length; m++) {
         if (val.valueOf() == Gcurrency[m].valueOf())
             res =
-            res +
-            '<OPTION value="' +
-            Gcurrency[m] +
-            '" selected>' +
-            Gcurrency[m] +
-            "</OPTION>";
+                res +
+                '<OPTION value="' +
+                Gcurrency[m] +
+                '" selected>' +
+                Gcurrency[m] +
+                "</OPTION>";
         else
             res =
-            res +
-            '<OPTION value="' +
-            Gcurrency[m] +
-            '">' +
-            Gcurrency[m] +
-            "</OPTION>";
+                res +
+                '<OPTION value="' +
+                Gcurrency[m] +
+                '">' +
+                Gcurrency[m] +
+                "</OPTION>";
     }
     return res;
 }
@@ -9453,20 +9453,20 @@ function generateCurrencySelectorWithDefaultEvent(id, val, eventspec) {
     for (var m = 0; m < Gcurrency.length; m++) {
         if (val.valueOf() == Gcurrency[m].valueOf())
             res =
-            res +
-            '<OPTION value="' +
-            Gcurrency[m] +
-            '" selected>' +
-            Gcurrency[m] +
-            "</OPTION>";
+                res +
+                '<OPTION value="' +
+                Gcurrency[m] +
+                '" selected>' +
+                Gcurrency[m] +
+                "</OPTION>";
         else
             res =
-            res +
-            '<OPTION value="' +
-            Gcurrency[m] +
-            '">' +
-            Gcurrency[m] +
-            "</OPTION>";
+                res +
+                '<OPTION value="' +
+                Gcurrency[m] +
+                '">' +
+                Gcurrency[m] +
+                "</OPTION>";
     }
     return res;
 }
@@ -9524,7 +9524,7 @@ function addProject() {
             type: "POST",
             success: updateProjects,
             error: projectOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     else
         $.ajax({
@@ -9551,7 +9551,7 @@ function addProject() {
             type: "POST",
             success: updateProjects,
             error: projectOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
 }
 
@@ -9600,7 +9600,7 @@ function saveProject() {
             type: "POST",
             success: updateProjects,
             error: projectOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     else
         $.ajax({
@@ -9629,7 +9629,7 @@ function saveProject() {
             type: "POST",
             success: updateProjects,
             error: projectOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
 }
 
@@ -9758,7 +9758,7 @@ function updateCommodities(response) {
             type: "POST",
             success: refreshCommodities,
             error: commodityOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else showTimedMessage("commstat", res[1], 0, true);
 }
@@ -9797,7 +9797,7 @@ function addCommodity() {
         type: "POST",
         success: updateCommodities,
         error: commodityOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -9838,7 +9838,7 @@ function saveCommodity(obj) {
         type: "POST",
         success: updateCommodities,
         error: commodityOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -9861,12 +9861,12 @@ function commTable() {
         '<TD align=center><select id=commnaics onClick="populateNAICSDesc(commnaics, naicsdesc)">';
     for (var k = 0; k < Gnaics.length; k++)
         tabstring =
-        tabstring +
-        '<option value="' +
-        Gnaics[k][0] +
-        '">' +
-        Gnaics[k][0] +
-        "</option>";
+            tabstring +
+            '<option value="' +
+            Gnaics[k][0] +
+            '">' +
+            Gnaics[k][0] +
+            "</option>";
     tabstring = tabstring + "</select></TD>";
     tabstring = tabstring + '<TD><div id="naicsdesc"></div></TD>';
     tabstring =
@@ -9899,7 +9899,7 @@ function commTable() {
             '<TD align=center><select id="' +
             selid +
             '" onClick="populateNAICSDesc(selid + '),
-        divid + ')">';
+            divid + ')">';
         for (var k = 0; k < Gnaics.length; k++) {
             var selected = "";
             if (Gnaics[k][0].valueOf() == Gcommodities[i][3].valueOf())
@@ -10047,7 +10047,7 @@ function addPersonToProject() {
         url: "send_email.php",
         type: "POST",
         data: NewParticipantadded,
-        success: function(msg) {
+        success: function (msg) {
             //console.log(msg);
         }
     });
@@ -10100,7 +10100,7 @@ function saveEDPerson() {
             type: "POST",
             success: updateEDPersons,
             error: personEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         showTimedMessage("gmsg", "Saving selected person...", 0, false);
@@ -10126,7 +10126,7 @@ function saveEDPerson() {
             type: "POST",
             success: updateEDPersons,
             error: personEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 
@@ -10189,7 +10189,7 @@ function addPersonInternal() {
         type: "POST",
         success: updatePersons,
         error: personOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -10210,7 +10210,7 @@ function updatePersons(response) {
             type: "POST",
             success: refreshPersons,
             error: personOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(res[1])) {
@@ -10238,7 +10238,7 @@ function updateEDPersons(response) {
             type: "POST",
             success: refreshEDPersons,
             error: personEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(res[1])) {
@@ -10268,7 +10268,7 @@ function updateEDPersonsAddPart(response) {
             type: "POST",
             success: refreshEDPersonsAddPart,
             error: personEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(res[1])) {
@@ -10287,13 +10287,13 @@ function addPerson() {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         addPersonInternal();
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -10345,7 +10345,7 @@ function savePerson(id, update) {
             type: "POST",
             success: updatePersons,
             error: personOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         $.ajax({
@@ -10372,7 +10372,7 @@ function savePerson(id, update) {
             type: "POST",
             success: showTimedMessage("persstat", "Person updated", 0, false),
             error: personOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -10570,7 +10570,7 @@ function companiesReady(response) {
         type: "POST",
         success: projectsReady,
         error: startupfailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -10590,7 +10590,7 @@ function projectsReady(response) {
         type: "POST",
         success: commoditiesReady,
         error: startupfailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -10624,7 +10624,7 @@ function commoditiesReady(response) {
         type: "POST",
         success: usersReady,
         error: startupfailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -10632,9 +10632,9 @@ function getFirstLast(pn) {
     for (var i = 0; i < Gpersons[1].length; i++) {
         if (
             Gpersons[1][i][1]
-            .toLowerCase()
-            .trim()
-            .valueOf() == pn.toLowerCase().valueOf()
+                .toLowerCase()
+                .trim()
+                .valueOf() == pn.toLowerCase().valueOf()
         ) {
             // compare emails...
             return [
@@ -10746,13 +10746,13 @@ function logout() {
         buttons: {
             OK: {
                 class: "blue",
-                action: function() {
+                action: function () {
                     logoutOK();
                 }
             },
             Cancel: {
                 class: "gray",
-                action: function() {}
+                action: function () { }
             }
         }
     });
@@ -10770,7 +10770,7 @@ function logout2() {
 
 // obj has to be a DataTable object...
 function refreshTable(obj) {
-    setTimeout(function() {
+    setTimeout(function () {
         obj.fnAdjustColumnSizing();
     }, 1000);
 }
@@ -10831,7 +10831,7 @@ function loadFAQ() {
         type: "GET",
         success: fillFAQArea,
         error: errorFAQ
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -11166,7 +11166,7 @@ function saveNew(ce, update) {
             type: "POST",
             success: iStepSaved,
             error: saveFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         $.ajax({
@@ -11199,7 +11199,7 @@ function saveNew(ce, update) {
             type: "POST",
             success: showTimedMessage("treesel", "element updated", 0, false),
             error: saveFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -11232,7 +11232,7 @@ function deleteNewInternal2(ce, leaf, cename) {
         type: "POST",
         success: iStepSaved,
         error: saveFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -11243,13 +11243,13 @@ function deleteNewInternal(ce, leaf, cename) {
         buttons: {
             OK: {
                 class: "blue",
-                action: function() {
+                action: function () {
                     deleteNewInternal2(ce, leaf, cename);
                 }
             },
             Cancel: {
                 class: "gray",
-                action: function() {}
+                action: function () { }
             }
         }
     });
@@ -11277,13 +11277,13 @@ function deleteNew(ce, leaf, cename) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         deleteNewInternal(ce, leaf, cename);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -11392,7 +11392,7 @@ function addChildNewInternal(type, ce) {
         type: "POST",
         success: iStepSaved,
         error: saveFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 
     return;
@@ -11410,13 +11410,13 @@ function addChildNew(type, ce) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         addChildNewInternal(type, ce);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -11441,13 +11441,13 @@ function addSiblingNew() {
         type: "POST",
         success: iStepSaved,
         error: saveFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
     return;
 }
 
 function addChild(treenode, node, child) {
-    if (treenode[0].valueOf() == node.valueOf()) {}
+    if (treenode[0].valueOf() == node.valueOf()) { }
     for (var i = 0; i < treenode[2].length; i++)
         addChild(treenode[2][i], node, child);
 }
@@ -11576,7 +11576,7 @@ function makeCriticalInternal(imp, fcf, i, leaf, treenumber) {
         type: "POST",
         success: iStepSaved,
         error: saveFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -11589,13 +11589,13 @@ function makeCritical(imp, fcf, i, leaf, treenumber) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         makeCriticalInternal(imp, fcf, i, leaf, treenumber);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {
+                    action: function () {
                         document.getElementById("cb-" + i).checked = !val;
                     }
                 }
@@ -11607,7 +11607,7 @@ function makeCritical(imp, fcf, i, leaf, treenumber) {
 function iCarryForwardStep(response) {
     var res = JSON.parse(response);
     if (res[0].valueOf() != "".valueOf())
-    // error
+        // error
         document.getElementById(checkBoxID).checked = true;
     else iStepSaved(response);
 }
@@ -11721,12 +11721,12 @@ function renderTree(node, level) {
         nodestring = nodestring + '<TD width=40 bgcolor="#E3E3E3">&nbsp;</TD>';
     else
         nodestring =
-        nodestring +
-        '<TD width=40 align=center bgcolor="#E3E3E3"><div style="opacity: 0.4;"><input type=image src="images/plus.png" title="Add a sub cost" onClick="addChildNew(' +
-        costtype +
-        ", " +
-        node[7] +
-        ')"></div></TD>';
+            nodestring +
+            '<TD width=40 align=center bgcolor="#E3E3E3"><div style="opacity: 0.4;"><input type=image src="images/plus.png" title="Add a sub cost" onClick="addChildNew(' +
+            costtype +
+            ", " +
+            node[7] +
+            ')"></div></TD>';
     if (level != 0 && auto != 1 && Gadmin == 1) {
         nodestring =
             nodestring +
@@ -11771,78 +11771,78 @@ function renderTree(node, level) {
 
     if (level > 0 && auto == 0)
         nodestring =
-        nodestring +
-        indent +
-        '<input  onInput="fixTextRowClass(' +
-        prefixes +
-        ", " +
-        node[7] +
-        ')" type=text id="' +
-        ceid +
-        '" size=' +
-        length +
-        ' class="level' +
-        (level + 1) +
-        '" value="' +
-        node[0] +
-        '" ' +
-        disabled +
-        "></TD>";
-    // the cost
-    else
-        nodestring =
-        nodestring +
-        indent +
-        '<input  type=text id="' +
-        ceid +
-        '" size=' +
-        length +
-        ' class="level' +
-        (level + 1) +
-        '" value="' +
-        node[0] +
-        '" readonly></TD>'; // the cost
-    if (level > 0 && auto == 0) {
-        if (Gadmin == 1)
-            nodestring =
             nodestring +
-            '<TD align=right width=10% bgcolor="#E3E3E3"><input onInput="fixTextRowClass(' +
+            indent +
+            '<input  onInput="fixTextRowClass(' +
             prefixes +
             ", " +
             node[7] +
-            ')" type=text class="level' +
+            ')" type=text id="' +
+            ceid +
+            '" size=' +
+            length +
+            ' class="level' +
             (level + 1) +
-            '" style="text-align: right;" size=10 id="' +
-            amtid +
-            '" onClick="selectAll(' +
-            amtid +
-            ')" value="' +
-            CurrencyFormat("" + node[1], "", 0, "", ",") +
-            '"></TD>';
+            '" value="' +
+            node[0] +
+            '" ' +
+            disabled +
+            "></TD>";
+    // the cost
+    else
+        nodestring =
+            nodestring +
+            indent +
+            '<input  type=text id="' +
+            ceid +
+            '" size=' +
+            length +
+            ' class="level' +
+            (level + 1) +
+            '" value="' +
+            node[0] +
+            '" readonly></TD>'; // the cost
+    if (level > 0 && auto == 0) {
+        if (Gadmin == 1)
+            nodestring =
+                nodestring +
+                '<TD align=right width=10% bgcolor="#E3E3E3"><input onInput="fixTextRowClass(' +
+                prefixes +
+                ", " +
+                node[7] +
+                ')" type=text class="level' +
+                (level + 1) +
+                '" style="text-align: right;" size=10 id="' +
+                amtid +
+                '" onClick="selectAll(' +
+                amtid +
+                ')" value="' +
+                CurrencyFormat("" + node[1], "", 0, "", ",") +
+                '"></TD>';
         // actual cost (a number)
         else
             nodestring =
-            nodestring +
-            '<TD align=right width=15% bgcolor="#E3E3E3">' +
-            CurrencyFormat("" + node[1], "", 0, "", ",") +
-            "</TD>"; // actual cost (a number)
+                nodestring +
+                '<TD align=right width=15% bgcolor="#E3E3E3">' +
+                CurrencyFormat("" + node[1], "", 0, "", ",") +
+                "</TD>"; // actual cost (a number)
     } else if (auto != 0)
         nodestring =
-        nodestring +
-        '<TD align=right width=15% bgcolor="#E3E3E3"> <div class="llevel' +
-        (level + 1) +
-        '"><font color=blue>' +
-        CurrencyFormat("" + node[1], "", 0, "", ",") +
-        "</font></div></TD>";
+            nodestring +
+            '<TD align=right width=15% bgcolor="#E3E3E3"> <div class="llevel' +
+            (level + 1) +
+            '"><font color=blue>' +
+            CurrencyFormat("" + node[1], "", 0, "", ",") +
+            "</font></div></TD>";
     // actual cost (a number)
     else
         nodestring =
-        nodestring +
-        '<TD align=right width=15% bgcolor="#E3E3E3"> <div class="llevel' +
-        (level + 1) +
-        '"> <b>' +
-        CurrencyFormat("" + node[1], "", 0, "", ",") +
-        "</b></div></TD>"; // actual cost (a number)
+            nodestring +
+            '<TD align=right width=15% bgcolor="#E3E3E3"> <div class="llevel' +
+            (level + 1) +
+            '"> <b>' +
+            CurrencyFormat("" + node[1], "", 0, "", ",") +
+            "</b></div></TD>"; // actual cost (a number)
 
     var percent = "&nbsp;";
     if (root == 1) percent = "100 %";
@@ -11854,44 +11854,44 @@ function renderTree(node, level) {
 
     if (root == 1)
         nodestring =
-        nodestring +
-        '<TD align=center  class="llevel' +
-        (level + 1) +
-        '" width=8% ><div class="llevel' +
-        (level + 1) +
-        '"><b>' +
-        percent +
-        "&nbsp;</b></div></TD>";
+            nodestring +
+            '<TD align=center  class="llevel' +
+            (level + 1) +
+            '" width=8% ><div class="llevel' +
+            (level + 1) +
+            '"><b>' +
+            percent +
+            "&nbsp;</b></div></TD>";
     else if (auto == 1)
         nodestring =
-        nodestring +
-        '<TD align=center  class="llevel' +
-        (level + 1) +
-        '" width=8% ><div class="llevel' +
-        (level + 1) +
-        '"><font color="blue">' +
-        percent +
-        "&nbsp;</font></div></TD>";
+            nodestring +
+            '<TD align=center  class="llevel' +
+            (level + 1) +
+            '" width=8% ><div class="llevel' +
+            (level + 1) +
+            '"><font color="blue">' +
+            percent +
+            "&nbsp;</font></div></TD>";
     else if (leaf == 1)
         nodestring =
-        nodestring +
-        '<TD align=center  class="llevel' +
-        (level + 1) +
-        '" width=8%><div class="llevel' +
-        (level + 1) +
-        '">' +
-        percent +
-        "&nbsp;</div></TD>";
+            nodestring +
+            '<TD align=center  class="llevel' +
+            (level + 1) +
+            '" width=8%><div class="llevel' +
+            (level + 1) +
+            '">' +
+            percent +
+            "&nbsp;</div></TD>";
     else
         nodestring =
-        nodestring +
-        '<TD align=center  class="llevel' +
-        (level + 1) +
-        '" width=8%><div class="llevel' +
-        (level + 1) +
-        '"><font color="red"> ' +
-        percent +
-        " &nbsp;</font></div></TD>";
+            nodestring +
+            '<TD align=center  class="llevel' +
+            (level + 1) +
+            '" width=8%><div class="llevel' +
+            (level + 1) +
+            '"><font color="red"> ' +
+            percent +
+            " &nbsp;</font></div></TD>";
     // nodestring = nodestring + '<TD width=7%>' + node[8] + '</TD>'; // units
     if (level > 0 && auto == 0) {
         if (Gadmin == 1) {
@@ -11937,20 +11937,20 @@ function renderTree(node, level) {
     if (level > 0 && auto == 0) {
         if (Gadmin == 1)
             nodestring =
-            nodestring +
-            '<TD width=20% bgcolor="#E3E3E3"> <textarea  class="level' +
-            (level + 1) +
-            '" onInput="fixTextRowClass(' +
-            prefixes +
-            ", " +
-            node[7] +
-            ')" rows=2 cols=30 id="' +
-            commid +
-            '" onClick="selectAll(' +
-            commid +
-            ')" >' +
-            node[5] +
-            "</textarea></TD>";
+                nodestring +
+                '<TD width=20% bgcolor="#E3E3E3"> <textarea  class="level' +
+                (level + 1) +
+                '" onInput="fixTextRowClass(' +
+                prefixes +
+                ", " +
+                node[7] +
+                ')" rows=2 cols=30 id="' +
+                commid +
+                '" onClick="selectAll(' +
+                commid +
+                ')" >' +
+                node[5] +
+                "</textarea></TD>";
         else nodestring = nodestring + '<TD bgcolor="#E3E3E3">' + node[5] + "</TD>";
     } else nodestring = nodestring + '<TD bgcolor="#E3E3E3">&nbsp;</TD>';
 
@@ -11962,7 +11962,7 @@ function renderTree(node, level) {
             nodestring +
             '<TD align=center  bgcolor="#E3E3E3">' +
             '<input type=checkbox onClick="makeCritical(node[3] + '),
-        node[4] +
+            node[4] +
             ", " +
             node[7] +
             "," +
@@ -12194,7 +12194,7 @@ function saveFailed(response) {
 // code to trigger cost estimates submit on hitting enter.
 
 var input = document.getElementById("ce_value");
-input.addEventListener("keyup", function(event) {
+input.addEventListener("keyup", function (event) {
     event.preventDefault();
     if (event.keyCode === 13) {
         document.getElementById("ce_submit").click();
@@ -12229,7 +12229,7 @@ function saveCostBreakDown() {
         type: "POST",
         success: iStepSaved,
         error: saveFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -12293,7 +12293,7 @@ function extractNumber(str) {
     var cstr = "";
     var strcomponents = str.split(" ");
     if (strcomponents[0].length != str.length)
-    // there was a space
+        // there was a space
         str = strcomponents[1]; // the 2nd element has the comma separated number...
 
     for (var i = 0; i < str.length; i++)
@@ -12427,7 +12427,14 @@ function setEDMyProjectsBody() {
     manProjects = Gstrategies;
     //manProjects = reportStrategies;
     //GmgmtReportCurrency = manProjects[0][6][1];
-    GmgmtReportCurrency = "USD";
+    company_name = getCompanyName(Gemployer);
+    //TEMP
+    if (company_name == 'Test') {
+        GmgmtReportCurrency = "AUD";
+    } else {
+        GmgmtReportCurrency = "USD";
+    }
+    // TEMP END
     manActiveIndex = 0;
     manCompletedIndex = 0;
     manDroppedIndex = 0;
@@ -12482,7 +12489,7 @@ function setEDMyProjectsBody() {
             "&project=" +
             selectedProject,
 
-        success: function(data) {
+        success: function (data) {
             var result = JSON.parse(data);
             allManProjectsDataTempPro.push(result[1]);
             //console.log(result);
@@ -12830,7 +12837,7 @@ function setEDMyProjectsBody() {
             var statusDisplay = "";
             if (status.valueOf() == "Completed".valueOf())
                 statusDisplay =
-                '<br><span class="Priority_type high_priority">Completed</span>';
+                    '<br><span class="Priority_type high_priority">Completed</span>';
             body =
                 body +
                 "</td>" +
@@ -12869,11 +12876,11 @@ function setEDMyProjectsBody() {
     body = body + "</table></div>" + "</div>" + "</div>  " + "</div>" + "</div>";
 
     document.getElementById("mainbody").innerHTML = body;
-    $(function() {
+    $(function () {
         $(".cus_scroll").overlayScrollbars({});
     });
 
-    $(".sortable").click(function() {
+    $(".sortable").click(function () {
         var o = $(this).hasClass("asc") ? "desc" : "asc";
         $(".sortable")
             .removeClass("asc")
@@ -12888,7 +12895,7 @@ function setEDMyProjectsBody() {
 
 
     document.getElementById("mainbody").innerHTML = body;
-    $("body").mouseover(function(ev) {
+    $("body").mouseover(function (ev) {
         var currentclass = $(ev.target).attr("class");
         var tooltipEl = document.getElementById("chartjs-tooltip");
         if (tooltipEl) tooltipEl.innerHTML = "";
@@ -12897,7 +12904,7 @@ function setEDMyProjectsBody() {
         if (tooltipE2) tooltipE2.innerHTML = "";
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip({
             container: "body",
             html: true
@@ -13117,7 +13124,7 @@ function setEDMyProjectsBodySaved() {
             var statusDisplay = "";
             if (status.valueOf() == "Completed".valueOf())
                 statusDisplay =
-                '<br><br><span class="Priority_type high_priority">Completed</span>';
+                    '<br><br><span class="Priority_type high_priority">Completed</span>';
             body =
                 body +
                 "</td>" +
@@ -13164,11 +13171,11 @@ function setEDMyProjectsBodySaved() {
 
     document.getElementById("mainbody").innerHTML = body;
 
-    $(function() {
+    $(function () {
         $(".cus_scroll").overlayScrollbars({});
     });
 
-    $(".sortable").click(function() {
+    $(".sortable").click(function () {
         var o = $(this).hasClass("asc") ? "desc" : "asc";
         $(".sortable")
             .removeClass("asc")
@@ -13185,9 +13192,9 @@ function getPersonEntry(name) {
     for (var i = 0; i < Gpersons[1].length; i++) {
         if (
             Gpersons[1][i][1]
-            .toLowerCase()
-            .trim()
-            .valueOf() == name.toLowerCase().valueOf()
+                .toLowerCase()
+                .trim()
+                .valueOf() == name.toLowerCase().valueOf()
         ) {
             // compare emails...
             return Gpersons[1][i]; // return the whole person entry
@@ -14181,7 +14188,7 @@ function updatePersonsProfiles(response) {
             type: "POST",
             success: refreshPersonsProfile,
             error: personOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(res[1])) {
@@ -14254,9 +14261,9 @@ function saveMyProfile() {
             }
             if (passwordChanged == 0)
                 attributes =
-                attributes +
-                "&upwd=" +
-                encodeURIComponent(document.getElementById("newpwd").value);
+                    attributes +
+                    "&upwd=" +
+                    encodeURIComponent(document.getElementById("newpwd").value);
             passwordChanged = 1;
             passwordChangeTried = document.getElementById("newpwd").value;
         }
@@ -14272,7 +14279,7 @@ function saveMyProfile() {
         type: "POST",
         success: updatePersonsProfiles,
         error: personOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -14476,13 +14483,13 @@ function genMaster(reportData) {
                     doce = false;
                 } else
                     mb =
-                    mb +
-                    "<TR><TD>&nbsp;</TD>" +
-                    kcds +
-                    sostring +
-                    "<TD>" +
-                    rbstring +
-                    "</TD> </TR>";
+                        mb +
+                        "<TR><TD>&nbsp;</TD>" +
+                        kcds +
+                        sostring +
+                        "<TD>" +
+                        rbstring +
+                        "</TD> </TR>";
                 ssdone = 1;
             } else {
                 if (doce) {
@@ -14490,11 +14497,11 @@ function genMaster(reportData) {
                     doce = false;
                 } else
                     mb =
-                    mb +
-                    "<TR><TD>&nbsp;</TD>" +
-                    kcds +
-                    sostring +
-                    "<TD>&nbsp;</TD> </TR>";
+                        mb +
+                        "<TR><TD>&nbsp;</TD>" +
+                        kcds +
+                        sostring +
+                        "<TD>&nbsp;</TD> </TR>";
             }
             // mb = mb + '<TR><TD colspan=4>&nbsp;</TD></TR>';
         }
@@ -14784,7 +14791,7 @@ function refreshEDPersonsAddPart(response) {
         type: "POST",
         success: updateStrategiesPart,
         error: teamOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -14805,7 +14812,7 @@ function updateStrategiesPart(response) {
             type: "POST",
             success: refreshStrategiesPart,
             error: strategyOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(res[1])) {
@@ -15033,7 +15040,7 @@ function showCompanyDetails(cid) {
 
     // alert (body);
     document.getElementById("companiesPage").innerHTML = body;
-    $(function() {
+    $(function () {
         $(".cus_scroll").overlayScrollbars({});
     });
 }
@@ -15084,9 +15091,9 @@ function companiesEDContent() {
         if (weblink.valueOf() != "".valueOf()) {
             if (
                 weblink
-                .substring(0, 4)
-                .toUpperCase()
-                .valueOf() != "HTTP".valueOf()
+                    .substring(0, 4)
+                    .toUpperCase()
+                    .valueOf() != "HTTP".valueOf()
             )
                 weblink = "http://" + weblink;
         } else weblink = "#";
@@ -15186,7 +15193,7 @@ function companiesEDContent() {
 
     //alert("reached here : " + body);
     document.getElementById("mainbody").innerHTML = body;
-    $(".sortable").click(function() {
+    $(".sortable").click(function () {
         var o = $(this).hasClass("asc") ? "desc" : "asc";
         $(".sortable")
             .removeClass("asc")
@@ -15197,7 +15204,7 @@ function companiesEDContent() {
 
         sort(colIndex, o);
     });
-    $(function() {
+    $(function () {
         $(".cus_scroll").overlayScrollbars({});
     });
 }
@@ -15464,7 +15471,7 @@ function peopleEDContent() {
     "</div>" + "</div>" + "</div>" + "</div>" + "</div>";
     document.getElementById("mainbody").innerHTML = body;
 
-    $(".sortable").click(function() {
+    $(".sortable").click(function () {
         var o = $(this).hasClass("asc") ? "desc" : "asc";
         $(".sortable")
             .removeClass("asc")
@@ -15475,7 +15482,7 @@ function peopleEDContent() {
 
         sort(colIndex, o);
     });
-    $(function() {
+    $(function () {
         $(".cus_scroll").overlayScrollbars({});
     });
 }
@@ -15683,7 +15690,7 @@ function switchMainContentsInternal(page) {
         if (kbFilter.indexOf("sss") !== -1) {
             kbsssChecked = "checked";
         }
-        if (kbFilter.length === 0) {}
+        if (kbFilter.length === 0) { }
         document.getElementById("mainbody").innerHTML = `
     <div class="" style="margin: 0px 2%">
     <h3>Select</h3>
@@ -15740,7 +15747,7 @@ function switchMainContentsInternal(page) {
         </tr>
     </tfoot>
 </table>`;
-        $(".kb-checkbox").on("click", function() {
+        $(".kb-checkbox").on("click", function () {
             //
             let checked = $(this).prop("checked");
             let whichCheckbox = $(this).val();
@@ -15766,7 +15773,7 @@ function switchMainContentsInternal(page) {
             }
         });
 
-        $("#example thead tr:eq(1) th").each(function() {
+        $("#example thead tr:eq(1) th").each(function () {
             var title = $(this).text();
             $(this).html(
                 '<input type="text" size="23" placeholder="Search ' +
@@ -15808,17 +15815,17 @@ function switchMainContentsInternal(page) {
             pageLength: 10
         });
 
-        $("#example thead").on("keyup", ".column_search", function() {
+        $("#example thead").on("keyup", ".column_search", function () {
             somex
                 .column(
                     $(this)
-                    .parent()
-                    .index()
+                        .parent()
+                        .index()
                 )
                 .search(this.value)
                 .draw();
         });
-        $("#example").on("click", "tbody tr", function() {
+        $("#example").on("click", "tbody tr", function () {
             let rowData = somex.row(this).data();
             //
 
@@ -15844,7 +15851,7 @@ function switchMainContentsInternal(page) {
         "Contents for page: " + page + " goes here";
 }
 
-function videoHTML(num) {}
+function videoHTML(num) { }
 /**
  * HTML for tutorial tab is prepared here
  */
@@ -16297,13 +16304,13 @@ function switchMainContents(page) {
             buttons: {
                 OK: {
                     class: "blue",
-                    action: function() {
+                    action: function () {
                         switchMainContentsInternal(page);
                     }
                 },
                 Cancel: {
                     class: "gray",
-                    action: function() {}
+                    action: function () { }
                 }
             }
         });
@@ -16339,12 +16346,12 @@ function showCompanies() {
     var compsel = '<select id=newCompSel onClick="setCompany()">';
     for (var i = 0; i < Gcompanies.length; i++)
         compsel =
-        compsel +
-        "<option value=" +
-        Gcompanies[i][0] +
-        ">" +
-        Gcompanies[i][1] +
-        "</option>";
+            compsel +
+            "<option value=" +
+            Gcompanies[i][0] +
+            ">" +
+            Gcompanies[i][1] +
+            "</option>";
     compsel = compsel + "</select>";
     document.getElementById("ncompcontents").innerHTML = "";
     document.getElementById("ecompcontents").innerHTML = compsel;
@@ -16414,14 +16421,14 @@ function showSuppliers() {
     var contents = '<select id=newSupSel onClick="setSupplier()">';
     for (var i = 0; i < Gcompanies.length; i++)
         if (Gcompanies[i].length >= 7)
-        // then it is a supplier...
+            // then it is a supplier...
             contents =
-            contents +
-            "<option value=" +
-            Gcompanies[i][0] +
-            ">" +
-            Gcompanies[i][1] +
-            "</option>";
+                contents +
+                "<option value=" +
+                Gcompanies[i][0] +
+                ">" +
+                Gcompanies[i][1] +
+                "</option>";
     contents = contents + "</select>";
     document.getElementById("esupcontent").innerHTML = contents;
     document.getElementById("nsupcontent").innerHTML = "";
@@ -16536,7 +16543,7 @@ function reloadStep3(response) {
         type: "POST",
         success: reloadStep4,
         error: startupfailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -16561,7 +16568,7 @@ function reloadStep2(response) {
             type: "POST",
             success: reloadStep3,
             error: startupfailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } // not an administrator...
     else {
@@ -16573,7 +16580,7 @@ function reloadStep2(response) {
             type: "POST",
             success: usersReady,
             error: startupfailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -16581,7 +16588,7 @@ function reloadStep2(response) {
 function reloadStrategies() {
     if (document.getElementById("newprojfeedback") != null)
         document.getElementById("newprojfeedback").innerHTML =
-        "Loading relevant projects ...";
+            "Loading relevant projects ...";
     $.ajax({
         url: "get-projects-for-user.php?username=" +
             encodeURIComponent(Gusername) +
@@ -16590,7 +16597,7 @@ function reloadStrategies() {
         type: "POST",
         success: reloadStep2,
         error: startupfailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -16820,7 +16827,7 @@ function populateTeamSelector(pid, taskid, divname) {
         includeSelectAllOption: false,
         selectAllText: "(all)",
         delimiterText: ", ",
-        buttonText: function(options, select) {
+        buttonText: function (options, select) {
             var all = $select.find('option[value=""]');
             if (options.length === 0) {
                 return this.nonSelectedText;
@@ -16841,11 +16848,11 @@ function populateTeamSelector(pid, taskid, divname) {
                 }
             } else if (options.length > this.numberDisplayed) {
                 var selectedarry = [];
-                options.each(function() {
+                options.each(function () {
                     var label =
                         $(this).attr("label") !== undefined ?
-                        $(this).attr("label") :
-                        $(this).text();
+                            $(this).attr("label") :
+                            $(this).text();
                     selectedarry.push(label);
                 });
                 var selected = "";
@@ -16866,11 +16873,11 @@ function populateTeamSelector(pid, taskid, divname) {
                 var selected = "";
                 var delimiter = this.delimiterText;
 
-                options.each(function() {
+                options.each(function () {
                     var label =
                         $(this).attr("label") !== undefined ?
-                        $(this).attr("label") :
-                        $(this).text();
+                            $(this).attr("label") :
+                            $(this).text();
                     selected += "<label>" + label + "</label>";
                     //selected += label + delimiter;
                 });
@@ -16878,7 +16885,7 @@ function populateTeamSelector(pid, taskid, divname) {
                 return selected.substr(0, selected.length - 2);
             }
         },
-        onChange: function(option, checked) {
+        onChange: function (option, checked) {
             var all = $select.find('option[value=""]');
             var currentOption = $(option);
             if (all.is(":selected")) {
@@ -16886,14 +16893,14 @@ function populateTeamSelector(pid, taskid, divname) {
                     $select
                         .find("option")
                         .not(all)
-                        .each(function() {
+                        .each(function () {
                             $(this).prop("selected", false);
                             var input = $('input[value="' + $(this).val() + '"]');
                             input.prop("checked", false);
                             input.closest("li").removeClass("active");
                         });
                 } else {
-                    $select.find(all).each(function() {
+                    $select.find(all).each(function () {
                         $(this).prop("selected", false);
                         var input = $('input[value="' + $(this).val() + '"]');
                         input.prop("checked", false);
@@ -16904,7 +16911,7 @@ function populateTeamSelector(pid, taskid, divname) {
                 }
                 $select.multiselect("updateButtonText", true);
             } else {
-                $select.find(all).each(function() {
+                $select.find(all).each(function () {
                     $(this).prop("selected", false);
                     var input = $('input[value="' + $(this).val() + '"]');
                     input.prop("checked", false);
@@ -16966,7 +16973,7 @@ function populateWPTeamSelector(pid, sessionid, divname) {
         includeSelectAllOption: false,
         selectAllText: "(all)",
         delimiterText: ", ",
-        buttonText: function(options, select) {
+        buttonText: function (options, select) {
             var all = $select.find('option[value=""]');
             if (options.length === 0) {
                 return this.nonSelectedText;
@@ -16987,11 +16994,11 @@ function populateWPTeamSelector(pid, sessionid, divname) {
                 }
             } else if (options.length > this.numberDisplayed) {
                 var selectedarry = [];
-                options.each(function() {
+                options.each(function () {
                     var label =
                         $(this).attr("label") !== undefined ?
-                        $(this).attr("label") :
-                        $(this).text();
+                            $(this).attr("label") :
+                            $(this).text();
                     selectedarry.push(label);
                 });
                 var selected = "";
@@ -17012,11 +17019,11 @@ function populateWPTeamSelector(pid, sessionid, divname) {
                 var selected = "";
                 var delimiter = this.delimiterText;
 
-                options.each(function() {
+                options.each(function () {
                     var label =
                         $(this).attr("label") !== undefined ?
-                        $(this).attr("label") :
-                        $(this).text();
+                            $(this).attr("label") :
+                            $(this).text();
                     selected += "<label>" + label + "</label>";
                     //selected += label + delimiter;
                 });
@@ -17024,7 +17031,7 @@ function populateWPTeamSelector(pid, sessionid, divname) {
                 return selected.substr(0, selected.length - 2);
             }
         },
-        onChange: function(option, checked) {
+        onChange: function (option, checked) {
             var all = $select.find('option[value=""]');
             var currentOption = $(option);
             if (all.is(":selected")) {
@@ -17032,14 +17039,14 @@ function populateWPTeamSelector(pid, sessionid, divname) {
                     $select
                         .find("option")
                         .not(all)
-                        .each(function() {
+                        .each(function () {
                             $(this).prop("selected", false);
                             var input = $('input[value="' + $(this).val() + '"]');
                             input.prop("checked", false);
                             input.closest("li").removeClass("active");
                         });
                 } else {
-                    $select.find(all).each(function() {
+                    $select.find(all).each(function () {
                         $(this).prop("selected", false);
                         var input = $('input[value="' + $(this).val() + '"]');
                         input.prop("checked", false);
@@ -17050,7 +17057,7 @@ function populateWPTeamSelector(pid, sessionid, divname) {
                 }
                 $select.multiselect("updateButtonText", true);
             } else {
-                $select.find(all).each(function() {
+                $select.find(all).each(function () {
                     $(this).prop("selected", false);
                     var input = $('input[value="' + $(this).val() + '"]');
                     input.prop("checked", false);
@@ -17360,11 +17367,11 @@ function refreshWorkPlanItems() {
             body = body + "<tr >" + '<td width="5%">';
             if (meeting[6].includes("Remote"))
                 body =
-                body + '<img src="images/session_icon_1.png" alt="Remote session"> ';
+                    body + '<img src="images/session_icon_1.png" alt="Remote session"> ';
             else
                 body =
-                body +
-                '<img src="images/session_icon_2.png" alt="Face-to-Face session"> ';
+                    body +
+                    '<img src="images/session_icon_2.png" alt="Face-to-Face session"> ';
             body =
                 body +
                 "</td>" +
@@ -17487,11 +17494,11 @@ function refreshWorkplan() {
         body = body + "<tr >" + '<td width="5%">';
         if (meeting[6].includes("Remote"))
             body =
-            body + '<img src="images/session_icon_1.png" alt="Remote session"> ';
+                body + '<img src="images/session_icon_1.png" alt="Remote session"> ';
         else
             body =
-            body +
-            '<img src="images/session_icon_2.png" alt="Face-to-Face session"> ';
+                body +
+                '<img src="images/session_icon_2.png" alt="Face-to-Face session"> ';
         body =
             body +
             "</td>" +
@@ -18124,7 +18131,7 @@ function refreshBackground() {
         "</div>";
 
     document.getElementById("mainbody").innerHTML = body;
-    $(function() {
+    $(function () {
         $(".cus_scroll").overlayScrollbars({});
     });
 
@@ -18161,7 +18168,7 @@ function saveScope() {
         type: "POST",
         success: updateBackground,
         error: backOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -18235,7 +18242,7 @@ function saveMilestone() {
             type: "POST",
             success: updateBackground,
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } // modifying existing milestong
     else {
@@ -18261,7 +18268,7 @@ function saveMilestone() {
             type: "POST",
             success: updateBackground,
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
     editingMilestone = -1;
@@ -18302,7 +18309,7 @@ function deleteMilestone(i) {
         type: "POST",
         success: updateBackground,
         error: backOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -18312,12 +18319,12 @@ function formatNumber(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 }
 
-$(function() {
+$(function () {
     $.fn.modal.Constructor.DEFAULTS.backdrop = "static";
 });
 
 var input = document.getElementById("input_estimateamt");
-input.addEventListener("keyup", function(event) {
+input.addEventListener("keyup", function (event) {
     event.preventDefault();
     if (event.keyCode === 13) {
         document.getElementById("estimate_submit").click();
@@ -18369,7 +18376,7 @@ function saveEstimate() {
             type: "POST",
             success: updateBackground,
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } // modifying existing milestong
     else {
@@ -18397,7 +18404,7 @@ function saveEstimate() {
             type: "POST",
             success: updateBackground,
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
     editingMilestone = -1;
@@ -18436,7 +18443,7 @@ function deleteEstimate(i) {
         type: "POST",
         success: updateBackground,
         error: backOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -18568,7 +18575,7 @@ function deleteTaskPerformer(taskid, perf, update) {
             type: "POST",
             success: updateProjectTasks,
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     else
         $.ajax({
@@ -18594,7 +18601,7 @@ function deleteTaskPerformer(taskid, perf, update) {
                 true
             ),
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
 }
 
@@ -18618,7 +18625,7 @@ function addTaskPerformer(taskid, perf, update) {
             type: "POST",
             success: updateProjectTasks,
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     else
         $.ajax({
@@ -18639,7 +18646,7 @@ function addTaskPerformer(taskid, perf, update) {
             type: "POST",
             success: showTimedMessage("gmsg", "Added a new task...", 0, false),
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
 }
 /**
@@ -18681,7 +18688,7 @@ function saveTask() {
             type: "POST",
             success: addExistingTaskPerformers,
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         showTimedMessage("gmsg", "Adding task...", 0, false);
@@ -18711,7 +18718,7 @@ function saveTask() {
             type: "POST",
             success: addTaskPerformers,
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
     //11 - Participant is added to a new task
@@ -18721,20 +18728,20 @@ function saveTask() {
         taskperformersemail.push(emailid[0]);
     }
     var ProjectTaskData = {
-            email: taskperformersemail,
-            ProjectName: getStrategyName(Gcurrentstrategy),
-            TaskDescription: document.getElementById("tasktext").value,
-            DueDate: getOnlyDate1(tDate),
-            ProcessStep: document.getElementById("taskprocess").value,
-            mailAction: 'taskParticipant',
-            mailIntro: 'You have been added to a new project task for ' + getStrategyName(Gcurrentstrategy)
-        }
-        //console.log(ProjectTaskData);
+        email: taskperformersemail,
+        ProjectName: getStrategyName(Gcurrentstrategy),
+        TaskDescription: document.getElementById("tasktext").value,
+        DueDate: getOnlyDate1(tDate),
+        ProcessStep: document.getElementById("taskprocess").value,
+        mailAction: 'taskParticipant',
+        mailIntro: 'You have been added to a new project task for ' + getStrategyName(Gcurrentstrategy)
+    }
+    //console.log(ProjectTaskData);
     $.ajax({
         url: "send_email.php",
         type: "POST",
         data: ProjectTaskData,
-        success: function(msg) {
+        success: function (msg) {
             console.log(msg);
         }
     });
@@ -18794,7 +18801,7 @@ function deleteTask(i) {
         type: "POST",
         success: updateProjectTasks,
         error: backOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -18932,7 +18939,7 @@ function saveWorkPlan() {
             type: "POST",
             success: addNewWPPerformers,
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         $(".opt_btn_wrp").hide();
@@ -18965,7 +18972,7 @@ function saveWorkPlan() {
             type: "POST",
             success: addExistingWPPerformers,
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
     //05th Participant is selected starts
@@ -18995,7 +19002,7 @@ function saveWorkPlan() {
         url: "send_email.php",
         type: "POST",
         data: addParticipantData,
-        success: function(msg) {
+        success: function (msg) {
             console.log(msg);
         }
     });
@@ -19041,7 +19048,7 @@ function deleteWorkPlan(i) {
         type: "POST",
         success: updateProjectWP,
         error: backOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -19160,7 +19167,7 @@ function deleteWPPerformer(meetingid, perf, update) {
             type: "POST",
             success: updateProjectWP,
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     else
         $.ajax({
@@ -19186,7 +19193,7 @@ function deleteWPPerformer(meetingid, perf, update) {
                 true
             ),
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
 }
 
@@ -19210,7 +19217,7 @@ function addWPPerformer(meetingid, perf, update) {
             type: "POST",
             success: updateProjectWP,
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     else
         $.ajax({
@@ -19231,7 +19238,7 @@ function addWPPerformer(meetingid, perf, update) {
             type: "POST",
             success: showTimedMessage("gmsg", "Add another participant...", 0, true),
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
 }
 
@@ -19351,7 +19358,7 @@ function saveEDCompany() {
                 type: "POST",
                 success: updateEDCompanies,
                 error: companyEDOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
         } else {
             $.ajax({
@@ -19374,7 +19381,7 @@ function saveEDCompany() {
                 type: "POST",
                 success: updateEDCompanies,
                 error: companyEDOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
         }
     } else {
@@ -19403,7 +19410,7 @@ function saveEDCompany() {
                 type: "POST",
                 success: updateEDCompanies,
                 error: companyEDOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
         else
             $.ajax({
@@ -19429,7 +19436,7 @@ function saveEDCompany() {
                 type: "POST",
                 success: updateEDCompanies,
                 error: companyEDOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
     }
 }
@@ -19460,7 +19467,7 @@ function updateEDCompanies(response) {
             type: "POST",
             success: refreshEDCompanies,
             error: companyEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(res[1])) {
@@ -19521,7 +19528,7 @@ function addEDPersonForCompany(cid) {
     editingPerson = -1;
 }
 
-function generateDeptSelector(cid) {}
+function generateDeptSelector(cid) { }
 
 function generateCompanySelector() {
     var body = '<datalist id="compsel">';
@@ -19763,7 +19770,7 @@ function deleteValueRealised(savingsId) {
         type: "POST",
         success: updateVerifyContents,
         error: progOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -19784,7 +19791,7 @@ function updateEDProjects(response) {
             type: "POST",
             success: addProjectWithBU,
             error: projectEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else showTimedMessage("projstat", "ERROR: " + res[0] + res[1], 0, true);
 }
@@ -19812,7 +19819,7 @@ function addProjectWithBUID(dept) {
         type: "POST",
         success: updateEDStrategiesAfterAdd,
         error: strategyEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -19829,7 +19836,7 @@ function addProjectWithBU(response) {
             type: "POST",
             success: showTimedMessage("gmsg", "Department added...", 0, false),
             error: projectEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
         // delay the 2nd call a bit to avoid problems.
         setTimeout(addProjectWithBUID(dept), 500);
@@ -19973,7 +19980,7 @@ function saveEDProject() {
         },
         success: updateEverything,
         error: strategyEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
     //02nd New Project is created starts 
     for (var i = 0; i < userSelectedSuppliers.length; i++) {
@@ -19995,7 +20002,7 @@ function saveEDProject() {
         url: "send_email.php",
         type: "POST",
         data: NewProjectCreated,
-        success: function(msg) {
+        success: function (msg) {
             console.log(msg);
         }
     });
@@ -20073,7 +20080,7 @@ function generateSupplierSelector(divid, projectid) {
         includeSelectAllOption: false,
         selectAllText: "(all)",
         delimiterText: ", ",
-        buttonText: function(options, select) {
+        buttonText: function (options, select) {
             var all = $select.find('option[value=""]');
             if (options.length === 0) {
                 return this.nonSelectedText;
@@ -20094,11 +20101,11 @@ function generateSupplierSelector(divid, projectid) {
                 }
             } else if (options.length > this.numberDisplayed) {
                 var selectedarry = [];
-                options.each(function() {
+                options.each(function () {
                     var label =
                         $(this).attr("label") !== undefined ?
-                        $(this).attr("label") :
-                        $(this).text();
+                            $(this).attr("label") :
+                            $(this).text();
                     selectedarry.push(label);
                 });
                 var selected = "";
@@ -20119,11 +20126,11 @@ function generateSupplierSelector(divid, projectid) {
                 var selected = "";
                 var delimiter = this.delimiterText;
 
-                options.each(function() {
+                options.each(function () {
                     var label =
                         $(this).attr("label") !== undefined ?
-                        $(this).attr("label") :
-                        $(this).text();
+                            $(this).attr("label") :
+                            $(this).text();
                     selected += "<label>" + label + "</label>";
                     //selected += label + delimiter;
                 });
@@ -20131,7 +20138,7 @@ function generateSupplierSelector(divid, projectid) {
                 return selected.substr(0, selected.length - 2);
             }
         },
-        onChange: function(option, checked) {
+        onChange: function (option, checked) {
             var all = $select.find('option[value=""]');
             var currentOption = $(option);
             var selected_option = currentOption.val();
@@ -20140,14 +20147,14 @@ function generateSupplierSelector(divid, projectid) {
                     $select
                         .find("option")
                         .not(all)
-                        .each(function() {
+                        .each(function () {
                             $(this).prop("selected", false);
                             var input = $('input[value="' + $(this).val() + '"]');
                             input.prop("checked", false);
                             input.closest("li").removeClass("active");
                         });
                 } else {
-                    $select.find(all).each(function() {
+                    $select.find(all).each(function () {
                         $(this).prop("selected", false);
                         var input = $('input[value="' + $(this).val() + '"]');
                         input.prop("checked", false);
@@ -20166,7 +20173,7 @@ function generateSupplierSelector(divid, projectid) {
                     userSelectedSuppliers.splice(index, 1);
                 }
 
-                $select.find(all).each(function() {
+                $select.find(all).each(function () {
                     $(this).prop("selected", false);
                     var input = $('input[value="' + $(this).val() + '"]');
                     input.prop("checked", false);
@@ -20255,7 +20262,7 @@ function addEDSupplier(response) {
                 type: "POST",
                 success: showTimedMessage("gmsg", "Added another supplier", 0, false),
                 error: projectEDOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
         }
 
@@ -20285,7 +20292,7 @@ function addEDSupplier(response) {
                             false
                         ),
                         error: projectEDOpFailed
-                            //,datatype: "json"
+                        //,datatype: "json"
                     });
                 else
                     $.ajax({
@@ -20304,7 +20311,7 @@ function addEDSupplier(response) {
                         type: "POST",
                         success: updateEDStrategiesFinal,
                         error: projectEDOpFailed
-                            //,datatype: "json"
+                        //,datatype: "json"
                     });
             }
             return;
@@ -20334,7 +20341,7 @@ function addEDSupplier(response) {
                             false
                         ),
                         error: projectEDOpFailed
-                            //,datatype: "json"
+                        //,datatype: "json"
                     });
                 else
                     $.ajax({
@@ -20353,7 +20360,7 @@ function addEDSupplier(response) {
                         type: "POST",
                         success: updateEDStrategiesFinal,
                         error: projectEDOpFailed
-                            //,datatype: "json"
+                        //,datatype: "json"
                     });
             }
             return;
@@ -20377,7 +20384,7 @@ function addEDSupplier(response) {
                 type: "POST",
                 success: showTimedMessage("gmsg", "Added another supplier", 0, false),
                 error: projectEDOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
         }
 
@@ -20404,7 +20411,7 @@ function addEDSupplier(response) {
                         false
                     ),
                     error: projectEDOpFailed
-                        //,datatype: "json"
+                    //,datatype: "json"
                 });
             else
                 $.ajax({
@@ -20423,7 +20430,7 @@ function addEDSupplier(response) {
                     type: "POST",
                     success: updateEDStrategiesFinal,
                     error: projectEDOpFailed
-                        //,datatype: "json"
+                    //,datatype: "json"
                 });
         }
     } else {
@@ -20455,7 +20462,7 @@ function updateEDStrategiesAfterAdd(response) {
                 type: "POST",
                 success: refreshEDStrategies,
                 error: strategyEDOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
             return;
         } else {
@@ -20473,7 +20480,7 @@ function updateEDStrategiesAfterAdd(response) {
                 type: "POST",
                 success: addEDSupplier,
                 error: strategyEDOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
             return;
         }
@@ -20506,7 +20513,7 @@ function updateEDStrategiesAfterSave(response) {
                 type: "POST",
                 success: refreshEDStrategies,
                 error: strategyEDOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
             //return;
         }
@@ -20525,7 +20532,7 @@ function updateEDStrategiesAfterSave(response) {
                 type: "POST",
                 success: addEDSupplier,
                 error: strategyEDOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
             //return;
         } else {
@@ -20543,7 +20550,7 @@ function updateEDStrategiesAfterSave(response) {
                 type: "POST",
                 success: addEDSupplier,
                 error: strategyEDOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
             return;
         }
@@ -20573,7 +20580,7 @@ function updateEDStrategiesFinal(response) {
             type: "POST",
             success: refreshEDStrategies,
             error: strategyEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(res[1])) {
@@ -20601,7 +20608,7 @@ function updateEDStrategiesAfterStatusChange(response) {
             type: "POST",
             success: refreshEDStrategiesStatusChange,
             error: strategyEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
         return;
     } else {
@@ -20665,8 +20672,8 @@ function verifyStepContents() {
         var priority = oentry[3];
         var unimplement =
             oentry[31] == 1 ?
-            '<span class ="action-statuss Priority_type  low_priority">Unselected for Implementation</span>' :
-            '<span class="active_strategy text-capitalize">selected for implementation';
+                '<span class ="action-statuss Priority_type  low_priority">Unselected for Implementation</span>' :
+                '<span class="active_strategy text-capitalize">selected for implementation';
         if (oentry[9].valueOf() != "SELECTED".valueOf()) continue;
         var sshandle = oentry[12];
         var ssOwnerId = oentry[19];
@@ -20676,11 +20683,11 @@ function verifyStepContents() {
 
         if (sshandle.length > GmaxShortStrategyDesc)
             fixedhandle =
-            '<span title="' +
-            sshandle +
-            '">' +
-            sshandle.substring(0, GmaxShortStrategyDesc) +
-            "</span>";
+                '<span title="' +
+                sshandle +
+                '">' +
+                sshandle.substring(0, GmaxShortStrategyDesc) +
+                "</span>";
         var actualSavings = oentry[13];
         var totalActions = oentry[6].length;
         if (actualSavings != null) {
@@ -20862,12 +20869,12 @@ function verifyStepContents() {
          </td>
           <td>
          <div class="valueRealiseds">${CurrencyFormat(
-              actualSavings[k][0],
-              GdefaultCurrency,
-              0,
-              "",
-              ","
-            )}</div>
+                            actualSavings[k][0],
+                            GdefaultCurrency,
+                            0,
+                            "",
+                            ","
+                        )}</div>
           </td>
           </td> 
           <td>
@@ -20875,8 +20882,8 @@ function verifyStepContents() {
          </td>
           <td>
           <div class="updatedate">${realizedOwner +
-            " on " +
-            dateReadable} </div>
+                        " on " +
+                        dateReadable} </div>
           </td>
           <td>
           ${adminEdit}
@@ -20944,8 +20951,8 @@ function implementStepContents() {
         let actionOwners = getActionOwners(oentry[6]);
         let SSOwnerId =
             oentry[19] == null ?
-            "-" :
-            generateProfileIconFromId(oentry[19], "owner_count");
+                "-" :
+                generateProfileIconFromId(oentry[19], "owner_count");
         var performance = getSummaryPerformanceAlt(oentry);
         for (var ij = 0; ij < actionOwners.length; ij++) {
             if (actionOwners[ij] === "") continue;
@@ -20963,16 +20970,16 @@ function implementStepContents() {
             oentry[14] == 1 ? '<span class="ss-completed">Completed</span>' : "";
         var dropped =
             oentry[21] == 1 ?
-            '<span class ="action-statuss action-status-danger">Dropped</span>' :
-            "";
+                '<span class ="action-statuss action-status-danger">Dropped</span>' :
+                "";
         var fixedhandle = sshandle;
         if (sshandle.length > GmaxShortStrategyDesc)
             fixedhandle =
-            '<span title="' +
-            sshandle +
-            '">' +
-            sshandle.substring(0, GmaxShortStrategyDesc) +
-            "</span>";
+                '<span title="' +
+                sshandle +
+                '">' +
+                sshandle.substring(0, GmaxShortStrategyDesc) +
+                "</span>";
         var actualSavings = oentry[13];
         var totalActions = oentry[6].length;
         if (actualSavings != null) {
@@ -21170,14 +21177,14 @@ function populateActionPerformers(datalistname, divname, performers) {
         enableCaseInsensitiveFiltering: true,
         includeSelectAllOption: false,
         delimiterText: ", ",
-        buttonText: function(options, select) {
+        buttonText: function (options, select) {
             if (options.length === 0) {
                 return "Select a person";
             } else if (options.length > 3) {
                 return "More than 3 persons selected!";
             } else {
                 var labels = [];
-                options.each(function() {
+                options.each(function () {
                     if ($(this).attr("label") !== undefined) {
                         labels.push($(this).attr("label"));
                     } else {
@@ -21187,12 +21194,12 @@ function populateActionPerformers(datalistname, divname, performers) {
                 return labels.join(", ") + "";
             }
         },
-        onChange: function(option, checked) {
+        onChange: function (option, checked) {
             var selectedOption = $(option).val();
             if (checked) {
                 selectedActionPerformers.push(selectedOption);
             } else {
-                selectedActionPerformers = selectedActionPerformers.filter(function(
+                selectedActionPerformers = selectedActionPerformers.filter(function (
                     item
                 ) {
                     return item != selectedOption;
@@ -21236,11 +21243,11 @@ function addEDSSAction() {
         var fixedhandle = sshandle;
         if (sshandle.length > GmaxShortStrategyDesc)
             fixedhandle =
-            '<span title="' +
-            sshandle +
-            '">' +
-            sshandle.substring(0, GmaxShortStrategyDesc) +
-            "</span>";
+                '<span title="' +
+                sshandle +
+                '">' +
+                sshandle.substring(0, GmaxShortStrategyDesc) +
+                "</span>";
 
         document.getElementById("ssHeaderA").innerHTML =
             '<span class="stat_count">' +
@@ -21342,11 +21349,11 @@ function editEDSSAction(i, ssObject1) {
         var fixedhandle = sshandle;
         if (sshandle.length > GmaxShortStrategyDesc)
             fixedhandle =
-            '<span title="' +
-            sshandle +
-            '">' +
-            sshandle.substring(0, GmaxShortStrategyDesc) +
-            "</span>";
+                '<span title="' +
+                sshandle +
+                '">' +
+                sshandle.substring(0, GmaxShortStrategyDesc) +
+                "</span>";
         var str1 = '<span class="stat_count">' + fixedhandle + "</span>";
         var str2 =
             '<span class="Priority_type ' + pclass + '">' + priority + "</span>";
@@ -21474,7 +21481,7 @@ function deleteEDSSAction(i, actionId) {
         type: "POST",
         success: updateActionsTab,
         error: actionOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -21606,9 +21613,9 @@ function getIDFromName(name) {
 
 //Action Target Date Validation
 
-$(function() {
+$(function () {
     // $("#action_date").datepicker();
-    $("#action_date").on("change", function() {
+    $("#action_date").on("change", function () {
         var ssDate = $("#ssTarget").val();
         var selected = $(this).val();
 
@@ -21617,7 +21624,7 @@ $(function() {
         //     var selected = document.getElementById("action_date").value;
         //console.log(ssDate);
 
-        var convertDate = function(usDate) {
+        var convertDate = function (usDate) {
             var dateParts = usDate.split(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
             return dateParts[3] + "-" + dateParts[1] + "-" + dateParts[2];
         }
@@ -21629,7 +21636,7 @@ $(function() {
                 document.getElementById("action_date").value = "";
             } else {
                 error.textContent = ""
-                    //document.getElementById("action_date").value = "";
+                //document.getElementById("action_date").value = "";
             }
 
         }
@@ -21637,8 +21644,8 @@ $(function() {
     });
 });
 //SS Start & End Date validation
-$(function() {
-    $("#input_enddate").on("change", function() {
+$(function () {
+    $("#input_enddate").on("change", function () {
 
         var ssStartDt = format($("#input_startdate").val());
         var ssEndDt = format($("#input_enddate").val());
@@ -21658,7 +21665,7 @@ $(function() {
         $("#ssstart_error").hide();
 
     });
-    $("#input_startdate").on("change", function() {
+    $("#input_startdate").on("change", function () {
         var ssStartDt = format($("#input_startdate").val());
         var ssEndDt = format($("#input_enddate").val());
         // console.log(ssStartDt, ssEndDt);
@@ -21738,7 +21745,7 @@ function saveEDSSAction() {
         url: "send_email.php",
         type: "POST",
         data: actionmailData,
-        success: function(msg) {
+        success: function (msg) {
             //console.log(msg);
         }
     });
@@ -21757,7 +21764,7 @@ function saveEDSSAction() {
         },
         success: updateActionsTab,
         error: actionOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -21844,16 +21851,16 @@ function populateParticipantPoolSelector() {
     }
     body = body + "</table>";
     document.getElementById("participantPoolSelector").innerHTML = body;
-    $("#prvprojserach").on("keyup", function() {
+    $("#prvprojserach").on("keyup", function () {
         var value = $(this)
             .val()
             .toLowerCase();
-        $("#Table4 tr").filter(function() {
+        $("#Table4 tr").filter(function () {
             $(this).toggle(
                 $(this)
-                .text()
-                .toLowerCase()
-                .indexOf(value) > -1
+                    .text()
+                    .toLowerCase()
+                    .indexOf(value) > -1
             );
         });
     });
@@ -21888,7 +21895,7 @@ function refreshEDTeam(response) {
             type: "POST",
             success: teamDataBackground,
             error: projectEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(results[1])) {
@@ -21922,12 +21929,12 @@ function updateParticipants() {
         if (document.getElementById(cbid).checked) {
             // in the new team
             if (currentParticipantIDs.indexOf(pid) < 0)
-            // not in the old team
+                // not in the old team
                 added.push(pid);
         } // person is NOT in the new team
         else {
             if (currentParticipantIDs.indexOf(pid) >= 0)
-            // but in the old team
+                // but in the old team
                 deleted.push(pid);
         }
     }
@@ -21954,7 +21961,7 @@ function updateParticipants() {
         url: "send_email.php",
         type: "POST",
         data: ExiParticipantadded,
-        success: function(msg) {
+        success: function (msg) {
             //console.log(msg);
         }
     });
@@ -21992,7 +21999,7 @@ function updateParticipants() {
                 type: "POST",
                 success: showTimedMessage("gmsg", "Next operation", 0, false),
                 error: teamOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
         } else {
             $.ajax({
@@ -22013,7 +22020,7 @@ function updateParticipants() {
                 type: "POST",
                 success: refreshEDTeam,
                 error: teamOpFailed
-                    //,datatype: "json"
+                //,datatype: "json"
             });
         }
     }
@@ -22027,13 +22034,13 @@ function filterMyProjectsContents() {
 
 function filterProjectsTable() {
     var $rows = $(".projects_table tr");
-    $("#search_project").keyup(function() {
+    $("#search_project").keyup(function () {
         var val = $.trim($(this).val())
             .replace(/ +/g, " ")
             .toLowerCase();
         $rows
             .show()
-            .filter(function() {
+            .filter(function () {
                 var text = $(this)
                     .text()
                     .replace(/\s+/g, " ")
@@ -22046,13 +22053,13 @@ function filterProjectsTable() {
 
 function filterCompaniesTable() {
     var $rows = $(".company_table tbody tr");
-    $("#search_company").keyup(function() {
+    $("#search_company").keyup(function () {
         var val = $.trim($(this).val())
             .replace(/ +/g, " ")
             .toLowerCase();
         $rows
             .show()
-            .filter(function() {
+            .filter(function () {
                 var text = $(this)
                     .text()
                     .replace(/\s+/g, " ")
@@ -22066,13 +22073,13 @@ function filterCompaniesTable() {
 
 function filterPeopleTable() {
     var $rows = $(".people_table tbody tr");
-    $("#search_people").keyup(function() {
+    $("#search_people").keyup(function () {
         var val = $.trim($(this).val())
             .replace(/ +/g, " ")
             .toLowerCase();
         $rows
             .show()
-            .filter(function() {
+            .filter(function () {
                 var text = $(this)
                     .text()
                     .replace(/\s+/g, " ")
@@ -22137,9 +22144,9 @@ function toggleProgNotes(obj) {
 
     if (
         obj
-        .closest(".progress_note_wrp")
-        .find(".pronote_dropdown_wrp")
-        .hasClass("d-block")
+            .closest(".progress_note_wrp")
+            .find(".pronote_dropdown_wrp")
+            .hasClass("d-block")
     ) {
         obj.html(
             'Hide progress notes <i class="fa fa-angle-up" aria-hidden="true"></i>'
@@ -22163,9 +22170,9 @@ function toggleValueRealsied(obj) {
 
     if (
         obj
-        .closest(".value_realised_wrap")
-        .find(".value_realised_dropdown_wrp")
-        .hasClass("d-block")
+            .closest(".value_realised_wrap")
+            .find(".value_realised_dropdown_wrp")
+            .hasClass("d-block")
     ) {
         obj.html(
             'Hide Value Realised <i class="fa fa-angle-up" aria-hidden="true"></i>'
@@ -22220,7 +22227,7 @@ function addEDProgressNote(SSn, position, ssObject) {
         document.getElementById("actionPerf").innerHTML = names[2];
         setDateById("date-picker_progress", "");
         document.getElementById("input_progress").value = "";
-        $(".ss-action").each(function() {
+        $(".ss-action").each(function () {
             $(this).prop("checked", false);
         });
         $("#setProgress").prop("checked", true);
@@ -22299,7 +22306,7 @@ function saveNewProgressNote() {
             type: "POST",
             success: updateEDProgress,
             error: progOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
         document.getElementById("input_update").value = "";
         document.getElementById("input_progress").value = "";
@@ -22325,7 +22332,7 @@ function saveNewProgressNote() {
             url: "send_email.php",
             type: "POST",
             data: ActionItemCompleted,
-            success: function(msg) {
+            success: function (msg) {
                 console.log(msg);
             }
         });
@@ -22362,7 +22369,7 @@ function saveNewProgressNote() {
             type: "POST",
             success: updateEDProgress,
             error: progOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
         document.getElementById("input_update").value = "";
         document.getElementById("input_progress").value = "";
@@ -22396,7 +22403,7 @@ function saveNewProgressNote() {
             url: "send_email.php",
             type: "POST",
             data: ActionItemDropped,
-            success: function(msg) {
+            success: function (msg) {
                 console.log(msg);
             }
         });
@@ -22436,7 +22443,7 @@ function saveNewProgressNote() {
         type: "POST",
         success: updateEDProgress,
         error: progOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
     $("#progressnote_modal").modal("hide");
     //38th Action Item progess percentage is updated starts
@@ -22461,7 +22468,7 @@ function saveNewProgressNote() {
         url: "send_email.php",
         type: "POST",
         data: ActionItemUpdated,
-        success: function(msg) {
+        success: function (msg) {
             console.log(msg);
         }
     });
@@ -22503,7 +22510,7 @@ function actionCompleteAddProgress(response) {
             type: "POST",
             success: updateEDProgress,
             error: progOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(results[1])) {
@@ -22521,9 +22528,9 @@ function toggleStrategicOptions(obj) {
         .toggleClass("d-block");
     if (
         obj
-        .closest(".strategic_opt_wrp")
-        .find(".strategic_opt_list")
-        .hasClass("d-block")
+            .closest(".strategic_opt_wrp")
+            .find(".strategic_opt_list")
+            .hasClass("d-block")
     ) {
         obj.html(
             'Hide selected strategic options <i class="fa fa-angle-up" aria-hidden="true"></i>'
@@ -22917,7 +22924,7 @@ function addEDSS() {
     //Find next SS number 
     //console.log(strategyNos);
     document.getElementById("add_strategy_no").value = "";
-    var filtered = strategyNos.filter(function(item) {
+    var filtered = strategyNos.filter(function (item) {
         return (parseInt(item) == item);
     });
     if (filtered.length) {
@@ -22978,7 +22985,7 @@ function deleteEDSS(ss, selected) {
                 "&bu=" +
                 getBUForProject(Gcurrentstrategy),
             type: "POST",
-            success: function(response) {
+            success: function (response) {
                 updateEDSSWithResult(response);
             },
             error: ssEDOpFailed
@@ -23039,7 +23046,7 @@ function deleteEDSSIm(ssObject) {
         url: "send_email.php",
         type: "POST",
         data: ssDropMailData,
-        success: function(msg) {
+        success: function (msg) {
             console.log(msg);
         }
     });
@@ -23158,7 +23165,7 @@ function setupSOs(ss) {
     $(".somtitle").text("Edit Strategic Options");
     if (sshandle.length > 8)
         fixedhandle =
-        '<span title="' + sshandle + '">' + sshandle.substring(0, 8) + "</span>";
+            '<span title="' + sshandle + '">' + sshandle.substring(0, 8) + "</span>";
 
     document.getElementById("ssHeaderSO").innerHTML =
         '<span class="stat_count">' +
@@ -23184,7 +23191,7 @@ function saveEDSS() {
     var handle = document.getElementById("add_strategy_no").value;
     var SSaction = document.getElementById("SSaction").value;
     if (strategyNos.includes(handle) == true && SSaction == '') {
-        var filtered = strategyNos.filter(function(item) {
+        var filtered = strategyNos.filter(function (item) {
             return (parseInt(item) == item);
         });
         var NextSt = Math.max(...filtered);
@@ -23201,7 +23208,7 @@ function saveEDSS() {
     var priority = document.getElementById("add_priority_txt").value;
     var favorite = [];
     var checkbox_checked_value;
-    $.each($("#add_allStrategicOptions .css-checkbox:checked"), function() {
+    $.each($("#add_allStrategicOptions .css-checkbox:checked"), function () {
         checkbox_checked_value = $(this).val();
 
         favorite.push(checkbox_checked_value);
@@ -23257,13 +23264,13 @@ function saveEDSS() {
                 "&priority=" +
                 encodeURIComponent(priority),
             type: "POST",
-            success: function(response) {
+            success: function (response) {
                 $("#strategy_modal").modal("hide");
 
                 updateEDSSWithResult(response);
             },
             error: ssEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         showTimedMessage("gmsg", "Saving strategy statement...", 0, false);
@@ -23290,13 +23297,13 @@ function saveEDSS() {
                 encodeURIComponent(priority),
 
             type: "POST",
-            success: function(response) {
+            success: function (response) {
                 $("#strategy_modal").modal("hide");
 
                 updateEDSSWithResult(response);
             },
             error: ssEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -23360,13 +23367,13 @@ function saveEDSSI() {
             encodeURIComponent(ssowner),
 
         type: "POST",
-        success: function(response) {
+        success: function (response) {
             $("#edit_strategy_modal").modal("hide");
             clearDisplayArea("");
             updateEDSSWithResult(response);
         },
         error: ssEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 
     //15th SS Owner is assigned starts
@@ -23389,7 +23396,7 @@ function saveEDSSI() {
         url: "send_email.php",
         type: "POST",
         data: ssEditMailData,
-        success: function(msg) {
+        success: function (msg) {
             console.log(msg);
         }
     });
@@ -23470,7 +23477,7 @@ function saveUnSelectReason() {
         url: "send_email.php",
         type: "POST",
         data: SSUnSelectReason,
-        success: function(msg) {
+        success: function (msg) {
             console.log(msg);
         }
     });
@@ -23485,7 +23492,7 @@ function reopenSSV(ssObject) {
         token: Gtoken,
         username: Gusername,
         currentSS: GcurrentSS
-            // currentSS: ssObject.ssid,
+        // currentSS: ssObject.ssid,
     };
     $.ajax({
         url: "reopen.php",
@@ -23564,7 +23571,7 @@ function saveRemainingSS(response) {
             type: "POST",
             success: saveEDSSSOs,
             error: ssEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(results[1])) {
@@ -23645,7 +23652,7 @@ function setEDSSSO(ce, cd, so, val) {
         type: "POST",
         success: showTimedMessage("gmsg", "Adjusting strategic options ", 0, false),
         error: ssEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -23664,7 +23671,7 @@ function deleteEDSSSO(so, ss) {
         type: "POST",
         success: showTimedMessage("gmsg", "Adjusting strategic options ", 0, false),
         error: ssEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -23704,11 +23711,11 @@ function initRisk() {
     var fixedhandle = sshandle;
     if (sshandle.length > GmaxShortStrategyDesc)
         fixedhandle =
-        '<span title="' +
-        sshandle +
-        '">' +
-        sshandle.substring(0, GmaxShortStrategyDesc) +
-        "</span>";
+            '<span title="' +
+            sshandle +
+            '">' +
+            sshandle.substring(0, GmaxShortStrategyDesc) +
+            "</span>";
     // if (sshandle.length > 8) fixedhandle = '<span title="' + sshandle + '">' + sshandle.substring(0, 8) + '</span>';
 
     deactivateButton("risk_submit");
@@ -23742,11 +23749,11 @@ function initBenefit() {
     var fixedhandle = sshandle;
     if (sshandle.length > GmaxShortStrategyDesc)
         fixedhandle =
-        '<span title="' +
-        sshandle +
-        '">' +
-        sshandle.substring(0, GmaxShortStrategyDesc) +
-        "</span>";
+            '<span title="' +
+            sshandle +
+            '">' +
+            sshandle.substring(0, GmaxShortStrategyDesc) +
+            "</span>";
     // if (sshandle.length > 8) fixedhandle = '<span title="' + sshandle + '">' + sshandle.substring(0, 8) + '</span>';
 
     document.getElementById("ssHeaderBen").innerHTML =
@@ -23786,11 +23793,11 @@ function editEDBenefit(i) {
     var fixedhandle = sshandle;
     if (sshandle.length > GmaxShortStrategyDesc)
         fixedhandle =
-        '<span title="' +
-        sshandle +
-        '">' +
-        sshandle.substring(0, GmaxShortStrategyDesc) +
-        "</span>";
+            '<span title="' +
+            sshandle +
+            '">' +
+            sshandle.substring(0, GmaxShortStrategyDesc) +
+            "</span>";
     // if (sshandle.length > 8) fixedhandle = '<span title="' + sshandle + '">' + sshandle.substring(0, 8) + '</span>';
 
     document.getElementById("ssHeaderBen").innerHTML =
@@ -23815,7 +23822,7 @@ function editEDBenefit(i) {
     document.getElementById("benefitvalue").value = benefit[1];
     document.getElementById("benefitsType").value = benefit[2];
 }
-$("body").on("change", "#benefitsType", function() {
+$("body").on("change", "#benefitsType", function () {
     let benefitsType = $(this).val();
     document.getElementById("benefitvalue").value = "";
     if (benefitsType === "Qualitative Improvement") {
@@ -23839,11 +23846,11 @@ function editEDRisk(i) {
     var fixedhandle = sshandle;
     if (sshandle.length > GmaxShortStrategyDesc)
         fixedhandle =
-        '<span title="' +
-        sshandle +
-        '">' +
-        sshandle.substring(0, GmaxShortStrategyDesc) +
-        "</span>";
+            '<span title="' +
+            sshandle +
+            '">' +
+            sshandle.substring(0, GmaxShortStrategyDesc) +
+            "</span>";
 
     document.getElementById("ssHeaderRisk").innerHTML =
         '<span class="stat_count">' +
@@ -23866,7 +23873,7 @@ function editEDRisk(i) {
     document.getElementById("riskvalue").value = risk[1];
     document.getElementById("risksType").value = risk[2];
 }
-$("body").on("change", "#risksType", function() {
+$("body").on("change", "#risksType", function () {
     let riskType = $(this).val();
     document.getElementById("riskvalue").value = "";
     if (riskType === "Qualitative Risk") {
@@ -23912,7 +23919,7 @@ function saveEDBenefit() {
             type: "POST",
             success: updateEDSSWithResult,
             error: ssOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -23956,7 +23963,7 @@ function saveEDRisk() {
             type: "POST",
             success: updateEDSSWithResult,
             error: ssEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -23995,7 +24002,7 @@ function addEDRisk() {
         type: "POST",
         success: updateEDSSWithResult,
         error: ssEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -24033,7 +24040,7 @@ function addEDBenefit() {
         type: "POST",
         success: updateEDSSWithResult,
         error: ssEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -24065,7 +24072,7 @@ function deleteEDRisk(i) {
         type: "POST",
         success: updateEDSSWithResult,
         error: ssEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -24107,7 +24114,7 @@ function deleteEDBenefit(i) {
         type: "POST",
         success: updateEDSSWithResult,
         error: ssEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -24173,7 +24180,7 @@ function deletePastInitiative(i) {
         type: "POST",
         success: updateBackground,
         error: backOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -24221,7 +24228,7 @@ function savePastInitiative() {
             type: "POST",
             success: updateBackground,
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         showTimedMessage("gmsg", "Saving past initiative...", 0, false);
@@ -24251,7 +24258,7 @@ function savePastInitiative() {
             type: "POST",
             success: updateBackground,
             error: backOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -24357,7 +24364,7 @@ function saveNewPassword() {
         type: "POST",
         success: updateEDPersonPasswordChange,
         error: personEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -24378,7 +24385,7 @@ function updateEDPersonPasswordChange(response) {
             type: "POST",
             success: refreshEDPersonProfile,
             error: personEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else showTimedMessage("gmsg", res[1], 0, true);
 }
@@ -24420,7 +24427,7 @@ function savePersonalProfile() {
         type: "POST",
         success: updateEDPersonProfile,
         error: personEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -24441,7 +24448,7 @@ function updateEDPersonProfile(response) {
             type: "POST",
             success: refreshEDPersonProfile,
             error: personEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(res[1])) {
@@ -24526,7 +24533,7 @@ function disableFileSubmit() {
         contentType: false,
         success: uploadEDDone,
         error: fileEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -24599,7 +24606,7 @@ function getEDDocuments(strategy) {
         type: "POST",
         success: updateBackground,
         error: fileEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -24618,7 +24625,7 @@ function getEDDocumentsPanel(strategy) {
         type: "POST",
         success: updateSideFilePanel,
         error: fileEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -24905,7 +24912,7 @@ function renderEDTree(node, level, up, down) {
     var eternalImg = "";
     if (ceStatus.valueOf() == "ETERNAL".valueOf())
         eternalImg =
-        '<span class="strategy-statement"><img title="Marked for reconsideration in Eternal step" width="28px" src="images/eternal_icon.png"/></span>';
+            '<span class="strategy-statement"><img title="Marked for reconsideration in Eternal step" width="28px" src="images/eternal_icon.png"/></span>';
 
     // alert("identify get here 2 : status ==> "+ ceStatus);
     var alertstring = "alert(adding sub cost " + costid + ");";
@@ -24947,9 +24954,9 @@ function renderEDTree(node, level, up, down) {
             "</span>";
         if (criticalp)
             criticalicon =
-            '<span class="critical_icon" data-toggle="tooltip" data-placement="top" title="Selected critical cost"> ' +
-            '<img src="images/critical_icon.png"/> ' +
-            "</span>";
+                '<span class="critical_icon" data-toggle="tooltip" data-placement="top" title="Selected critical cost"> ' +
+                '<img src="images/critical_icon.png"/> ' +
+                "</span>";
 
         nodestring =
             nodestring +
@@ -24972,13 +24979,13 @@ function renderEDTree(node, level, up, down) {
             '<button class="text-capitalize action_btn_1" data-toggle="tooltip" data-placement="top" title="Not a future cash flow"></button>';
         if (fcf != null && fcf.valueOf() == "YES".valueOf())
             fcfbutton =
-            '<button class="text-capitalize action_btn_1 click_icon" title="Marked as future cash flow" data-toggle="tooltip" data-placement="top"></button>';
+                '<button class="text-capitalize action_btn_1 click_icon" title="Marked as future cash flow" data-toggle="tooltip" data-placement="top"></button>';
 
         var impbutton =
             '<button class="text-capitalize action_btn_2" data-toggle="tooltip" data-placement="top" title="Not marked as impactable cost"></button>';
         if (impactable != null && impactable.valueOf() == "YES".valueOf())
             impbutton =
-            '<button class="text-capitalize action_btn_2 click_icon" data-toggle="tooltip" data-placement="top" title="Marked  as impactable cost"></button>';
+                '<button class="text-capitalize action_btn_2 click_icon" data-toggle="tooltip" data-placement="top" title="Marked  as impactable cost"></button>';
 
         var comtextid = "ic-" + costid;
         var comdiv = "comdiv-" + costid;
@@ -25162,9 +25169,9 @@ function renderEDTree(node, level, up, down) {
             "</span>";
         if (criticalp)
             criticalicon =
-            '<span class="critical_icon" data-toggle="tooltip" data-placement="top" title="Selected critical cost"> ' +
-            '<img src="images/critical_icon.png"/> ' +
-            "</span>";
+                '<span class="critical_icon" data-toggle="tooltip" data-placement="top" title="Selected critical cost"> ' +
+                '<img src="images/critical_icon.png"/> ' +
+                "</span>";
         // alert("here 4");
         //console.log(node[7]);
         nodestring =
@@ -25193,11 +25200,11 @@ function renderEDTree(node, level, up, down) {
             "></button>";
         if (fcf != null && fcf.valueOf() == "YES".valueOf())
             fcfbutton =
-            '<button class="text-capitalize action_btn_1 active_action_btn_1 click_icon"  onClick="markFuture(' +
-            costid +
-            ');" title="Marked as future cash flow" data-toggle="tooltip" data-placement="top"' +
-            disableUpdates +
-            "></button>";
+                '<button class="text-capitalize action_btn_1 active_action_btn_1 click_icon"  onClick="markFuture(' +
+                costid +
+                ');" title="Marked as future cash flow" data-toggle="tooltip" data-placement="top"' +
+                disableUpdates +
+                "></button>";
 
         var impbutton =
             '<button class="text-capitalize action_btn_2" data-placement="left" onClick="markImpactable(' +
@@ -25207,11 +25214,11 @@ function renderEDTree(node, level, up, down) {
             "></button>";
         if (impactable != null && impactable.valueOf() == "YES".valueOf())
             impbutton =
-            '<button class="text-capitalize action_btn_2 active_action_btn_2 click_icon"  onClick="markImpactable(' +
-            costid +
-            ');" data-toggle="tooltip" data-placement="top" title="Marked  as impactable cost"' +
-            disableUpdates +
-            "></button>";
+                '<button class="text-capitalize action_btn_2 active_action_btn_2 click_icon"  onClick="markImpactable(' +
+                costid +
+                ');" data-toggle="tooltip" data-placement="top" title="Marked  as impactable cost"' +
+                disableUpdates +
+                "></button>";
 
         var comtextid = "ic-" + costid;
         var comdiv = "comdiv-" + costid;
@@ -25478,7 +25485,7 @@ function markFuture(ce) {
         type: "POST",
         success: iEDStepSaved,
         error: identifyEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
     // alert("Mark as cash flow in the future " + ce);
 }
@@ -25515,7 +25522,7 @@ function markImpactable(ce) {
         type: "POST",
         success: iEDStepSaved,
         error: identifyEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 
     // alert("Mark as impactable " + ce);
@@ -25542,7 +25549,7 @@ function saveComment(ce) {
         type: "POST",
         success: iEDStepSaved,
         error: identifyEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
     $(".opt_btn_wrp").hide();
 }
@@ -25567,7 +25574,7 @@ function modifyCEComment(ce, comment) {
         type: "POST",
         success: iEDStepSaved,
         error: identifyEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -25671,7 +25678,7 @@ function markCritical(ce) {
             type: "POST",
             success: iEDStepSaved,
             error: identifyEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         $.ajax({
@@ -25692,7 +25699,7 @@ function markCritical(ce) {
             type: "POST",
             success: iEDStepSaved,
             error: identifyEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
         setTimeout(modifyCEComment(ce, newcomment), 2000);
     }
@@ -25728,9 +25735,9 @@ function editCostElement(ce) {
     $(".opt_btn_wrp").hide();
     deactivateButton("ce_submit");
     editingCE = ce;
-    $(document).ready(function() {
+    $(document).ready(function () {
         // $('input[type="submit"]').attr('disabled','disabled');
-        $('input[type="text"]').on("keyup", function() {
+        $('input[type="text"]').on("keyup", function () {
             if ($(this).val != "") {
                 $('input[type="submit"]').removeAttr("disabled");
             }
@@ -25787,7 +25794,7 @@ function deleteCostElementInternal(ce) {
         type: "POST",
         success: iEDStepSaved,
         error: identifyEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -25807,9 +25814,9 @@ function addSubCost(ce) {
     deactivateButton("ce_submit");
     parentCE = ce;
     editingCE = -1;
-    $(document).ready(function() {
+    $(document).ready(function () {
         // $('input[type="submit"]').attr('disabled','disabled');
-        $('input[type="text"]').on("keyup", function() {
+        $('input[type="text"]').on("keyup", function () {
             if ($(this).val != "") {
                 $('input[type="submit"]').removeAttr("disabled");
             }
@@ -25858,7 +25865,7 @@ function saveCE() {
             type: "POST",
             success: iEDStepSaved,
             error: identifyEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         saveMainScrollXY();
@@ -25884,7 +25891,7 @@ function saveCE() {
             type: "POST",
             success: iEDStepSaved,
             error: identifyEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
     $("#ce_modal").modal("hide");
@@ -25930,7 +25937,7 @@ function moveEDUp(source, destination) {
         type: "POST",
         success: iEDStepSaved,
         error: identifyEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -25956,7 +25963,7 @@ function moveEDDown(source, destination) {
         type: "POST",
         success: iEDStepSaved,
         error: identifyEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -25994,7 +26001,7 @@ function setSSSelection(ss) {
             type: "POST",
             success: updateEDSSWithResult,
             error: ssEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         showTimedMessage(
@@ -26019,7 +26026,7 @@ function setSSSelection(ss) {
             type: "POST",
             success: updateEDSSWithResult,
             error: ssEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -26064,7 +26071,7 @@ function markSSEternal(ss, selected) {
         type: "POST",
         success: updateEDSSWithResult,
         error: ssEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 //here
@@ -26099,7 +26106,7 @@ function markCEEternal(ce, criticalp) {
         type: "POST",
         success: iEDStepSaved,
         error: identifyEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 /**
@@ -26338,13 +26345,13 @@ function eternalStepContents2() {
                 '<button class="text-capitalize action_btn_1" data-toggle="tooltip" data-placement="top" title="Not a future cash flow"></button>';
             if (fcf != null && fcf.valueOf() == "YES".valueOf())
                 fcfbutton =
-                '<button class="text-capitalize action_btn_1 click_icon" title="Marked as future cash flow" data-toggle="tooltip" data-placement="top"></button>';
+                    '<button class="text-capitalize action_btn_1 click_icon" title="Marked as future cash flow" data-toggle="tooltip" data-placement="top"></button>';
 
             var impbutton =
                 '<button class="text-capitalize action_btn_2" data-toggle="tooltip" data-placement="top" title="Not marked as impactable cost"></button>';
             if (impactable != null && impactable.valueOf() == "YES".valueOf())
                 impbutton =
-                '<button class="text-capitalize action_btn_2 click_icon" data-toggle="tooltip" data-placement="top" title="Marked  as impactable cost"></button>';
+                    '<button class="text-capitalize action_btn_2 click_icon" data-toggle="tooltip" data-placement="top" title="Marked  as impactable cost"></button>';
 
             var eternalImg =
                 '<img title="Marked for reconsideration in Eternal step"  width="28px" src="images/eternal_icon.png"/>';
@@ -26581,9 +26588,9 @@ function eternalStepContents2() {
         }
         if (eternalFound)
             body =
-            body +
-            cestring +
-            '</div></div></div><div class="clearfix"></div></div>';
+                body +
+                cestring +
+                '</div></div></div><div class="clearfix"></div></div>';
     }
 
     body =
@@ -26616,11 +26623,11 @@ function eternalStepContents2() {
         var fixedhandle = sshandle;
         if (sshandle.length > GmaxShortStrategyDesc)
             fixedhandle =
-            '<span title="' +
-            sshandle +
-            '">' +
-            sshandle.substring(0, GmaxShortStrategyDesc) +
-            "</span>";
+                '<span title="' +
+                sshandle +
+                '">' +
+                sshandle.substring(0, GmaxShortStrategyDesc) +
+                "</span>";
 
         body =
             body +
@@ -27641,7 +27648,7 @@ function saveEDCostDriver() {
             type: "POST",
             success: driverEDAdded,
             error: driverEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
 
         // alert("adding a cost driver to element: " + contextualCE);
@@ -27674,7 +27681,7 @@ function saveEDCostDriver() {
             type: "POST",
             success: driverEDRefresh,
             error: driverEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
         // alert("Saving cost driver: " + editingCD + "of cost element: " + contextualCE);
         return;
@@ -27715,7 +27722,7 @@ function deleteEDCostDriverInternal(ce, cd) {
         type: "POST",
         success: driverEDRefresh,
         error: driverEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -27760,7 +27767,7 @@ function driverEDAdded(response) {
             type: "POST",
             success: driverEDRefresh,
             error: driverEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         if (invalidTokenP(result[1])) {
@@ -27795,7 +27802,7 @@ function swapDriversED(ce, cd1, cd2) {
         type: "POST",
         success: driverEDRefresh,
         error: driverEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 var addingPosition = -1;
@@ -27988,7 +27995,7 @@ function saveEDSOs() {
             type: "POST",
             success: driverEDRefresh,
             error: driverEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -28016,7 +28023,7 @@ function addEDDriverSO(soText, update) {
             type: "POST",
             success: driverEDRefresh,
             error: driverEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     } else {
         showTimedMessage("gmsg", "Adding strategic option...", 0, false);
@@ -28040,7 +28047,7 @@ function addEDDriverSO(soText, update) {
             type: "POST",
             success: showTimedMessage("gmsg", "Added another option...", 0, false),
             error: driverEDOpFailed
-                //,datatype: "json"
+            //,datatype: "json"
         });
     }
 }
@@ -28083,7 +28090,7 @@ function deleteStagItemInternal(ce, cd, soid) {
         type: "POST",
         success: driverEDRefresh,
         error: driverEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -28140,7 +28147,7 @@ function markCDImpactable(ce, cd) {
         type: "POST",
         success: driverEDRefresh,
         error: driverEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -28195,7 +28202,7 @@ function markCDKey(ce, cd) {
         type: "POST",
         success: driverEDRefresh,
         error: driverEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -28246,7 +28253,7 @@ function markCDEternal(ce, cd, keyp) {
         type: "POST",
         success: driverEDRefresh,
         error: driverEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -28284,7 +28291,7 @@ function markSOForKeeps(ce, cd, soid) {
         type: "POST",
         success: driverEDRefresh,
         error: driverEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 /**
@@ -28299,9 +28306,9 @@ function editPrimaryCost() {
     document.getElementById("change_currency").value = GdefaultCurrency;
     generateCurrencyDatalist("currlist", "currencySelector");
     deactivateButton("pcost_submit");
-    $(document).ready(function() {
+    $(document).ready(function () {
         // $('input[type="submit"]').attr('disabled','disabled');
-        $('input[type="text"]').on("keyup", function() {
+        $('input[type="text"]').on("keyup", function () {
             if ($(this).val != "") {
                 $('input[type="submit"]').removeAttr("disabled");
             }
@@ -28309,14 +28316,14 @@ function editPrimaryCost() {
     });
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     var len = 0;
     var maxchar = 64;
     history.pushState(null, null, location.href);
-    window.onpopstate = function() {
+    window.onpopstate = function () {
         history.go(1);
     };
-    $("#pcost_input").keyup(function() {
+    $("#pcost_input").keyup(function () {
         len = this.value.length;
         if (len > maxchar) {
             return false;
@@ -28327,7 +28334,7 @@ $(document).ready(function() {
         }
     });
     var verfiyN = 1;
-    $("body").on("click", ".switch-main-contents", function(event) {
+    $("body").on("click", ".switch-main-contents", function (event) {
         selectedClientReports = "all";
         selectedSuppReports = "all";
         selectedDeptReports = "all";
@@ -28338,18 +28345,18 @@ $(document).ready(function() {
         switchMainContents(newPage);
     });
     $(".error").hide();
-    $('input[type="text"]').on("keyup", function() {
+    $('input[type="text"]').on("keyup", function () {
         if ($(this).val != "") {
             $('input[type="submit"]').removeAttr("disabled");
         }
     });
-    $(".ss-action").on("click", function() {
+    $(".ss-action").on("click", function () {
         let value = $(this).val();
 
         if (value !== "progress") $(".progress-div").hide();
         else $(".progress-div").show();
     });
-    $("body").on("click", ".action_stat_wrap", function() {
+    $("body").on("click", ".action_stat_wrap", function () {
         var elements = this.id.split("-");
 
         let GcurrentAction = parseInt(elements[1]);
@@ -28404,7 +28411,7 @@ function setupUpdateVal(ss) {
     //console.trace();
     console.log(ss);
     let allStrategies = Gcurrentdata[Grbindex];
-    let currentStrategy = allStrategies.filter(function(strategies) {
+    let currentStrategy = allStrategies.filter(function (strategies) {
         return strategies[0] == ss;
     });
     var oentry = currentStrategy[0];
@@ -28420,7 +28427,7 @@ function setupUpdateVal(ss) {
     var fixedhandle = sshandle;
     if (sshandle.length > 8)
         fixedhandle =
-        '<span title="' + sshandle + '">' + sshandle.substring(0, 8) + "</span>";
+            '<span title="' + sshandle + '">' + sshandle.substring(0, 8) + "</span>";
 
     document.getElementById("ssHeaderBen").innerHTML =
         '<span class="stat_count">' +
@@ -28526,7 +28533,7 @@ function addNPVtoSS() {
         type: "POST",
         success: updateVerifyContents,
         error: progOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
     //34th  Value Realized is updated starts
     var ssCurType = document.getElementById('CurType').innerHTML;
@@ -28554,7 +28561,7 @@ function addNPVtoSS() {
         url: "send_email.php",
         type: "POST",
         data: UpdateSSvalueRelized,
-        success: function(msg) {
+        success: function (msg) {
             console.log(msg);
         }
     });
@@ -28663,7 +28670,7 @@ function saveTaskStatus(task) {
         type: "POST",
         success: addExistingTaskPerformers,
         error: backOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -28691,7 +28698,7 @@ function changeProjectStatus(stat) {
         type: "POST",
         success: updateEDStrategiesAfterStatusChange,
         error: strategyEDOpFailed
-            //,datatype: "json"
+        //,datatype: "json"
     });
 }
 
@@ -29767,10 +29774,10 @@ function refreshCOR() {
                 var adead = oentry[6][j][2];
                 // alert("action deadline: " + adead);
                 if (!(
-                        adead == null ||
-                        adead.valueOf() == "".valueOf() ||
-                        adead.valueOf() == "null".valueOf()
-                    ))
+                    adead == null ||
+                    adead.valueOf() == "".valueOf() ||
+                    adead.valueOf() == "null".valueOf()
+                ))
                     adead = getPrintDate(adead);
                 else adead = "TBD";
                 var awho = oentry[6][j][3];
@@ -29827,12 +29834,12 @@ function refreshCOR() {
 
     // adjust the goals table
     // alert("got here 0");
-    jQuery("#temp").each(function() {
+    jQuery("#temp").each(function () {
         // alert("got here 1");
         addgoalpagebreak($(this), 0);
     });
 
-    jQuery(".identify_wrapper").each(function() {
+    jQuery(".identify_wrapper").each(function () {
         var db_identifytable = [];
         if (Gcurrentdata[Gelementsindex][0] != null) {
             for (var i = 0; i < Gcurrentdata[Gelementsindex][0].length; i++) {
@@ -29863,7 +29870,7 @@ function refreshCOR() {
         addidentifypagebreak($(this), 0, db_identifytable);
     });
 
-    jQuery(".mand_wrapper").each(function(index) {
+    jQuery(".mand_wrapper").each(function (index) {
         // code to retrieve m&d data from database for each selected critical cost
         // alert("mand_wrapper found");
 
@@ -29942,11 +29949,11 @@ function refreshCOR() {
         addmdpagebreak($(this), 0, db_mdtable2_new);
     });
 
-    jQuery(".reduce_wrapper").each(function() {
+    jQuery(".reduce_wrapper").each(function () {
         addreducepagebreak($(this), 0, db_reducetable);
     });
 
-    $.each(db_implementtable, function(key, item) {
+    $.each(db_implementtable, function (key, item) {
         var obj = $(".implement_wrapper").last();
         var section_clone = $(obj).clone();
         $(section_clone).insertAfter($(obj));
@@ -29960,17 +29967,17 @@ function refreshCOR() {
     var legend7;
 
     var chartData7 = [{
-            cost: "Non-Critical cost:",
-            litres: nonCriticalCost,
-            color: "#e9e9e9",
-            labelcolor: "#fff"
-        },
-        {
-            cost: "Total critical cost:",
-            litres: criticalCost,
-            color: "#2b4b74",
-            labelcolor: "#fff"
-        }
+        cost: "Non-Critical cost:",
+        litres: nonCriticalCost,
+        color: "#e9e9e9",
+        labelcolor: "#fff"
+    },
+    {
+        cost: "Total critical cost:",
+        litres: criticalCost,
+        color: "#2b4b74",
+        labelcolor: "#fff"
+    }
     ];
 
     // AmCharts.ready(function () {
@@ -30008,23 +30015,23 @@ function refreshCOR() {
     var chart;
     var legend;
     var chartData = [{
-            cost: "High priority strategies:",
-            litres: highGain,
-            color: "#2b4b74",
-            labelcolor: "#ffffff"
-        },
-        {
-            cost: "Medium priority strategies:",
-            litres: medGain,
-            color: "#666666",
-            labelcolor: "#ffffff"
-        },
-        {
-            cost: "Low priority strateiges",
-            litres: lowGain,
-            color: "#e9e9e9",
-            labelcolor: "#666666"
-        }
+        cost: "High priority strategies:",
+        litres: highGain,
+        color: "#2b4b74",
+        labelcolor: "#ffffff"
+    },
+    {
+        cost: "Medium priority strategies:",
+        litres: medGain,
+        color: "#666666",
+        labelcolor: "#ffffff"
+    },
+    {
+        cost: "Low priority strateiges",
+        litres: lowGain,
+        color: "#e9e9e9",
+        labelcolor: "#666666"
+    }
     ];
 
     // AmCharts.ready(function () {
@@ -30056,7 +30063,7 @@ function refreshCOR() {
     };
 
     var totalPages = $(".sec_wrapper").length + 2;
-    jQuery(".sec_wrapper").each(function(index) {
+    jQuery(".sec_wrapper").each(function (index) {
         $(this)
             .find(".page_no")
             .html("Page " + (index + 2) + " of " + totalPages);
@@ -30120,7 +30127,7 @@ function addimplementpagebreak(obj, startkey, db_strategy) {
 
 
 
-    $.each(db_strategy.actionitems, function(key, item) {
+    $.each(db_strategy.actionitems, function (key, item) {
         if (key >= startkey) {
             var markup1 = "<tr>";
             markup1 += "<td>" + item.action + "</td>";
@@ -30135,7 +30142,7 @@ function addimplementpagebreak(obj, startkey, db_strategy) {
     var clone_key = -1;
     $(implement_action_table)
         .find("tbody tr")
-        .each(function(index) {
+        .each(function (index) {
             var requiredHeight = $(this).offset().top + $(this).height();
 
             if (requiredHeight > tempMaxHeight) {
@@ -30151,7 +30158,7 @@ function addimplementpagebreak(obj, startkey, db_strategy) {
     if (parseInt(clone_key) > -1) {
         //alert(clone_key);
         clone_key = clone_key + startkey;
-        $.each(db_strategy.actionitems, function(key, item) {
+        $.each(db_strategy.actionitems, function (key, item) {
             if (key >= startkey && key <= clone_key) {
                 var markup1 = "<tr>";
                 markup1 += "<td>" + item.action + "</td>";
@@ -30184,7 +30191,7 @@ function addreducepagebreak(obj, startkey, db_reducetable) {
         .html("");
     var tempMaxHeight = maxHeight + $(obj).offset().top - 20;
 
-    $.each(db_reducetable, function(key, item) {
+    $.each(db_reducetable, function (key, item) {
         if (key >= startkey) {
             var markup =
                 "<tr class='critical_bg'><td>" +
@@ -30205,7 +30212,7 @@ function addreducepagebreak(obj, startkey, db_reducetable) {
     var clone_key = -1;
     $(goal_table)
         .find("tbody tr")
-        .each(function(index) {
+        .each(function (index) {
             var requiredHeight = $(this).offset().top + $(this).height();
 
             if (requiredHeight > tempMaxHeight) {
@@ -30221,7 +30228,7 @@ function addreducepagebreak(obj, startkey, db_reducetable) {
     if (parseInt(clone_key) > -1) {
         //alert(clone_key);
         clone_key = clone_key + startkey;
-        $.each(db_reducetable, function(key, item) {
+        $.each(db_reducetable, function (key, item) {
             if (key >= startkey && key <= clone_key) {
                 var markup =
                     "<tr class='critical_bg'><td>" +
@@ -30258,7 +30265,7 @@ function addidentifypagebreak(obj, startkey, db_identifytable) {
     $(sec_body).html("");
 
     var tempMaxHeight = 460;
-    $.each(db_identifytable, function(key, item) {
+    $.each(db_identifytable, function (key, item) {
         if (key >= startkey) {
             var markup = '<ul class="cost_breakdown_list">';
             markup += '<li class="critical_bg font18"><table>';
@@ -30286,7 +30293,7 @@ function addidentifypagebreak(obj, startkey, db_identifytable) {
     var clone_key = -1;
     $(sec_body)
         .find("li")
-        .each(function(index) {
+        .each(function (index) {
             var requiredHeight = $(this).height() + 20;
 
             if (tempMaxHeight <= requiredHeight) {
@@ -30301,7 +30308,7 @@ function addidentifypagebreak(obj, startkey, db_identifytable) {
     if (parseInt(clone_key) > -1) {
         //alert(clone_key);
         clone_key = clone_key + startkey;
-        $.each(db_identifytable, function(key, item) {
+        $.each(db_identifytable, function (key, item) {
             if (key >= startkey && key <= clone_key) {
                 var markup = '<ul class="cost_breakdown_list">';
                 markup += '<li class="critical_bg font18"><table>';
@@ -30357,7 +30364,7 @@ function addmdpagebreak(obj, startkey, db_mdtable2) {
     //console.log(db_mdtable2);
     var clone_key = startkey + 2;
     if (parseInt(clone_key) > -1) {
-        $.each(db_mdtable2, function(key, item) {
+        $.each(db_mdtable2, function (key, item) {
             if (
                 key >= startkey &&
                 key <= clone_key &&
@@ -30422,7 +30429,7 @@ function addgoalpagebreak(obj, startkey) {
         .html("");
     var tempMaxHeight = maxHeight + $(obj).offset().top - 20;
 
-    $.each(temptable, function(key, item) {
+    $.each(temptable, function (key, item) {
         if (key >= startkey) {
             var markup =
                 "<tr><td>" + item.perspective + "</td><td>" + item.goal + "</td></tr>";
@@ -30435,7 +30442,7 @@ function addgoalpagebreak(obj, startkey) {
     var clone_key = -1;
     $(goal_table)
         .find("tbody tr")
-        .each(function(index) {
+        .each(function (index) {
             var requiredHeight = $(this).offset().top + $(this).height();
             if (requiredHeight > tempMaxHeight) {
                 //alert("todo");
@@ -30450,7 +30457,7 @@ function addgoalpagebreak(obj, startkey) {
     if (parseInt(clone_key) > -1) {
         //alert(clone_key);
         clone_key = clone_key + startkey;
-        $.each(temptable, function(key, item) {
+        $.each(temptable, function (key, item) {
             if (key >= startkey && key <= clone_key) {
                 var markup =
                     "<tr><td>" +
@@ -30870,15 +30877,15 @@ function refreshProgressReport() {
       `;
     for (var m = 0; m < p_pendingActions.length; m++) {
         var action = p_pendingActions[m];
-        if (action[15].completedV) {}
+        if (action[15].completedV) { }
         if (action[15].droppedI) {
             continue;
         }
         if (action[15].unimplementedV) {
             continue;
         }
-        if (action[15].selectedR) {}
-        if (action[15].eternalR) {}
+        if (action[15].selectedR) { }
+        if (action[15].eternalR) { }
         let awho;
         let time;
         if (action[3] === "") {
@@ -30949,62 +30956,62 @@ function refreshProgressReport() {
     body += yytemp;
     document.getElementById("mainbody").innerHTML = body;
 
-    $(document).ready(function() {
-        $("#Text1").on("keyup", function() {
+    $(document).ready(function () {
+        $("#Text1").on("keyup", function () {
             var value = $(this)
                 .val()
                 .toLowerCase();
-            $("#Table3 tr").filter(function() {
+            $("#Table3 tr").filter(function () {
                 $(this).toggle(
                     $(this)
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value) > -1
+                        .text()
+                        .toLowerCase()
+                        .indexOf(value) > -1
                 );
             });
         });
-        $(".strategiesActionPR").on("click", function() {
+        $(".strategiesActionPR").on("click", function () {
             $(".strategiesActionPR").removeClass("active");
             $(this).addClass("active");
             var value = $(this)
                 .attr("useThis")
                 .toLowerCase();
 
-            $("#Table3 tr").filter(function() {
+            $("#Table3 tr").filter(function () {
                 $(this).toggle(
                     $(this)
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value) > -1
+                        .text()
+                        .toLowerCase()
+                        .indexOf(value) > -1
                 );
             });
         });
-        $(".actionsActionPR").on("click", function() {
+        $(".actionsActionPR").on("click", function () {
             $(".actionsActionPR").removeClass("active");
             $(this).addClass("active");
             var value = $(this)
                 .attr("useThis")
                 .toLowerCase();
 
-            $("#Table4 tr").filter(function() {
+            $("#Table4 tr").filter(function () {
                 $(this).toggle(
                     $(this)
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value) > -1
+                        .text()
+                        .toLowerCase()
+                        .indexOf(value) > -1
                 );
             });
         });
-        $("#Text2").on("keyup", function() {
+        $("#Text2").on("keyup", function () {
             var value = $(this)
                 .val()
                 .toLowerCase();
-            $("#Table4 tr").filter(function() {
+            $("#Table4 tr").filter(function () {
                 $(this).toggle(
                     $(this)
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value) > -1
+                        .text()
+                        .toLowerCase()
+                        .indexOf(value) > -1
                 );
             });
         });
@@ -31029,43 +31036,43 @@ function refreshProgressReport() {
         pointFormat: "{series.name}: <b>{point.y}</b>"
     };
     let selectedForImpData = [{
-            name: "Selected",
-            y: selectedSS.length - droppedSScount
-        },
-        {
-            name: "Dropped",
-            y: droppedSScount
-        }
+        name: "Selected",
+        y: selectedSS.length - droppedSScount
+    },
+    {
+        name: "Dropped",
+        y: droppedSScount
+    }
     ];
     let impStatusData = [{
-            name: "Completed",
-            y: completedSS.length
-        },
-        {
-            name: "On Schedule",
-            y: onScheduleSS.length
-        },
-        {
-            name: "Behind Schedule",
-            y: behingScheduleSS.length
-        },
-        {
-            name: "Unselected",
-            y: unimplementSS.length
-        }
+        name: "Completed",
+        y: completedSS.length
+    },
+    {
+        name: "On Schedule",
+        y: onScheduleSS.length
+    },
+    {
+        name: "Behind Schedule",
+        y: behingScheduleSS.length
+    },
+    {
+        name: "Unselected",
+        y: unimplementSS.length
+    }
     ];
     let identifiedSData = [{
-            name: "Selected",
-            y: selectedSS.length
-        },
-        {
-            name: "Dropped",
-            y: unselectedSS.length
-        },
-        {
-            name: "Eternal",
-            y: eternalSS.length
-        }
+        name: "Selected",
+        y: selectedSS.length
+    },
+    {
+        name: "Dropped",
+        y: unselectedSS.length
+    },
+    {
+        name: "Eternal",
+        y: eternalSS.length
+    }
     ];
     let actionsCompleted = [];
     let actionsOnSchedule = [];
@@ -31080,8 +31087,8 @@ function refreshProgressReport() {
         if (Gcurrentdata[34][key].ss_unimplement == 1) continue;
         benfitTemp =
             Gcurrentdata[34][key].benefit === undefined ?
-            0 :
-            Gcurrentdata[34][key].benefit;
+                0 :
+                Gcurrentdata[34][key].benefit;
         riskTemp =
             Gcurrentdata[34][key].risk === undefined ? 0 : Gcurrentdata[34][key].risk;
         valueIdentifiedTemp = benfitTemp - riskTemp;
@@ -31143,23 +31150,23 @@ function refreshProgressReport() {
     }
 
     let actionItemsData = [{
-            name: "Completed", //green
-            data: actionsCompleted,
-            index: 2
-        },
-        {
-            name: "On Schedule", //yellow
-            data: actionsOnSchedule,
-            index: 1
-        },
-        {
-            name: "Behind Schedule", //red
-            data: actionsBehindSchedule,
-            index: 0
-        }
+        name: "Completed", //green
+        data: actionsCompleted,
+        index: 2
+    },
+    {
+        name: "On Schedule", //yellow
+        data: actionsOnSchedule,
+        index: 1
+    },
+    {
+        name: "Behind Schedule", //red
+        data: actionsBehindSchedule,
+        index: 0
+    }
     ];
     //console.log(actionItemsData);
-    $(function() {
+    $(function () {
         $(".cus_scroll").overlayScrollbars({});
         if (VRxAxis.length === 0) {
             $("#trend_linechart1_canvas").html("No Data Available");
@@ -31318,7 +31325,7 @@ function refreshProgressReport() {
             }],
             tooltip: {
 
-                formatter: function() {
+                formatter: function () {
                     let index = shortCategories.indexOf(this.x)
                     let comment = shortStat[index]
                     return comment + "<br><b>" + this.series.name + ": " + this.y + "%"
@@ -31326,27 +31333,27 @@ function refreshProgressReport() {
                 //pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
             },
             yAxis: [{
-                    labels: {
-                        //  step: 5,
-                    },
-                    min: 0,
-                    max: 100,
-                    tickInterval: 10,
-                    position: 'top',
-                    title: {
-                        text: "Action Items Progress(%)"
-                    }
+                labels: {
+                    //  step: 5,
                 },
-                {
-                    min: 0,
-                    max: 100,
-                    tickInterval: 10,
-                    //overflow: 'allow',
-                    opposite: true,
-                    title: {
-                        text: "Action Items Progress(%)"
-                    }
+                min: 0,
+                max: 100,
+                tickInterval: 10,
+                position: 'top',
+                title: {
+                    text: "Action Items Progress(%)"
                 }
+            },
+            {
+                min: 0,
+                max: 100,
+                tickInterval: 10,
+                //overflow: 'allow',
+                opposite: true,
+                title: {
+                    text: "Action Items Progress(%)"
+                }
+            }
             ],
             credits: {
                 enabled: false
@@ -31401,15 +31408,15 @@ function refreshProgressReport() {
                 }
             },
             series: [{
-                    name: "Value Delivered",
-                    data: valueDelivered,
-                    index: 1
-                },
-                {
-                    name: "Value yet to be delivered",
-                    data: valueNotDelivered,
-                    index: 0
-                }
+                name: "Value Delivered",
+                data: valueDelivered,
+                index: 1
+            },
+            {
+                name: "Value yet to be delivered",
+                data: valueNotDelivered,
+                index: 0
+            }
             ]
         };
 
@@ -31518,10 +31525,10 @@ function setManagementReports() {
     }
 
     if (parent.length) {
-        var result = parent.shift().reduce(function(res, v) {
+        var result = parent.shift().reduce(function (res, v) {
             if (
                 res.indexOf(v) === -1 &&
-                parent.every(function(a) {
+                parent.every(function (a) {
                     return a.indexOf(v) !== -1;
                 })
             )
@@ -31554,7 +31561,14 @@ function setManagementReports() {
     }
     manProjects = reportStrategies;
     //GmgmtReportCurrency = manProjects[0][6][1];
-    GmgmtReportCurrency = "USD";
+    company_name = getCompanyName(Gemployer);
+    //TEMP
+    if (company_name == 'Test') {
+        GmgmtReportCurrency = "AUD";
+    } else {
+        GmgmtReportCurrency = "USD";
+    }
+    // TEMP END
     manValuesByProjectData = [];
     manAllPendingActionsData = [];
     manAllPendingStrategiesData = [];
@@ -31890,40 +31904,40 @@ function setManagementReports() {
 
     //Set array fro SS H-Chart
     let projectImpStatusData = [{
-            name: "Completed",
-            data: ProjectSSCompleted,
-            index: 2
-        },
-        {
-            name: "On Schedule",
-            data: ProjectSSOnSchedule,
-            index: 1
-        },
-        {
-            name: "Behind Schedule",
-            data: ProjectSSBehindSchedule,
-            index: 0
-        }
+        name: "Completed",
+        data: ProjectSSCompleted,
+        index: 2
+    },
+    {
+        name: "On Schedule",
+        data: ProjectSSOnSchedule,
+        index: 1
+    },
+    {
+        name: "Behind Schedule",
+        data: ProjectSSBehindSchedule,
+        index: 0
+    }
     ];
 
     //console.log(projectImpStatusData);
 
     //Set array for H-chart
     let ActionStatusPerProject = [{
-            name: "Completed",
-            data: ActionCompleted,
-            index: 2
-        },
-        {
-            name: "On Schedule",
-            data: ActionOnschedule,
-            index: 1
-        },
-        {
-            name: "Behind Schedule",
-            data: ActionBehidSchedule,
-            index: 0
-        }
+        name: "Completed",
+        data: ActionCompleted,
+        index: 2
+    },
+    {
+        name: "On Schedule",
+        data: ActionOnschedule,
+        index: 1
+    },
+    {
+        name: "Behind Schedule",
+        data: ActionBehidSchedule,
+        index: 0
+    }
     ];
 
     //console.log(ActionStatusPerProject);
@@ -32369,17 +32383,17 @@ function setManagementReports() {
             "                                            </tr>";
     }
 
-    $(document).ready(function() {
-        $("#search_project").on("keyup", function() {
+    $(document).ready(function () {
+        $("#search_project").on("keyup", function () {
             var value = $(this)
                 .val()
                 .toLowerCase();
-            $("#projects_table tr").filter(function() {
+            $("#projects_table tr").filter(function () {
                 $(this).toggle(
                     $(this)
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value) > -1
+                        .text()
+                        .toLowerCase()
+                        .indexOf(value) > -1
                 );
             });
         });
@@ -32450,23 +32464,23 @@ function setManagementReports() {
             "                                            </tr>";
     }
 
-    $(document).ready(function() {
-        $("#TextStrategies").on("keyup", function() {
+    $(document).ready(function () {
+        $("#TextStrategies").on("keyup", function () {
             var value = $(this)
                 .val()
                 .toLowerCase();
-            $("#Table1 tr").filter(function() {
+            $("#Table1 tr").filter(function () {
                 $(this).toggle(
                     $(this)
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value) > -1
+                        .text()
+                        .toLowerCase()
+                        .indexOf(value) > -1
                 );
             });
         });
 
         //NEW sns13
-        $(".pendingStrategies").on("click", function() {
+        $(".pendingStrategies").on("click", function () {
             //alert('test');
             $(".pendingStrategies").removeClass("active");
             $(this).addClass("active");
@@ -32474,12 +32488,12 @@ function setManagementReports() {
                 .attr("useThis")
                 .toLowerCase();
 
-            $("#Table1 tr").filter(function() {
+            $("#Table1 tr").filter(function () {
                 $(this).toggle(
                     $(this)
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value) > -1
+                        .text()
+                        .toLowerCase()
+                        .indexOf(value) > -1
                 );
             });
         });
@@ -32554,24 +32568,24 @@ function setManagementReports() {
             "                                            </tr>";
     }
 
-    $(document).ready(function() {
-        $("#Text1").on("keyup", function() {
+    $(document).ready(function () {
+        $("#Text1").on("keyup", function () {
             var value = $(this)
                 .val()
                 .toLowerCase();
-            $("#Table2 tr").filter(function() {
+            $("#Table2 tr").filter(function () {
                 $(this).toggle(
                     $(this)
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value) > -1
+                        .text()
+                        .toLowerCase()
+                        .indexOf(value) > -1
                 );
             });
         });
 
 
         //NEW sns13
-        $(".pendingAction").on("click", function() {
+        $(".pendingAction").on("click", function () {
             //alert('test');
             $(".pendingAction").removeClass("active");
             $(this).addClass("active");
@@ -32579,12 +32593,12 @@ function setManagementReports() {
                 .attr("useThis")
                 .toLowerCase();
 
-            $("#Table2 tr").filter(function() {
+            $("#Table2 tr").filter(function () {
                 $(this).toggle(
                     $(this)
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value) > -1
+                        .text()
+                        .toLowerCase()
+                        .indexOf(value) > -1
                 );
             });
         });
@@ -32667,17 +32681,17 @@ function setManagementReports() {
             "</td>" +
             "                                            </tr>";
     }
-    $(document).ready(function() {
-        $("#Text2").on("keyup", function() {
+    $(document).ready(function () {
+        $("#Text2").on("keyup", function () {
             var value = $(this)
                 .val()
                 .toLowerCase();
-            $("#Table3 tr").filter(function() {
+            $("#Table3 tr").filter(function () {
                 $(this).toggle(
                     $(this)
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value) > -1
+                        .text()
+                        .toLowerCase()
+                        .indexOf(value) > -1
                 );
             });
         });
@@ -32695,7 +32709,7 @@ function setManagementReports() {
         "    </div>";
 
     document.getElementById("mainbody").innerHTML = body;
-    $("body").mouseover(function(ev) {
+    $("body").mouseover(function (ev) {
         var currentclass = $(ev.target).attr("class");
         var tooltipEl = document.getElementById("chartjs-tooltip");
         if (tooltipEl) tooltipEl.innerHTML = "";
@@ -32704,7 +32718,7 @@ function setManagementReports() {
         if (tooltipE2) tooltipE2.innerHTML = "";
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip({
             container: "body",
             html: true
@@ -32901,7 +32915,7 @@ function setManagementReports() {
     } else {
         GraphSize = 30;
     }
-    $(function() {
+    $(function () {
         let action_item_status_perproject = {
 
             chart: {
@@ -32936,27 +32950,27 @@ function setManagementReports() {
                 pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
             },
             yAxis: [{
-                    labels: {
-                        //  step: 5,
-                    },
-                    min: 0,
-                    max: 100,
-                    tickInterval: 10,
-                    position: 'top',
-                    title: {
-                        text: "Action Items Progress(%)"
-                    }
+                labels: {
+                    //  step: 5,
                 },
-                {
-                    min: 0,
-                    max: 100,
-                    tickInterval: 10,
-                    //overflow: 'allow',
-                    opposite: true,
-                    title: {
-                        text: "Action Items Progress(%)"
-                    }
+                min: 0,
+                max: 100,
+                tickInterval: 10,
+                position: 'top',
+                title: {
+                    text: "Action Items Progress(%)"
                 }
+            },
+            {
+                min: 0,
+                max: 100,
+                tickInterval: 10,
+                //overflow: 'allow',
+                opposite: true,
+                title: {
+                    text: "Action Items Progress(%)"
+                }
+            }
             ],
             credits: {
                 enabled: false
@@ -33016,27 +33030,27 @@ function setManagementReports() {
                 pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
             },
             yAxis: [{
-                    labels: {
-                        //  step: 5,
-                    },
-                    min: 0,
-                    max: 100,
-                    tickInterval: 10,
-                    position: 'top',
-                    title: {
-                        text: "Strategy Statements Progress (%)"
-                    }
+                labels: {
+                    //  step: 5,
                 },
-                {
-                    min: 0,
-                    max: 100,
-                    tickInterval: 10,
-                    //overflow: 'allow',
-                    opposite: true,
-                    title: {
-                        text: "Strategy Statements Progress (%)"
-                    }
+                min: 0,
+                max: 100,
+                tickInterval: 10,
+                position: 'top',
+                title: {
+                    text: "Strategy Statements Progress (%)"
                 }
+            },
+            {
+                min: 0,
+                max: 100,
+                tickInterval: 10,
+                //overflow: 'allow',
+                opposite: true,
+                title: {
+                    text: "Strategy Statements Progress (%)"
+                }
+            }
             ],
             credits: {
                 enabled: false
@@ -33064,7 +33078,7 @@ function setManagementReports() {
 
     ganttChartLowerCursor = -1;
     ganttChartUpperCursor = 0;
-    $(function() {
+    $(function () {
         $(".cus_scroll").overlayScrollbars({});
     });
 }

@@ -29,6 +29,7 @@ if ($_POST['mailAction'] == 'ssEditMailData') {
   );
   //print_r($email_data);
   $email_response = sendEmailNew($email_data);
+  print_r($email_response);
 }
 //15th edit ss ends
 
@@ -46,6 +47,7 @@ if ($_POST['mailAction'] == 'ssDropped') {
     );
    // print_r($email_data);
     $email_response = sendEmailNew($email_data);
+    print_r($email_response);
   }
 }
 //28th ss dropped ends
@@ -64,6 +66,7 @@ if ($_POST['mailAction'] == 'SSUnSelectImplementation') {
     );
     //print_r($email_data);
     $email_response = sendEmailNew($email_data);
+    print_r($email_response);
   }
 }
 //32nd SS is unselected ends
@@ -78,6 +81,7 @@ if ($_POST['mailAction'] == 'SSvalueRelizedUpdate') {
   );
   //print_r($email_data);
   $email_response = sendEmailNew($email_data);
+  print_r($email_response);
 }
 //34th Value Realized is updated for a SS ends
 
@@ -92,6 +96,7 @@ if ($_POST['mailAction'] == 'ActionItemCompleted') {
   );
   //print_r($email_data);
   $email_response = sendEmailNew($email_data);
+  print_r($email_response);
 }
 //35th Action Item is marked as complete ends
 
@@ -110,6 +115,7 @@ if ($_POST['mailAction'] == 'ActionItemDropped') {
     );
    // print_r($email_data);
     $email_response = sendEmailNew($email_data);
+    print_r($email_response);
   }
 }
 //36th Action Item is dropped ends
@@ -124,6 +130,7 @@ if ($_POST['mailAction'] == 'ActionItemUpdated') {
   );
  // print_r($email_data);
   $email_response = sendEmailNew($email_data);
+  print_r($email_response);
 }
 //38th Action Item progess percentage is updated starts
 
@@ -137,6 +144,7 @@ if ($_POST['mailAction'] == 'NewProjectCreated') {
   );
   //print_r($email_data);
  $email_response = sendEmailNew($email_data);
+ print_r($email_response);
 }
 //02nd New Project is created ends 
 
@@ -150,6 +158,7 @@ if ($_POST['mailAction'] == 'NewParticipantadded') {
   );
   //print_r($email_data);
   $email_response = sendEmailNew($email_data);
+  print_r($email_response);
 }
 //03rd Participant is newly added ends
 //3rd 2nd part starts
@@ -166,6 +175,7 @@ if($_POST['mailAction'] == 'ExiParticipantadded')
   );
    //print_r($email_data);
   $email_response = sendEmailNew($email_data); 
+  print_r($email_response);
 }
 }
 //3rd 2nd part ends
@@ -182,6 +192,7 @@ if ($_POST['mailAction'] == 'actionOwner') {
   );
   //print_r($email_data);
   $email_response = sendEmailNew($email_data);
+  print_r($email_response);
    
 }
 //11 - Participant is added to a new task
@@ -202,9 +213,7 @@ if ($_POST['mailAction'] == 'taskParticipant') {
   $email_response = sendEmailNew($email_data);
   print_r($email_response);
 
-  }
-  
-  
+  }  
 }
 
 
@@ -228,7 +237,8 @@ function sendEmailNew($email_data)
   $sendgrid = new \SendGrid($Sendgrid);
   try {
     $response = $sendgrid->send($email);
-    return $response;
+   // return $response;
+   return $response->statusCode();
   } catch (Exception $e) {
     return $e->getMessage();
   }

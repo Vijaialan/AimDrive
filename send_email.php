@@ -197,6 +197,7 @@ if ($_POST['mailAction'] == 'taskParticipant') {
   );
   //print_r($email_data);
   $email_response = sendEmailNew($email_data);
+  print_r($email_response);
   
 }
 

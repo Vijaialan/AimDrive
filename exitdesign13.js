@@ -12427,8 +12427,10 @@ function setEDMyProjectsBody() {
     manProjects = Gstrategies;
     //manProjects = reportStrategies;
     //GmgmtReportCurrency = manProjects[0][6][1];
-    console.log(company_name);
+    
     company_name = getCompanyName(Gemployer);
+    console.log(company_name);
+
     //TEMP
     if (company_name == 'Test') {
         GmgmtReportCurrency = "AUD";

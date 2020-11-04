@@ -10027,6 +10027,7 @@ function addPersonToProject() {
 
         //,datatype: "json"
     });
+    
     //console.log(updateEDPersonsAddPart);
     //03rd Participant is newly added starts 
     //console.log(Gcurrentdata);

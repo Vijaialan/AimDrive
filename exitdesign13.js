@@ -23100,8 +23100,9 @@ function editEDSSS(page, ssid, ssObject) {
         document.getElementById("strategy_no").value = oentry[12];
         document.getElementById("priority_txt").value = oentry[3];
         document.getElementById("strategy_statmnt").value = oentry[1];
-        document.getElementById("input_startdate").value = format(input_startdate);
-        document.getElementById("input_enddate").value = format(input_enddate);
+        //console.log(input_startdate);
+        document.getElementById("input_startdate").value = input_startdate !='' ? format(input_startdate) : "";
+        document.getElementById("input_enddate").value = input_enddate != '' ? format(input_enddate) : "";
         document.getElementById("multiselect_owners").value = oentry[19];
         $("#edit_strategy_modal").modal("show");
         $(".opt_btn_wrp").css("visibility", "hidden");
@@ -31574,7 +31575,7 @@ function setManagementReports() {
          GmgmtReportCurrency = "USD";
      }
      // TEMP END
-     
+
     manValuesByProjectData = [];
     manAllPendingActionsData = [];
     manAllPendingStrategiesData = [];

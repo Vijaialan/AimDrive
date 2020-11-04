@@ -10027,7 +10027,7 @@ function addPersonToProject() {
 
         //,datatype: "json"
     });
-    
+
     //console.log(updateEDPersonsAddPart);
     //03rd Participant is newly added starts 
     //console.log(Gcurrentdata);
@@ -10048,7 +10048,7 @@ function addPersonToProject() {
         type: "POST",
         data: NewParticipantadded,
         success: function(msg) {
-            console.log(msg);
+            //console.log(msg);
         }
     });
     //03rd Participant is newly added ends
@@ -21953,7 +21953,7 @@ function updateParticipants() {
         type: "POST",
         data: ExiParticipantadded,
         success: function(msg) {
-            console.log(msg);
+            //console.log(msg);
         }
     });
     //03rd 2nd part Participant is newly added ends

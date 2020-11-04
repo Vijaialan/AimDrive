@@ -186,10 +186,13 @@ if ($_POST['mailAction'] == 'actionOwner') {
 }
 //11 - Participant is added to a new task
 if ($_POST['mailAction'] == 'taskParticipant') {
+  $TaskPart = $_POST['email'];
 
-  $body_message = CreateHtml($_POST);
-  $email_data = array(
-    'to' => $_POST['email'][0],
+  for($i=0; $i < count($TaskPart);$i++)
+  {
+    $body_message = CreateHtml($_POST);
+    $email_data = array(
+    'to' => $TaskPart[$i],
     //'to' => implode(', ', $_POST['email']),
     'to_name' => '',
     'subject' => 'AIM&DRIVE : Project Setup Tasks assigned for ' . $_POST['ProjectName'],
@@ -198,6 +201,9 @@ if ($_POST['mailAction'] == 'taskParticipant') {
   //print_r($email_data);
   $email_response = sendEmailNew($email_data);
   print_r($email_response);
+
+  }
+  
   
 }
 

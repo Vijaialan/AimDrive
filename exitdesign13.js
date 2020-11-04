@@ -19661,7 +19661,8 @@ function addEDProject() {
     document.getElementById("activeProject").checked = false;
     //generateCurrencyDatalist("currlist", "currencySelector");
     document.getElementById("base_currency").value = "";
-    if (loginGusername == 'neil@value-ink.com') {
+    //console.log(company_name);
+    if (company_name == 'Test') {
         document.getElementById("base_currency").value = "AUD";
     } else {
         document.getElementById("base_currency").value = "USD";
@@ -19705,6 +19706,7 @@ function editEDProject(i) {
     loginGusername = localStorage.getItem("Gusername");
     editingProject = Gstrategies[i][0];
     var pentry = Gstrategies[i];
+    //console.log(pentry);
     $(".opt_btn_wrp").hide();
     $("#projects_modal").modal("show");
     $(".projectsTitle").text("Edit Project");
@@ -19730,7 +19732,7 @@ function editEDProject(i) {
         //document.getElementById("base_currency").value = "";
         document.getElementById("project_value").value = "";
     }
-    if (loginGusername == 'neil@value-ink.com') {
+    if (pentry[1][1] == 'Test') {
         document.getElementById("base_currency").value = "AUD";
     } else {
         document.getElementById("base_currency").value = "USD";
@@ -19873,12 +19875,12 @@ function saveEDProject() {
     var compname = document.getElementById("client_name").value;
     var projdes = document.getElementById("project_desc").value;
     var deptname = document.getElementById("client_dept").value;
-    if (loginGusername == 'admin@anklesaria.com') {
-        var basecurrency = 'AUD';
-    } else {
-        var basecurrency = document.getElementById("base_currency").value;
-    }
-    //    var basecurrency = document.getElementById("base_currency").value;
+    // if (loginGusername == 'admin@anklesaria.com') {
+    //     var basecurrency = 'AUD';
+    // } else {
+    //     var basecurrency = document.getElementById("base_currency").value;
+    // }
+    var basecurrency = document.getElementById("base_currency").value;
     var new_supplier = document.getElementById("supp_name").value;
     var start_date = getDateById("project_start_date");
     start_date = start_date.split(",");

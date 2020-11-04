@@ -12425,19 +12425,19 @@ function setEDMyProjectsBody() {
     var allManProjectsDataPro = [];
     var PrjectData = [];
     manProjects = Gstrategies;
-    //manProjects = reportStrategies;
+    manProjects = reportStrategies;
     //GmgmtReportCurrency = manProjects[0][6][1];
-    
-    company_name = getCompanyName(Gemployer);
-    console.log(company_name);
 
     //TEMP
+    var entry = getPersonEntry(Gusername);
+    company_name = entry[7];
     if (company_name == 'Test') {
         GmgmtReportCurrency = "AUD";
     } else {
         GmgmtReportCurrency = "USD";
     }
     // TEMP END
+
     manActiveIndex = 0;
     manCompletedIndex = 0;
     manDroppedIndex = 0;
@@ -31564,15 +31564,17 @@ function setManagementReports() {
     }
     manProjects = reportStrategies;
     //GmgmtReportCurrency = manProjects[0][6][1];
-    company_name = getCompanyName(Gemployer);
-    console.log(company_name);
-    //TEMP
-    if (company_name == 'Test') {
-        GmgmtReportCurrency = "AUD";
-    } else {
-        GmgmtReportCurrency = "USD";
-    }
-    // TEMP END
+
+     //TEMP
+     var entry = getPersonEntry(Gusername);
+     company_name = entry[7];
+     if (company_name == 'Test') {
+         GmgmtReportCurrency = "AUD";
+     } else {
+         GmgmtReportCurrency = "USD";
+     }
+     // TEMP END
+     
     manValuesByProjectData = [];
     manAllPendingActionsData = [];
     manAllPendingStrategiesData = [];

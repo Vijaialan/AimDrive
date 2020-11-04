@@ -206,7 +206,7 @@ function sendEmailNew($email_data)
 {
 
   require "sendgrid/sendgrid-php.php";
-  require_once '/var/secure/MailApiKey.php';
+  require '/var/secure/MailApiKey.php';
 
   $email = new \SendGrid\Mail\Mail();
   $email->setFrom("conroy.fernandes@anklesaria.com", "AIM&DRIVE");

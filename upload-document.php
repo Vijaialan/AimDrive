@@ -1,5 +1,5 @@
 <?php
-// [company bu] project (no longer strategy) step file title desc filename docurl
+// [company bu] project (no longer strategy) step file title desc filename docurl.
 // either file (and filename) or docurl is to be supplied
 //  (if (not file)  ;; this is a bookmark
 //    (setf output (ad::add-bookmark strategy step person docurl title desc))

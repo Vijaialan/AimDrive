@@ -1,5 +1,5 @@
 <?php
-// [company bu project] doc
+// [company bu project] doc.
 // (setf output (ad::modify-doc document (ad::theperson who) title desc))
 require 'CONNECT_TO_DB.php';
 //$row is the row of person for this user

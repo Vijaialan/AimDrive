@@ -10031,26 +10031,26 @@ function addPersonToProject() {
     //console.log(updateEDPersonsAddPart);
     //03rd Participant is newly added starts 
     //console.log(Gcurrentdata);
-    var today = new Date();
-    var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
-    var NewParticipantadded = {
-        email: email,
-        ProjectName: Gcurrentdata[0],
-        ProjectDescription: Gcurrentdata[1],
-        SupplierName: getCompanyName(cid),
-        ProjectValue: CurrencyFormat(Gcurrentdata[2][0], Gcurrentdata[2][1], 0, "", ","),
-        StartDate: getOnlyDate(date),
-        mailAction: 'NewParticipantadded',
-        mailIntro: 'You have been added to the Project ' + Gcurrentdata[0]
-    };
-    $.ajax({
-        url: "send_email.php",
-        type: "POST",
-        data: NewParticipantadded,
-        success: function (msg) {
-            //console.log(msg);
-        }
-    });
+    // var today = new Date();
+    // var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+    // var NewParticipantadded = {
+    //     email: email,
+    //     ProjectName: Gcurrentdata[0],
+    //     ProjectDescription: Gcurrentdata[1],
+    //     SupplierName: getCompanyName(cid),
+    //     ProjectValue: CurrencyFormat(Gcurrentdata[2][0], Gcurrentdata[2][1], 0, "", ","),
+    //     StartDate: getOnlyDate(date),
+    //     mailAction: 'NewParticipantadded',
+    //     mailIntro: 'You have been added to the Project ' + Gcurrentdata[0]
+    // };
+    // $.ajax({
+    //     url: "send_email.php",
+    //     type: "POST",
+    //     data: NewParticipantadded,
+    //     success: function (msg) {
+    //         //console.log(msg);
+    //     }
+    // });
     //03rd Participant is newly added ends
 }
 
@@ -18725,29 +18725,29 @@ function saveTask() {
         });
     }
     //11 - Participant is added to a new task
-    var tDate = document.getElementById("input_taskdate").value;
-    for (var i = 0; i < taskPerformers.length; i++) {
-        var emailid = getEmailFromId(taskPerformers[i]);
-        taskperformersemail.push(emailid[0]);
-    }
-    var ProjectTaskData = {
-        email: taskperformersemail,
-        ProjectName: getStrategyName(Gcurrentstrategy),
-        TaskDescription: document.getElementById("tasktext").value,
-        DueDate: getOnlyDate1(tDate),
-        ProcessStep: document.getElementById("taskprocess").value,
-        mailAction: 'taskParticipant',
-        mailIntro: 'You have been added to a new project task for ' + getStrategyName(Gcurrentstrategy)
-    }
-    //console.log(ProjectTaskData);
-    $.ajax({
-        url: "send_email.php",
-        type: "POST",
-        data: ProjectTaskData,
-        success: function (msg) {
-            console.log(msg);
-        }
-    });
+    // var tDate = document.getElementById("input_taskdate").value;
+    // for (var i = 0; i < taskPerformers.length; i++) {
+    //     var emailid = getEmailFromId(taskPerformers[i]);
+    //     taskperformersemail.push(emailid[0]);
+    // }
+    // var ProjectTaskData = {
+    //     email: taskperformersemail,
+    //     ProjectName: getStrategyName(Gcurrentstrategy),
+    //     TaskDescription: document.getElementById("tasktext").value,
+    //     DueDate: getOnlyDate1(tDate),
+    //     ProcessStep: document.getElementById("taskprocess").value,
+    //     mailAction: 'taskParticipant',
+    //     mailIntro: 'You have been added to a new project task for ' + getStrategyName(Gcurrentstrategy)
+    // }
+    // //console.log(ProjectTaskData);
+    // $.ajax({
+    //     url: "send_email.php",
+    //     type: "POST",
+    //     data: ProjectTaskData,
+    //     success: function (msg) {
+    //         console.log(msg);
+    //     }
+    // });
     //11 - END
 }
 
@@ -18984,31 +18984,31 @@ function saveWorkPlan() {
         wpPerformersemail.push(emailid[0]);
     }
     //var email = getEmailFromId(ssowner);
-    var addParticipantData = {
-        email: wpPerformersemail,
-        ProjectName: getStrategyName(Gcurrentstrategy),
-        Agenda: document.getElementById("workplantext").value,
-        ProcessStep: document.getElementById("workprocess").value,
-        SessionType: document.getElementById("worksessiontype").value,
-        Date: getPrintDate(starttime),
-        Time: getOnlyTime(starttime),
-        Location: document.getElementById("worklocation").value,
-        //Gusername: encodeURIComponent(Gusername),
-        //project: encodeURIComponent(Gcurrentstrategy),
-        //company: getCompanyForProject(Gcurrentstrategy),
-        //bu: getBUForProject(Gcurrentstrategy),
-        // endtime: endtime,
-        mailAction: 'ParticipantSelected',
-        mailIntro: 'You have been invited to participate in the Workshop for ' + getStrategyName(Gcurrentstrategy)
-    };
-    $.ajax({
-        url: "send_email.php",
-        type: "POST",
-        data: addParticipantData,
-        success: function (msg) {
-            console.log(msg);
-        }
-    });
+    // var addParticipantData = {
+    //     email: wpPerformersemail,
+    //     ProjectName: getStrategyName(Gcurrentstrategy),
+    //     Agenda: document.getElementById("workplantext").value,
+    //     ProcessStep: document.getElementById("workprocess").value,
+    //     SessionType: document.getElementById("worksessiontype").value,
+    //     Date: getPrintDate(starttime),
+    //     Time: getOnlyTime(starttime),
+    //     Location: document.getElementById("worklocation").value,
+    //     //Gusername: encodeURIComponent(Gusername),
+    //     //project: encodeURIComponent(Gcurrentstrategy),
+    //     //company: getCompanyForProject(Gcurrentstrategy),
+    //     //bu: getBUForProject(Gcurrentstrategy),
+    //     // endtime: endtime,
+    //     mailAction: 'ParticipantSelected',
+    //     mailIntro: 'You have been invited to participate in the Workshop for ' + getStrategyName(Gcurrentstrategy)
+    // };
+    // $.ajax({
+    //     url: "send_email.php",
+    //     type: "POST",
+    //     data: addParticipantData,
+    //     success: function (msg) {
+    //         console.log(msg);
+    //     }
+    // });
     //05th Participant is selected ends
 
 }
@@ -19986,29 +19986,29 @@ function saveEDProject() {
         //,datatype: "json"
     });
     //02nd New Project is created starts 
-    for (var i = 0; i < userSelectedSuppliers.length; i++) {
-        var cmp_name = getCompanyName(userSelectedSuppliers[i]);
-        company_name_short.push(cmp_name);
-    }
-    var NewProjectCreated = {
-        email: Gusername,
-        ProjectName: name,
-        ProjectDescription: projdes,
-        ClientName: compname,
-        SupplierName: company_name_short.join(),
-        ProjectValue: CurrencyFormat(save, basecurrency, 0, "", ","),
-        StartDate: getOnlyDate(start_date),
-        mailAction: 'NewProjectCreated',
-        mailIntro: 'New Project Created.'
-    };
-    $.ajax({
-        url: "send_email.php",
-        type: "POST",
-        data: NewProjectCreated,
-        success: function (msg) {
-            console.log(msg);
-        }
-    });
+    // for (var i = 0; i < userSelectedSuppliers.length; i++) {
+    //     var cmp_name = getCompanyName(userSelectedSuppliers[i]);
+    //     company_name_short.push(cmp_name);
+    // }
+    // var NewProjectCreated = {
+    //     email: Gusername,
+    //     ProjectName: name,
+    //     ProjectDescription: projdes,
+    //     ClientName: compname,
+    //     SupplierName: company_name_short.join(),
+    //     ProjectValue: CurrencyFormat(save, basecurrency, 0, "", ","),
+    //     StartDate: getOnlyDate(start_date),
+    //     mailAction: 'NewProjectCreated',
+    //     mailIntro: 'New Project Created.'
+    // };
+    // $.ajax({
+    //     url: "send_email.php",
+    //     type: "POST",
+    //     data: NewProjectCreated,
+    //     success: function (msg) {
+    //         console.log(msg);
+    //     }
+    // });
     //02nd New Project is created ends
 }
 
@@ -21734,24 +21734,24 @@ function saveEDSSAction() {
 
 
     //22 - Action Item Owner is assigned
-    var email = getEmailFromId(id);
-    var actionmailData = {
-        email: email[0],
-        ProjectName: getCompanyForProject(Gcurrentstrategy),
-        StrategyStatementNumber: GcurrentSS,
-        StrategyStatementDescription: '',
-        ActionItemDescription: desc,
-        ActionTargetDate: getOnlyDate(dd),
-        mailAction: 'actionOwner'
-    }
-    $.ajax({
-        url: "send_email.php",
-        type: "POST",
-        data: actionmailData,
-        success: function (msg) {
-            //console.log(msg);
-        }
-    });
+    // var email = getEmailFromId(id);
+    // var actionmailData = {
+    //     email: email[0],
+    //     ProjectName: getCompanyForProject(Gcurrentstrategy),
+    //     StrategyStatementNumber: GcurrentSS,
+    //     StrategyStatementDescription: '',
+    //     ActionItemDescription: desc,
+    //     ActionTargetDate: getOnlyDate(dd),
+    //     mailAction: 'actionOwner'
+    // }
+    // $.ajax({
+    //     url: "send_email.php",
+    //     type: "POST",
+    //     data: actionmailData,
+    //     success: function (msg) {
+    //         //console.log(msg);
+    //     }
+    // });
     //22 - END
 
     storeSSPageState();
@@ -21944,30 +21944,30 @@ function updateParticipants() {
 
 
     //03rd 2nd part Participant is newly added starts 
-    for (var i = 0; i < currentParticipantIDs.length; i++) {
-        var emailid = getEmailFromId(currentParticipantIDs[i]);
-        Exparticipentsemail.push(emailid[0]);
-    }
+    // for (var i = 0; i < currentParticipantIDs.length; i++) {
+    //     var emailid = getEmailFromId(currentParticipantIDs[i]);
+    //     Exparticipentsemail.push(emailid[0]);
+    // }
 
-    var today = new Date();
-    var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
-    var ExiParticipantadded = {
-        email: Exparticipentsemail,
-        ProjectName: Gcurrentdata[0],
-        ProjectDescription: Gcurrentdata[1],
-        ProjectValue: CurrencyFormat(Gcurrentdata[2][0], Gcurrentdata[2][1], 0, "", ","),
-        StartDate: date,
-        mailAction: 'ExiParticipantadded',
-        mailIntro: 'You have been added to the Project ' + Gcurrentdata[0]
-    };
-    $.ajax({
-        url: "send_email.php",
-        type: "POST",
-        data: ExiParticipantadded,
-        success: function (msg) {
-            //console.log(msg);
-        }
-    });
+    // var today = new Date();
+    // var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+    // var ExiParticipantadded = {
+    //     email: Exparticipentsemail,
+    //     ProjectName: Gcurrentdata[0],
+    //     ProjectDescription: Gcurrentdata[1],
+    //     ProjectValue: CurrencyFormat(Gcurrentdata[2][0], Gcurrentdata[2][1], 0, "", ","),
+    //     StartDate: date,
+    //     mailAction: 'ExiParticipantadded',
+    //     mailIntro: 'You have been added to the Project ' + Gcurrentdata[0]
+    // };
+    // $.ajax({
+    //     url: "send_email.php",
+    //     type: "POST",
+    //     data: ExiParticipantadded,
+    //     success: function (msg) {
+    //         //console.log(msg);
+    //     }
+    // });
     //03rd 2nd part Participant is newly added ends
 
     var operations = [];
@@ -22316,29 +22316,29 @@ function saveNewProgressNote() {
         document.getElementById("setCompleted").checked = false;
         $("#progressnote_modal").modal("hide");
         //35th Action Item is marked as complete starts
-        var names = getFirstLast(Gusername);
-        var SSoentry = findSSEntry(GcurrentSS);
-        var email = getEmailFromId(SSoentry[19]);
-        var ActionItemCompleted = {
-            email: email[0],
-            ProjectName: getStrategyName(Gcurrentstrategy),
-            StrategyStatementNumber: SSoentry[12],
-            StrategyStatementDescription: SSoentry[1],
-            ActionItemDescription: actionDesc,
-            TargetDate: actionDeadline,
-            CompletionDate: getOnlyDate(getDateById("date-picker_progress")),
-            CompletedBy: names[0] + " " + names[1],
-            mailAction: 'ActionItemCompleted',
-            mailIntro: 'Action Item for Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been completed'
-        };
-        $.ajax({
-            url: "send_email.php",
-            type: "POST",
-            data: ActionItemCompleted,
-            success: function (msg) {
-                console.log(msg);
-            }
-        });
+        // var names = getFirstLast(Gusername);
+        // var SSoentry = findSSEntry(GcurrentSS);
+        // var email = getEmailFromId(SSoentry[19]);
+        // var ActionItemCompleted = {
+        //     email: email[0],
+        //     ProjectName: getStrategyName(Gcurrentstrategy),
+        //     StrategyStatementNumber: SSoentry[12],
+        //     StrategyStatementDescription: SSoentry[1],
+        //     ActionItemDescription: actionDesc,
+        //     TargetDate: actionDeadline,
+        //     CompletionDate: getOnlyDate(getDateById("date-picker_progress")),
+        //     CompletedBy: names[0] + " " + names[1],
+        //     mailAction: 'ActionItemCompleted',
+        //     mailIntro: 'Action Item for Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been completed'
+        // };
+        // $.ajax({
+        //     url: "send_email.php",
+        //     type: "POST",
+        //     data: ActionItemCompleted,
+        //     success: function (msg) {
+        //         console.log(msg);
+        //     }
+        // });
         //35th Action Item is marked as complete ends
         return false;
     }
@@ -22379,38 +22379,38 @@ function saveNewProgressNote() {
         document.getElementById("setCompleted").checked = false;
         $("#progressnote_modal").modal("hide");
         //36th Action Item is dropped starts
-        var activeAction = findActionEntryInSS(GcurrentSS, activeActionPos); //for taking currect action 
-        var names = getFirstLast(Gusername);
-        var SSoentry = findSSEntry(GcurrentSS);
-        var email = getEmailFromId(SSoentry[19]);
-        let SSactionOwners = getActionOwners(SSoentry[6]);
-        var ActionOwn = activeAction[3].split(',');
-        for (var i = 0; i < ActionOwn.length; i++) {
-            var emailid = getEmailFromId(ActionOwn[i]);
-            SSactionOwnersemail.push(emailid[0]);
-        }
-        var ActionItemDropped = {
-            email: email[0],
-            ProjectName: getStrategyName(Gcurrentstrategy),
-            StrategyStatementNumber: SSoentry[12],
-            StrategyStatementDescription: SSoentry[1],
-            ActionItemDescription: actionDesc,
-            DroppingDate: getOnlyDate(date),
-            Reason: comment,
-            DroppedBy: names[0] + " " + names[1],
-            ActionOwners: SSactionOwnersemail,
-            mailAction: 'ActionItemDropped',
-            mailIntro: 'Action Item for Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been dropped',
-        };
-        $.ajax({
-            url: "send_email.php",
-            type: "POST",
-            data: ActionItemDropped,
-            success: function (msg) {
-                console.log(msg);
-            }
-        });
-        console.log(ActionItemDropped);
+        // var activeAction = findActionEntryInSS(GcurrentSS, activeActionPos); //for taking currect action 
+        // var names = getFirstLast(Gusername);
+        // var SSoentry = findSSEntry(GcurrentSS);
+        // var email = getEmailFromId(SSoentry[19]);
+        // let SSactionOwners = getActionOwners(SSoentry[6]);
+        // var ActionOwn = activeAction[3].split(',');
+        // for (var i = 0; i < ActionOwn.length; i++) {
+        //     var emailid = getEmailFromId(ActionOwn[i]);
+        //     SSactionOwnersemail.push(emailid[0]);
+        // }
+        // var ActionItemDropped = {
+        //     email: email[0],
+        //     ProjectName: getStrategyName(Gcurrentstrategy),
+        //     StrategyStatementNumber: SSoentry[12],
+        //     StrategyStatementDescription: SSoentry[1],
+        //     ActionItemDescription: actionDesc,
+        //     DroppingDate: getOnlyDate(date),
+        //     Reason: comment,
+        //     DroppedBy: names[0] + " " + names[1],
+        //     ActionOwners: SSactionOwnersemail,
+        //     mailAction: 'ActionItemDropped',
+        //     mailIntro: 'Action Item for Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been dropped',
+        // };
+        // $.ajax({
+        //     url: "send_email.php",
+        //     type: "POST",
+        //     data: ActionItemDropped,
+        //     success: function (msg) {
+        //         console.log(msg);
+        //     }
+        // });
+        // console.log(ActionItemDropped);
         //36th Action Item is dropped ends
         return false;
     }
@@ -22450,31 +22450,31 @@ function saveNewProgressNote() {
     });
     $("#progressnote_modal").modal("hide");
     //38th Action Item progess percentage is updated starts
-    var names = getFirstLast(Gusername);
-    var SSoentry = findSSEntry(GcurrentSS);
-    var email = getEmailFromId(SSoentry[19]);
-    var sy = '%';
-    var ActionItemUpdated = {
-        email: email[0],
-        ProjectName: getStrategyName(Gcurrentstrategy),
-        StrategyStatementNumber: SSoentry[12],
-        StrategyStatementDescription: SSoentry[1],
-        ActionItemDescription: actionDesc,
-        TargetDate: actionDeadline,
-        ProgressPercentage: progress + " " + sy,
-        UpdateDate: getOnlyDate(getDateById("date-picker_progress")),
-        UpdateNotes: comment,
-        mailAction: 'ActionItemUpdated',
-        mailIntro: 'Action Item for Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been updated'
-    };
-    $.ajax({
-        url: "send_email.php",
-        type: "POST",
-        data: ActionItemUpdated,
-        success: function (msg) {
-            console.log(msg);
-        }
-    });
+    // var names = getFirstLast(Gusername);
+    // var SSoentry = findSSEntry(GcurrentSS);
+    // var email = getEmailFromId(SSoentry[19]);
+    // var sy = '%';
+    // var ActionItemUpdated = {
+    //     email: email[0],
+    //     ProjectName: getStrategyName(Gcurrentstrategy),
+    //     StrategyStatementNumber: SSoentry[12],
+    //     StrategyStatementDescription: SSoentry[1],
+    //     ActionItemDescription: actionDesc,
+    //     TargetDate: actionDeadline,
+    //     ProgressPercentage: progress + " " + sy,
+    //     UpdateDate: getOnlyDate(getDateById("date-picker_progress")),
+    //     UpdateNotes: comment,
+    //     mailAction: 'ActionItemUpdated',
+    //     mailIntro: 'Action Item for Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been updated'
+    // };
+    // $.ajax({
+    //     url: "send_email.php",
+    //     type: "POST",
+    //     data: ActionItemUpdated,
+    //     success: function (msg) {
+    //         console.log(msg);
+    //     }
+    // });
     //38th Action Item progess percentage is updated ends
 }
 
@@ -23025,34 +23025,34 @@ function deleteEDSSIm(ssObject) {
     $(".opt_btn_wrp").hide();
 
     //28th SS is dropped  starts
-    var SSoentry = findSSEntry(GcurrentSS);
-    var email = getEmailFromId(SSoentry[19]);
-    let SSactionOwners = getActionOwners(SSoentry[6]);
-    for (var i = 0; i < SSactionOwners.length; i++) {
-        var emailid = getEmailFromId(SSactionOwners[i]);
-        SSactionOwnersemail.push(emailid[0]);
-    }
+    // var SSoentry = findSSEntry(GcurrentSS);
+    // var email = getEmailFromId(SSoentry[19]);
+    // let SSactionOwners = getActionOwners(SSoentry[6]);
+    // for (var i = 0; i < SSactionOwners.length; i++) {
+    //     var emailid = getEmailFromId(SSactionOwners[i]);
+    //     SSactionOwnersemail.push(emailid[0]);
+    // }
 
-    var ssDropMailData = {
-        email: email[0],
-        ProjectName: getStrategyName(Gcurrentstrategy),
-        StrategyStatementNumber: SSoentry[12],
-        StrategyStatementDescription: SSoentry[1],
-        Priority: SSoentry[3],
-        ReasonForDropping: drop_reason,
-        DroppedBy: names[0] + " " + names[1],
-        ActionOwners: SSactionOwnersemail,
-        mailAction: 'ssDropped',
-        mailIntro: 'Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been dropped.'
-    };
-    $.ajax({
-        url: "send_email.php",
-        type: "POST",
-        data: ssDropMailData,
-        success: function (msg) {
-            console.log(msg);
-        }
-    });
+    // var ssDropMailData = {
+    //     email: email[0],
+    //     ProjectName: getStrategyName(Gcurrentstrategy),
+    //     StrategyStatementNumber: SSoentry[12],
+    //     StrategyStatementDescription: SSoentry[1],
+    //     Priority: SSoentry[3],
+    //     ReasonForDropping: drop_reason,
+    //     DroppedBy: names[0] + " " + names[1],
+    //     ActionOwners: SSactionOwnersemail,
+    //     mailAction: 'ssDropped',
+    //     mailIntro: 'Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been dropped.'
+    // };
+    // $.ajax({
+    //     url: "send_email.php",
+    //     type: "POST",
+    //     data: ssDropMailData,
+    //     success: function (msg) {
+    //         console.log(msg);
+    //     }
+    // });
     //28th SS is dropped ends
 
 
@@ -23382,28 +23382,28 @@ function saveEDSSI() {
 
     //15th SS Owner is assigned starts
 
-    var SSoentry = findSSEntry(GcurrentSS);
-    var email = getEmailFromId(ssowner);
-    var ssEditMailData = {
-        email: email[0],
-        ProjectName: getStrategyName(Gcurrentstrategy),
-        StrategyStatementNumber: SSoentry[12],
-        StrategyStatementDescription: SSoentry[1],
-        StartDate: getOnlyDate1(startdate),
-        TargetDate: getOnlyDate1(enddate),
-        Priority: SSoentry[3],
-        //NetPotentialValueIdentified : CurrencyFormat(temp, GdefaultCurrency, 0, "", ","),
-        mailAction: 'ssEditMailData',
-        mailIntro: 'You have been assigned to Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy)
-    };
-    $.ajax({
-        url: "send_email.php",
-        type: "POST",
-        data: ssEditMailData,
-        success: function (msg) {
-            console.log(msg);
-        }
-    });
+    // var SSoentry = findSSEntry(GcurrentSS);
+    // var email = getEmailFromId(ssowner);
+    // var ssEditMailData = {
+    //     email: email[0],
+    //     ProjectName: getStrategyName(Gcurrentstrategy),
+    //     StrategyStatementNumber: SSoentry[12],
+    //     StrategyStatementDescription: SSoentry[1],
+    //     StartDate: getOnlyDate1(startdate),
+    //     TargetDate: getOnlyDate1(enddate),
+    //     Priority: SSoentry[3],
+    //     //NetPotentialValueIdentified : CurrencyFormat(temp, GdefaultCurrency, 0, "", ","),
+    //     mailAction: 'ssEditMailData',
+    //     mailIntro: 'You have been assigned to Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy)
+    // };
+    // $.ajax({
+    //     url: "send_email.php",
+    //     type: "POST",
+    //     data: ssEditMailData,
+    //     success: function (msg) {
+    //         console.log(msg);
+    //     }
+    // });
     //15th SS Owner is assigned ends
 
 }
@@ -23453,38 +23453,38 @@ function saveUnSelectReason() {
     });
     //32nd SS is unselected starts
     //GpnidclientID
-    var SSoentry = findSSEntry(GcurrentSS);
-    var email = getEmailFromId(SSoentry[19]);
-    var today = new Date();
-    var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
-    var names = getFirstLast(Gusername);
-    let SSactionOwners = getActionOwners(SSoentry[6]);
-    for (var i = 0; i < SSactionOwners.length; i++) {
-        var emailid = getEmailFromId(SSactionOwners[i]);
-        SSactionOwnersemail.push(emailid[0]);
-    }
+    // var SSoentry = findSSEntry(GcurrentSS);
+    // var email = getEmailFromId(SSoentry[19]);
+    // var today = new Date();
+    // var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+    // var names = getFirstLast(Gusername);
+    // let SSactionOwners = getActionOwners(SSoentry[6]);
+    // for (var i = 0; i < SSactionOwners.length; i++) {
+    //     var emailid = getEmailFromId(SSactionOwners[i]);
+    //     SSactionOwnersemail.push(emailid[0]);
+    // }
 
-    var SSUnSelectReason = {
-        email: email[0],
-        ProjectName: getStrategyName(Gcurrentstrategy),
-        StrategyStatementNumber: SSoentry[12],
-        StrategyStatementDescription: SSoentry[1],
-        Priority: SSoentry[3],
-        ReasonForUnselection: unimplement_reason,
-        DateOfUnselection: getOnlyDate(date),
-        UnselectedBy: names[0] + " " + names[1],
-        ActionOwners: SSactionOwnersemail,
-        mailAction: 'SSUnSelectImplementation',
-        mailIntro: 'Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been unselected for implementation.'
-    };
-    $.ajax({
-        url: "send_email.php",
-        type: "POST",
-        data: SSUnSelectReason,
-        success: function (msg) {
-            console.log(msg);
-        }
-    });
+    // var SSUnSelectReason = {
+    //     email: email[0],
+    //     ProjectName: getStrategyName(Gcurrentstrategy),
+    //     StrategyStatementNumber: SSoentry[12],
+    //     StrategyStatementDescription: SSoentry[1],
+    //     Priority: SSoentry[3],
+    //     ReasonForUnselection: unimplement_reason,
+    //     DateOfUnselection: getOnlyDate(date),
+    //     UnselectedBy: names[0] + " " + names[1],
+    //     ActionOwners: SSactionOwnersemail,
+    //     mailAction: 'SSUnSelectImplementation',
+    //     mailIntro: 'Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been unselected for implementation.'
+    // };
+    // $.ajax({
+    //     url: "send_email.php",
+    //     type: "POST",
+    //     data: SSUnSelectReason,
+    //     success: function (msg) {
+    //         console.log(msg);
+    //     }
+    // });
     //32nd SS is unselected ends
 
 }
@@ -28540,35 +28540,35 @@ function addNPVtoSS() {
         //,datatype: "json"
     });
     //34th  Value Realized is updated starts
-    var ssCurType = document.getElementById('CurType').innerHTML;
-    var SSoentry = findSSEntry(GcurrentSS);
-    console.log(SSoentry);
-    var email = getEmailFromId(SSoentry[19]);
-    var today = new Date();
-    var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+    // var ssCurType = document.getElementById('CurType').innerHTML;
+    // var SSoentry = findSSEntry(GcurrentSS);
+    // console.log(SSoentry);
+    // var email = getEmailFromId(SSoentry[19]);
+    // var today = new Date();
+    // var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
 
 
-    var UpdateSSvalueRelized = {
-        email: email[0],
-        ProjectName: getStrategyName(Gcurrentstrategy),
-        StrategyStatementNumber: SSoentry[12],
-        StrategyStatementDescription: SSoentry[1],
-        Priority: SSoentry[3],
-        ValueRealized: CurrencyFormat(val, ssCurType, 0, "", ","),
-        // ValueRealized: val,
-        DateOfRealization: getOnlyDate(updateDate),
-        Notes: notes,
-        mailAction: 'SSvalueRelizedUpdate',
-        mailIntro: 'Value Realized for Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been updated.'
-    };
-    $.ajax({
-        url: "send_email.php",
-        type: "POST",
-        data: UpdateSSvalueRelized,
-        success: function (msg) {
-            console.log(msg);
-        }
-    });
+    // var UpdateSSvalueRelized = {
+    //     email: email[0],
+    //     ProjectName: getStrategyName(Gcurrentstrategy),
+    //     StrategyStatementNumber: SSoentry[12],
+    //     StrategyStatementDescription: SSoentry[1],
+    //     Priority: SSoentry[3],
+    //     ValueRealized: CurrencyFormat(val, ssCurType, 0, "", ","),
+    //     // ValueRealized: val,
+    //     DateOfRealization: getOnlyDate(updateDate),
+    //     Notes: notes,
+    //     mailAction: 'SSvalueRelizedUpdate',
+    //     mailIntro: 'Value Realized for Strategy Statement ' + SSoentry[12] + ' for ' + getStrategyName(Gcurrentstrategy) + ' has been updated.'
+    // };
+    // $.ajax({
+    //     url: "send_email.php",
+    //     type: "POST",
+    //     data: UpdateSSvalueRelized,
+    //     success: function (msg) {
+    //         console.log(msg);
+    //     }
+    // });
     //34th  Value Realized is updated ends
 
 

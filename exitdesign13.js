@@ -12431,7 +12431,7 @@ function setEDMyProjectsBody() {
     //TEMP
     var entry = getPersonEntry(Gusername);
     company_name = entry[7];
-    if (company_name == 'Test') {
+    if (company_name == 'SimPPLY Group' || company_name == 'Value Ink') {
         GmgmtReportCurrency = "AUD";
     } else {
         GmgmtReportCurrency = "USD";
@@ -19672,7 +19672,7 @@ function addEDProject() {
     //generateCurrencyDatalist("currlist", "currencySelector");
     document.getElementById("base_currency").value = "";
     //console.log(company_name);
-    if (company_name == 'Test') {
+    if (company_name == 'SimPPLY Group' || company_name == 'Value Ink') {
         document.getElementById("base_currency").value = "AUD";
     } else {
         document.getElementById("base_currency").value = "USD";
@@ -19742,7 +19742,8 @@ function editEDProject(i) {
         //document.getElementById("base_currency").value = "";
         document.getElementById("project_value").value = "";
     }
-    if (pentry[1][1] == 'Test') {
+     
+    if (pentry[1][1] == 'SimPPLY Group' || pentry[1][1] == 'Value Ink') {
         document.getElementById("base_currency").value = "AUD";
     } else {
         document.getElementById("base_currency").value = "USD";
@@ -31569,7 +31570,7 @@ function setManagementReports() {
      //TEMP
      var entry = getPersonEntry(Gusername);
      company_name = entry[7];
-     if (company_name == 'Test') {
+     if (company_name == 'SimPPLY Group' || company_name == 'Value Ink') {
          GmgmtReportCurrency = "AUD";
      } else {
          GmgmtReportCurrency = "USD";

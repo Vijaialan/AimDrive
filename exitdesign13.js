@@ -21950,6 +21950,12 @@ function updateParticipants() {
         Exparticipentsemail.push(emailid[0]);
     }
 
+    console.log(currentParticipantIDs);
+    print_r(added);
+    print_r(Exparticipentsemail);
+
+
+
     var today = new Date();
     var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
     var ExiParticipantadded = {

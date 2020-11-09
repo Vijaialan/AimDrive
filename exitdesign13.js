@@ -21946,19 +21946,15 @@ function updateParticipants() {
 
     //03rd 2nd part Participant is newly added starts 
     Exparticipentsemail = [];
-    
+
     for (var i = 0; i < added.length; i++) {
         var emailid = getEmailFromId(added[i]);
         console.log(emailid);
         Exparticipentsemail.push(emailid[0]);
     }
-
-    console.log(currentParticipantIDs);
-    console.log(added);
-    console.log(Exparticipentsemail);
-
-
-
+    // console.log(currentParticipantIDs);
+    // console.log(added);
+    // console.log(Exparticipentsemail);
     var today = new Date();
     var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
     var ExiParticipantadded = {

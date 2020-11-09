@@ -21951,8 +21951,8 @@ function updateParticipants() {
     }
 
     console.log(currentParticipantIDs);
-    print_r(added);
-    print_r(Exparticipentsemail);
+    console.log(added);
+    console.log(Exparticipentsemail);
 
 
 

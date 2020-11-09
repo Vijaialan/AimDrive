@@ -10031,26 +10031,26 @@ function addPersonToProject() {
     //console.log(updateEDPersonsAddPart);
     //03rd Participant is newly added starts 
     //console.log(Gcurrentdata);
-    // var today = new Date();
-    // var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
-    // var NewParticipantadded = {
-    //     email: email,
-    //     ProjectName: Gcurrentdata[0],
-    //     ProjectDescription: Gcurrentdata[1],
-    //     SupplierName: getCompanyName(cid),
-    //     ProjectValue: CurrencyFormat(Gcurrentdata[2][0], Gcurrentdata[2][1], 0, "", ","),
-    //     StartDate: getOnlyDate(date),
-    //     mailAction: 'NewParticipantadded',
-    //     mailIntro: 'You have been added to the Project ' + Gcurrentdata[0]
-    // };
-    // $.ajax({
-    //     url: "send_email.php",
-    //     type: "POST",
-    //     data: NewParticipantadded,
-    //     success: function (msg) {
-    //         //console.log(msg);
-    //     }
-    // });
+    var today = new Date();
+    var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+    var NewParticipantadded = {
+        email: email,
+        ProjectName: Gcurrentdata[0],
+        ProjectDescription: Gcurrentdata[1],
+        SupplierName: getCompanyName(cid),
+        ProjectValue: CurrencyFormat(Gcurrentdata[2][0], Gcurrentdata[2][1], 0, "", ","),
+        StartDate: getOnlyDate(date),
+        mailAction: 'NewParticipantadded',
+        mailIntro: 'You have been added to the Project ' + Gcurrentdata[0]
+    };
+    $.ajax({
+        url: "send_email.php",
+        type: "POST",
+        data: NewParticipantadded,
+        success: function (msg) {
+            //console.log(msg);
+        }
+    });
     //03rd Participant is newly added ends
 }
 

@@ -21966,7 +21966,7 @@ function updateParticipants() {
         type: "POST",
         data: ExiParticipantadded,
         success: function (msg) {
-            //console.log(msg);
+            console.log(msg);
         }
     });
     //03rd 2nd part Participant is newly added ends

@@ -21945,8 +21945,8 @@ function updateParticipants() {
 
 
     //03rd 2nd part Participant is newly added starts 
-    for (var i = 0; i < currentParticipantIDs.length; i++) {
-        var emailid = getEmailFromId(currentParticipantIDs[i]);
+    for (var i = 0; i < added.length; i++) {
+        var emailid = getEmailFromId(added[i]);
         Exparticipentsemail.push(emailid[0]);
     }
 

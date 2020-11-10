@@ -23466,7 +23466,9 @@ function saveUnSelectReason() {
     var today = new Date();
     var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
     var names = getFirstLast(Gusername);
+    
     let SSactionOwners = getActionOwners(SSoentry[6]);
+    SSactionOwnersemail =[];
     for (var i = 0; i < SSactionOwners.length; i++) {
         var emailid = getEmailFromId(SSactionOwners[i]);
         SSactionOwnersemail.push(emailid[0]);

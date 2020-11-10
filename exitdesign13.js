@@ -18983,7 +18983,7 @@ function saveWorkPlan() {
         var emailid = getEmailFromId(wpPerformers[i]);
         wpPerformersemail.push(emailid[0]);
     }
-    var email = getEmailFromId(ssowner);
+    //var email = getEmailFromId(ssowner);
     var addParticipantData = {
         email: wpPerformersemail,
         ProjectName: getStrategyName(Gcurrentstrategy),
@@ -21962,7 +21962,7 @@ function updateParticipants() {
         ProjectName: Gcurrentdata[0],
         ProjectDescription: Gcurrentdata[1],
         ProjectValue: CurrencyFormat(Gcurrentdata[2][0], Gcurrentdata[2][1], 0, "", ","),
-        StartDate: date,
+        StartDate: getOnlyDate(date),
         mailAction: 'ExiParticipantadded',
         mailIntro: 'You have been added to the Project ' + Gcurrentdata[0]
     };

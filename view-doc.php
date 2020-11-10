@@ -34,11 +34,28 @@ if($admin!="admin"){
   }
 }
 $ctype=exec("file -i -b uploads/$coid-$buid-$pjid-$docid");
-header("Content-Type: $ctype");
+
 $fn=$row['filename'];
-// $type=$row['contenttype'];
-header('Content-Disposition: attachment; filename="' . $fn . '"');
-// if there's a " in filename, too bad for you, doesn't hurt ME
-//echo file_get_contents("uploads/$coid-$buid-$pjid-$docid");
-readfile("uploads/$coid-$buid-$pjid-$docid");
+$filepath = "uploads/$coid-$buid-$pjid-$docid";
+
+// Process download  09/11/2020
+if(file_exists($filepath)) {
+//$mime='vnd.ms-excel';
+ob_end_clean(); // this is solution
+header('Content-Description: File Transfer');
+header("Content-Type: $ctype");
+//header('Content-Type: application/octet-stream');
+header("Content-Transfer-Encoding: Binary");
+header("Content-disposition: attachment; filename=\"" . basename($fn) . "\"");
+header('Content-Transfer-Encoding: binary');
+header('Expires: 0');
+header('Cache-Control: must-revalidate');
+header('Pragma: public');
+readfile($filepath);
+  die();
+} else {
+  http_response_code(404);
+die();
+}
+
 ?>

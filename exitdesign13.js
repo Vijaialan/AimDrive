@@ -17601,10 +17601,16 @@ function getOnlyDate(dbdate) {
 
 function getOnlyDate1(dbdate) {
     //10/30/2020 date formate should be in this formate then only this will work
-    var datearray = dbdate.split("/");
-    var newdate = datearray[0] + '-' + datearray[1] + '-' + datearray[2];
-    var upd = new Date(newdate);
-    return upd.toDateString().substring(4);
+    if( dbdate ) {
+        var datearray = dbdate.split("/");
+        var newdate = datearray[0] + '-' + datearray[1] + '-' + datearray[2];
+        var upd = new Date(newdate);
+        return upd.toDateString().substring(4);
+    }
+    else{
+        return "TBD";
+    }
+   
 }
 
 function getOnlyDate2(dbdate) {

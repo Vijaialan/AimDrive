@@ -22393,6 +22393,7 @@ function saveNewProgressNote() {
         var email = getEmailFromId(SSoentry[19]);
         let SSactionOwners = getActionOwners(SSoentry[6]);
         var ActionOwn = activeAction[3].split(',');
+        SSactionOwnersemail = [];
         for (var i = 0; i < ActionOwn.length; i++) {
             var emailid = getEmailFromId(ActionOwn[i]);
             SSactionOwnersemail.push(emailid[0]);
@@ -23466,7 +23467,7 @@ function saveUnSelectReason() {
     var today = new Date();
     var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
     var names = getFirstLast(Gusername);
-    
+
     let SSactionOwners = getActionOwners(SSoentry[6]);
     SSactionOwnersemail =[];
     for (var i = 0; i < SSactionOwners.length; i++) {

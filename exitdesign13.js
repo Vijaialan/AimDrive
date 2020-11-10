@@ -18726,6 +18726,7 @@ function saveTask() {
     }
     //11 - Participant is added to a new task
     var tDate = document.getElementById("input_taskdate").value;
+    taskperformersemail = [];
     for (var i = 0; i < taskPerformers.length; i++) {
         var emailid = getEmailFromId(taskPerformers[i]);
         taskperformersemail.push(emailid[0]);
@@ -18979,6 +18980,7 @@ function saveWorkPlan() {
         });
     }
     //05th Participant is selected starts
+    wpPerformersemail = [];
     for (var i = 0; i < wpPerformers.length; i++) {
         var emailid = getEmailFromId(wpPerformers[i]);
         wpPerformersemail.push(emailid[0]);

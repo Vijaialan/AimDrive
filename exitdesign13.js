@@ -23043,6 +23043,7 @@ function deleteEDSSIm(ssObject) {
     var SSoentry = findSSEntry(GcurrentSS);
     var email = getEmailFromId(SSoentry[19]);
     let SSactionOwners = getActionOwners(SSoentry[6]);
+    SSactionOwnersemail = [];
     for (var i = 0; i < SSactionOwners.length; i++) {
         var emailid = getEmailFromId(SSactionOwners[i]);
         SSactionOwnersemail.push(emailid[0]);

@@ -22623,7 +22623,7 @@ function initStrategicOptions(currSS, divid) {
                                     "-" +
                                     so +
                                     '"' +
-                                    ">" +
+                                    checked + ">" +
                                     '<label for="' +
                                     cbid +
                                     '" class="css-label">' +

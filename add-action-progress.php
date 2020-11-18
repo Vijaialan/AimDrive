@@ -42,7 +42,7 @@ if(array_key_exists ("date",$_REQUEST)){
   $date=date('Y-m-d H:i:s', time());
 }
 
-$ss_sql = "UPDATE action a SET completiontime=null, dropped = 0 WHERE actionid = $actionid";
+$ss_sql = "UPDATE action a SET completiontime=null, completed = 0, dropped = 0 WHERE actionid = $actionid";
 $result=obtain_query_result($ss_sql);
 $q="insert into action_progress set
  coid=$coid, buid=$buid, pjid=$pjid, ssid=$ssid, actionid=$actionid,

@@ -304,7 +304,7 @@ while($row2= mysqli_fetch_assoc($result2)) {
   // (listof (x y z) s.t. (action-percentage a x y z)) - date percent person
   $q4="select * from action_progress where coid=$company and " . 
       " buid=$bu and pjid=$project and ssid=" . $strategy_statement_id .
-      " and actionid=" . $row3['actionid'] . " order by lastupdate";
+      " and actionid=" . $row3['actionid'] . " order by creationtime";
   $result4=obtain_query_result($q4);
   $ssactpr=array();
   while($row4= mysqli_fetch_assoc($result4)) {

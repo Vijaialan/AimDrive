@@ -16,7 +16,8 @@ $pnid = $loginData['pnid'];
 $sql = "UPDATE strategy_statement SET ss_unimplement = 1, unimplement_date = '$currentTime', unimplement_by = $pnid WHERE ssid = $ssid";
 updateData($sql, $con);
 // var_dump($sql);
-$percent = -1;
+//$percent = -1;
+$percent = 0; // changed to 0 bcz while edit action item progress shows -1
 $comment = "Strategy statement unselected for implementation in V stage";
 $action_sql = "SELECT * FROM action WHERE ssid = $ssid";
 $action_data = getData($action_sql, $con);

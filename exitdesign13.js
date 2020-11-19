@@ -22225,7 +22225,8 @@ function addEDProgressNote(SSn, position, ssObject) {
         let progressVerify = 0;
         let lastUpdatedVerify = "TBD";
         for (var pro = 0; pro < ae[7].length; pro++) {
-            progressVerify += parseInt(ae[7][pro][1]);
+           // progressVerify += parseInt(ae[7][pro][1]);
+            progressVerify = ae[7][pro][1];
             lastUpdatedVerify = ae[7][pro][4];
         }
         if (lastUpdatedVerify !== "TBD") {
@@ -31825,7 +31826,7 @@ function setManagementReports() {
         
         //console.log(stratEnt[30]);
         //console.log(Gstrategies[0][1]);
-        
+
         function getClientName(id) {
             for (var i = 0; i < Gstrategies.length; i++) {
                 // if(Gcompanies[i][0] !== Gemployer && Gemployer !== "1") continue;

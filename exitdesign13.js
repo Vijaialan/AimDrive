@@ -31817,13 +31817,22 @@ function setManagementReports() {
             manAllPendingActionsData.push([
                 stratEnt[28][key].description,
                 stratEnt[28][key].pj_name,
-                getCompanyName(getCompanyForProject(stratEnt[28][key].pjid)),
+                getClientName(stratEnt[28][key].pjid),
                 stratEnt[28][key].deadline,
                 getPersonName(stratEnt[28][key].participant, "empname")
             ]);
         }
-
+        
         //console.log(stratEnt[30]);
+        //console.log(Gstrategies[0][1]);
+        function getClientName(id) {
+            for (var i = 0; i < Gstrategies.length; i++) {
+                // if(Gcompanies[i][0] !== Gemployer && Gemployer !== "1") continue;
+                if (Gstrategies[i][0] == id) {
+                    return Gstrategies[i][1][1];
+                }
+            }
+        }
 
         //NEW 
         for (var key in stratEnt[30]) {
@@ -31832,7 +31841,8 @@ function setManagementReports() {
                 manAllPendingStrategiesData.push([
                     stratEnt[30][key].ssdesc,
                     stratEnt[30][key].projectName,
-                    getCompanyName(getCompanyForProject(stratEnt[30][key].project)),
+                    //getCompanyName(getCompanyForProject(stratEnt[30][key].project)),
+                    getClientName(stratEnt[30][key].project),
                     stratEnt[30][key].targetDate,
                     getPersonName(stratEnt[30][key].ssowner)
 
@@ -32344,7 +32354,7 @@ function setManagementReports() {
         '<div class="projects_scroll cus_scroll">' +
         '<table class="table projects_table" id="projects_table">';
 
-    //console.log(manAllProjectsData);
+    ///console.log(manAllProjectsData);
 
     for (var x = 0; x < manAllProjectsData.length; x++) {
         let susu = manAllProjectsData[x];

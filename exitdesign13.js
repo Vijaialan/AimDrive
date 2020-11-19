@@ -31825,6 +31825,7 @@ function setManagementReports() {
         
         //console.log(stratEnt[30]);
         //console.log(Gstrategies[0][1]);
+        
         function getClientName(id) {
             for (var i = 0; i < Gstrategies.length; i++) {
                 // if(Gcompanies[i][0] !== Gemployer && Gemployer !== "1") continue;

@@ -22,7 +22,7 @@ $action_sql = "SELECT * FROM action WHERE ssid = $ssid";
 $action_data = getData($action_sql, $con);
 foreach($action_data as $ad) {
     if($ad['completed'] == 1) continue;
-    if($ad['dropped'] == 1) continue;
+    //if($ad['dropped'] == 1) continue;
     $actionid = $ad['actionid'];
     $coid = $ad['coid'];
     $buid = $ad['buid'];

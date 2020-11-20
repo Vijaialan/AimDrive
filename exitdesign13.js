@@ -33151,6 +33151,18 @@ function charcountupdate(str) {
         "500" - lng + " " + " " + "characters left";
 }
 
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        //$(".error").show();
+        //$("#input_progress_error").html("Enter Valid Percentage");
+        return false;
+    }
+    // $(".error").hide();
+    return true;
+}
+
 //08092020
 //08092020
 //08092020

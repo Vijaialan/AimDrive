@@ -514,7 +514,7 @@
                   </div>
                   <div class="form-group progress-div">
                      <label>Progress in Percentage</label>
-                     <input placeholder="This is a mandatory field. Please update cumulative progress percentage." type="text" class="form-control" required onkeyup='activateButton("progressnote_submit");' id="input_progress" >
+                     <input placeholder="Mandatory field. Please update cumulative progress percentage in whole numbers." type="text" maxlength="2" class="form-control" required onkeyup='activateButton("progressnote_submit");' onkeypress="return isNumber(event)" id="input_progress" >
                      <div class="error" id='input_progress_error'>
                      </div>
                   </div>

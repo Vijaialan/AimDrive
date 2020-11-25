@@ -27634,7 +27634,7 @@ function saveEDCostDriver() {
     if (canSaveCD === false) return false;
     $("#cost_driver_modal").modal("hide");
     saveMainScrollXY();
-    // alert("scroll positions: " + scrollX + " " + scrollY);
+    // alert("scroll positions: " + scrollX + " " + scrollY); editingCD
     if (editingCD == -1) {
         // adding a new one
         var pos = addingPosition; // if there is a position spec incoming...
@@ -27674,7 +27674,7 @@ function saveEDCostDriver() {
             //,datatype: "json"
         });
 
-        // alert("adding a cost driver to element: " + contextualCE);
+         // alert("adding a cost driver to element: " + contextualCE);
     } else {
         $.ajax({
             url: "save-driver.php?username=" +
@@ -27706,7 +27706,7 @@ function saveEDCostDriver() {
             error: driverEDOpFailed
             //,datatype: "json"
         });
-        // alert("Saving cost driver: " + editingCD + "of cost element: " + contextualCE);
+         // alert("Saving cost driver: " + editingCD + "of cost element: " + contextualCE);
         return;
     }
 }
@@ -27831,6 +27831,8 @@ function swapDriversED(ce, cd1, cd2) {
 var addingPosition = -1;
 
 function addCDAtPosition(ce, pos) {
+   //NEW ADDED 
+    $("#cost_driver_modal").modal("show");
     contextualCE = ce;
     editingCD = -1;
     addingPosition = pos;
@@ -30572,6 +30574,9 @@ function refreshProgressReport() {
     var valueRealized = 0;
     var totalPossible = Gcurrentdata[Gprimeindex][1];
     var totalAcrossAll = 0;
+    var CostImprovementIdentified = 0;
+    var RevenueImprovementIdentified = 0;
+
     if (Gcurrentdata[Grbindex] != null) {
         numSS = Gcurrentdata[Grbindex].length;
         for (var i = 0; i < numSS; i++) {
@@ -30581,6 +30586,7 @@ function refreshProgressReport() {
             var sshandle = oentry[12].substring(0, 7);
             var impSel = oentry[9];
             allSS.push(oentry);
+            //console.log(oentry);
             if (impSel.valueOf() == "SELECTED".valueOf()) {
                 selectedSS.push(oentry);
                 if (oentry[14] == "1") {
@@ -30610,18 +30616,26 @@ function refreshProgressReport() {
                 if (oentry[21] == "1") {
                     droppedSS.push(oentry);
                 }
+                //console.log(oentry[13]);
                 var actualSavings = oentry[13];
-                if (actualSavings.length > 0) {
+                if (actualSavings.length > 0 && oentry[21] != "1") {
                     for (var fas = 0; fas < actualSavings.length; fas++) {
                         valueRealized += parseInt(actualSavings[fas][0]);
+                        if(actualSavings[fas][5]== "Cost Improvement"){
+                            CostImprovementIdentified += parseInt(actualSavings[fas][0]); 
+                        }else{
+                            RevenueImprovementIdentified += parseInt(actualSavings[fas][0]);
+                        }
                     }
                 }
                 var performance = getSummaryPerformanceAlt(oentry);
-                if (performance != null) {
+                if (performance != null && oentry[21] != "1") {
                     totalAcrossAll =
                         totalAcrossAll + performance[0] + performance[1] - performance[2];
+                       // CostImprovementIdentified = CostImprovementIdentified + performance[5]['costImprovement'];
+                       // RevenueImprovementIdentified = RevenueImprovementIdentified + performance[5]['revenueImprovement'];
                 }
-
+                //console.log(performance)
                 var actions = oentry[6];
 
                 if (actions == null) continue;
@@ -30666,6 +30680,7 @@ function refreshProgressReport() {
             }
         }
     }
+    //console.log(CostImprovementIdentified);
     let droppedSScount = droppedSS.length;
     percentageValueRealized = numberFormat(
         (valueRealized / totalAcrossAll) * 100,
@@ -30948,10 +30963,10 @@ function refreshProgressReport() {
                   <div class="col-lg-4 col-md-4 col-sm-4">
                       <div class="row">
                         <div class="col-md-6">Cost Improvement Identified:
-                            <div id="totalCostSavings"></div>
+                            <div id="totalCostSavings"> ${CostImprovementIdentified} </div>
                         </div>
                         <div class="col-md-6">Revenue Improvement Identified:
-                          <div id="totalRevenueImprovement"></div>
+                          <div id="totalRevenueImprovement"> ${RevenueImprovementIdentified} </div>
                         </div>
                       </div>
                       <div class="row">
@@ -31686,7 +31701,8 @@ function setManagementReports() {
         var projname = proj[4];
         var currency = proj[2] === null ? "" : proj[2][1];
 
-        projectIdName.push(proj_id + '-' + projname);
+        //projectIdName.push(proj_id + '-' + projname);
+        projectIdName.push(projname);
 
         var status = proj[GstatusIndex];
         if (status == null) status = "";

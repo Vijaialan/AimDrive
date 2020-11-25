@@ -74,7 +74,8 @@ $result=obtain_query_result($q);
 if(!mysqli_fetch_assoc($result)) {
   die('["ERROR", "Cost element does not exist!"]');
 }
-$q="update cost_driver set position=position+1, $set where
+//, $set // REMOVED FROM THE DONW QUERY
+$q="update cost_driver set position=position+1 where
  coid=$coid and buid=$buid and pjid=$pjid and ceid=$ceid
  and position>=$pos";
 $result=obtain_query_result($q);

@@ -345,7 +345,7 @@ while($row2= mysqli_fetch_assoc($result2)) {
   $ssd[]=(is_null($row2['ss_status']))?"No Status":$row2['ss_status'];
   $ssd[]=$row2['ss_handle'];
 
-  // 2017-08-21 
+  // 2017-08-21  
   $q3="select * from strategy_statement_savings
    where coid=$company and buid=$bu and pjid=$project and ssid= $strategy_statement_id ORDER BY savingsdate DESC";
   $result3=obtain_query_result($q3);
@@ -355,6 +355,8 @@ while($row2= mysqli_fetch_assoc($result2)) {
   $savings_quarter = 0;
   
   while($row3= mysqli_fetch_assoc($result3)) {
+    if($row2['ss_unimplement'] == 1) continue;// 2020-11-30 ss_unimplement = 0 AND ss_dropped = 0
+    if($row2['ss_dropped'] == 1) continue;
     if($row3['savingsdate'] !== NULL || $row3['savingsdate'] !== '') {
       $savings_year = date('Y', strtotime($row3['savingsdate']));
       $savings_month = date('n', strtotime($row3['savingsdate']));

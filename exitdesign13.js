@@ -30635,7 +30635,7 @@ function refreshProgressReport() {
                 }
                 //console.log(oentry[13]);
                 var actualSavings = oentry[13];
-                if (actualSavings.length > 0 && oentry[21] != "1") {
+                if (actualSavings.length > 0 && oentry[21] != "1" && oentry[31] != "1") {
                     for (var fas = 0; fas < actualSavings.length; fas++) {
                         valueRealized += parseInt(actualSavings[fas][0]);
                         if(actualSavings[fas][5]== "Cost Improvement"){
@@ -30646,7 +30646,7 @@ function refreshProgressReport() {
                     }
                 }
                 var performance = getSummaryPerformanceAlt(oentry);
-                if (performance != null && oentry[21] != "1") {
+                if (performance != null && oentry[21] != "1" && oentry[31] != "1") {
                     totalAcrossAll =
                         totalAcrossAll + performance[0] + performance[1] - performance[2];
                        // CostImprovementIdentified = CostImprovementIdentified + performance[5]['costImprovement'];

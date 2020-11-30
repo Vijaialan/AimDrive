@@ -2661,6 +2661,7 @@ function addGoal(num) {
  */
 function addEDGoal() {
     $(".goaldescription_error").hide();
+    
     $(".goalOperation_error").hide();
     $("#separateGoals").prop("checked", false);
     $(".goaltitle").text("Add New Goal");
@@ -2668,6 +2669,7 @@ function addEDGoal() {
     document.getElementById("perspectiveSelect").innerHTML = injectPerspectives(-1); // no default in perspectives
     document.getElementById("goaldescription").value = "";
     document.getElementById("goalOperation").value = "";
+    $(".seperateGoalsContainer").show();
     // document.getElementById("separateGoals").style.visibility = "visible";
     // document.getElementById("goalcblabel").style.visibility = "visible";
     // document.getElementById("separateGoals").checked = false;
@@ -23764,10 +23766,15 @@ function initBenefit() {
     editingSS = GcurrentSS;
     editingBenefit = "";
     var priority = oentry[3];
-    var pclass = "btn btn-default btn-sm";
-    if (priority.valueOf() == "HIGH".valueOf()) pclass = "btn btn-success btn-sm";
+
+    var pclass = " low_priority";
+    if (priority.valueOf() == "HIGH".valueOf()) pclass = " high_priority";
     else if (priority.valueOf() == "MEDIUM".valueOf())
-        pclass = "btn btn-info btn-sm";
+        pclass = " medium_priority";
+    // var pclass = "btn btn-default btn-sm";
+    // if (priority.valueOf() == "HIGH".valueOf()) pclass = "btn btn-success btn-sm";
+    // else if (priority.valueOf() == "MEDIUM".valueOf())
+    //     pclass = "btn btn-info btn-sm";
     var sshandle = oentry[12];
     var fixedhandle = sshandle;
     if (sshandle.length > GmaxShortStrategyDesc)
@@ -23782,13 +23789,23 @@ function initBenefit() {
     document.getElementById("ssHeaderBen").innerHTML =
         '<span class="stat_count">' +
         fixedhandle +
-        "</span>" +
-        '<span class= "' +
+        "</span>&nbsp;" +
+        '<span class="Priority_type ' +
         pclass +
         '">' +
         priority +
         "</span>";
-    pclass = " medium_priority";
+
+    // document.getElementById("ssHeaderBen").innerHTML =
+    //     '<span class="stat_count">' +
+    //     fixedhandle +
+    //     "</span>" +
+    //     '<span class= "' +
+    //     pclass +
+    //     '">' +
+    //     priority +
+    //     "</span>";
+    // pclass = " medium_priority";
 
     deactivateButton("benefit_submit");
     document.getElementById("ssStatBen").innerHTML = oentry[1];
@@ -23826,7 +23843,7 @@ function editEDBenefit(i) {
     document.getElementById("ssHeaderBen").innerHTML =
         '<span class="stat_count">' +
         fixedhandle +
-        "</span>" +
+        "</span>&nbsp;" +
         '<span class="Priority_type ' +
         pclass +
         '">' +

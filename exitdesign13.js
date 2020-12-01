@@ -30979,10 +30979,10 @@ function refreshProgressReport() {
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4">
                       <div class="row">
-                        <div class="col-md-6">Cost Improvement Identified:
+                        <div class="col-md-6">Cost Improvement Realized:
                             <div id="totalCostSavings"> ${CostImprovementIdentified} </div>
                         </div>
-                        <div class="col-md-6">Revenue Improvement Identified:
+                        <div class="col-md-6">Revenue Improvement Realized:
                           <div id="totalRevenueImprovement"> ${RevenueImprovementIdentified} </div>
                         </div>
                       </div>
@@ -31455,7 +31455,7 @@ function refreshProgressReport() {
             },
             tooltip: {
                 headerFormat: "<b>{point.x}</b><br/>",
-                pointFormat: "{series.name}: {point.y}<br/>Total: {point.stackTotal}"
+                pointFormat: "{series.name}: {point.y}<br/>Total : {point.stackTotal}"
             },
             plotOptions: {
                 column: {
